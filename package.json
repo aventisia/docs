@@ -2,8 +2,19 @@
   "name": "docs",
   "version": "0.1.0",
   "private": true,
+  "description": "Aventisia Documentation",
+  "homepage": "https://docs.aventisia.com",
+  "keywords": [
+    "docs"
+  ],
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "url": "git+https://github.com/aventisia/docs.git"
+  },
   "scripts": {
-    "dev": "next dev --turbopack --port 3003",
+    "dev": "next dev --port 3003",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
