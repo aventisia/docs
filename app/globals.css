@@ -8,8 +8,13 @@
   --color-secondary: rgb(30, 27, 75);
 }
 
+:root {
+  --font-family: var(--font-inter), sans-serif;
+}
+
 body {
   font-feature-settings: "rlig" 1, "calt" 1;
+  font-family: var(--font-family);
 }
 
 .home-content p {

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Inter } from "next/font/google";
 import { Layout } from "nextra-theme-docs";
 import { getPageMap } from "nextra/page-map";
 import CustomFooter from "./_components/CustomFooter";
@@ -6,9 +7,15 @@ import CustomHead from "./_components/CustomHead";
 import CustomNavbar from "./_components/CustomNavbar";
 import "./globals.css";
 
+const inter = Inter({
+  subsets: ["latin"], // Supports Latin characters
+  variable: "--font-inter", // Custom CSS variable for font
+  display: "swap", // Ensures faster font loading
+});
+
 export default async function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning>
+    <html lang="en" dir="ltr" className={inter.variable} suppressHydrationWarning>
       <CustomHead />
       <body>
         <Layout
