@@ -40,6 +40,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Ignore the build directory
+dist/
+
+
 # Ignore extra temporary files
 TO-DELETE-*
 sample-*
