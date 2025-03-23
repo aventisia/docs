@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo 'Building...'
                 script {
-                    sh "npm run build"
+                    sh "npm run build && npx pagefind --site dist"
                 }
             }
         }
