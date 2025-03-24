@@ -37,6 +37,12 @@ const meta: MetaRecord = {
       breadcrumb: false,
     },
   },
+  "file": {
+    title: "File",
+    theme: {
+      breadcrumb: false,
+    },
+  },
   // Navbar links
   website_link: {
     title: "Website",
