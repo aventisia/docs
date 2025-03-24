@@ -43,6 +43,18 @@ const meta: MetaRecord = {
       breadcrumb: false,
     },
   },
+  "conditional": {
+    title: "Conditional",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "datatable": {
+    title: "Data Table",
+    theme: {
+      breadcrumb: false,
+    },
+  },
   // Navbar links
   website_link: {
     title: "Website",
