@@ -55,6 +55,72 @@ const meta: MetaRecord = {
       breadcrumb: false,
     },
   },
+  "flow-control": {
+    title: "Flow Control",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "http": {
+    title: "Http",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "loops": {
+    title: "Loops",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "variable": {
+    title: "Variable",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "date-time": {
+    title: "Date Time",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "text-action": {
+    title: "Text Action",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "cryptography": {
+    title: "Cryptography",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "database": {
+    title: "Database",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "email": {
+    title: "Email",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "exchange-server": {
+    title: "Exchange Server",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "ftp": {
+    title: "FTP",
+    theme: {
+      breadcrumb: false,
+    },
+  },
   // Navbar links
   website_link: {
     title: "Website",
