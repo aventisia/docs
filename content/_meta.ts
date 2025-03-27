@@ -181,6 +181,30 @@ const meta: MetaRecord = {
       breadcrumb: false,
     },
   },
+  "mouse-and-keyboard": {
+    title: "Mouse and Keyboard",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "outlook": {
+    title: "Outlook",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "scripting": {
+    title: "Scripting",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "system": {
+    title: "System",
+    theme: {
+      breadcrumb: false,
+    },
+  },
   // Navbar links
   website_link: {
     title: "Website",
