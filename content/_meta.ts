@@ -37,19 +37,19 @@ const meta: MetaRecord = {
       breadcrumb: false,
     },
   },
-  "file": {
+  file: {
     title: "File",
     theme: {
       breadcrumb: false,
     },
   },
-  "conditional": {
+  conditional: {
     title: "Conditional",
     theme: {
       breadcrumb: false,
     },
   },
-  "datatable": {
+  datatable: {
     title: "Data Table",
     theme: {
       breadcrumb: false,
@@ -61,19 +61,19 @@ const meta: MetaRecord = {
       breadcrumb: false,
     },
   },
-  "http": {
+  http: {
     title: "Http",
     theme: {
       breadcrumb: false,
     },
   },
-  "loops": {
+  loops: {
     title: "Loops",
     theme: {
       breadcrumb: false,
     },
   },
-  "variable": {
+  variable: {
     title: "Variable",
     theme: {
       breadcrumb: false,
@@ -91,19 +91,19 @@ const meta: MetaRecord = {
       breadcrumb: false,
     },
   },
-  "cryptography": {
+  cryptography: {
     title: "Cryptography",
     theme: {
       breadcrumb: false,
     },
   },
-  "database": {
+  database: {
     title: "Database",
     theme: {
       breadcrumb: false,
     },
   },
-  "email": {
+  email: {
     title: "Email",
     theme: {
       breadcrumb: false,
@@ -111,12 +111,6 @@ const meta: MetaRecord = {
   },
   "exchange-server": {
     title: "Exchange Server",
-    theme: {
-      breadcrumb: false,
-    },
-  },
-  "ftp": {
-    title: "FTP",
     theme: {
       breadcrumb: false,
     },
