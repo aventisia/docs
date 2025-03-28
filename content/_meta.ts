@@ -115,6 +115,96 @@ const meta: MetaRecord = {
       breadcrumb: false,
     },
   },
+  "ftp": {
+    title: "FTP",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "pdf": {
+    title: "PDF",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "terminal-emulation": {
+    title: "Terminal Emulation",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "windows-services": {
+    title: "Windows-Services",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "browser-automation": {
+    title: "Browser Automation",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "clipboard": {
+    title: "Clipboard",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "cmd-session": {
+    title: "CMD Session",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "compression": {
+    title: "Compression",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "excel": {
+    title: "Excel",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "folder": {
+    title: "Folder",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "message-boxes": {
+    title: "Message Boxes",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "mouse-and-keyboard": {
+    title: "Mouse and Keyboard",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "outlook": {
+    title: "Outlook",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "scripting": {
+    title: "Scripting",
+    theme: {
+      breadcrumb: false,
+    },
+  },
+  "system": {
+    title: "System",
+    theme: {
+      breadcrumb: false,
+    },
+  },
   // Navbar links
   website_link: {
     title: "Website",
