@@ -41,7 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # Ignore the build directory
-dist/
+out/
 
 
 # Ignore extra temporary files

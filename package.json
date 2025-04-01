@@ -8,7 +8,7 @@
     "docs"
   ],
   "files": [
-    "dist"
+    "out"
   ],
   "repository": {
     "url": "git+https://github.com/aventisia/docs.git"

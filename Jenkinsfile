@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo 'Building...'
                 script {
-                    sh "npm run build && npx pagefind --site dist"
+                    sh "npm run build"
                 }
             }
         }
@@ -42,7 +42,7 @@ pipeline {
                         echo "Deploying to ${targetServer}..."
                         
                         // Deploy to target server  
-                        sh "rsync -avz --delete ${WORKSPACE}/dist/* admin@${targetServer}:/var/www/aventisia.com/clients/docs/"
+                        sh "rsync -avz --delete ${WORKSPACE}/out/* admin@${targetServer}:/var/www/aventisia.com/clients/docs/"
                     }
                 }
             }
