@@ -7,35 +7,8 @@ const meta: MetaRecord = {
       breadcrumb: false,
     },
   },
-  "page-2": {
-    title: "Page 2",
-    theme: {
-      breadcrumb: false,
-    },
-  },
-  "page-3": {
-    title: "Page 3",
-    theme: {
-      breadcrumb: false,
-    },
-  },
   "#": {
     type: "separator",
-  },
-  "page-group-1": {
-    title: "Page Group 1",
-    theme: {
-      breadcrumb: false,
-    },
-  },
-  "##": {
-    type: "separator",
-  },
-  "page-group-2": {
-    title: "Page Group 2",
-    theme: {
-      breadcrumb: false,
-    },
   },
   // Navbar links
   website_link: {
