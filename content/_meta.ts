@@ -37,7 +37,6 @@ const meta: MetaRecord = {
       breadcrumb: false,
     },
   },
-  
   // Navbar links
   website_link: {
     title: "Website",
