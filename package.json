@@ -16,7 +16,8 @@
   "scripts": {
     "dev": "next dev --port 3003",
     "build": "next build",
-    "start": "next start",
+    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind",
+    "start": "next start --port 3003",
     "lint": "next lint"
   },
   "dependencies": {
