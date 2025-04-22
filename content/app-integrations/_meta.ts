@@ -1,11 +1,12 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
+  
+  "excel": {
+    title: "Excel Automation",
+  },
   "email": {
     title: "Email",
-  },
-  "excel": {
-    title: "Excel",
   },
   "exchange-server": {
     title: "Exchange Server",
@@ -30,6 +31,7 @@ const meta: MetaRecord = {
   "word": {
     title: "Word",
   }
+  
 };
 
 export default meta;

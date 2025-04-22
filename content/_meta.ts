@@ -7,6 +7,12 @@ const meta: MetaRecord = {
       breadcrumb: false,
     },
   },
+  "signing-in": {
+    title: "Signing In",
+    theme: {
+      breadcrumb: false,
+    },
+  },
   "#": {
     type: "separator",
   },
