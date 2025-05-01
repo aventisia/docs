@@ -1,52 +1,82 @@
-# Agent
+# Agents
 
-## Description
-This image shows a user interface of a software application named "Worcspace," focusing on the "Main Menu" and the "Agents" tab. Below is a detailed breakdown of these specific sections:
+Learn how to navigate and build Agents.
+⁠Agents allow you to build out powerful and flexible automated processes. While Getting started with Agent Builder provides an overview of Agents, here you will find an in-depth guide to navigating and building out your Agents.
 
-![Create Agent](../assets/create-agent/agent-introduction.png)
+## Navigate the Agents canvas
 
-## Main Menu
-- **Location**: The Main Menu is located on the left side of the interface in a vertical sidebar.
-- **Title**: 
-  - The title "MAIN MENU" is displayed at the top of the sidebar in uppercase letters with a light gray font.
-- **Menu Items**:
-  - **Agents**:
-    - Highlighted as the active tab with a blue background and white text.
-    - Preceded by a small icon resembling a person or agent.
-  - **AI Models**:
-    - Displayed below "Agents" with a gray font, indicating it is not active.
-    - Preceded by a small icon resembling a neural network or model.
-  - **Support**:
-    - Displayed below "AI Models" with a gray font.
-    - Preceded by a small question mark icon inside a circle.
+The Agent canvas is the backdrop on which you will add and order the trigger and activities that make up your Agent. Utilize the following options to move around the canvas
++ **Drag mode**: The default mode, it allows you to move around the canvas by scrolling with a trackpad. 
++ **Zoom**: Adjust your zoom settings to magnify or decrease the size of Agent on the canvas. Click the magnifying plus and minus signs in the right-bottom on the screen to zoom in, out, or to a set percentage. You can also click on the dotted square symbol, to fit your Agent to screen size. 
++ **Lock**: Click the lock icon at the bottom-rigth of the screen to ...
++ **Undo/Redo**: You can click the undo or redo buttons on the top-right of the screen to reverse or reapply your actions.
++ **Mini-map**: This is at the bottom-left of the screen and gives you a one eye view of the Agent as you build it. 
++ **Preferences**: This functionality is at the top-left of the screen and helps you hide or unhide the above functionalities to enable you to customize your screen as required. You also have an option to choose your layout option for your Agent here, you can choose Left to Right or Top to Bottom depending upon your preference. 
++ **Right Click on Canvas**: If you have changed your layout option in the preferences section, you can right click anywhere on the canvas and click organize for the layout to change. You also get some common editing options when you right click on the canvas, like cut, copy, paste, delete. 
++ **Switching Agents**: You can see the name and version number of the Agent you are building on the top-left corner of the screen. By clicking on it you can switch between Agents if you have more than one Agent open. You can also start a new Agent by clicking on the plus sign on the pop-up window that opens up. 
++ **Notifications**: Click on the bell icon on the top-left corner of the screen to see any notifications sent to you. 
 
-## Agents Tab
-- **Location**: The Agents tab is the main content area to the right of the Main Menu sidebar.
-- **Title**: 
-  - The title "Agents" is displayed at the top of the tab in a bold, dark font.
-- **Search Bar**:
-  - A search bar is located just below the title with a placeholder text "Search flows..." and a magnifying glass icon on the left.
-- **View Options**:
-  - To the right of the search bar, there is a "View" button with a grid icon, suggesting options to change the view layout (e.g., list or grid).
-- **Create Agent Button**:
-  - To the right of the "View" button, there is a purple button labeled "CREATE AGENT" with a plus (+) icon, allowing the user to create a new agent.
-- **Table**:
-  - The main content of the Agents tab is a table displaying a list of agents with the following columns:
-    - **Name**:
-      - Lists the names of the agents: "AmbitiousBOX-v2," "Dummy," "AmbitiousBOX-v1," and "AmbitiousBOX."
-    - **Type**:
-      - All agents are listed as "Automation Agent."
-    - **Comments**:
-      - All agents have "0" comments.
-    - **Created By**:
-      - All agents were created by "Pooja Bagul."
-    - **Created On**:
-      - Dates of creation are "10 Apr 2025," "09 Apr 2025," "09 Apr 2025," and "08 Apr 2025" respectively.
-    - **Actions**:
-      - Each row has an ellipsis (...) button, likely for additional actions like editing or deleting the agent.
-- **Table Footer**:
-  - Below the table, there is a footer showing "4 row(s)" on the left.
-  - On the right, there are pagination controls:
-    - A dropdown set to "Rows per page: 10."
-    - A label "Page 1 of 1," indicating there is only one page.
-    - Navigation arrows (left and right), which are grayed out, indicating no additional pages to navigate.
+## Build a Agent
+
+### Create a new Agent
+
+Follow these steps to create a new Agent:
++ Click Automations in the left-hand sidebar
++ Click on the plus (+) sign in the upper-right, or click the ⋮ icon to the right of an existing Agent and choose Duplicate Agent to start with a copy of it
+
+### Choose a template or trigger
+
+Choose whether you want to begin with a pre-built template or start from scratch.
+
+#### Start with a template
+If you want to begin with a pre-built flow, you can select a template to utilize as a starting point or inspiration. Click the Start with a template button on the canvas, then select a template and click Use this template.
+You can also change to a template at any time by selecting Templates in the lower-right, but keep in mind that selecting a template will delete any activities you have already added since your Agent will reset to the template.
+
+#### Start from scratch
+
+If you are starting from scratch, begin by choosing a trigger. The trigger is the condition that, when met, causes your Agent to run. For example, you may want your Agent to run each time a new record is created, or each time a form is submitted. Find an explanation of each available trigger in our Agents.
+Once you’ve selected a trigger, you may be required to define an Input, which tells the Agent more specifically when you want it to run. For example, if you’ve selected the Record created trigger, you could select Customer for the Object Input if you want the Agent to run whenever a Customer record is created.
+To change the trigger selected for a Agent, simply select it and click Edit to choose a different option.
+
+### Add action activity
+
+Action activity defines what a Agent will do once the trigger conditions are met. Action activities can do things like:
++ Apply logic to your Agents, such as filtering, if/else statements, and delays
++ Perform calculations on attributes and records
++ Create and modify records and attributes
++ Take action and send data in other applications via integrations
+⁠For a complete library of each available action block, see our Agents.
+To add an action activity, either click the + on the canvas. Once you have selected an activity, you can optionally add a description to explain what the activity will do under the activity name where it says **Add a description**.
+
+### Inputs and variables
+
+Once you have chosen an action, add Inputs where relevant to give the Agent more information about what you want it to do. Depending on the input, you may be able to type in a value manually, or click the {x} icon to use a variable.
+Variables allow you to add entities or values from previous activities. Variables are dynamic in that each time the Agent runs, they can contain different data based on what is passing through the Agent on that run.
+As one example, you may want to create a task with a due date, a certain number of days after a deal moved into a particular status. You would use an Adjust time block to designate the number of days you want to offset. Then in your Create task block, for the Due input you would use a variable to select the Adjusted timestamp from the previous step.
+As another example, with a Filter activity you can specify conditions that have to be met for the Agent to continue. Once you’ve added a Filter activity, you need to set the Filter input. If you select the attribute “Country”, and set the criteria to “Canada”, your Agent would only continue if the company which triggered it was in Canada.
+If an added variable is highlighted in yellow, this indicates that you can add a fallback to be used in any case where the Agent runs and the variable has no value. Click the variable to add the fallback value. A variable highlighted in blue has a fallback value set.
+
+If you have made changes to your data, such as creating new attributes or objects, and that data isn’t reflected in a activity, click **Refresh block** at the bottom of the right-hand panel.
+
+### Reorder, organize, and delete activities
+
+#### Connect and disconnect activities
+Click the arrow between two activities and press delete on your keyboard to remove the connection between them. You can click and drag the small circle on a activity to another activity to connect the two.
+You will not be able to publish a Agent until all activities are complete and connected by blue lines. Grey lines indicate there is a activity that is incomplete or disconnected.
+
+#### Organize activities
+
+To move your activities into an orderly structure on your canvas, click Organize activities in the toolbar. This will reorganize your activities to reflect the order of the setup.
+
+#### Delete activities
+To remove an activity, select it and click Delete activity in the lower-right, or press delete on your keyboard. To bulk delete activities, you can select multiple activities by clicking, holding, and dragging your cursor over them, or by holding the shift key while clicking on individual activity.
+
+### Add notes to the canvas
+Optionally, add Notes to the Agent canvas to provide additional information about your Agent or link to documentation. Notes you add will be visible to everyone who can see the Agent, and each note shows the name of the team member who created the note.
+To add a note, click the note icon in the toolbar at the bottom of the canvas, then hover over the place you want to put the note, and click to place it. You can change the color of the note from the color picker, and click and drag a note to reposition it.
+If you use a template for a Agent, you will also see notes on the canvas with an explanation next to each step.
+
+### Add a name and description
+
+Give the Agent a name and description to indicate what it does. If the right-hand panel is focused on activities, click the ← button at the top. Click into the text box where it says New Agent and type in a name for the Agent.
+You can click into the text box under the Agent title where it says Add a description… to further explain what the Agent is set up to do.

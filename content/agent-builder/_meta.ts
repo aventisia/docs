@@ -2,17 +2,11 @@ import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
     "index": {
-        title: "Getting Started with Agent",
+        title: "Overview",
         theme: {
         breadcrumb: false,
         },
  },
-  "create-agent": {
-    title: "Create Agent",
-    theme: {
-      breadcrumb: false,
-    },
-  },
     "navigating-agent-builder": {
         title: "Agent Builder",
         theme: {
