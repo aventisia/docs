@@ -19,6 +19,12 @@ const meta: MetaRecord = {
         breadcrumb: false,
         },
     },
+    "Orchestrator": {
+        title: "Orchestrator",
+        theme: {
+        breadcrumb: false,
+        },
+    },
 }
 
 export default meta;

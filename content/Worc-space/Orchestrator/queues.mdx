@@ -1,0 +1,89 @@
+# Queues and Transactions in Orchestrator
+
+## About Queues
+
+A **queue** is a container that can hold an unlimited number of items. Each queue item can include various types of data, such as invoice information or customer details, which can be processed by external systems like SAP or Salesforce.
+
+By default, the data in queue items is unstructured. However, for scenarios requiring a specific format—like integrations with external applications, processing machine-generated forms, or analytics—you can upload **custom JSON schemas** to enforce structure.
+
+### Key Features:
+- Queues are empty by default.
+- You can add items via:
+  - Orchestrator (manual upload).
+  - Studio (via specific activities).
+- Once queue items are processed, they are considered **transactions**.
+
+## Queues Overview
+
+Queues enable you to build robust automation solutions with complex logic. For example:
+- One process collects invoice data and creates a queue item for each.
+- Another process retrieves these items from Orchestrator and performs tasks like paying invoices, delaying payment based on due dates, or notifying the accounting team.
+
+### Queues Page Highlights:
+- Create and view queues.
+- Access transaction charts (e.g., average execution time, success rates).
+- Real-time updates may have minor delays.
+- Data is **not** affected by retention policies.
+- Item statuses are controlled by RPA developers.
+- Revision statuses (for abandoned or failed items) are controlled within Orchestrator.
+
+### Revision and Review:
+- Failed/abandoned items can be assigned to reviewers.
+- Reviewer assignments and status changes are tracked in the **History** tab.
+- Review actions are performed from the **Review Requests** page.
+
+> ⚠️ **Important:**  
+> For successful processing using references, ensure that each reference is **unique** at the queue level.  
+> Non-unique references may cause concurrency issues such as the "No Transaction Data" error.  
+> If uniqueness cannot be ensured, **dequeue items without using references**.
+
+---
+
+## Schema Definitions
+
+You can upload a **custom JSON schema** when creating/editing a queue for the following:
+- Specific Data
+- Output Data
+- Analytics Data
+
+### Schema Guidelines:
+- Transactions are validated against the schema post-upload.
+- Invalid data fails with a **Business Exception**.
+- Schema is **not applied retroactively**.
+- Schemas **must not contain arrays**.
+- `DateTime` values must be passed as strings.
+- **Analytics Data** requires agents and Activities version **19.10+**.
+- If no valid schema URI is found, **draft-07** is used as fallback.
+
+### Data Size Limit:
+- The `Specific Data` field is limited to **1 MB** (`Queue.MaxSpecificDataSizeInKiloBytes`).
+- Larger payloads must be stored externally, and a reference should be saved in the item instead.
+
+### Example Schema:
+```json
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "additionalProperties": { "type": "string" },
+  "required": ["stringTest", "intTest", "boolTest"],
+  "properties": {
+    "stringTest": {
+      "type": "string",
+      "title": "The Stringtest Schema",
+      "examples": ["stringTest"]
+    },
+    "intTest": {
+      "type": "integer",
+      "title": "The Inttest Schema",
+      "examples": [30]
+    },
+    "boolTest": {
+      "type": "boolean",
+      "title": "The Booltest Schema",
+      "examples": [false]
+    }
+  }
+}

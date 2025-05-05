@@ -7,12 +7,30 @@ const meta: MetaRecord = {
         breadcrumb: false,
         },
  },
-    "navigating-agent-builder": {
-        title: "Agent Builder",
+    "workflow-logics": {
+        title: "Workflow Logics",
         theme: {
         breadcrumb: false,
         },
-    },
+ },
+    "data-transformation": {
+        title: "Data-Transformations",
+        theme: {
+        breadcrumb: false,
+        },
+ },
+    "ui-interface-automations": {
+        title: "UI-Interface-Automations",
+        theme: {
+        breadcrumb: false,
+        },
+ },
+    "app-integrations": {
+        title: "App-Integrations",
+        theme: {
+        breadcrumb: false,
+        },
+ },
     "troubleshooting": {
         title: "troubleshooting Agent Builder",
         theme: {
