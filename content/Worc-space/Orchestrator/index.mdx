@@ -18,3 +18,35 @@ In unattended automation, Orchestrator allows launching unattended execution on 
     - Executions
     - Key Store
     - Vault
+
+These tools help orchestrate automation processes across multiple machines and workflows:
+
+#### **Machines**
+- Represents the computing resources (on-premise or cloud-based) that execute agents and workflows.
+- Users can register machines, assign workloads, and monitor their availability and status.
+
+#### **Queues**
+- Manages task scheduling and distribution across agents and machines.
+- Helps balance workloads and enables prioritization, retry logic, and scalability for high-throughput environments.
+
+#### **Triggers**
+- Automates execution of workflows using event-based or time-based triggers.
+- Examples: Trigger a process daily at 8 AM, or when a file is uploaded or an email is received.
+
+#### **Executions**
+- Logs and monitors every instance of a workflow or agent execution.
+- Provides detailed insights including:
+- Current and historical execution status (e.g., Running, Success, Failed)
+- Logs, error messages, and audit trails
+- Execution time and performance metrics
+
+#### **Key Store**
+- A secure repository to store API keys, credentials, and environment variables.
+- Ensures secrets are accessible only during workflow execution, avoiding hardcoding or manual input.
+ 
+
+#### **Vault**
+- A robust security layer for storing and managing highly sensitive or encrypted information.
+- Supports access controls, version history, and compliance-grade auditing to meet enterprise security standards.
+
+---
