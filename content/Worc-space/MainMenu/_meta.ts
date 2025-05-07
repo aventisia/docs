@@ -7,20 +7,20 @@ const meta: MetaRecord = {
             breadcrumb: false,
         },
     },
-    "MainMenu": {
-        title: "Main Menu",
+    "Agents": {
+        title: "Agents",
         theme: {
         breadcrumb: false,
         },
     },
-    "Orchestrator": {
-        title: "Orchestrator",
+    "AI-models": {
+        title: "AI Models",
         theme: {
         breadcrumb: false,
         },
     },
-    "Admin": {
-        title: "Admin",
+    "Support": {
+        title: "Support",
         theme: {
         breadcrumb: false,
         },

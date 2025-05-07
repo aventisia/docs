@@ -1,0 +1,80 @@
+# Overview
+
+**Worc-Space** is your centralized command center for managing everything related to AI and automation. 
+From building and deploying AI Agents and Models to monitoring support tickets and orchestrating services like machines, queues, and executions—Worc-Space puts it all in one place.
+ 
+It also enables centralized governance by allowing you to manage licenses and credits across the organization, ensuring visibility, control, and scalability as your AI footprint grows.
+
+---
+
+- **Main Menu:** Quick access to:
+  - Agents
+  - AI Models
+  - Support
+  
+
+#### **Agents**
+The Agents section enables users to create, view, and manage agents that encapsulate specific workflows or automation logic.
+- An Agent acts as a modular container for AI-powered tasks or processes.
+- You can maintain multiple versions of an agent (e.g., v1, v2) to track changes and support rollback when needed.
+- Once an agent is published and moved to production, it transitions to the Orchestrator > Agents section for monitoring and execution management.
+
+---
+
+#### **AI Models**
+The AI Models section allows users to build, fine-tune, and manage models for classification, extraction, summarization, and more—across documents, audio, and image formats.
+- Users can create models by selecting the task type, base LLM, and uploading sample data for labeling and training.
+- Models can be iteratively refined using human feedback to improve accuracy and performance over time.
+- Once finalized, AI models can be attached to Agents for execution within production workflows.
+- You can track different model versions and experiment with various LLMs to identify the most effective configuration.
+
+---
+
+#### **Support**
+- Centralized space to access help resources, including documentation, user guides, and FAQs.
+- Allows users to raise and track support tickets for faster issue resolution.
+- Designed to help users troubleshoot problems and get the most out of Worc-space’s features.
+
+---
+
+- **Orchestrator tools:** Quick access to:
+The Orchestrator is the command center of Worc-space — it allows you to manage, schedule, and monitor all live automations and AI agents in production. From assigning tasks to machines, managing queues and triggers, to tracking executions and accessing secure resources like keys and secrets, Orchestrator ensures your operations run smoothly, reliably, and at scale. 
+It provides complete visibility and control over how your agents perform across the organization.
+    - Machines
+    - Queues
+    - Triggers
+    - Executions
+    - Key Store
+    - Vault
+
+These tools help orchestrate automation processes across multiple machines and workflows:
+
+#### **Machines**
+- Represents the computing resources (on-premise or cloud-based) that execute agents and workflows.
+- Users can register machines, assign workloads, and monitor their availability and status.
+
+#### **Queues**
+- Manages task scheduling and distribution across agents and machines.
+- Helps balance workloads and enables prioritization, retry logic, and scalability for high-throughput environments.
+
+#### **Triggers**
+- Automates execution of workflows using event-based or time-based triggers.
+- Examples: Trigger a process daily at 8 AM, or when a file is uploaded or an email is received.
+
+#### **Executions**
+- Logs and monitors every instance of a workflow or agent execution.
+- Provides detailed insights including:
+- Current and historical execution status (e.g., Running, Success, Failed)
+- Logs, error messages, and audit trails
+- Execution time and performance metrics
+
+#### **Key Store**
+- A secure repository to store API keys, credentials, and environment variables.
+- Ensures secrets are accessible only during workflow execution, avoiding hardcoding or manual input.
+ 
+
+#### **Vault**
+- A robust security layer for storing and managing highly sensitive or encrypted information.
+- Supports access controls, version history, and compliance-grade auditing to meet enterprise security standards.
+
+---
