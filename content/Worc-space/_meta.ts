@@ -19,12 +19,12 @@ const meta: MetaRecord = {
         breadcrumb: false,
         },
     },
-    "Admin": {
-        title: "Admin",
-        theme: {
-        breadcrumb: false,
-        },
-    },
+//  "Admin": {
+//      title: "Admin",
+//     theme: {
+//     breadcrumb: false,
+//       },
+// },
 }
 
 export default meta;

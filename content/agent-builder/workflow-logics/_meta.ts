@@ -1,17 +1,17 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
+  "variable": {
+    title: "Variable",
+  },
   "conditional": {
     title: "Conditional",
-  },
-  "flow-control": {
-    title: "Flow Control",
   },
   "loops": {
     title: "Loops",
   },
-  "variable": {
-    title: "Variable",
+  "flow-control": {
+    title: "Flow Control",
   },
 };
 
