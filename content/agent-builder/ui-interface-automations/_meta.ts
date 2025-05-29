@@ -1,41 +1,40 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
-  "browser-automation": {
-    title: "Browser Automation",
-  },
-  "clipboard": {
-    title: "Clipboard",
-  },
-  "cmd-session": {
-    title: "CMD Session",
-  },
-  "compression": {
-    title: "Compression",
-  },
   "file": {
     title: "File",
   },
   "folder": {
     title: "Folder",
   },
+  "system": {
+    title: "System",
+  },
+   "workstation": {
+    title: "Workstation",
+  },
+  "scripting": {
+    title: "Scripting",
+  },
+   "compression": {
+    title: "Compression",
+  },
+  "ui-automation": {
+    title: "UI Automation",
+  },
+  "browser-automation": {
+    title: "Browser Automation",
+  },
   "message-boxes": {
     title: "Message Boxes",
   },
   "mouse-and-keyboard": {
     title: "Mouse and Keyboard",
+  },"clipboard": {
+    title: "Clipboard",
   },
-  "scripting": {
-    title: "Scripting",
-  },
-  "system": {
-    title: "System",
-  },
-  "ui-automation": {
-    title: "UI Automation",
-  },
-  "workstation": {
-    title: "Workstation",
+  "cmd-session": {
+    title: "CMD Session",
   },
   "xml": {
     title: "XML",

@@ -1,36 +1,36 @@
 import type { MetaRecord } from "nextra";
 
-const meta: MetaRecord = {
-  
+const meta: MetaRecord = { 
+  "word": {
+    title: "Word",
+  },
+  "windows-services": {
+    title: "Windows Services",
+  },
+  "terminal-emulation": {
+    title: "Terminal Emulation",
+  },
+  "pdf": {
+    title: "PDF",
+  },
+  "outlook": {
+    title: "Outlook",
+  },
+  "http": {
+    title: "HTTP",
+  },
+  "ftp": {
+    title: "FTP",
+  },
+  "exchange-server": {
+    title: "Exchange Server",
+  },
   "excel": {
     title: "Excel Automation",
   },
   "email": {
     title: "Email",
   },
-  "exchange-server": {
-    title: "Exchange Server",
-  },
-  "ftp": {
-    title: "FTP",
-  },"http": {
-    title: "HTTP",
-  },
-  "outlook": {
-    title: "Outlook",
-  },
-  "pdf": {
-    title: "PDF",
-  },
-  "terminal-emulation": {
-    title: "Terminal Emulation",
-  },
-  "windows-services": {
-    title: "Windows Services",
-  },
-  "word": {
-    title: "Word",
-  }
   
 };
 
