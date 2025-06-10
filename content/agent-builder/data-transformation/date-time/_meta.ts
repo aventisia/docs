@@ -2,13 +2,16 @@ import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
   "add-to-datetime": {
-    title: "Add to DateTime",
+    title: "Add Time to DateTime",
+  },
+     "get-current-date-and-time": {
+    title: "Get Current Date and Time",
+  },
+     "validate-datetime-format": {
+    title: "Validate Datetime Format",
   },
   "subtract-dates": {
-    title: "Subtract Date",
-  },
-   "get-current-date-and-time": {
-    title: "Get Current Date and Time",
+    title: "Subtract Dates",
   },
 
 };
