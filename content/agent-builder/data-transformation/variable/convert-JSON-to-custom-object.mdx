@@ -7,10 +7,16 @@ This form allows users to input a JSON string and convert it into a custom objec
 
 ### JSON Input
 
-- **Field Name:** `JSON`  
-- **Type:** Multi-line Text Field  
-- **Tooltip Icon (ⓘ):** Provides guidance or format expectations for the JSON input.
-- **Purpose:** Paste or type a valid JSON string that you want to convert into a custom object.
+#### 1. Field Name- `JSON Data`  
+- **Purpose:** The JSON string that will be converted to a custom object.
+
+#### 2. Field Name- `Target Type`  
+- **Purpose:** Specifies the type of the custom object to deserialize the JSON into.
+
+#### 3. Field Name- `Outputs: CustomObject`  
+- **Purpose:** Returns the resulting custom object after JSON deserialization.
+
+---
 - **Example:**
   ```json
   [
@@ -18,19 +24,10 @@ This form allows users to input a JSON string and convert it into a custom objec
     { "id": 2, "name": "Bob" }
   ]
 
-### Output Section
-
-- **Output Variable: JsonAsCustomObject**
-This is a toggle-enabled output assignment.
-The variable will store the resulting custom object derived from the input JSON.
-
 ### Use Case
 
 Use this tool when:
-
 - You need to parse raw JSON data into a structured format.
-
 - You're integrating APIs or external data sources into your workflow.
-
 - You want to easily access fields and iterate over JSON data programmatically.
 
