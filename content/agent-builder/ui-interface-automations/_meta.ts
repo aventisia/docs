@@ -30,7 +30,8 @@ const meta: MetaRecord = {
   },
   "mouse-and-keyboard": {
     title: "Mouse and Keyboard",
-  },"clipboard": {
+  },
+  "clipboard": {
     title: "Clipboard",
   },
   "cmd-session": {

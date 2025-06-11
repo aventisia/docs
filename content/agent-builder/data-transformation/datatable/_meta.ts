@@ -44,7 +44,7 @@ const meta: MetaRecord = {
     title: "Join Data Tables",
   },
   "read-from-csv-text-variable": {
-    title: "Read from CSV Text Variable",
+    title: "Read from CSV Text",
   },
   "convert-data-table-to-text": {
     title: "Convert Data Table to Text",

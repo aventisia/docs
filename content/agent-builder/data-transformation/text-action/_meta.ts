@@ -52,11 +52,11 @@ const meta: MetaRecord = {
     "split-text": {
     title: "Split Text",
   },
-  "crop-text": {
-    title: "Crop Text",
-  },
   "trim-text": {
     title: "Trim Text",
+  },
+    "crop-text": {
+    title: "Crop Text",
   },
   
   
