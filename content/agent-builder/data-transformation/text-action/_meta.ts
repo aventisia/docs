@@ -54,11 +54,7 @@ const meta: MetaRecord = {
   },
   "trim-text": {
     title: "Trim Text",
-  },
-    "crop-text": {
-    title: "Crop Text",
-  },
-  
+  }
   
 };
 
