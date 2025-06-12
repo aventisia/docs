@@ -31,7 +31,7 @@ const meta: MetaRecord = {
   "get-details-of-web-page": {
     title: "Get Details of Webpage",
   },
-  "get-element-attribute-vlaue": {
+  "get-element-attribute-value": {
     title: "Get Element Attribute Value",
   },
   "get-element-siblings": {
