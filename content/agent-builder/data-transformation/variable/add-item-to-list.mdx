@@ -4,19 +4,32 @@
 
 This feature allows users to add an item to a list. It is useful for dynamically updating lists during automation workflows.  
 
-![Add Item to List](../../../assets/variable/add-item-to-list-1.png)  
+![Add Item to List](../../../assets/variable/add-item-to-list.png)  
 
 ## Fields and Options  
 
-### 1. **Add Item**
+### 1. **List To Modify**
 
-- **Description**: Specify the item to add to the list.  
-- **Purpose**: This ensures the correct item is added.  
+- **Description**: Specify the list which need to modified.  
+- **Purpose**: This ensures the correct list is added.  
 
-### 2. **Into List**
+### 2. **Item To Add**
 
 - **Description**: Select the list to which the item will be added.  
 - **Purpose**: This ensures the item is added to the correct list.  
+
+### 3. **Custom Separator**
+
+- **Description**: Optional. If provided, splits the input using this separator instead of default ones (',', ';', '|').
+- **Purpose**: This ensures the correct separator is added. 
+
+### 4. **Trim Values**
+
+- **Description**: If true, trims whitespace from each value before adding it to the list.  
+- **Purpose**: To trim the values if required. 
+
+## Output Variable:
+ - Output variable returns the updated list after items have been added.
 
 ## Use Cases
 

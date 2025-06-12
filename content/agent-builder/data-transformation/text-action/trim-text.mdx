@@ -3,7 +3,6 @@
 ## **Description**
 
 The **Trim Text** operation removes **unwanted characters** (such as whitespace, special characters, or custom-defined characters) from the **beginning and/or end** of a given text string. This is particularly useful for **cleaning user input, standardizing data, and ensuring consistency** in text-based applications.
-
 This operation supports **multiple trimming options**:
 
 - **Whitespace trimming**: Removes spaces, tabs, and newlines from the start and end of the text.
@@ -19,7 +18,8 @@ This operation supports **multiple trimming options**:
 | Parameter         | Value                                            | Description |
 |------------------|------------------------------------------------|-------------|
 | **Text to Trim** | `Robotics Process Automation`                   | The original text that needs to be cleaned. |
-| **What to Trim** | `Whitespace characters from the beginning and end` | Defines the type of trimming to be applied. |
+| **Trim Mode** |`Whitespace characters from the beginning and end` |Specifies whether to trim characters from the beginning, end, or both sides of the text.|
+| **What to Trim** | `space` | Defines the type of trimming to be applied. |
 
 ---
 
@@ -29,21 +29,16 @@ This operation supports **multiple trimming options**:
 |---------------|-------------|
 | **TrimmedText** | The new text with the unwanted characters removed. |
 
-## **Example Use Cases**
 
 ### **Example 1: Trimming Whitespace**
-
-#### **Scenario**
-
+**Scenario**
 A user submits a form with the input `"  Robotics Process Automation  "` (including leading and trailing spaces). The spaces need to be removed before processing.
 
 #### **Configuration**
-
 - **Text to Trim:**`"  Robotics Process Automation  "`
 - **What to Trim:**`Whitespace characters from the beginning and end`
 
 #### **Result :** Robotics Process Automation
-
 ---
 
 ## **Summary**
