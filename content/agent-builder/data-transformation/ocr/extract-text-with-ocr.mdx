@@ -1,63 +1,22 @@
-# Extract Text With OCR
+# Extract Text With OCR 
 
-## Core Settings
-- **OCR Engine**:  
-  - Dropdown selector with variable assignment option  
-  - Field label: `OCR engine variable` for storing the engine reference  
+## Description
+When this function is invoked, it takes an input image or document and analyzes the visual 
+content to detect and recognize any embedded characters. The OCR engine then converts this visual information into machine-encoded text. This extracted text can be further used for data validation, storage, analytics, or integration with other systems.
 
-![alt text](../../../assets/ocr/extract-text-with-ocr1.png)
-![alt text](../../../assets/ocr/extract-text-with-ocr2.png)
-![alt text](../../../assets/ocr/extract-text-with-ocr3.png)
+![alt text](../../../assets/ocr/extract-text-with-ocr.png)
 
+### Input Configuration  
+- **ImagePath**: image or png file path  
 
-## Source Configuration
-- **OCR Source**:  
-  - Radio buttons: `Screen` (default) | `Image file path` (with input field)  
-- **Search Mode**:  
-  - Fixed to `Whole of specified source`  
-- **Image Preview Area**:  
-  - Visual display for screen/image capture  
+### Output
+- **ExtractedText**: Output variable  
 
-## Image Parameters
-- **Tolerance**:  
-  - Default value: `10` (slider/input field)  
-- **Coordinates**:  
-  - Required fields marked with ①:  
-    - `X1`, `X2`, `Y1`, `Y2` (numerical inputs)  
+## Purpose
+This function enables automation workflows to understand and process image-based data that would otherwise be inaccessible in its raw format. It is especially useful in scenarios involving digitized forms, invoices, handwritten notes, ID cards, and screenshots.
 
-## Language Settings
-- **Primary Language**:  
-  - Dropdown: `Tesseract language` (default: English)  
-  - Marked as required ①  
-- **Alternative Language Options**:  
-  - Checkbox: `Use other language`  
-  - Dependent fields (marked ① when enabled):  
-    - `Language abbreviation` (text input)  
-    - `Language data path` (file path input)  
-
-## Image Processing
-- **Scaling**:  
-  - `Image width multiplier`: Default `1` (required ①)  
-  - `Image height multiplier`: Default `1` (required ①)  
-- **Wait Behavior**:  
-  - Checkbox: `Wait for image to appear`  
-  - `Timeout`: Default `5` seconds (required ①)  
-- **Matching Algorithm**:  
-  - Dropdown: Default `Basic`  
-
-## Output
-- **Extracted Text**:  
-  - Output variable: `OerText`  
- 
-## Technical Notes
-1. Required fields are indicated with ① symbol  
-2. Coordinate system starts from top-left corner (0,0)  
-3. Timeout applies only when "Wait for image" is enabled  
-4. Language data path requires valid .traineddata files for custom languages  
-
-## Recommended Values
-| Parameter        | Typical Range  | Notes                     |
-|-----------------|---------------|---------------------------|
-| Tolerance       | 5-15          | Higher=more fuzzy matches |
-| Timeout         | 3-30 seconds  | Depends on system speed   |
-| Image multipliers | 0.5-2.0     | Adjust for DPI scaling    |
+## Common Use Cases
+- Extracting invoice numbers and totals from scanned bills.
+- Capturing user details from ID cards or application forms.
+- Reading data from screenshots or image-based reports.
+- Automating document processing workflows where input is not text-readable.
