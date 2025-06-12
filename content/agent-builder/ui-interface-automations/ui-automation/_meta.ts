@@ -67,7 +67,7 @@ const meta: MetaRecord = {
   "select-ui-element": {
     title: "Select UI Element",
   },
-  "select-checkbox-state": {
+  "set-checkbox-state": {
     title: "Select Checkbox State",
   },
   "set-drop-down-list-value-in-window": {

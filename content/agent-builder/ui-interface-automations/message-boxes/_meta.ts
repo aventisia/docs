@@ -1,7 +1,7 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
-  "display-inout-dialog": {
+  "display-input-dialog": {
     title: "Display Input Dialog",
   },
   "display-message": {
@@ -16,7 +16,7 @@ const meta: MetaRecord = {
   "display-select-folder-dialog": {
     title: "Display Select Folder Dialog",
   },
-  "display-select-form-list-dialog": {
+  "display-select-from-list-dialog": {
     title: "Display Select Form List dialog",
   }
 };

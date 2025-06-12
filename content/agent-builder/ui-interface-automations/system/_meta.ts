@@ -16,7 +16,7 @@ const meta: MetaRecord = {
   "run-application": {
     title: "Run Application",
   },
-  "set-windows-enviornment-variable": {
+  "set-windows-environment-variable": {
     title: "Set Windows Environment Variable",
   },
   "terminate-process": {

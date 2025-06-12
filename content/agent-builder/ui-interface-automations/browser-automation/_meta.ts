@@ -40,7 +40,7 @@ const meta: MetaRecord = {
   "get-parent-element": {
     title: "Get Parent Element",
   },
-  "go-to-webpage": {
+  "go-to-web-page": {
     title: "Go to Webpage",
   },
   "hover-over-element-on-web-page": {
