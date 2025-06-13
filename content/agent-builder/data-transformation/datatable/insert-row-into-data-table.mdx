@@ -6,32 +6,27 @@ This dialog allows users to insert a new row into an existing data table within 
 
 ---
 
-![alt text](../../../assets/datatable/inser-row-into-data-table.png)
+![alt text](../../../assets/datatable/insert-row-into-datatable.png)
 
 ## Configuration Details
 
 ### Data Table: `DT_StudentData`
-
 - This is the target table where new data will be added.
 - It likely stores student-related information.
 
-### Insertion Location:  
+### Row Value(s):  
+- Value: `1`
+- This holds the new data row that will be inserted into the table.
 
+### Insertion Location:  
 - Option Selected: `"End of data table"`
 - This means the new row will be appended at the bottom of the table.
-
-### New Value(s):  
-
-- Variable Used: `DT_newRow`
-- This holds the new data that will be inserted into the table.
-
 ---
 
 ## Example Use Case
 
 ### Input Data
-
-#### Existing Data Table (`DT_StudentData`):
+**Existing Data Table (`DT_StudentData`)**:
 
 | Student_ID | Name      | Age | Grade |
 |------------|----------|-----|-------|
@@ -47,8 +42,7 @@ This dialog allows users to insert a new row into an existing data table within 
 ---
 
 ### Output After Insertion
-
-#### Updated `DT_StudentData` Table:
+**Updated `DT_StudentData` Table**:
 
 | Student_ID | Name    | Age | Grade |
 |------------|--------|-----|-------|

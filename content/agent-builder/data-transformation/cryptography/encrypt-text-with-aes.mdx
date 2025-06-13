@@ -1,7 +1,6 @@
 # Encrypt Text with AES
 
 ## Description
-
 This screenshot demonstrates an interface for encrypting text using the **AES (Advanced Encryption Standard)** algorithm. Users can input the text, specify an encryption key, and configure advanced settings such as encoding, salt, and initialization vector (IV).
 
 ![alt text](../../../assets/cryptography/encrypt-text-with-aes.png)
@@ -10,25 +9,14 @@ This screenshot demonstrates an interface for encrypting text using the **AES (A
 
 ## Input Section
 
-### Encoding
-- **Selected Option**: `Unicode`
-- **Description**: Defines how the input text is encoded before encryption. `Unicode` ensures compatibility with a wide range of characters.
+### PlainText
+- The actual plain text string you want to encrypt.
 
-### Text to Encrypt
-- **Field**: *(Empty in the screenshot)*
-- **Description**: The actual plain text string you want to encrypt.
+### Key
+- A secret key used to perform the AES encryption. It must be kept safe and secure, as it's required for decryption too.
 
-### Encryption Key
-- **Field**: *(Empty in the screenshot)*
-- **Description**: A secret key used to perform the AES encryption. It must be kept safe and secure, as it's required for decryption too.
-
----
-
-
-### Advanced Settings
-
-- **Salt**: Optional field to add a salt value for additional security.
-- **Initialization Vector (IV)**: Optional field to specify an IV for the encryption process.
+### EncodingFormat
+- Defines how the input text is encoded before encryption. `Unicode` ensures compatibility with a wide range of characters.
 
 ---
 
@@ -41,5 +29,4 @@ This screenshot demonstrates an interface for encrypting text using the **AES (A
 ---
 
 ## Summary
-
 This tool is useful for securely encrypting text using the AES algorithm. It provides options for encoding, encryption key input, and advanced settings like salt and initialization vector for enhanced security.
