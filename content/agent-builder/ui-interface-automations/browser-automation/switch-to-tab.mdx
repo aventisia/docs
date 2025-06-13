@@ -1,0 +1,34 @@
+## Switch To Tab
+
+This interface is used to **switch control to a browser tab** using either its index, title, or a partial URL.
+
+![Take Screenshot](../../../assets/workstation/switch-to-tab.png) 
+
+### Fields
+
+- **Web Browser Instance**  
+  Reference to the running browser instance.
+
+- **Switch Mode**  
+  Method used to identify the target tab:  
+  - `By Index` (default)
+  - Can also include `By Title`, `By URL`, etc.
+
+- **Tab Index**  
+  Numerical index of the tab to switch to (used when switch mode is `By Index`).
+
+- **Timeout Seconds**  
+  Max time (in seconds) to wait while switching tabs. Default is `60`.
+
+---
+
+### Outputs
+
+- **CurrentTabTitle** (toggleable)  
+  Stores the title of the selected tab.
+
+- **CurrentTabUrl** (toggleable)  
+  Stores the URL of the selected tab.
+
+---
+
