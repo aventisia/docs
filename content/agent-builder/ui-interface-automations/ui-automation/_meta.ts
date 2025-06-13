@@ -78,8 +78,7 @@ const meta: MetaRecord = {
   },
   "set-window-state": {
     title: "Set Window State",
-  }
+  },
 };
 
 export default meta;
-
