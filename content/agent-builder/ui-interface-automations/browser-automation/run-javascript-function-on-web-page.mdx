@@ -1,21 +1,18 @@
 # Run JavaScript Function on Web Page  
 
 ## Description
-
 This feature allows users to execute a custom JavaScript function on a web page within a web browser instance. It is useful for performing advanced interactions or manipulations on web pages that require custom scripting.  
 
 ![Run JavaScript Function on Web Page](../../../assets/browser-automation/run-javascript-function-on-web-page.png)  
 
 ## Fields and Options  
 
-### 1. **Web Browser Instance**
-
+### 1. Web Browser Instance
 - **Description**: Select the web browser instance where the JavaScript function will be executed.  
 - **Purpose**: This ensures the action is performed on the correct browser session.  
 
-### 2. **JavaScript Function** 
-
-- **Description**: Enter the JavaScript function to execute on the web page.  
+### 2. JavaScript Function 
+- Enter the JavaScript function to execute on the web page.  
 - **Example**:  
 
   ```javascript
@@ -27,26 +24,29 @@ This feature allows users to execute a custom JavaScript function on a web page 
 
 - Purpose: Allows users to define custom logic or interactions using JavaScript.
 
-### **3. Output: Result** 
+### 3. Arguments
+- Optional arguments to pass to the script function
 
-Description: Retrieves the result of the JavaScript function execution (if the function returns a value).
+### 4. Wait for Completion
+- If true, waits for the script to complete before continuing.
 
-### **Purpose**
+### 5. Timeout Seconds 
+- Maximum time in seconds to wait for script completion before failing.
 
+### 6. Output: **Result**
+- Retrieves the result of the JavaScript function execution (if the function returns a value).
+
+### Purpose
 Provides the output of the script for further use in the workflow.
 
-### **Use Cases**
-
+### Use Cases
 Advanced Interactions: Performing advanced interactions with web page elements using custom JavaScript.
 
-### **DOM Manipulation**
-
+### DOM Manipulation
 Manipulating the DOM (Document Object Model) of a web page dynamically.
 
-### **Data Extraction/Modification**
-
+### Data Extraction/Modification
 Extracting or modifying data on a web page using JavaScript.
 
-### **Summary**
-
+### Summary
 The Run JavaScript Function on Web Page action provides a way to execute custom JavaScript functions on web pages. It enables advanced automation tasks that require scripting, making it ideal for complex web interactions and data manipulation.
