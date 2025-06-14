@@ -13,6 +13,9 @@ const meta: MetaRecord = {
   "insert-image-in-word-document": {
     title: "Insert Image in Word Document",
   },
+  "launch-word": {
+    title: "Launch Word Document",
+  },
   "read-from-word-document": {
     title: "Read from Word Document",
   },
