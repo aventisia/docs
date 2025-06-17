@@ -1,51 +1,50 @@
-# Extract Tables from PDF  
+# Extract Tables From PDF
 
-## **Description**
-
-This interface allows users to extract tables from a PDF file while providing options for handling multi-page tables and column names.
+## Description
+This activity is used to **extract tables from a PDF file** in a structured format, enabling further processing in automation workflows.
 
 ![alt text](../../../assets/pdf/extract-table-from-pdf.png)
 
 ---
 
-## PDF File
+###  Fields and Option
 
-**(Required)** Upload the PDF file from which you want to extract tables.  
-
----
-
-## Page(s) to Extract
-
-Select the pages from which tables should be extracted.
-
-- **All** – Extracts tables from the entire document.  
-- **Single Page** – Extracts tables from a specific page.  
-- **Page Range** – Extracts tables from a defined range of pages.  
-
----
-
-## From Page Number / To Page Number
-
-Define a range of pages to extract tables from.  
+| **Field**                         | **Description** |
+|-----------------------------------|------------------|
+| `PDF File Path`                   | Full path of the PDF file from which to extract tables. |
+| `Page Selection Mode`             | Choose how to specify the page(s): Single page; Page range; All pages |
+| `Password`                        | Enter the password if the PDF is protected. |
+| `Merge Tables Across Pages`       | If enabled, merges tables that span multiple pages. |
+| `First Line Contains Column Names`| If enabled, treats the first row as the header for the extracted table. |
+| `Page Number (for Single)`        | Specific page number to extract from (used if `Single page` is selected). |
+| `From Page Number`                | Starting page number for extraction. |
+| `To Page Number`                  | Ending page number for extraction. |
 
 ---
 
-## Merge Tables that Cross Page Margins
+### Output
 
-Enable this option to merge tables that span multiple pages.
-
-- **ON**: Tables that continue across page breaks are merged.
-- **OFF**: Tables remain separate per page.  
-
----
-
-## First Line Contains Column Names
-
-Enable this option if the first row of the extracted table represents column names.
-
-- **ON**: First row is treated as column headers.
-- **OFF**: First row is treated as table data.  
+| **Name**          | **Type**     | **Description**                              |
+|-------------------|--------------|----------------------------------------------|
+| `ExtractedTables` | DataTable[]  | Array of extracted data tables from the PDF. |
 
 ---
 
-** Note:** Ensure the PDF contains properly formatted tables for the best extraction results.
+### Example Usage
+
+```plaintext
+PDF File Path: C:\Documents\Invoice2024.pdf
+Page Selection Mode: Page range
+From Page Number: 2
+To Page Number: 4
+Merge Tables Across Pages: Enabled
+First Line Contains Column Names: Enabled
+```
+
+This will extract all tables between pages 2 and 4 and treat the first row of each table as column headers.
+
+---
+
+### Tips
+- If the table structure in the PDF is not well-defined, results may be inconsistent.
+- Use `For Each` loop to iterate through the extracted tables for further processing.
