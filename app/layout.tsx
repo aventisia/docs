@@ -13,9 +13,16 @@ const inter = Inter({
   display: "swap", // Ensures faster font loading
 });
 
-export default async function RootLayout({ children }: React.PropsWithChildren) {
+export default async function RootLayout({
+  children,
+}: React.PropsWithChildren) {
   return (
-    <html lang="en" dir="ltr" className={inter.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      dir="ltr"
+      className={inter.variable}
+      suppressHydrationWarning
+    >
       <CustomHead />
       <body>
         <Layout
@@ -41,7 +48,18 @@ export const metadata: Metadata = {
   },
   description:
     "Build AI in your daily workflows, boost productivity, and drive growth with our cutting-edge SaaS platform, with code-level control when you need it and no code when you don't.",
-  keywords: ["aventisia", "workflows", "ai", "saas", "platform", "docs", "agent", "software", "digital", "data"],
+  keywords: [
+    "aventisia",
+    "workflows",
+    "ai",
+    "saas",
+    "platform",
+    "docs",
+    "agent",
+    "software",
+    "digital",
+    "data",
+  ],
   applicationName: "Aventisia Docs",
   appleWebApp: {
     title: "Docs - Aventisia",

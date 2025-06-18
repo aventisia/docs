@@ -10,7 +10,7 @@ const withNextra = nextra({
 // You can include other Next.js configuration options here, in addition to Nextra settings:
 export default withNextra({
   // NOTE: To run npm run start after build, we need to remove or comment out - output: "export"
-  output: "export", // Enables static export. 
+  output: "export", // Enables static export.
   images: {
     unoptimized: true, // Required for Next.js static export
   },
