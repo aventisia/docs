@@ -6,7 +6,7 @@ This action is used to **download text or a file** from a specified web URL. It 
 
 ---
 
-### Fields and Option
+### Configuration Options
 
 | **Field**        | **Description**                                                                 |
 |------------------|---------------------------------------------------------------------------------|
@@ -25,18 +25,13 @@ This action is used to **download text or a file** from a specified web URL. It 
 ---
 
 ### Example Usage
-
 ```plaintext
 URL: https://example.com/data.json
 Save To File: false
 Timeout Seconds: 30
 ```
-
 This will return the contents of the `data.json` file as a string to `Result`.
-
 ---
-
 ### Tips
-
 - If you're downloading binary content (e.g., images, PDFs), ensure `Save To File` is **enabled** to prevent corrupt data in the `Result`.
 - Use this action in web scraping or API integrations to fetch data dynamically.

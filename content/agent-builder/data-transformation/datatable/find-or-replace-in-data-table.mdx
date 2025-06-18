@@ -1,14 +1,13 @@
 # Find or Replace in Data Table
 
-## Description
-
 This configuration allows searching for specific text within a data table and replacing it if needed.
 
 ---
 
 ![alt text](../../../assets/datatable/find-or-replace-in-data-table.png)
 
-## Configuration Details
+## Configuration Options
+
 ### Data Table: `DT_StudentData`
 - The table where the search and replace operation will be performed.
 
@@ -31,7 +30,6 @@ This configuration allows searching for specific text within a data table and re
 - The search will be performed across all columns and rows of the data table.
 
 ### Output:
-
 - DataTableMatches (Enabled)
 - Stores the row and column indexes where matches are found.
 
@@ -50,7 +48,6 @@ This configuration allows searching for specific text within a data table and re
 ---
 
 ### Action Performed
-
 - Search for: `"Payment"`
 - Replace with: `"Transaction"`
 
@@ -67,7 +64,6 @@ This configuration allows searching for specific text within a data table and re
 ---
 
 ## Summary
-
 - Before: `"Payment Pending"`, `"Payment Received"`
 - After: `"Transaction Pending"`, `"Transaction Received"`
 - Use Case: Useful for bulk updates, text corrections, and standardizing terminology in a dataset.

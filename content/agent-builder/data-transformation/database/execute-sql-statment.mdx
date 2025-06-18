@@ -1,16 +1,14 @@
 # Execute SQL Statement
 
-## **Description**
-
 This screenshot demonstrates an interface for executing an SQL statement. Users can establish a database connection using a connection string and execute SQL queries.
 
 ![alt text](../../../assets/database/execute-sql-statment.png)
 
 ---
 
-## **Input Fields**
+## Configuration Options
 
-### **1. ConnectionString**
+### ConnectionString
 - A text input field containing the SQL connection string.
 Example format:
   ```plaintext
@@ -18,8 +16,9 @@ Example format:
   ```
 - This string includes necessary credentials to access the database.
 
-### **2. SqlStatment**
+### SqlStatment
 - The SQL statement to execute.
+
 Example format:
   ```plaintext
   CREATE TABLE Employees (
@@ -31,10 +30,8 @@ Example format:
 
   ```
 ---
-### **Summary**
-
+### Summary
 This tool is designed to execute SQL queries by either:
-
 Establishing a new connection using a connection string.
 Utilizing an existing SQL connection.
 It includes advanced options for additional configurations and error-handling mechanisms to manage execution failures efficiently.

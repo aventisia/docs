@@ -1,13 +1,11 @@
 # Extract Tables From PDF
 
-## Description
 This activity is used to **extract tables from a PDF file** in a structured format, enabling further processing in automation workflows.
 
 ![alt text](../../../assets/pdf/extract-table-from-pdf.png)
-
 ---
 
-###  Fields and Option
+### Configuration Options
 
 | **Field**                         | **Description** |
 |-----------------------------------|------------------|
@@ -40,11 +38,8 @@ To Page Number: 4
 Merge Tables Across Pages: Enabled
 First Line Contains Column Names: Enabled
 ```
-
 This will extract all tables between pages 2 and 4 and treat the first row of each table as column headers.
-
 ---
-
 ### Tips
 - If the table structure in the PDF is not well-defined, results may be inconsistent.
 - Use `For Each` loop to iterate through the extracted tables for further processing.

@@ -2,16 +2,16 @@
 
 ![alt text](../../../assets/date-time/add-to-datetime.png)
 
-## Input Output Configuration
-1. **Base DateTime**:
+## Configuration Options
+### Base DateTime**:
    - Field type: Datetime picker/text input
    
-2. **Value to Add**:
+### Value to Add**:
    - Numeric input field
    - Accepts positive/negative values
    - Decimal values supported for smaller units
 
-3. **Time Unit**:
+### Time Unit**:
    - Dropdown options:
      - Seconds
      - Minutes
@@ -22,7 +22,7 @@
      - Years
 
 
-4. **Output Variable**:
+### Output Variable**:
    - Name: `ResultDateTime`
    - Type: Datetime object
    - Description: Stores the calculated datetime
@@ -31,7 +31,7 @@
 ## Calculation Rules
 | Unit    | Behavior                          | Examples                     |
 |---------|-----------------------------------|------------------------------|
-| Seconds | Adds exact seconds                | 30 → +30 seconds             |
+| Seconds | Adds exact seconds                | 30  +30 seconds             |
 | Minutes | Adds exact minutes (×60 seconds)  | 1.5 → +90 seconds            |
 | Hours   | Adds exact hours (×3600 seconds)  | -2 → -7200 seconds           |
 | Days    | Adds calendar days                | Accounts for DST changes     |

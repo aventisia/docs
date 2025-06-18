@@ -1,14 +1,11 @@
 # Invoke SOAP Web Service
 
-## Description
 This action is used to invoke a specified **method from a SOAP web service** and return the response.
 
 ![alt text](../../../assets/http/invoke-web-service1.png)
-
-
 ---
 
-### Fields and Option
+### Configuration Options
 
 | **Field**                     | **Description**                                                                 |
 |-------------------------------|---------------------------------------------------------------------------------|
@@ -27,9 +24,7 @@ This action is used to invoke a specified **method from a SOAP web service** and
 | `Result` | String   | The response returned by the SOAP service. |
 
 ---
-
 ### Example Usage
-
 ```plaintext
 Endpoint URL: https://example.com/WeatherService.asmx
 Method Name: GetWeatherByZip
@@ -37,11 +32,8 @@ Parameters: {"ZipCode": "90210"}
 Timeout Seconds: 30
 Use Custom Action Namespace: false
 ```
-
 ---
-
 ### Tips
-
 - Ensure the SOAP service and WSDL are publicly accessible or authenticated appropriately.
 - Use the correct **parameter names** as required by the WSDL schema.
 - If you're getting errors, inspect the **SOAP envelope** and consider using `Custom Namespace` for compatibility.
