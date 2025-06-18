@@ -1,13 +1,12 @@
 # Open FTP Connection
 
-## Description
 The **Open FTP Connection** operation establishes a connection to an FTP server using a set of required credentials and configurations.
 
 ![alt text](../../../assets/ftp/open-ftp-connection.png)
 
 ---
 
-## Feilds and Option
+## Configuration Options
 
 | Parameter     | Description                                             | Example Value                |
 |--------------|---------------------------------------------------------|------------------------------|
@@ -20,7 +19,7 @@ The **Open FTP Connection** operation establishes a connection to an FTP server 
 
 ---
 
-## **Process Flow**
+## Process Flow
 1. The user enters **FTP server details** such as Host, Port, and Password.
 2. The system attempts to **establish a connection** using the provided details.
 3. If successful, a **connection handle** is created.
@@ -28,7 +27,7 @@ The **Open FTP Connection** operation establishes a connection to an FTP server 
 
 ---
 
-## **Output Parameters**
+## Output Parameters
 
 | Parameter        | Description                                             |
 |-----------------|---------------------------------------------------------|
@@ -36,27 +35,25 @@ The **Open FTP Connection** operation establishes a connection to an FTP server 
 
 ---
 
-## **Example Use Cases**
+## Example Use Cases
 
-### **1. Connecting to an FTP Server (Successful Case)**
+### 1. Connecting to an FTP Server (Successful Case)
 
-#### **Input:**
+#### Input:
 
 Host: ftp.example.com Port: 21 Active Mode: Disabled Password: MySecurePassword Timeout: 10
 
-#### **Expected Output:**
+#### Expected Output:
 
 - FTP **Connection handle** is created successfully.
 - User can now **upload/download** files from the FTP server.
 
 ---
 
-## **Summary**
+## Summary
 - The **Open FTP Connection** operation allows connecting to an FTP server using a **hostname, port, and password**.
 - A successful connection returns an **FTP Connection handle**.
 - This handle is used for **file transfers** (upload/download).
 - Proper **error handling** ensures a robust FTP connection process.
 
 ---
-
-**Use this operation to efficiently manage FTP transfers!**

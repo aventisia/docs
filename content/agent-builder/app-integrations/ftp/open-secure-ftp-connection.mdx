@@ -1,36 +1,35 @@
 # Open Secure FTP Connection
 
-## Description
 This screenshot demonstrates an interface for opening a secure FTP (SFTP) connection to a remote server. Users can specify the host, port, authentication method, and other connection details.
 
 ![alt text](../../../assets/ftp/open-secure-ftp-connection.png)
 
 ---
 
-## Feilds and Option
+## Configuration Options
 
-### 1. Host
+### Host
 - Enter the host address of the SFTP server (e.g., `sftp.example.com`).
 
-### 2. Port
+### Port
 - Specify the port number for the SFTP connection (default is `22`).
 
-### 3. Secure FTP Protocol
+### Secure FTP Protocol
 - Specifies the secure FTP protocol to use (SFTP, FTPS explicit, FTPS implicit).
 
-### 4. Authentication Method
+### Authentication Method
 - Specifies the authentication method to use (Username and password, Private key, Private key and passphrase).
 
-### 5. Active Mode
+### Active Mode
 - If true, uses active mode for FTP connection.
 
-### 6. Accept Untrusted Certificates
+### Accept Untrusted Certificates
 - If true, accepts untrusted certificates during TLS negotiation.
 
-### 7. Timeout
+### Timeout
 - Set the connection timeout in seconds (e.g., `10`).
 
-## 10. Outputs
+## Outputs
 - **SftpConnection** is a secure FTP connection object for interacting with the remote server.
 ---
 

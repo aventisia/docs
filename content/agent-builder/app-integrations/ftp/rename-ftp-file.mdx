@@ -1,14 +1,11 @@
 # Rename FTP File
 
-## Description
 The **Rename FTP File** operation allows users to rename a specified file on an FTP server.
 
 ![alt text](../../../assets/ftp/rename-ftp-file.png)
 
 ---
-
-
-## **Input Parameters**
+## Configuration Options
 
 | Parameter         | Description                                   | Example Value                   |
 |------------------|---------------------------------------------|---------------------------------|
@@ -19,7 +16,7 @@ The **Rename FTP File** operation allows users to rename a specified file on an 
 | **Outputs**  | Returns true if the file was successfully renamed. | `Success`                  |
 ---
 
-## **Process Flow**
+## Process Flow
 
 1. A **valid FTP connection** is selected.
 2. The **existing file path** is specified.
@@ -30,7 +27,7 @@ The **Rename FTP File** operation allows users to rename a specified file on an 
 
 ---
 
-## **Expected Output**
+## Expected Output
 
 | Parameter      | Description                                       |
 |---------------|---------------------------------------------------|
@@ -39,19 +36,17 @@ The **Rename FTP File** operation allows users to rename a specified file on an 
 
 ---
 
-## **Example Use Cases**
+## Example Use Cases
 
-### **1. Successfully Renaming a File**
+### 1. Successfully Renaming a File
 
-#### **Input:**
-
+#### Input:
 FTP Connection: FTP_Connection_1 File to rename: /public/uploads/old_name.txt New file name: new_name.txt
 
-#### **Expected Output:**
-
+#### Expected Output:
 Success: File '/public/uploads/old_name.txt' has been renamed to 'new_name.txt'.
 
-## **Summary**
+## Summary
 - The **Rename FTP File** operation changes the **name of a file** on an FTP server.
 - Requires a **valid FTP connection**, an **existing file path**, and a **new name**.
 - If successful, the file is **renamed**.
