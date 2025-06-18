@@ -15,6 +15,46 @@
 body {
   font-feature-settings: "rlig" 1, "calt" 1;
   font-family: var(--font-family);
+  font-size: 0.9rem; /* 14px */
+}
+
+h1 {
+  font-size: 1.875rem; /* 30px */
+  border: none;
+}
+
+h2 {
+  font-size: 1.5rem; /* 24px */
+}
+
+h3,
+.nextra-steps h3 {
+  font-size: 1.25rem; /* 20px */
+}
+
+h4 {
+  font-size: 1.125rem; /* 18px */
+}
+
+h5 {
+  font-size: 1rem; /* 16px */
+}
+
+h6 {
+  font-size: 0.875rem; /* 14px */
+}
+
+th {
+  text-align: left;
+}
+
+table {
+  font-size: 0.8rem;
+}
+
+img {
+  border: 3px solid rgba(78, 70, 229, 0.2);
+  border-radius: 0.5rem;
 }
 
 .home-content p {

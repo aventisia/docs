@@ -1,36 +1,36 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
-  "index": {
+  index: {
     title: "Overview",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
-  "tenant": {
+  tenant: {
     title: "Tenant",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
   "licenses&credits": {
     title: "Licenses & Credits",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
-  "billing": {
+  billing: {
     title: "Billing",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
-  "users": {
+  users: {
     title: "Users",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
-}
+};
 
 export default meta;

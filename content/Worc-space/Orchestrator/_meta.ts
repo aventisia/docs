@@ -1,46 +1,46 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
-    index: {
-        title: "Overview",
-        theme: {
-        breadcrumb: false,
-        },
+  index: {
+    title: "Overview",
+    theme: {
+      breadcrumb: true,
     },
+  },
   machines: {
     title: "Machines",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
-  "queues": {
+  queues: {
     title: "Queues",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
-  "triggers": {
+  triggers: {
     title: "Triggers",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
-  "executions": {
+  executions: {
     title: "Executions",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
   "key-store": {
     title: "Key-Store",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
-  "vault": {
+  vault: {
     title: "Vault",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
 };

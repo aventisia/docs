@@ -4,25 +4,25 @@ const meta: MetaRecord = {
   index: {
     title: "Introduction to Worc",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
   "signing-in": {
     title: "Sign In",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
   "Worc-space": {
     title: "Worc-Space",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
   "agent-builder": {
     title: "Agent Builder",
     theme: {
-      breadcrumb: false,
+      breadcrumb: true,
     },
   },
 };
