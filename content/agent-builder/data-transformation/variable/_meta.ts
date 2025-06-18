@@ -1,52 +1,52 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
-   "create-new-list": {
+  "create-new-list": {
     title: "Create New List",
   },
   "add-item-to-list": {
     title: "Add item to list",
   },
-    "clear-list": {
+  "clear-list": {
     title: "Clear List",
   },
-    "convert-custom-object-to-JSON": {
+  "convert-custom-object-to-JSON": {
     title: "Convert Custom Object To JSON",
   },
-    "convert-JSON-to-custom-object": {
+  "convert-JSON-to-custom-object": {
     title: "Convert JSON To Custom Object",
   },
-    "decrease-variable": {
+  "decrease-variable": {
     title: "Decrease Variable",
   },
-    "find-common-list-items": {
+  "find-common-list-items": {
     title: "Find Common List Items",
   },
-    "generate-randome-number": {
+  "generate-randome-number": {
     title: "Generate Random Number",
   },
-    "increase-variable": {
+  "increase-variable": {
     title: "Increase Variable",
   },
-    "merge-lists": {
+  "merge-lists": {
     title: "Merge List",
   },
-    "remove-duplicate-items-from-list": {
+  "remove-duplicate-items-from-list": {
     title: "Remove Duplicate Items From List",
   },
-    "remove-item-from-list": {
+  "remove-item-from-list": {
     title: "Remove Item From List",
   },
-    "retrieve-data-table-column-into-list": {
+  "retrieve-data-table-column-into-list": {
     title: "Retrieve Data Table Column Into List",
   },
-    "reverse-list": {
+  "reverse-list": {
     title: "Reverse List",
   },
-    "set-variable": {
+  "set-variable": {
     title: "set-variable",
   },
-    "shuffle-list": {
+  "shuffle-list": {
     title: "Shuffle List",
   },
   "sort-list": {
@@ -57,6 +57,9 @@ const meta: MetaRecord = {
   },
   "truncate-number": {
     title: "Truncate Number",
+    theme: {
+      breadcrumb: true,
+    },
   },
 };
 
