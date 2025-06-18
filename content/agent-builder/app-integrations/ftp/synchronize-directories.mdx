@@ -1,65 +1,51 @@
 # Synchronize Directories
 
 ## Description
-
 This screenshot demonstrates an interface for synchronizing directories between a local system and a remote FTP server. Users can specify the synchronization direction, local folder, FTP directory, and additional options like deleting absent files or including subdirectories.
 
 ![alt text](../../../assets/ftp/synchronize-directories.png)
 
-![alt text](../../../assets/ftp/synchronize-directories2.png)
-
 ---
 
-## Configuration
+## Feilds and Option
 
-### FTP Connection
+### 1. FTP Connection
+- Select the active FTP connection to use for synchronization.
 
-- **Field**: Select the active FTP connection to use for synchronization.
+### 2. Synchronization Direction
+- Choose the direction of synchronization (e.g., `Remote->local` for downloading files).
 
-### Synchronization Direction
+### 3. Local Folder
+- Specify the local folder where files will be synchronized.
 
-- **Option**: Choose the direction of synchronization (e.g., `Remote->local` for downloading files).
+### 4. FTP Directory
+- Enter the remote FTP directory to synchronize with the local folder.
 
-### Local Folder
+### 5. Delete if Source is Absent
+-  Enable this option to delete files or folders in the target directory that do not exist in the source directory.
 
-- **Field**: Specify the local folder where files will be synchronized.
+### 6. Include Subdirectories
+- Enable this option to include subdirectories in the synchronization process.
 
-### FTP Directory
-
-- **Field**: Enter the remote FTP directory to synchronize with the local folder.
-
-### Delete if Source is Absent
-
-- **Option**: Enable this option to delete files or folders in the target directory that do not exist in the source directory.
-
-### Include Subdirectories
-
-- **Option**: Enable this option to include subdirectories in the synchronization process.
-
-### Time Difference in Minutes
-
-- **Field**: Specify the time difference threshold for synchronization (e.g., `0` for no delay).
+### 7. Time Difference in Minutes
+- Specify the time difference threshold for synchronization (e.g., `0` for no delay).
 
 ---
 ## Time Difference Ahead
-
-- **Option**: Specify whether the server’s time zone is ahead of the local system’s time zone.
+- Specify whether the server’s time zone is ahead of the local system’s time zone.
 
 ---
 
 ## Output
 
 ### FtpFilesDeleted
-
-- **Description**: A list of FTP files that initially existed in the target directory but were deleted after the synchronization process.
+- A list of FTP files that initially existed in the target directory but were deleted after the synchronization process.
 
 ### FtpFilesModified
-
-- **Description**: A list of FTP files that initially existed in both the source and target directories and were modified during the synchronization process.
+- A list of FTP files that initially existed in both the source and target directories and were modified during the synchronization process.
 
 ### FtpFilesAdded
-
-- **Description**: A list of FTP files that were added to the target directory during the synchronization process.
+- A list of FTP files that were added to the target directory during the synchronization process.
 
 ---
 

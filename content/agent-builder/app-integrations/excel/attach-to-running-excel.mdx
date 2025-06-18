@@ -1,7 +1,6 @@
 # Attach to Running Excel  
 
 ## Description
-
 This feature allows users to attach to an already running instance of Microsoft Excel.  
 It is useful for interacting with open workbooks without launching a new Excel instance.  
 
@@ -9,23 +8,17 @@ It is useful for interacting with open workbooks without launching a new Excel i
 
 ## Fields and Options  
 
-### 1. **Document Name**
+### 1. Excel Application
+- The running Excel Application object to attach to.
 
-- Select the name of the open Excel document to attach to.  
-- This ensures actions are applied to the correct workbook.  
-
-### 2. **Output: ExcelInstance**
-
-- A toggle option that, when enabled, stores the attached Excel instance for later use in automation.  
-- This instance can be referenced in subsequent Excel actions.  
+### 2. FilePath
+- The full path of the Excel file to open or attach to in the running Excel instance.
 
 ## Use Cases
-
 - Automating tasks in an already open Excel file.  
 - Avoiding multiple Excel instances by reusing an existing one.  
 - Attaching automation to a user-controlled Excel session.  
 
 ## Summary
-
 The **Attach to Running Excel** action provides a way to interact with open Excel workbooks efficiently.  
 It helps in integrating automation with ongoing Excel tasks while ensuring a seamless workflow.  

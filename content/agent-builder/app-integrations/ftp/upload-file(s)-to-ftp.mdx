@@ -1,0 +1,45 @@
+# Upload File(s) to CorporateFTP
+
+## Description
+Uploads one or more files to a remote FTP server.
+
+![alt text](../../../assets/ftp/upload-file(s)-to-ftp.png)
+
+---
+### Fields and Option
+
+| **Field**             | **Description**                                                                 |
+|------------------------|---------------------------------------------------------------------------------|
+| `FTP Connection`      | The FTP connection to use (must be defined beforehand).                         |
+| `Local Files`         | The file path(s) on the local machine to upload. Can be a single file or list. |
+| `Remote Directory`    | Directory on the FTP server where files will be uploaded.                       |
+| `Overwrite Mode`      | Specifies overwrite conditions: `Always` `If newer or size different` `Never` |
+| `Include Subdirectories` | If true, includes subfolders when uploading multiple files.                |
+| `Timeout Seconds`     | Max time (in seconds) allowed for the operation to complete. Default is 30.     |
+
+---
+
+### Output
+
+| **Output Variable**     | **Description**                                               |
+|--------------------------|---------------------------------------------------------------|
+| `UploadedFilesCount`    | Number of files successfully uploaded.                        |
+| `SkippedFiles`          | A list of files that were skipped due to overwrite settings.  |
+
+---
+
+### Example Usage
+
+```plaintext
+FTP Connection: CorporateFTP
+Local Files: C:\Exports\*.csv
+Remote Directory: /upload/reports
+Overwrite Mode: If newer or size different
+Include Subdirectories: true
+Timeout: 60 seconds
+```
+---
+### Notes
+- For multiple files, use wildcards like `*.txt`, or pass a list of full paths.
+- Enabling **Include Subdirectories** is useful when syncing folders.
+- The **Overwrite Mode** ensures only changed files are uploaded to save time and bandwidth.

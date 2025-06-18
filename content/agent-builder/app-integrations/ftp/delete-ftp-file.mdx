@@ -1,7 +1,6 @@
-# **Delete FTP File**
+# Delete FTP File
 
 ## Description
-
 The **Delete FTP File** operation allows users to remove a specified file from an FTP server.
 
 ![alt text](../../../assets/ftp/delete-ftp-file.png)
@@ -13,12 +12,11 @@ The **Delete FTP File** operation allows users to remove a specified file from a
 | Parameter         | Description                                   | Example Value           |
 |------------------|---------------------------------------------|-------------------------|
 | **FTP Connection** | The handle for an active FTP session.     | `FTP_Connection_1`      |
-| **Files to delete** | The full path to the file to be deleted. | `/public/uploads/file1.txt` |
+| **Files Name** | The full path to the file to be deleted. | `/public/uploads/file1.txt` |
 
 ---
 
 ## **Process Flow**
-
 1. A **valid FTP connection** is selected.
 2. The **file path** to be deleted is specified.
 3. The system attempts to **delete the file** on the FTP server.
@@ -38,7 +36,7 @@ The **Delete FTP File** operation allows users to remove a specified file from a
 
 ## **Example Use Cases**
 
-### ✅ **1. Successfully Deleting a File**
+### **1. Successfully Deleting a File**
 
 #### **Input:**
 
@@ -51,7 +49,6 @@ Success: File '/public/uploads/file1.txt' has been deleted.
 ---
 
 ## **Summary**
-
 - The **Delete FTP File** operation removes a **specified file** from an FTP server.
 - Requires a **valid FTP connection** and a **target file path**.
 - If successful, the file is **permanently deleted**.

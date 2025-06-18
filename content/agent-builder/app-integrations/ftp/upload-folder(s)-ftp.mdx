@@ -1,0 +1,47 @@
+# Upload Folder(s) to FTP
+
+## Description
+Uploads one or more local folders to a remote FTP/FTPS server.
+
+![alt text](../../../assets/ftp/upload-folder(s)-ftp.png)
+
+---
+
+### Configuration Fields
+
+| **Field**             | **Description**                                                                 |
+|------------------------|---------------------------------------------------------------------------------|
+| `FTP Connection`      | The FTP/FTPS connection to use. Must be pre-configured.                        |
+| `Local Folders`       | The full path(s) of local folders to upload.                                   |
+| `Remote Directory`    | The target directory on the FTP server.                                        |
+| `Overwrite Files`     | If enabled, overwrites existing files on the server with the same name.        |
+| `Include Subdirectories` | If enabled, includes and uploads all subfolders recursively.             |
+| `Timeout Seconds`     | Maximum time (in seconds) for the transfer to complete. Default is `60`.       |
+
+---
+
+### Outputs
+
+| **Output Variable**      | **Description**                                             |
+|---------------------------|-------------------------------------------------------------|
+| `FoldersUploadedCount`   | Number of folders successfully uploaded.                     |
+| `FilesUploadedCount`     | Number of files successfully uploaded.                       |
+| `SkippedFiles`           | List of files skipped (e.g., due to overwrite settings).     |
+
+---
+
+### Example Usage
+
+```plaintext
+FTP Connection: SecureFTPS
+Local Folders: C:\Deploy\Builds
+Remote Directory: /production/releases
+Overwrite Files: true
+Include Subdirectories: true
+Timeout Seconds: 120
+```
+---
+### Notes
+- Multiple folder paths can be specified using a semicolon-separated list (e.g., `C:\Folder1;C:\Folder2`).
+- Disabling **Overwrite Files** is safer if you want to avoid accidental replacement.
+- FTP timeouts can vary based on server settings and folder size—adjust the `Timeout Seconds` field accordingly.

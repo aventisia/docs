@@ -1,47 +1,39 @@
 # List FTP Directory
 
 ## Description
-
 This screenshot demonstrates an interface for listing the contents of a directory on an FTP server. Users can specify the FTP connection and the directory path to retrieve a list of directories and files.
 
 ![alt text](../../../assets/ftp/list-ftp-directory.png)
 
 ---
 
-## Configuration
+## Feilds ans Option
 
-### Connection
+### 1. FTP Connection
+- Select or specify the FTP connection to use.
 
-- **Field**: Select or specify the FTP connection to use.
+### 2. Directory Name
+- Enter the directory path on the FTP server to list (e.g., `/documents`).
 
-### Path
-
-- **Field**: Enter the directory path on the FTP server to list (e.g., `/documents`).
-
+### 3. List Type
+- Specifies the type of items to list in the FTP directory.
+  - **Files and Folders**
+  - **Files**
+  - **Folders**
 ---
 
 ## Output
-
-### Directories
-
-- **Description**: A list of directories within the specified path.
-
-### Files
-
-- **Description**: A list of files within the specified path.
-
+- **Result** Returns the list subdirectories and files
 ---
 
 ## Example: Input and Output
 
 ### Scenario
-
 You want to list the contents of the `/documents` directory on an FTP server.
 
 ---
 
 ### Input
-
 - **Connection**: `FTP_Connection_1` (pre-configured FTP connection).
 - **Path**: `/documents`.
 
@@ -61,5 +53,4 @@ You want to list the contents of the `/documents` directory on an FTP server.
 ---
 
 ## Summary
-
 This tool is useful for retrieving the contents of a directory on an FTP server. It provides a clear list of directories and files, making it easier to navigate and manage files on remote servers.

@@ -1,27 +1,26 @@
 # Open FTP Connection
 
 ## Description
-
 The **Open FTP Connection** operation establishes a connection to an FTP server using a set of required credentials and configurations.
 
 ![alt text](../../../assets/ftp/open-ftp-connection.png)
 
 ---
 
-## **Input Parameters**
+## Feilds and Option
 
 | Parameter     | Description                                             | Example Value                |
 |--------------|---------------------------------------------------------|------------------------------|
 | **Host**     | The **FTP server address** (IP or domain).              | `ftp.example.com`            |
 | **Port**     | The port number for the **FTP server**. Default: `21`.  | `21`                         |
 | **Active Mode** | Enables Active Mode instead of Passive Mode.         | `Enabled` / `Disabled`       |
+| **Username**   | The username for authentication.                      | `username`
 | **Password** | The **password** for authentication.                    | `MySecurePassword`           |
 | **Timeout**  | The time (in seconds) before the connection times out.  | `10`                         |
 
 ---
 
 ## **Process Flow**
-
 1. The user enters **FTP server details** such as Host, Port, and Password.
 2. The system attempts to **establish a connection** using the provided details.
 3. If successful, a **connection handle** is created.
@@ -34,7 +33,6 @@ The **Open FTP Connection** operation establishes a connection to an FTP server 
 | Parameter        | Description                                             |
 |-----------------|---------------------------------------------------------|
 | **FTP Connection** | A reference handle for the **FTP session**.           |
-| **Error Message**  | If the connection fails, an error message is returned.|
 
 ---
 
@@ -54,7 +52,6 @@ Host: ftp.example.com Port: 21 Active Mode: Disabled Password: MySecurePassword 
 ---
 
 ## **Summary**
-
 - The **Open FTP Connection** operation allows connecting to an FTP server using a **hostname, port, and password**.
 - A successful connection returns an **FTP Connection handle**.
 - This handle is used for **file transfers** (upload/download).
@@ -62,4 +59,4 @@ Host: ftp.example.com Port: 21 Active Mode: Disabled Password: MySecurePassword 
 
 ---
 
-✅ **Use this operation to efficiently manage FTP transfers!**
+**Use this operation to efficiently manage FTP transfers!**
