@@ -15,7 +15,7 @@ const meta: MetaRecord = {
   },
   "write-to-cmd-session": {
     title: "Write to CMD Session",
-  }
+  },
 };
 
 export default meta;

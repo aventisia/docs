@@ -4,34 +4,42 @@ const meta: MetaRecord = {
   "control-screensaver": {
     title: "Control Screensaver",
   },
-    "get-default-printer": {
+  "get-default-printer": {
     title: "Get Default Printer",
   },
-    "lock-workstation": {
+  "lock-workstation": {
     title: "Lock Workstation",
   },
-    "log-off-user": {
+  "log-off-user": {
     title: "Log-off User",
   },
-    "play-sound": {
+  "play-sound": {
     title: "Play Sound",
   },
-    "print-document": {
+  "print-document": {
     title: "Print Document",
   },
-    "set-default-printer": {
+  "set-default-printer": {
     title: "Set Default Printer",
   },
-    "set-screen-resolution": {
+  "set-screen-resolution": {
     title: "Set Screen Resolution",
   },
-    "shutdown-computer": {
+  "shutdown-computer": {
     title: "Shutdown Computer",
   },
-    "take-screenshot": {
+  "take-screenshot": {
     title: "Take Screenshot",
+  },
+  "empty-recycle-bin": {
+    title: "Empty Recycle Bin",
+  },
+  "get-screen-resolution": {
+    title: "Get Screen Resolution",
+  },
+  "show-desktop": {
+    title: "Show Desktop",
   },
 };
 
 export default meta;
-

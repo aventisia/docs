@@ -1,0 +1,90 @@
+import { Callout, Steps } from "nextra/components";
+
+# Download File(s) from FTP
+
+The **Download File(s) from FTP** node enables you to retrieve files from an FTP server to your local directory effortlessly. This is particularly useful when you need to automate the process of importing data from your FTP server for reports, backups, or further processing.
+
+For example:
+
+- Automatically download daily sales data from an FTP server.
+- Retrieve multiple backup files from a remote server.
+
+{/* ![Download File(s) from FTP](./download-files-from-ftp.png) */}
+
+## Configuration Options
+
+| Field Name                  | Description                                                                                   | Input Type | Required? | Default Value |
+| --------------------------- | --------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **FTP Connection**          | The FTP connection object.                                                                    | Text       | Yes       | _(empty)_     |
+| **Download Multiple Files** | Whether to download a single file or multiple files.                                          | Switch     | No        | `false`       |
+| **File Name**               | The name of the file to download. _Only shown if **Download Multiple Files** is not checked._ | Text       | Yes       | _(empty)_     |
+| **File Name List**          | The names of the files to download. _Only shown if **Download Multiple Files** is checked._   | Text       | No        | _(empty)_     |
+| **Local Directory**         | The local directory to save the downloaded files.                                             | Text       | Yes       | _(empty)_     |
+| **Transfer Type**           | The transfer type to use (ASCII or Binary).                                                   | Select     | No        | Binary        |
+| **If File Exists**          | The operation to perform if the file already exists locally.                                  | Select     | No        | Overwrite     |
+
+## Expected Output Format
+
+The node provides a confirmation message indicating successful download or specifying any issues with downloading the files.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Download File(s) from FTP** node to your flow.
+
+### Step 2
+
+In the **FTP Connection** field, input your FTP connection details.
+
+### Step 3
+
+Decide whether to download a single file or multiple files by toggling the **Download Multiple Files** switch.
+
+- If disabled, fill in **File Name** with the name of the file you wish to download.
+- If enabled, provide a comma-separated list of file names in **File Name List**.
+
+### Step 4
+
+Specify the **Local Directory** where you wish to save the downloaded file(s).
+
+### Step 5
+
+Choose the **Transfer Type** (ASCII or Binary) from the dropdown menu based on your file type.
+
+### Step 6
+
+Select an option for **If File Exists** to determine the action when a file with the same name already exists in the local directory.
+
+### Step 7
+
+The node will execute and notify you if the files have been successfully downloaded or if any issues occurred.
+
+</Steps>
+
+<Callout type="warning" title="Important">
+  Ensure your FTP connection details are correct and your local directory path
+  is accessible to avoid connection errors or write issues.
+</Callout>
+
+## Input/Output Examples
+
+| Download Multiple Files | File Name / File Name List | Local Directory | Transfer Type | If File Exists            | Output Message                                                     |
+| ----------------------- | -------------------------- | --------------- | ------------- | ------------------------- | ------------------------------------------------------------------ |
+| No                      | `report.csv`               | `C:\Downloads`  | Binary        | Overwrite                 | "File 'report.csv' downloaded successfully to 'C:\Downloads'"      |
+| Yes                     | `backup1.zip, backup2.zip` | `/home/user/`   | ASCII         | Download with Unique Name | "Files downloaded successfully with unique names to '/home/user/'" |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                  | Solution                                                                                              |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Incorrect FTP Connection**             | Double-check the FTP connection details in the configuration, including host, username, and password. |
+| **File name error**                      | Ensure the file name(s) are correct and accessible on the server.                                     |
+| **Permission denied in Local Directory** | Make sure you have write permissions for the specified local directory path.                          |
+
+## Real-World Use Cases
+
+- **Automated Report Downloads**: Schedule downloads of daily reports from an FTP server to a local system automatically.
+- **Backup Automation**: Regularly download and store backup files from your FTP to local storage for redundancy.
+- **Data Processing Pipelines**: Integrate FTP downloaded data directly into data processing workflows.

@@ -1,55 +1,64 @@
+import { Callout, Steps } from "nextra/components";
+
 # Delete FTP Directory
 
-The **Delete FTP Directory** operation allows users to remove a specified directory from an FTP server.
+The **Delete FTP Directory** node enables you to remove a directory from an FTP server. This is particularly useful for managing and cleaning up files on remote servers. Use this node when you want to delete unneeded directories to free up space or organize your FTP server.
 
-![alt text](../../../assets/ftp/delete-ftp-directory.png)
-
----
+{/* ![Delete FTP Directory](./delete-ftp-directory.png) */}
 
 ## Configuration Options
 
-| Parameter          | Description                                     | Example Value             |
-|-------------------|-----------------------------------------------|---------------------------|
-| **FTP Connection** | The handle for an active FTP session.         | `FTP_Connection_1`        |
-| **Directory to delete** | The full path of the directory to remove. | `/public/uploads/temp/`   |
+| Field Name         | Description                                               | Input Type | Required? | Default Value |
+| ------------------ | --------------------------------------------------------- | ---------- | --------- | ------------- |
+| **FTP Connection** | The FTP connection object. Provides server and user info. | Text       | Yes       | _(empty)_     |
+| **Directory Name** | The name of the directory to delete.                      | Text       | Yes       | _(empty)_     |
 
----
+## Expected Output Format
 
-## **Process Flow**
+The output of this node is a **confirmation message** that indicates whether the directory has been successfully deleted. If successful, the message will be a simple acknowledgment, such as "Directory deleted."
 
-1. A **valid FTP connection** is selected.
-2. The **directory path** to be deleted is specified.
-3. The system attempts to **delete the directory** on the FTP server.
-4. If the deletion is **successful**, a confirmation message is displayed.
-5. If the operation **fails**, an error message is returned.
+## Step-by-Step Guide
 
----
+<Steps>
+### Step 1
 
-## **Expected Output**
+Add the **Delete FTP Directory** node to your flow.
 
-| Parameter      | Description                                    |
-|---------------|------------------------------------------------|
-| **Success Message** | Confirms that the directory was deleted. |
-| **Error Message**   | If deletion fails, an error message is shown. |
+### Step 2
 
----
+In the **FTP Connection** field, input the FTP connection details. This should include the necessary information to connect to your FTP server, such as the server address, username, and password.
 
-## Example Use Cases
+### Step 3
 
-### 1. Successfully Deleting a Directory
-#### Input:
-FTP Connection: FTP_Connection_1 Directory to delete: /public/uploads/temp/
+In the **Directory Name** field, enter the exact name of the directory you wish to delete from the FTP server.
 
-#### Expected Output:
-Success: Directory '/public/uploads/temp/' has been deleted.
+### Step 4
 
-## Summary
-- The **Delete FTP Directory** operation removes a **specified folder** from an FTP server.
-- Requires a **valid FTP connection** and an **existing directory path**.
-- If successful, the directory is **deleted**.
-- If failed, an **error message is returned**.
-- Useful for **cleaning up unused or temporary directories** on FTP servers.
+Execute the flow to perform the deletion. Confirm that the directory has been removed from your FTP server's file structure.
 
----
+</Steps>
 
+<Callout type="warning" title="Caution">
+  Deleting a directory is irreversible. Ensure you have backups or confirmations
+  before proceeding.
+</Callout>
 
+## Input/Output Examples
+
+| FTP Connection      | Directory Name | Output Message    |
+| ------------------- | -------------- | ----------------- |
+| `ftp://example.com` | `data_old`     | Directory deleted |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                | Solution                                                                                                                        |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Invalid FTP connection information** | Ensure that your FTP connection details are correct; verify the server address, username, and password.                         |
+| **Directory not found**                | Double-check the directory name for typos or errors. Ensure the directory exists on the FTP server before attempting to delete. |
+| **Permission denied**                  | Verify that your FTP account has sufficient permissions to delete directories.                                                  |
+
+## Real-World Use Cases
+
+- **Data Management**: Regularly delete old or temporary directories from an FTP server to keep storage organized.
+- **Automated Cleanup**: Set up automated flows that periodically clear specific directories after their contents are no longer necessary.
+- **Resource Optimization**: Free up server resources by removing obsolete directories, improving overall server performance and management.

@@ -1,36 +1,94 @@
+import { Callout, Steps } from "nextra/components";
+
 # Process Exchange Email Messages
 
-This interface enables users to **process email messages** in an Exchange server by performing actions such as moving emails to folders.
+The **Process Exchange Email Messages** node lets you manage your email messages, offering operations like deleting emails, marking them as unread, or moving them to specific folders in your Microsoft Exchange server. This is particularly useful for automating the handling of large volumes of email, ensuring that important messages are organized and unnecessary ones are removed efficiently.
 
-![alt text](../../../assets/exchange-server/process-exchange-email-messages.png)
-
----
+{/* ![Process Exchange Email Messages](./process-exchange-email-messages.png) */}
 
 ## Configuration Options
 
-### Exchange Connection
-- Select the **Exchange server connection** used for processing emails.
+| Field Name                      | Description                                                                                | Input Type | Required? | Default Value |
+| ------------------------------- | ------------------------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **Exchange Connection**         | Connects to your Exchange server.                                                          | Text       | Yes       | _(empty)_     |
+| **Operation**                   | Choose the action: delete, mark as unread, or move to a folder.                            | Select     | Yes       | _(empty)_     |
+| **Email Message(s) to Process** | The IDs of email messages you wish to process.                                             | Text       | Yes       | _(empty)_     |
+| **Mailbox Type**                | Specify whether the email belongs to a personal or shared mailbox.                         | Select     | No        | _(empty)_     |
+| **Shared Mailbox Address**      | Required if using a shared mailbox; the email address of that mailbox.                     | Text       | No        | _(empty)_     |
+| **Move to Custom Folder**       | Enable to move emails to a custom folder of your choice.                                   | Switch     | No        | _(empty)_     |
+| **Exchange Folder**             | Available if not using custom folders; select a default Exchange folder for moving emails. | Select     | No        | _(empty)_     |
+| **Custom Folder Name**          | Specify the name of the custom folder when moving emails to a non-default folder.          | Text       | No        | _(empty)_     |
 
-### Email Message(s) to Process
-- Specify the **email address** associated with the messages to be processed.
-**Example:** `user@example.com`
+## Expected Output Format
 
-### Operation
-- Choose the action to perform on the email messages.
-**Example:** "Move email messages to mail folder".
+The output of this node does not generate any visible text or number but confirms successful execution of the selected email operation (e.g., emails moved, marked as unread, or deleted).
 
-### Mailbox Type
-- Select the type of mailbox:
-  - **Personal**: The user's individual mailbox.
-  - **Shared**: A shared mailbox used by multiple users.
+## Step-by-Step Guide
 
-### Move to Custom Folder (Toggle)
-- **Enable this option** if you want to move emails to a **custom folder** instead of a predefined Exchange folder.
----
+<Steps>
+### Step 1
 
-## **Summary**
-This tool allows users to:
-- **Process emails** within an Exchange server.
-- **Move messages** to different folders.
-- **Handle personal or shared mailboxes**.
-- **Customize folder locations** for processed emails.
+Add **Process Exchange Email Messages** node into your automation flow.
+
+### Step 2
+
+Enter your **Exchange Connection** details to connect this node to your Exchange server.
+
+### Step 3
+
+In the **Email Message(s) to Process** field, input the IDs of the emails you want to manage.
+
+### Step 4
+
+Choose your desired **Operation** from the dropdown menu:
+
+- **Delete**: Removes the emails.
+- **Mark as Unread**: Marks emails as unread.
+- **Move to Mail Folder**: Moves emails into a selected folder.
+
+### Step 5
+
+If you selected **Move to Mail Folder**, decide if you will use a predefined folder or a custom one:
+
+- Toggle **Move to Custom Folder** on if you will specify a non-standard folder name.
+- Otherwise, select an **Exchange Folder**.
+
+### Step 6
+
+If the **Mailbox Type** is "Shared", provide the relevant **Shared Mailbox Address**.
+
+### Step 7
+
+Execute the flow to process your emails based on your configuration.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure that the email IDs are accurate and relevant to avoid unintended
+  operations like deleting the wrong emails.
+</Callout>
+
+## Input/Output Examples
+
+| Operation      | Email Message IDs | Mailbox Type | Shared Mailbox Address | Move to Custom Folder | Exchange Folder | Custom Folder Name | Result                      |
+| -------------- | ----------------- | ------------ | ---------------------- | --------------------- | --------------- | ------------------ | --------------------------- |
+| Delete         | 12345, 67890      | Personal     | _(n/a)_                | false                 | _(n/a)_         | _(n/a)_            | Emails deleted              |
+| Move to Folder | 12345             | Shared       | shared@example.com     | false                 | Inbox           | _(n/a)_            | Email moved to Inbox        |
+| Mark as Unread | 67890             | Personal     | _(n/a)_                | false                 | _(n/a)_         | _(n/a)_            | Email marked as unread      |
+| Move to Custom | 54321             | Shared       | shared@example.com     | true                  | _(n/a)_         | CustomFolder       | Email moved to CustomFolder |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                            | Solution                                                                                        |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------- |
+| **Fields Disabled**                | Some fields like **Custom Folder Name** will only show if **Move to Custom Folder** is enabled. |
+| **Missing Shared Mailbox Address** | Ensure to fill in the Shared Mailbox Address if the Mailbox Type is set to "Shared".            |
+| **Incorrect Email IDs**            | Double-check email IDs for accuracy. Incorrect IDs will lead to no operation being performed.   |
+| **Operation Errors**               | Ensure correct Exchange Connection settings and permissions are set.                            |
+
+## Real-World Use Cases
+
+- **Inbox Management**: Automatically clean up your Inbox by deleting or organizing emails into folders based on criteria.
+- **Shared Mail Management**: Easily manage emails in shared mailboxes for team collaboration without manual sorting.
+- **Unread Emails**: Mark emails as unread to revisit them later or emphasize them for further attention.
+- **Custom Filing**: Organize targeted emails into specific folders automatically for structured archiving.

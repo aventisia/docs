@@ -1,37 +1,68 @@
+import { Callout, Steps } from "nextra/components";
+
 # Run PowerShell Script
 
-This section allows users to execute PowerShell scripts.
+The **Run PowerShell Script** node allows you to execute a PowerShell script from within your automation flow. This is useful when you need to perform tasks or retrieve information that is available via PowerShell commands, enabling integration with systems or configurations managed through PowerShell.
 
-![alt text](../../../assets/scripting/run-powershell-script1.png)
-![alt text](../../../assets/scripting/run-powershell-script2.png)
+For example:
 
-## Fields
+- Automating administrative tasks on Windows.
+- Extracting information from Windows systems.
+- Running scripts for complex data processing.
 
-### 1. PowerShell code to run
+{/* ![Run PowerShell Script](./run-powershell-script.png) */}
 
-- A text box to enter the PowerShell script that will be executed.
+## Configuration Options
 
-### 2. Fail after timeout
+| Field Name                 | Description                                       | Input Type | Required? | Default Value |
+| -------------------------- | ------------------------------------------------- | ---------- | --------- | ------------- |
+| **PowerShell Script Code** | The PowerShell script code to execute.            | Text       | Yes       | _(empty)_     |
+| **Script Output**          | Returns the output of the script after execution. | Output     | No        | ScriptOutput  |
 
-- An optional field to specify the timeout duration.  
-- If the script takes longer than this duration, execution fails.
+## Expected Output Format
 
-## Output
+The output of this node is the **result of the PowerShell script execution**, which can vary widely depending on the script. It could be a number, text, or even a file or data structure if the script generates such output.
 
-This section controls the output settings for the executed PowerShell script.
+## Step-by-Step Guide
 
-### 1. **PowerShellOutput**
+<Steps>
+### Step 1
 
-- Toggle to enable or disable capturing the script's output.  
-- If enabled, the script's output will be recorded.
+Add **Run PowerShell Script** node into your flow.
 
-### 2. **ScriptError**
+### Step 2
 
-- Toggle to enable or disable capturing errors during script execution.  
-- If enabled, any errors encountered during execution will be recorded.
+In the **PowerShell Script Code** field, enter the script you want to run.
 
-## Usage
+### Step 3
 
-- Enter the PowerShell script in the provided text box.
-- (Optional) Set a timeout limit.
-- Click **Submit** to execute the script.
+Review the script output, which will be available as **ScriptOutput** for use in subsequent nodes or tasks. This will display what your script returns when executed.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure your script is correct and tested in a PowerShell environment to avoid
+  syntax errors or unexpected behaviors.
+</Callout>
+
+## Input/Output Examples
+
+| Script Code                    | Output Example    | Output Description                                             |
+| ------------------------------ | ----------------- | -------------------------------------------------------------- |
+| `Get-Process`                  | List of Processes | Retrieves and lists all running processes on the host machine. |
+| `Get-Service`                  | List of Services  | Lists all services with their status on the host machine.      |
+| `Write-Output 'Hello, World!'` | Hello, World!     | Outputs a simple string message.                               |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                        | Solution                                                                                                                                          |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Script Code field is empty** | Make sure you have entered a valid PowerShell script in the **PowerShell Script Code** field.                                                     |
+| **Script fails to execute**    | The script may contain errors or require administrative privileges. Ensure the script is valid, and the automation has the necessary permissions. |
+| **Unexpected script output**   | Verify the PowerShell script logic and test it externally to ensure expected behavior. Adjust it if necessary.                                    |
+
+## Real-World Use Cases
+
+- **System Monitoring**: Execute scripts to gather system health data or alerts from multiple machines.
+- **User Management**: Automate the process of creating or modifying user accounts through existing PowerShell scripts.
+- **Backup and Restore**: Run PowerShell scripts to back up necessary files and systems, automate restore procedures.

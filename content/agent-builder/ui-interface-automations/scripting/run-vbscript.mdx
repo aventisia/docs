@@ -1,43 +1,68 @@
-# **Run VBScript**
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Run VBScript
 
-This interface allows users to execute a **VBScript** within a given environment.
+The **Run VBScript** node allows you to execute small scripts written in the VBScript language. This node is perfect for situations where you need to perform automated desktop tasks, manipulate data, or interact with the Windows operating system using VBScript code.
 
-![alt text](../../../assets/scripting/run-vbscript.png)
-![alt text](../../../assets/scripting/run-vbscript2.png)
+Typical use cases include:
 
-## **Fields**
+- Automating repetitive desktop processes through scripting.
+- Accessing system functions via VBScript.
+- Performing complex tasks that might require scripting power.
 
-### **1. VBScript to Run**
+{/* ![Run VBScript](./run-vbscript.png) */}
 
-- Enter the VBScript code directly into the text area.
-- Example:
+## Configuration Options
 
-  ```vbscript
-  MsgBox "Hello, World!"
+| Field Name        | Description                   | Input Type | Required? | Default Value |
+| ----------------- | ----------------------------- | ---------- | --------- | ------------- |
+| **VBScript Code** | The VBScript code to execute. | Text       | Yes       | _(empty)_     |
 
-The script should follow VBScript syntax and can include message boxes, file operations, or automation tasks.
+## Expected Output Format
 
-### **2. Fail After Timeout (Optional)**
+The output of the **Run VBScript** node is textual data, typically the result or any messages from executing the script, available in the form of **ScriptOutput**.
 
-Set a timeout in seconds to terminate the script if it runs too long.
+- Text output may include success messages, error information, or specific data retrieved by the script.
 
-## **Output**
+## Step-by-Step Guide
 
-This section provides **two output toggles**:
+<Steps>
+### Step 1
 
-## 1. VBScriptOutput
+Add the **Run VBScript** node to your flow.
 
-- Captures the **script's output** after execution.  
-- Useful for scripts that return data or print messages.  
+### Step 2
 
-## 2. ScriptError
+In the **VBScript Code** field, type or paste the VBScript code you wish to execute.
 
-- Displays any **errors** encountered while running the VBScript.  
-- Helps with **debugging** and troubleshooting script failures.  
+### Step 3
 
-## How to Use
+After executing, retrieve the output from the **ScriptOutput** field for use in subsequent nodes.
 
-- **Enable the toggles** to capture output or errors.  
-- If unchecked, the script runs without logging output/errors.  
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure your VBScript code is correctly formatted and error-free to prevent
+  execution issues.
+</Callout>
+
+## Input/Output Examples
+
+| Example Description                    | VBScript Code                     | Output Value  | Output Type |
+| -------------------------------------- | --------------------------------- | ------------- | ----------- |
+| Display a message box                  | `MsgBox "Hello, World!"`          | Hello, World! | String      |
+| Simple math operation returning result | `result = 5 + 10 : MsgBox result` | 15            | String      |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                            | Solution                                                                                                                                 |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **VBScript Code fails to execute** | Double-check the syntax of your VBScript. Ensure there are no missing semicolons or unmatched quotes.                                    |
+| **Unexpected script output**       | Verify your VBScript logic to ensure it performs the intended tasks. Use built-in VBScript debugging methods to troubleshoot the script. |
+| **ScriptOutput appears empty**     | Make sure your script includes output instructions like `MsgBox` or print statements to generate visible results in **ScriptOutput**.    |
+
+## Real-World Use Cases
+
+- **Automate Email Notifications**: Write a VBScript to automatically send desktop notifications or emails when specific conditions are met.
+- **System Interactions**: Use VBScript to manage files, deploy applications, or perform batch operations directly in Windows.
+- **Data Processing**: Automate data transformations or calculations that are complex to achieve using simple rules.

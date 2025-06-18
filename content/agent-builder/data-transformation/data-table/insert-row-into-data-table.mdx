@@ -1,0 +1,84 @@
+import { Callout, Steps } from "nextra/components";
+
+# Insert Row Into Data Table
+
+The **Insert Row Into Data Table** node allows you to add a new row to an existing data table. You can insert the row at a specific location within the data, such as before a given index or at the end of the table. This is particularly useful when you need to dynamically update data structures in process flows without manually altering the original table.
+
+Common scenarios for using this node include:
+
+- Adding data entries to a report.
+- Dynamically updating lists or tables based on inputs.
+- Automating data management tasks.
+
+{/* ![Insert Row Into Data Table](./insert-row-into-data-table.png) */}
+
+## Configuration Options
+
+| Field Name          | Description                                                                                               | Input Type | Required? | Default Value  |
+| ------------------- | --------------------------------------------------------------------------------------------------------- | ---------- | --------- | -------------- |
+| **Data Table**      | The data table to which the row will be inserted.                                                         | Text       | Yes       | _(empty)_      |
+| **Row Values**      | An array of values to insert into the row.                                                                | Text       | Yes       | _(empty)_      |
+| **Insert Location** | Specifies where to insert the new row. Choose between inserting before a row index or at the end.         | Select     | No        | BeforeRowIndex |
+| **Row Index**       | The zero-based index before which to insert the row. Needed if **Insert Location** is "Before Row Index". | Text       | No        | _(empty)_      |
+
+## Expected Output Format
+
+The output of this node is not directly a data value but an **updated data table** that includes the new row you have inserted.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Insert Row Into Data Table** node into your flow.
+
+### Step 2
+
+In the **Data Table** field, input the name or reference the table where you want to insert the new row.
+
+### Step 3
+
+Enter the values for the new row in **Row Values**. These should correspond to the columns of your data table.
+
+### Step 4
+
+Select an option from the **Insert Location** dropdown:
+
+- **Before Row Index** if you wish to insert the row before a specific index.
+- **End of Data Table** to add the row at the end of your table.
+
+### Step 5
+
+If you chose **Before Row Index**, enter the index number in **Row Index** where you want the new row to be inserted.
+
+### Step 6
+
+Once configured, the adjusted data table will be available for further actions or nodes in the process flow.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  If "Before Row Index" is selected, don't forget to fill in the "Row Index"
+  field; otherwise, the row will not be inserted correctly.
+</Callout>
+
+## Input/Output Examples
+
+| Insert Location   | Row Values            | Row Index | Output Data Table                                   |
+| ----------------- | --------------------- | --------- | --------------------------------------------------- |
+| Before Row Index  | ["John", "Doe", 28]   | 2         | Data table with "John Doe, 28" inserted at index 2. |
+| End of Data Table | ["Jane", "Smith", 30] | _(n/a)_   | Data table with "Jane Smith, 30" appended at end.   |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                              | Solution                                                                                                   |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| **Row not inserted as expected**     | Ensure "Insert Location" and "Row Index" fields are correctly configured based on your needs.              |
+| **Non-existent table reference**     | Double-check that the **Data Table** field references an existing table in your flow.                      |
+| **Missing or mismatched Row Values** | Ensure **Row Values** match the expected data structure of your table (e.g., all required columns filled). |
+
+## Real-World Use Cases
+
+- **Data Aggregation**: Collect data from various sources and insert new records into a main table for unified analysis.
+- **Dynamic Reporting**: Automatically add new data entries into reports as data is generated or received.
+- **Log Management**: Insert logging information into a data table for tracking and monitoring events or transactions.

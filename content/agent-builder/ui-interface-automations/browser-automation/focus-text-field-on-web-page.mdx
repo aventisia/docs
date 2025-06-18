@@ -1,0 +1,80 @@
+import { Callout, Steps } from "nextra/components";
+
+# Focus Text Field on Web Page
+
+The **Focus Text Field on Web Page** node is designed to programmatically place the focus on a specific text field within a web page. This action is primarily used in scenarios where you need to ensure a text field is ready for user input or automated data entry, particularly in automated workflows or testing environments. Utilizing this node allows for precise control over web interactions, ensuring that input fields are highlighted and ready when required.
+
+{/* ![Focus Text Field on Web Page](./focus-text-field-on-web.png) */}
+
+## Configuration Options
+
+| Field Name                 | Description                                                                       | Input Type | Required? | Default Value |
+| -------------------------- | --------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Web Browser Instance**   | Enter or choose the variable that contains the web browser instance to work with. | Text       | Yes       | _(empty)_     |
+| **UI Element**             | The selector used to locate the text field on the page.                           | Text       | Yes       | _(empty)_     |
+| **Find Type**              | Specifies how to find the element (e.g., ID, XPath, CssSelector).                 | Select     | Yes       | XPath         |
+| **Value To Find**          | The value used to locate the element (e.g., 'username', '//input[@id='email']').  | Text       | Yes       | _(empty)_     |
+| **Wait for Page to Load**  | If true, waits for the page to fully load before proceeding.                      | Switch     | No        | True          |
+| **Timeout for Page Load**  | Maximum time (in seconds) to wait for the page to load before failing.            | Text       | No        | 60            |
+| **Handle Dialog**          | Specifies what to do if a dialog appears after focusing the field.                | Select     | No        | DoNothing     |
+| **Dialog Button to Press** | The name of the button to press if a dialog appears (e.g., 'Ok', 'Cancel').       | Text       | No        | Ok            |
+
+## Expected Output Format
+
+The output of this node does not produce a value directly for reuse. It preps the selected field on a webpage, actuating focus. Essentially, this node performs an action rather than generating a new data output for further nodes.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Focus Text Field on Web Page** node into your flow.
+
+### Step 2
+
+Enter or select the variable for **Web Browser Instance** which holds the browser session you are working with.
+
+### Step 3
+
+In the **UI Element** field, specify the selector that identifies the text field on the web page you want to focus on.
+
+### Step 4
+
+Select an option for **Find Type** to define how the UI element should be found (e.g., XPath, Id, Css Selector).
+
+### Step 5
+
+Enter the **Value To Find** which corresponds to the locator defined by the **Find Type** (e.g., the path, ID, or selector).
+
+### Step 6
+
+Choose whether to enable **Wait for Page to Load** for an additional wait period ensuring page readiness.
+
+### Step 7
+
+Set the **Timeout for Page Load** to your desired maximum wait time.
+
+### Step 8
+
+Configure how to **Handle Dialog** if an unexpected dialogue appears, and input a response for **Dialog Button to Press** if applicable.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Use the **Find Type** wisely to match the best way of selecting your
+  element—XPath is usually reliable for structured content.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                    | Solution                                                                                                                                       |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Field not found or focused incorrectly** | Ensure the correct **Web Browser Instance** is selected and the correct **UI Element** and **Value to Find** are defined.                      |
+| **Unexpected dialog issues**               | Double-check the **Handle Dialog** settings to ensure dialogs are handled appropriately and test different **Dialog Button to Press** options. |
+| **Timeout errors or page not loading**     | Consider increasing the **Timeout for Page Load** value if certain pages take longer to fully load.                                            |
+
+## Real-World Use Cases
+
+- **Data Entry Automation**: Ensure key web application fields are ready for automation scripts input by focusing on required fields.
+- **Automated Testing**: Confirm that a particular text field is ready to receive input, useful for user interface tests.
+- **Customer Support Tools**: Prepare forms to focus on important fields to expedite support response times by pre-loading customer data.

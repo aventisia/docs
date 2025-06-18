@@ -1,24 +1,60 @@
+import { Callout, Steps } from "nextra/components";
+
 # Insert Row to Excel Worksheet
 
-## Description  
-This dialog allows users to insert a new row into an Excel worksheet at a specified row index.
+The **Insert Row to Excel Worksheet** node is designed to seamlessly insert a new row into an Excel worksheet at a specified position. This feature is particularly useful for dynamically organizing or updating your data without manually interacting with Excel.
 
-![alt text](../../../assets/excel/insert-row-to-excel-worksheet.png)
+Here, you can insert a new row at any desired position, enabling you to update your data structure efficiently.
 
-## Fields and Options  
+{/* ![Insert Row to Excel Worksheet](./insert-row-to-excel-worksheet.png) */}
 
-### 1. Excel Application 
-- A dropdown list to select the active Excel instance.  
-- Ensures the operation is performed on the correct workbook.  
+## Configuration Options
 
-### 2. Row Index
-- Specifies the row index where the new row will be inserted.  
-- Existing rows will be shifted down to accommodate the new row.  
+| Field Name            | Description                                                                                  | Input Type | Required? | Default Value |
+| --------------------- | -------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Excel Application** | The Excel Application object containing the target worksheet.                                | Text       | Yes       | _(empty)_     |
+| **Row Index**         | The 1-based index of the row where the new row should be inserted (inserted above this row). | Text       | Yes       | _(empty)_     |
 
-## Use Cases  
-- Adding a new row to an Excel sheet dynamically.  
-- Inserting blank rows for data organization.  
-- Preparing an Excel file for further data input.  
+## Expected Output Format
 
-## Summary  
-The **Insert Row to Excel Worksheet** dialog provides a simple interface for adding a new row at a specified index within an Excel sheet. This feature helps automate the insertion of blank rows in structured data workflows.  
+The output of this node is a confirmation message stating that the row has been successfully inserted in the Excel worksheet. There is no change in data type as the operation modifies the worksheet directly.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Insert Row to Excel Worksheet** node into your flow.
+
+### Step 2
+
+In the **Excel Application** field, enter the name of the Excel Application object that includes the worksheet where you want the row inserted.
+
+### Step 3
+
+In the **Row Index** field, specify the row number above which you want the new row inserted. Remember, this index is 1-based, meaning the first row of your worksheet is index 1.
+
+### Step 4
+
+Run the node to insert the row in your specified worksheet.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure that the provided Excel Application object is correctly configured and
+  that it points to the correct worksheet.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                       | Solution                                                                                    |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **Excel Application not properly recognized** | Verify that the Excel Application object is correctly set up and accessible by the system.  |
+| **Invalid Row Index input**                   | Ensure that the Row Index is a positive integer and refers to an existing row in the sheet. |
+| **No effect seen in the worksheet**           | Make sure the node is executed properly and that any required configurations are made.      |
+
+## Real-World Use Cases
+
+- **Data Management**: Automatically insert rows for new entries in a customer database.
+- **Report Updates**: Insert space for new financial data during periodic report updates.
+- **Project Planning**: Add task placeholders at specific points in project plans to account for upcoming tasks.

@@ -1,0 +1,80 @@
+import { Callout, Steps } from "nextra/components";
+
+# Convert Text to Number
+
+The **Convert Text to Number** node allows you to transform a text value into a numeric format. This is particularly useful when you need to process or analyze data provided in text form but meant to be used numerically, such as prices, measurements, or any quantities expressed as text.
+
+This node helps in situations where:
+
+- You receive data in a textual format that should be treated as numbers.
+- You need to perform calculations on data initially stored as text.
+- You want to ensure consistency in data types for further processing or integration with other systems.
+
+{/* ![Convert Text to Number](./convert-text-to-number.png) */}
+
+## Configuration Options
+
+| Field Name          | Description                                                                   | Input Type | Required? | Default Value |
+| ------------------- | ----------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Text to Convert** | Enter the text value you want to convert to a number.                         | Text       | Yes       | _(empty)_     |
+| **Output Type**     | Choose the numeric type for the converted value: Integer, Double, or Decimal. | Select     | Yes       | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node is a **numeric value**. The format depends on the chosen `Output Type`:
+
+- **Integer**: Converts text to a whole number without decimals (e.g., `10`).
+- **Double**: Converts text to a double-precision floating-point number (e.g., `10.0`).
+- **Decimal**: Converts text to a floating-point number suitable for high precision calculations (e.g., `10.00`).
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Convert Text to Number** node into your flow.
+
+### Step 2
+
+In the **Text to Convert** field, enter the text you want to be converted into a number.
+
+### Step 3
+
+Select the **Output Type** from the dropdown menu. Choose the type of numerical value you want the text to be converted into:
+
+- **Integer**: Converts to a whole number.
+- **Double**: Converts to a double floating-point number.
+- **Decimal**: Converts to a decimal number for precise calculations.
+
+### Step 4
+
+The converted numeric output will be available as **ConvertedValue** for use in other nodes.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure that the text entered in **Text to Convert** strictly represents a
+  numeric format to avoid conversion errors.
+</Callout>
+
+## Input/Output Examples
+
+| Text to Convert | Output Type | Converted Value | Output Type      |
+| --------------- | ----------- | --------------- | ---------------- |
+| `123`           | Integer     | 123             | Number (Integer) |
+| `45.67`         | Double      | 45.67           | Number (Double)  |
+| `89.123`        | Decimal     | 89.123          | Number (Decimal) |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                      | Solution                                                                                                    |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Conversion fails due to non-numeric text** | Ensure the text value strictly contains numeric data without letters or symbols, except for decimal points. |
+| **Output Type not selected**                 | Make sure to select one from Integer, Double, or Decimal in the **Output Type** dropdown.                   |
+| **Unexpected conversion results**            | Verify the text input and ensure it matches the expected numeric format you wish to convert.                |
+
+## Real-World Use Cases
+
+- **Data Import**: Importing data from text sources such as CSV files where numbers are stored as text.
+- **Financial Systems**: Converting financial figures stored as text for arithmetic operations.
+- **User Inputs**: Converting and validating user inputs from text fields intended as numeric values.

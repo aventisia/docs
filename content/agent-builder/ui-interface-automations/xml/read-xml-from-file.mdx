@@ -1,44 +1,72 @@
+import { Callout, Steps } from "nextra/components";
+
 # Read XML from File
 
-## Description
+The **Read XML from File** node is designed to import XML data from a specified file on your system, making it accessible for further processing or integration within your automation workflows. This node is particularly helpful when you need to work with structured data that is stored in XML format, such as configurations, data exchanges, or content management systems.
 
-The **Read XML from File** action reads an XML document from a specified file path and stores its contents in a variable.
+By providing the file path and choosing the appropriate encoding type, you can easily bring in XML data for your application’s needs.
 
-![Read XML from File UI](../../../assets/xml/read-xml-from-file.png)
+{/* ![Read XML from File](./read-xml-from-file.png) */}
 
-## Fields and Options  
+## Configuration Options
 
-### **1. File Path** 
+| Field Name        | Description                                          | Input Type | Required? | Default Value |
+| ----------------- | ---------------------------------------------------- | ---------- | --------- | ------------- |
+| **File Path**     | The path to the XML file you wish to read.           | Text       | Yes       | _(empty)_     |
+| **Encoding Type** | Choose the encoding method for parsing the XML file. | Select     | No        | SystemDefault |
 
-- The absolute or relative path of the XML file to be read.
+## Expected Output Format
 
-### **2. Encoding** 
+The output of this node is a **boolean value**, indicating whether the XML file was successfully read and parsed.
 
-- Defines the character encoding used to read the file.  
-- Default: **System Default**  
-- Other options may include UTF-8, ASCII, or other supported encodings.
+- **True**: The XML document was loaded successfully.
+- **False**: There was an error in loading the XML document.
 
-### **3. Output**
+## Step-by-Step Guide
 
-- **XmlDocument** *(Enabled by default)*  
-  - Stores the parsed XML data as an XML document variable.
+<Steps>
+### Step 1
 
-### **4. On Error** 
+Add the **Read XML from File** node to your flow.
 
-- Defines the behavior in case of errors, such as file not found or invalid XML format.
+### Step 2
 
-## Use Cases
+In the **File Path** field, enter the complete path to the XML file on your system. Ensure the path is correct and accessible by your system.
 
-- Parsing XML configuration files for automation workflows.
-- Extracting structured data from XML documents.
-- Processing XML-based API responses stored in local files.
+### Step 3
 
-## Important Notes
+Select the **Encoding Type** from the dropdown. The available options are:
 
-- Ensure the XML file exists at the specified path before executing this action.
-- If the file contains malformed XML, the action may fail or throw an error.
-- Encoding should match the file's actual encoding to prevent character misinterpretation.
+- **System Default**: Uses your system’s default text encoding.
+- **UTF-8**: Suitable for a wide range of characters and is often recommended.
+- **Unicode (UTF-16)**: For extended Unicode support.
+- **Big Endian Unicode**: Ensures the endianness of bytes in UTF-16.
+- **UTF-8 (No BOM)**: UTF-8 encoding without a Byte Order Mark.
+- **ASCII**: Basic character encoding, suitable for simple text files.
 
-## Summary
+### Step 4
 
-The **Read XML from File** action allows automation workflows to read and process XML data efficiently by loading it into a structured XML document variable.
+Once configured, the node will attempt to read and parse the XML file. The result will be available as **XML Document Loaded** with a boolean output for success confirmation.
+
+</Steps>
+
+<Callout type="warning" title="Important">
+  The specified file path must be correct and the file must be accessible. If
+  the path is incorrect or the file is locked or unavailable, the node will
+  return **false**.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                | Solution                                                                               |
+| ---------------------- | -------------------------------------------------------------------------------------- |
+| **File Not Found**     | Verify the file path is correct and accessible.                                        |
+| **Incorrect Encoding** | If the XML data appears garbled, ensure you've selected the correct **Encoding Type**. |
+| **Permission Denied**  | Ensure the application has permission to access the file location.                     |
+| **XML Parsing Error**  | Confirm that the file is a valid XML document.                                         |
+
+## Real-World Use Cases
+
+- **Configuration Management**: Import and parse system or application configuration from XML files.
+- **Data Integration**: Extract and process XML data for merging with other datasets or formats.
+- **Content Importing**: Load XML-based content for use in content management systems or publishing tools.

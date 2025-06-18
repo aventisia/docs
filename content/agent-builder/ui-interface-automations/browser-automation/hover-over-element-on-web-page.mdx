@@ -1,0 +1,75 @@
+import { Callout, Steps } from "nextra/components";
+
+# Hover Over Element on Web Page
+
+The **Hover Over Element on Web Page** node automates the action of hovering a mouse pointer over a specific element on a web page within a browser session. This interaction is often used to reveal hidden elements that only appear upon hovering or to trigger specific behavior in web applications, such as a tooltip or dropdown menu.
+
+{/* ![Hover Over Element on Web Page](./hover-over-element.png) */}
+
+## Configuration Options
+
+| Field Name               | Description                                                                        | Input Type | Required? | Default Value |
+| ------------------------ | ---------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Web Browser Instance** | Enter or choose the variable that contains the web browser instance to work with.  | Text       | Yes       | _(empty)_     |
+| **Find Type**            | Specifies how to find the element (e.g., ID, XPath, CssSelector).                  | Select     | Yes       | XPath         |
+| **Value To Find**        | The value used to locate the element (e.g., 'username', '//input[@id=\'email\']'). | Text       | Yes       | _(empty)_     |
+| **Wait for Element**     | If true, waits for the element to appear before hovering.                          | Switch     | No        | _(empty)_     |
+| **Timeout Seconds**      | Maximum time in seconds to wait for the element before failing.                    | Text       | No        | 60            |
+
+## Expected Output Format
+
+The **Hover Over Element on Web Page** node does not generate an output value but performs an action in the web browser, allowing the next steps in your automation to use any changes triggered by the hover.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Hover Over Element on Web Page** node into your flow.
+
+### Step 2
+
+In the **Web Browser Instance** field, enter or select the variable holding your active web browser session.
+
+### Step 3
+
+In the **Find Type** dropdown, select the method you want to use to locate the web element, such as XPath or Id.
+
+### Step 4
+
+In the **Value To Find** field, input the specific value according to your chosen find type that identifies the web element (e.g., enter the specific XPath string if 'XPath' is selected).
+
+### Step 5
+
+(Optional) Toggle the **Wait for Element** switch if you require the system to pause and wait for the element to become available before attempting the hover action.
+
+### Step 6
+
+(Optional) Set the **Timeout Seconds** field to specify how long the system should wait for the element to appear if you're using the wait feature.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  If the element to hover over takes time to load or render, ensure to enable
+  **Wait for Element** to avoid errors.
+</Callout>
+
+## Input/Output Examples
+
+| Find Type | Value To Find             | Wait for Element | Timeout Seconds | Description                                                  |
+| --------- | ------------------------- | ---------------- | --------------- | ------------------------------------------------------------ |
+| XPath     | //div[@class='menu-item'] | Yes              | 45              | Locate an element using XPath and wait up to 45 seconds.     |
+| Id        | tooltipButton             | No               | _(default 60)_  | Directly hover over an element using its ID without waiting. |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                    | Solution                                                                                                  |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| **Element not found error**                | Check that your **Find Type** and **Value To Find** correctly match an existing element on the page.      |
+| **Timeout error when waiting for element** | Ensure the webpage element renders within the timeframe set in **Timeout Seconds** or increase the limit. |
+
+## Real-World Use Cases
+
+- **Interactive Menus**: Automatically open dropdowns on hover to access submenu items for further processing.
+- **Tooltips Display**: Trigger tooltips for extraction or data verification tasks.
+- **Web Navigation**: Navigate through interactive web pages that rely on hover actions for rendering content.

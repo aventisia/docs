@@ -1,99 +1,62 @@
+import { Callout, Steps } from "nextra/components";
+
 # Open Terminal Session
 
-## Description
+The **Open Terminal Session** node is designed to initiate a terminal session on your machine. It returns a session ID once the terminal is successfully launched, allowing you to carry out further command executions within this session. This node is especially useful when you need to automate tasks that require terminal operations, such as running scripts or managing configuration setups directly from the command line.
 
-This screenshot demonstrates an interface for opening a terminal session using **Micro Focus Reflection** as the provider. The interface allows users to configure settings such as the HLLAPI DLL path, session name, host type, and host address.
+{/* ![Open Terminal Session](./open-terminal-session.png) */}
 
-![alt text](../../../assets/terminal-emulation/open-termianl-session.png)
+## Configuration Options
 
----
+| Field Name | Description                                                                                                           | Input Type | Required? | Default Value |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Result** | Outputs the session ID of the opened terminal session. This ID can be used to reference the session in further tasks. | Output     | No        | Result        |
 
-## Configuration
+## Expected Output Format
 
-### Provider
+The output of this node is a **string** representing the session ID. This ID acts as a reference to the terminal session that has been opened, enabling further interaction with it. For example, `Session123456`.
 
-- **Option**: Select the provider (e.g., Micro Focus Reflection).
+## Step-by-Step Guide
 
-### HLLAPI DLL Path
+<Steps>
+### Step 1
 
-- **Field**: Specify the installation path for the HLLAPI DLL.
+Add the **Open Terminal Session** node into your flow.
 
-- **Option**: Use an existing profile or create a new one.
+### Step 2
 
-### Session Name
+Ensure any prerequisite software or permissions for opening a terminal session on your machine are active.
 
-- **Field**: Enter a name for the terminal session.
+### Step 3
 
-### Host Type
+Upon successful execution, the node provides a session ID as its output. This ID appears as the **Result**.
 
-- **Option**: Select the host type (e.g., IBM 3270).
+### Step 4
 
-### Profile
+Use the session ID for running subsequent commands or interacting with the terminal session through other nodes in your flow.
 
-- **Field**: Specify the profile to use for the session.
+</Steps>
 
-### Host Address
+<Callout type="info" title="Note">
+  The **Result** field is automatically set and you do not need to input any
+  values here. It simply outputs the session ID for you to use in future tasks.
+</Callout>
 
-- **Field**: Enter the address of the host to connect to.
+## Input/Output Examples
 
-### Port
+| Operation             | Output Result | Expected Type       |
+| --------------------- | ------------- | ------------------- |
+| Open Terminal Session | Session123456 | String (Session ID) |
 
-- **Field**: Specify the port number for the connection.
+## Common Mistakes & Troubleshooting
 
----
+| Problem                                      | Solution                                                                                                       |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Terminal not launching**                   | Ensure your system's terminal and automation platform have the necessary permissions or access rights enabled. |
+| **Session ID not appearing in Result field** | Verify that the node is correctly added and executed in the flow. Check system logs for any errors.            |
 
-## Output
+## Real-World Use Cases
 
-- **TerminalSession**: The specific terminal session object created for use with later terminal emulation commands.
-
----
-
-## Example: Configuring a Terminal Session
-
-### Scenario
-
-You need to connect to a mainframe system using a terminal emulator. The mainframe has the following details:
-
-- **Host Address**: `mainframe.example.com`
-- **Port**: `23` (commonly used for Telnet connections)
-
----
-
-### Steps to Configure
-
-1. **Open the Terminal Session Configuration Interface**:
-   - Navigate to the terminal emulator tool (e.g., Micro Focus Reflection).
-
-2. **Enter Host Address**:
-   - In the **Host Address** field, enter:
-
-    ```plaintext
-     mainframe.example.com
-    ```
-
-3. **Specify Port**:
-   - In the **Port** field, enter:
-
-    ```plaintext
-     23
-    ```
-
-4. **Output**:
-   - After submitting the configuration, the system generates a `TerminalSession` object. This object can be used in subsequent commands, such as:
-     - Sending commands to the mainframe.
-     - Retrieving data from the mainframe.
-
----
-
-### Example Code (Pseudocode)
-
-```plaintext
-# Configure Terminal Session
-TerminalSession session = new TerminalSession(
-    HostAddress: "mainframe.example.com",
-    Port: 23
-);
-
-# Use the TerminalSession object for emulation commands
-session.SendCommand("LOGIN USER123");
-session.SendCommand("RUN REPORT1");
+- **Automate Script Execution**: Open a terminal session to run scripts automatically, saving time on manual inputs and executions.
+- **Configuration Management**: Initiate a terminal session for managing configurations or file modifications through automated scripts.
+- **System Monitoring**: Execute commands in a terminal session to monitor system logs or performance metrics as part of your workflow automation.

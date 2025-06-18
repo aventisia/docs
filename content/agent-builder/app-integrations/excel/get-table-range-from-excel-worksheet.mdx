@@ -1,44 +1,76 @@
-# Get Table Range from Excel Worksheet  
+import { Callout, Steps } from "nextra/components";
 
-## Description
-This feature allows users to retrieve the range of a specific table within an Excel worksheet. It can also determine whether the specified table is a pivot table.  
+# Get Table Range from Excel Worksheet
 
-![Get Table Range from Excel](../../../assets/excel/get-table-range-from-excel-worksheet.png)
+The **Get Table Range from Excel Worksheet** node is used to identify and extract the cell range of a specific table or pivot table within a spreadsheet. This is particularly useful when you need to manipulate, analyze, or perform actions on specific parts of an Excel sheet. By identifying the range, you can ensure that operations are only performed on the selected data, thereby improving data handling efficiency in your processes.
 
-## Fields and Options  
+{/* ![Get Table Range from Excel Worksheet](./get-table-range-from-excel-worksheet.png) */}
 
-### 1. Excel Application
-- A dropdown to select the active Excel instance.  
-- Ensures the correct workbook is used for the operation.  
+## Configuration Options
 
-### 2. Table Name
-- Specifies the name of the table from which the range needs to be retrieved.  
-- The table must exist in the selected Excel instance.  
+| Field Name            | Description                                                                  | Input Type | Required? | Default Value |
+| --------------------- | ---------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Excel Application** | The Excel Application object containing the target worksheet.                | Text       | Yes       | _(empty)_     |
+| **Table Name**        | The name of the table (ListObject) or pivot table to retrieve the range for. | Text       | Yes       | _(empty)_     |
+| **Is Pivot Table**    | If true, retrieves the range of a pivot table instead of a regular table.    | Switch     | No        | _(empty)_     |
 
-### 3. Is Pivot
-- A toggle option to determine whether the specified table is a pivot table.  
-- When enabled, the system checks and confirms if the table is a pivot table.  
+## Expected Output Format
 
-## Output
-This feature provides four key outputs representing the numeric index of the table's range:  
+The output of this node provides the indices of the table's range in the Excel sheet. The data will be a series of indices representing the first and last rows and columns:
 
-1. **FirstColumnIndex**  
-   - Returns the numeric index of the first column in the range.  
+- **First Column Index**: Numeric value indicating the first column's position.
+- **First Row Index**: Numeric value indicating the first row's position.
+- **Last Column Index**: Numeric value indicating the last column's position.
+- **Last Row Index**: Numeric value indicating the last row's position.
 
-2. **FirstRowIndex**  
-   - Returns the numeric index of the first row in the range.  
+## Step-by-Step Guide
 
-3. **LastColumnIndex**  
-   - Returns the numeric index of the last column in the range.  
+<Steps>
 
-4. **LastRowIndex**  
-   - Returns the numeric index of the last row in the range.  
+### Step 1
 
-## Use Cases
-- Identifying the exact range of a specific table in an Excel sheet.  
-- Validating if a table is a pivot table before performing further operations.  
-- Automating data extraction from structured tables in Excel.  
-- Using the table’s range dynamically for further processing.  
+Add the **Get Table Range from Excel Worksheet** node into your flow.
 
-## Summary
-The **Get Table Range from Excel Worksheet** feature helps users retrieve table ranges and determine pivot table status, streamlining data automation and analysis workflows.  
+### Step 2
+
+In the **Excel Application** field, enter the reference or identifier for the Excel instance containing your desired worksheet.
+
+### Step 3
+
+In the **Table Name** field, specify the name of the table or pivot table whose range you wish to retrieve. Ensure the name matches exactly as it appears in Excel.
+
+### Step 4
+
+If you're targeting a pivot table, toggle the **Is Pivot Table** switch to `true`. Leave it `off` if it's a regular table.
+
+### Step 5
+
+Once configured, the node will output the indices as defined in the description, making the range ready for further actions or analysis in your workflow.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  Be careful to enter the exact table or pivot table name to avoid errors in
+  retrieving the range.
+</Callout>
+
+## Input/Output Examples
+
+| Case          | Input Excel Application | Table Name  | Is Pivot Table | Output Values                                                                |
+| ------------- | ----------------------- | ----------- | -------------- | ---------------------------------------------------------------------------- |
+| Regular Table | `ExcelApp1`             | `SalesData` | `false`        | FirstColumnIndex: 1, FirstRowIndex: 1, LastColumnIndex: 5, LastRowIndex: 100 |
+| Pivot Table   | `ExcelApp2`             | `SummaryPT` | `true`         | FirstColumnIndex: 1, FirstRowIndex: 10, LastColumnIndex: 4, LastRowIndex: 55 |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                     | Solution                                                                                                                        |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Table not found**         | Verify that the table name is correctly spelled and corresponds with the name used within the Excel sheet.                      |
+| **Empty output values**     | Ensure that the Excel Application and Table Name fields have been filled out correctly and match your worksheet configurations. |
+| **Incorrect range indices** | Confirm the table name and check if it is indeed a pivot table or not, as this setting affects how Excel identifies the table.  |
+
+## Real-World Use Cases
+
+- **Report Generation**: Use the identified range to generate reports from specific sections of data in a worksheet.
+- **Data Cleaning**: Precisely target and clean up specific table ranges without affecting other data.
+- **Excel Automation**: Streamline tasks by automatically determining the range of data to process, minimizing errors in selection.

@@ -1,45 +1,75 @@
+import { Callout, Steps } from "nextra/components";
+
 # If Folder Exists
 
-## Description
+The **If Folder Exists** node allows you to check whether a specific folder exists or does not exist on your desktop or system. This node is helpful if you need to verify folder presence as a trigger or condition in your automation tasks.
 
-The **If Folder Exists** action checks whether a specified folder exists at a given path and returns a boolean value.
+For example:
 
-![If Folder Exists UI](../../../assets/folder/if-folder-exists.png)
+- Confirm that a folder exists before saving files into it.
+- Ensure a folder does not exist to prevent overwriting data.
 
-## Fields and Options  
+{/* ![If Folder Exists](./if-folder-exists.png) */}
 
-### **1. If Folder** *(Required)* 
+## Configuration Options
 
-- The condition to check for folder existence.
-- Ensures that the workflow proceeds based on the folder's availability.
+| Field Name      | Description                                                             | Input Type | Required? | Default Value |
+| --------------- | ----------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **If Folder**   | Select the condition to check for the folder: whether it exists or not. | Select     | Yes       | Exists        |
+| **Folder Path** | The path of the folder to check for existence.                          | Text       | Yes       | _(empty)_     |
 
-### **2. Folder Path** *(Optional)* 
+## Expected Output Format
 
-- The directory path to check.
-- Must be correctly formatted and accessible.
+The output of this node is a **Boolean value** (`true` or `false`).
 
-### **3. Output**
+- `true`: The condition (Exists/Does Not Exist) is met.
+- `false`: The condition is not met.
 
-- **Exists** *(Boolean Output)*
-  - `True` if the folder exists.  
-  - `False` if the folder does not exist.
+## Step-by-Step Guide
 
-### **4. On Error** *(Optional)*
+<Steps>
+### Step 1
 
-- Defines the action to take if an error occurs, such as an invalid path.
+Add **If Folder Exists** node to your flow.
 
-## Use Cases
+### Step 2
 
-- Ensuring a folder exists before performing file operations.
-- Validating directory structure in an automation workflow.
-- Conditional logic for creating new directories if they don’t exist.
+In the **If Folder** dropdown, select the condition you want to check:
 
-## Important Notes
+- **Exists**: Verify that the folder is present.
+- **Doesn't Exist**: Verify that the folder is absent.
 
-- Ensure the provided folder path is correctly formatted.
-- Handle errors gracefully to prevent workflow failures.
-- Consider adding a step to create the folder if it does not exist.
+### Step 3
 
-## Summary
+In the **Folder Path** field, enter the complete path of the folder you wish to check.
 
-The **If Folder Exists** action verifies whether a folder exists and outputs a boolean result. It is useful for conditional file management and directory validation.
+### Step 4
+
+The result, indicating if the folder meets the condition, will be available as **Result** for use in other nodes.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure the folder path is accurate to avoid false results. Double-check before
+  entering it.
+</Callout>
+
+## Input/Output Examples
+
+| Condition     | Folder Path       | Output Value | Output Type |
+| ------------- | ----------------- | ------------ | ----------- |
+| Exists        | `/user/documents` | true         | Boolean     |
+| Doesn't Exist | `/user/archive`   | false        | Boolean     |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                   | Solution                                                                                                              |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Incorrect Folder Path** | Verify that the folder path is entered correctly, including all necessary subfolders and with correct capitalization. |
+| **Unexpected Output**     | Ensure you selected the correct condition in the If Folder dropdown.                                                  |
+
+## Real-World Use Cases
+
+- **Data Archiving**: Check if a backup folder already exists before archiving data to avoid duplications.
+- **Workflow Pre-checks**: Ensure required folders are created before executing file operations in a workflow.
+- **Safety Checks**: Verify that a specific folder does not exist before creating it to prevent data overwriting.

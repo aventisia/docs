@@ -1,54 +1,91 @@
-# Move Mouse to Image
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Move Mouse
 
-The **Move Mouse to Image** action moves the mouse pointer to a specific image on the screen and optionally performs a click action.
+The **Move Mouse** node allows you to automate mouse movement to a specified location on your screen or within a specific window. This node is useful when you need to simulate mouse activity as part of a workflow, such as clicking a button or positioning the cursor to trigger an event.
 
-![Move Mouse to Image UI](../../../assets/mouse-and-keyboard/move-mouse-to-image1.png)
+This automation simplifies tasks where navigating through the screen is part of the process, making desktop operations more efficient and precise.
 
-## Fields and Options  
+{/* ![Move Mouse](./move-mouse.png) */}
 
-### **1. Mouse Movement Style** 
+## Configuration Options
 
-- Determines how the mouse moves to the detected image position.
-- Options:
-  - **Instant** (default) – Moves the mouse immediately to the image.
-  - **Smooth** – Moves the mouse gradually for a more natural effect.
+| Field Name                            | Description                                                                                               | Input Type | Required? | Default Value |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Position X**                        | The horizontal coordinate on the screen to where the mouse should move.                                   | Text       | No        | _(empty)_     |
+| **Position Y**                        | The vertical coordinate on the screen to where the mouse should move.                                     | Text       | No        | _(empty)_     |
+| **Relative To**                       | Sets the reference point for determining the mouse position: either the full screen or the active window. | Select     | No        | _(empty)_     |
+| **Move Mouse From Previous Position** | Defines if and how slowly or quickly the mouse should animate from its current position.                  | Select     | No        | _(empty)_     |
 
-### **2. Occurrence** 
+## Expected Output Format
 
-- Specifies which occurrence of the image should be targeted (if there are multiple matches on the screen).
-- Default: **1** (first occurrence).
+The output of this node is the **Current Cursor Position** containing the final screen coordinates (X and Y) where the cursor ends up after movement.
 
-### **3. Send a Click After Moving Mouse** 
+- Output is represented as a **coordinate pair** (e.g., `X: 400, Y: 300`).
 
-- When enabled, the action will automatically click on the detected image location after moving the mouse.
+## Step-by-Step Guide
 
-### **4. Click Type** *(Required if click is enabled)* 
+<Steps>
+### Step 1
 
-- Defines the type of click to perform after moving the mouse.
-- Options:
-  - **Left Click** (default)
-  - **Right Click**
-  - **Double Click**
-  - **Middle Click**
+Add the **Move Mouse** node to your automation flow.
 
-### **5. X1 & Y1 Coordinates** 
+### Step 2
 
-- Defines the exact pixel offset within the detected image where the mouse should move.
+In the **Position X** field, enter the X coordinate for where you want the mouse to move.
 
-## Use Cases
+### Step 3
 
-- Automating interactions with UI elements that may not have unique selectors.
-- Clicking buttons or elements that are image-based (e.g., game automation).
-- Testing applications where elements may change dynamically.
+In the **Position Y** field, enter the Y coordinate for where you want the mouse to move.
 
-## Important Notes
+### Step 4
 
-- Ensure the reference image is clear and not distorted.
-- Image recognition may fail if the UI changes significantly.
-- The accuracy of detection depends on screen resolution and scaling settings.
+Select a reference point under **Relative To**. Options are:
 
-## Summary
+- **Screen**: Move relative to the entire screen.
+- **Foreground Window**: Move relative to the active window.
 
-The **Move Mouse to Image** action allows automated cursor movement and optional clicking based on image recognition.
+### Step 5
+
+Decide how the mouse should move by choosing an option in **Move Mouse From Previous Position**:
+
+- **Instant**: Moves quickly without any animation.
+- **Low Speed**: Moves slowly for visual effect.
+- **Normal Speed**: Moves at standard speed.
+- **High Speed**: Moves rapidly.
+
+### Step 6
+
+Run your flow to have the node move the mouse as specified. The final cursor position will be available for further use in your automation in the format **CurrentCursorPosition**.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  You can leave **Position X** and **Position Y** blank to keep the cursor in
+  its current location and apply mouse movement effects only.
+</Callout>
+
+## Input/Output Examples
+
+- **Input Settings**:
+
+  - **Position X**: 400
+  - **Position Y**: 300
+  - **Relative To**: Screen
+  - **Move Mouse From Previous Position**: Normal Speed
+
+- **Output**: `CurrentCursorPosition` showing `X: 400, Y: 300`
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                                                 | Solution                                                                                        |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| **Cursor doesn't move as expected**                                     | Ensure that Position X and Y are within the valid range of your screen resolution.              |
+| **Mouse movement not animated**                                         | Confirm you select an animation speed under **Move Mouse From Previous Position**.              |
+| **Final position appears incorrect relative to the intended reference** | Double-check the **Relative To** setting is properly set to **Screen** or **ForegroundWindow**. |
+
+## Real-World Use Cases
+
+- **URL Testing**: Automated movement to click specific buttons or fields on web pages.
+- **UI Automation**: Moving the mouse to trigger scrolls or drags in a window.
+- **Desktop Simulation**: Use to set up presentations where precise cursor movements need to be demonstrated.

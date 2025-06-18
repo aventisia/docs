@@ -1,0 +1,83 @@
+import { Callout, Steps } from "nextra/components";
+
+# Copy File(s)
+
+The **Copy File(s)** node is designed to efficiently duplicate files from one location to another on your computer. This functionality is especially useful for tasks such as backup creation, data organization, or file relocation. This node not only helps in copying files but also provides options to handle already existing files in the destination, ensuring that you have control over how duplicates are managed.
+
+For example:
+
+- Copying a collection of text files to a backup directory.
+- Organizing multimedia files into a specific folder.
+- Transferring work documents to a shared network location regularly.
+
+{/* ![Copy File(s)](./copy-files.png) */}
+
+## Configuration Options
+
+| Field Name             | Description                                                                  | Input Type | Required? | Default Value |
+| ---------------------- | ---------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **File(s) to copy**    | The path(s) of the file(s) to copy. Supports wildcards like `*.txt`.         | Text       | Yes       | _(empty)_     |
+| **Destination folder** | The destination folder where the files will be copied.                       | Text       | Yes       | _(empty)_     |
+| **If file exists**     | Specifies the behavior when a file already exists in the destination folder. | Select     | Yes       | DoNothing     |
+
+## Expected Output Format
+
+The output of this node is a **list of successfully copied file paths**. This output allows you to confirm which files were duplicated and can be referenced further in your automation.
+
+- The list is returned as `CopiedFiles`.
+- Each entry in the list is the full file path of a copied file.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Copy File(s)** node into your automation flow.
+
+### Step 2
+
+In the **File(s) to copy** field, enter the full path of the file(s) you need to duplicate. You can use wildcards, for example, `C:\Documents\*.txt` to select all text files.
+
+### Step 3
+
+Specify the location by inputting the **Destination folder** path where the files will be copied.
+
+### Step 4
+
+Select an option for the **If file exists** dropdown:
+
+- **Do nothing**: Skips copying if the file already exists in the destination.
+- **Overwrite**: Replaces any existing file with the new one being copied.
+
+### Step 5
+
+The list of paths of copied files will be available under the output **CopiedFiles** for subsequent processing or verification steps.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  Using wildcards in the **File(s) to copy** field allows for flexible selection
+  of multiple files at once.
+</Callout>
+
+## Input/Output Examples
+
+| Scenario                               | Source Files                | Destination Folder | If Exists Action | Output Value                                                       |
+| -------------------------------------- | --------------------------- | ------------------ | ---------------- | ------------------------------------------------------------------ |
+| Copy specific text files               | `C:\Source\*.txt`           | `C:\Backup`        | Do nothing       | `C:\Backup\file1.txt`, `C:\Backup\file2.txt`, etc.                 |
+| Backup with overwrite                  | `C:\Important\finance.xlsx` | `D:\Archive`       | Overwrite        | `D:\Archive\finance.xlsx`                                          |
+| Maintain existing files in destination | `C:\Pictures\holiday.jpeg`  | `E:\Photos`        | Do nothing       | `E:\Photos\holiday.jpeg` if not already present, else no new entry |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                | Solution                                                                                                                                 |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Files not appearing at destination** | Ensure the path in **Destination folder** is correct and accessible, and that you have permissions to write to the destination location. |
+| **Wildcards not copying all files**    | Confirm that the wildcard pattern is correct and that matching files exist at the source path specified in **File(s) to copy**.          |
+| **Unexpected file overwrite**          | Double-check that the **If file exists** option is set to your desired action, either "Do nothing" or "Overwrite".                       |
+
+## Real-World Use Cases
+
+- **Automated Backups**: Regularly copy files from work directories to a backup server or cloud storage.
+- **Content Management**: Move production-ready images to a shared marketing folder while maintaining original file structures.
+- **Data Migration**: Efficiently transfer selected document types to a new computer during system upgrades.

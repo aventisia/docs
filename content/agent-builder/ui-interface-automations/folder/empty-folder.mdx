@@ -1,34 +1,68 @@
+import { Callout, Steps } from "nextra/components";
+
 # Empty Folder
 
-## Description
+The **Empty Folder** node enables you to automatically delete all contents within a specified folder on your computer. This includes files and, optionally, any subfolders and their contents. Such functionality is useful for regularly cleaning up directories to save space or to ensure certain folders are ready for new files without manually clearing them each time.
 
-The **Empty Folder** action removes all files and subfolders within a specified folder without deleting the folder itself.
+{/* ![Empty Folder](./empty-folder.png) */}
 
-![Empty Folder UI](../../../assets/folder/empty-folder.png)
+## Configuration Options
 
-## Fields and Options  
+| Field Name             | Description                                                              | Input Type | Required? | Default Value |
+| ---------------------- | ------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **Folder to Empty**    | Specify the path of the folder whose contents should be deleted.         | Text       | Yes       | _(empty)_     |
+| **Include Subfolders** | Determines whether subfolders and their contents should also be deleted. | Switch     | No        | Yes           |
 
-### **1. Folder to Empty** *(Required)* 
+## Expected Output Format
 
-- Specify the full path of the folder to be emptied.
-- Ensure the folder exists before execution.
+There is no direct output from this node in terms of data value. However, the output action is that the specified folder gets emptied.
 
-### **2. On Error** *(Optional)*
+## Step-by-Step Guide
 
-- Define the action to take if an error occurs (e.g., folder not found, permission issues).
+<Steps>
+### Step 1
 
-## Use Cases
+Add **Empty Folder** node into your flow.
 
-- Clearing temporary or cache directories.
-- Resetting workspace folders for automation.
-- Removing old log files while keeping the folder structure intact.
+### Step 2
 
-## Important Notes
+In the **Folder to Empty** field, enter the full path of the folder you want to clear.
 
-- **Files and subfolders will be permanently deleted**—ensure no important data remains.
-- The action may fail if files are in use or permissions restrict deletion.
-- Hidden or system-protected files may not be removed.
+### Step 3
 
-## Summary
+Toggle the **Include Subfolders** switch depending on your preference:
 
-The **Empty Folder** action is useful for managing and cleaning up directories while preserving folder structures.
+- **Yes**: Will delete subfolders and all their contents.
+- **No**: Only the files in the main folder are deleted, leaving subfolders intact.
+
+### Step 4
+
+Proceed to integrate the node in your workflow, ensuring that the folders you want to keep are unaffected.
+
+</Steps>
+
+<Callout type="warning" title="Caution">
+  Use this node cautiously, especially with the **Include Subfolders** option
+  enabled, to avoid accidentally losing important data.
+</Callout>
+
+## Input/Output Examples
+
+| Folder Path        | Include Subfolders | Result                                                                         |
+| ------------------ | ------------------ | ------------------------------------------------------------------------------ |
+| `C:/Projects/Temp` | Yes                | All contents, including subfolders in `C:/Projects/Temp`, are deleted.         |
+| `C:/Projects/Data` | No                 | Only the files in `C:/Projects/Data` are deleted; subfolders remain untouched. |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                             | Solution                                                                                                        |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Path Not Recognized**             | Ensure the folder path is correct and accessible. Double-check for typos or permission issues.                  |
+| **Unintended Data Loss**            | Verify if the **Include Subfolders** setting matches your intent to prevent unintended deletions.               |
+| **Node Not Performing as Expected** | Confirm the node is correctly configured and check the folder path for accessibility before executing the flow. |
+
+## Real-World Use Cases
+
+- **Daily Log Cleanup**: Use the node to empty a folder of daily logs once they are processed, ensuring disk space is managed.
+- **Temporary Data Purge**: Regularly clear project folders of temporary processing files without entering each directory manually.
+- **Email Attachments**: Automatically clear out an email attachments folder to ensure it is ready for new incoming files.

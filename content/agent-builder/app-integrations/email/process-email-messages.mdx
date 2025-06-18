@@ -1,54 +1,87 @@
+import { Callout, Steps } from "nextra/components";
+
 # Process Email Messages
 
-## **Description**
+The **Process Email Messages** node is designed to manage email messages stored on an IMAP server. It allows you to perform specific actions such as deleting emails, marking them as unread, or moving them to a different mail folder. This can be particularly handy for organizing your inbox, automating email cleanups, or preparing emails for further processing.
 
-This interface allows users to **process email messages** by performing operations such as deleting emails from the server. The user specifies the email account, operation type, and IMAP server details.
+{/* ![Process Email Messages](./process-email-messages.png) */}
 
-![alt text](../../../assets/email/process-email-messages.png)
+## Configuration Options
 
----
+| Field Name                        | Description                                                                                     | Input Type | Required? | Default Value |
+| --------------------------------- | ----------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Operation**                     | The action to perform on the email messages (Delete, Mark as Unread, Move to Mail Folder).      | Select     | Yes       | Delete        |
+| **Email Messages to Process**     | The IDs of the email messages you want to manage.                                               | Text       | Yes       | _(empty)_     |
+| **IMAP Server**                   | The address of the IMAP server.                                                                 | Text       | No        | _(empty)_     |
+| **Port**                          | The port number used by the IMAP server.                                                        | Text       | No        | _(empty)_     |
+| **Enable SSL**                    | Enables SSL encryption for a secure connection (true or false).                                 | Switch     | No        | _(empty)_     |
+| **Username**                      | Your username for the IMAP account.                                                             | Text       | No        | _(empty)_     |
+| **Password**                      | Your password for the IMAP account.                                                             | Text       | No        | _(empty)_     |
+| **Accept Untrusted Certificates** | Accepts untrusted SSL certificates if enabled (true or false).                                  | Switch     | No        | _(empty)_     |
+| **Mail Folder** _(conditional)_   | The target folder for emails when moving them (required if Operation is "Move to Mail Folder"). | Text       | No        | _(empty)_     |
 
-## **Input Fields**
+## Expected Output Format
 
-### **1. Email Message(s) to Process**
+There is no direct output value from this node. The node performs operations on the email server, and all changes are reflected in your email account.
 
-- A text input field to specify the email address whose messages need to be processed.
-- **Value:** `user@example.com`
+## Step-by-Step Guide
 
-### **2. Operation**
+<Steps>
+### Step 1
 
-- A dropdown menu to select the action to perform on the email messages.
-- **Selected Operation:**
+Add the **Process Email Messages** node to your workflow.
 
-```plaintext
-Delete email messages from server
-Mark email messages as unread
-Move email messages to mail folder
-Mark email messages as unread and move to mail folder
-```
+### Step 2
 
----
+In the **Operation** dropdown, select what you would like to do with the emails:
 
-## **IMAP Server Settings**
+- **Delete** to remove messages.
+- **Mark as Unread** to change their status.
+- **Move to Mail Folder** to relocate them (requires specifying a folder in the Mail Folder field).
 
-### **3. IMAP Server**
+### Step 3
 
-- A text input field for specifying the IMAP server.
-- **Value:** `gmail.com`
+In **Email Messages to Process**, enter the IDs of the emails you wish to manage.
 
-### **4. Port**
+### Step 4
 
-- A text input field for specifying the server port.
-- **Value:** `993`
+(Optional) Enter connection details for the IMAP server such as **IMAP Server**, **Port**, **Enable SSL**, **Username**, and **Password**.
 
-### **5. Enable SSL**
+### Step 5
 
-- A toggle switch to enable or disable a secure SSL connection for email retrieval.
-- **Status:** **Enabled** (Toggle is switched on)
-- **Description:** "Specify whether to use a secure connection to communicate with the IMAP Server."
+(Optional) Use the **Accept Untrusted Certificates** switch to specify if you accept untrusted SSL certificates.
 
----
+### Step 6
 
-## **Summary**
+If moving emails, specify the target **Mail Folder** where messages should be moved.
 
-This tool allows users to **process emails** by selecting operations like deleting messages from the server. The configuration includes **IMAP server settings**, **port number**, and **SSL encryption** for a secure connection.
+</Steps>
+
+<Callout type="info" title="Tip">
+  Whenever you select "Move to Mail Folder" as the operation, ensure to fill in
+  the "Mail Folder" field with the correct destination folder.
+</Callout>
+
+## Input/Output Examples
+
+- **Operation**: Delete
+  - **Email Messages to Process**: "123, 456, 789"
+  - The emails with these IDs will be deleted from the server.
+- **Operation**: Move to Mail Folder
+  - **Mail Folder**: "Archive"
+  - **Email Messages to Process**: "987, 654"
+  - Emails are moved to the "Archive" folder.
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                            | Solution                                                                                                |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Missing email IDs in **Email Messages to Process** | Ensure you input at least one valid email ID to process.                                                |
+| Incorrect IMAP server details                      | Double-check server address and credentials for accuracy.                                               |
+| **Mail Folder** not specified when moving emails   | Ensure to specify a folder in the **Mail Folder** field when using the "Move to Mail Folder" operation. |
+
+## Real-World Use Cases
+
+- **Daily Cleanup**: Automatically delete spam or promotional emails based on specific criteria.
+- **Sorting**: Organize emails by moving them to different folders after processing through predefined rules.
+- **Task Follow-Up**: Mark important email instructions as unread to ensure follow-up actions in your daily routine.

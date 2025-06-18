@@ -1,30 +1,88 @@
+import { Callout, Steps } from "nextra/components";
+
 # Copy Cells from Excel Worksheet
 
-## Description  
+The **Copy Cells from Excel Worksheet** node is designed to assist you in copying data from Excel worksheets with ease. This node can replicate data from individual cells, specified ranges, named ranges, or currently selected areas in your Excel worksheet. It's helpful when automating tasks involving data extraction from Excel for use in reports, data analysis, or data migration processes.
 
-This dialog allows users to copy a range of cells from an Excel worksheet by specifying the start and end column and row values. The copied data can then be used for further processing or automation.
+{/* ![Copy Cells from Excel Worksheet](./copy-cells-from-excel-worksheet.png) */}
 
-![alt text](../../../assets/excel/copy-cells-from-excel-worksheet.png)
+## Configuration Options
 
-## Fields and Options  
+| Field Name                | Description                                                                                                     | Input Type | Required? | Default Value |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Excel Application**     | The Excel Application object containing the source worksheet.                                                   | Text       | Yes       | _(empty)_     |
+| **Copy Mode**             | Specifies how to copy cells: Single Cell, Named Cells, Selection, or Range of Cells.                            | Select     | Yes       | SingleCell    |
+| **Source Worksheet Name** | Name of the worksheet in the source Excel application.                                                          | Text       | No        | _(empty)_     |
+| **Source Range Address**  | The range address (e.g., 'A1:B10') in the worksheet to copy. **Visible only if Copy Mode is "Range of Cells".** | Text       | No        | _(empty)_     |
+| **Start Column**          | The starting column of the range to copy. **Visible only if Copy Mode is "Range of Cells".**                    | Text       | No        | _(empty)_     |
+| **Start Row**             | The starting row of the range to copy. **Visible only if Copy Mode is "Range of Cells".**                       | Text       | No        | _(empty)_     |
+| **End Column**            | The ending column of the range to copy. **Visible only if Copy Mode is "Range of Cells".**                      | Text       | No        | _(empty)_     |
+| **End Row**               | The ending row of the range to copy. **Visible only if Copy Mode is "Range of Cells".**                         | Text       | No        | _(empty)_     |
+| **Name**                  | The name of the named range to copy. **Visible only if Copy Mode is "Named Cells".**                            | Text       | No        | _(empty)_     |
 
-### 1. Excel Instance
-- A dropdown list to select the active Excel instance.  
-- Ensures the operation is performed on the correct workbook.  
+## Expected Output Format
 
-### 2. Copy Mode
-- Defines the mode of copying. Options include:
-  - **Single Cell's Values** – Copies values from a single cell.
-  - **Values from a Range of Cells**
-  - **Values from Selection**
+The output of this node is a **cell value or data set**, depending on the selected Copy Mode, suitable for further processing in subsequent nodes.
 
-### 3. Source Worksheet Name
-- Name of the worksheet in the source Excel application.
+- **Single Cell**: Results in a single value from the specified cell.
+- **Named Cells**: Retrieves values from the named range.
+- **Selection**: Outputs the values from the currently selected range in the worksheet.
+- **Range of Cells**: Delivers a set of values from specified start and end points.
 
-## Use Cases  
-- Copying data from an Excel sheet to be used in another worksheet or application.  
-- Automating data extraction from specific cells in a structured format.  
-- Processing a selected range of data for reporting or analysis.  
+## Step-by-Step Guide
 
-## Summary  
-The **Copy Cells from Excel Worksheet** dialog provides an interface for copying values from an Excel sheet, either from a single cell or a defined range. Users can specify the start and end positions to ensure precise data selection for automation.
+<Steps>
+### Step 1
+
+Add **Copy Cells from Excel Worksheet** node to your task flow.
+
+### Step 2
+
+Enter the **Excel Application** object that holds your target worksheet.
+
+### Step 3
+
+Select the desired **Copy Mode** from the dropdown to specify the method for copying data:
+
+- **Single Cell**: Copies a single cell defined by column and row.
+- **Named Cells**: Copies values from a range previously assigned a name.
+- **Selection**: Copies the range that is currently selected in the worksheet.
+- **Range of Cells**: Allows copying of specified start and end cells.
+
+### Step 4
+
+(Step 4 applies to "Range of Cells" copy mode only)
+
+Enter details for **Source Range Address**, **Start Column/Row**, and **End Column/Row** to define your exact range.
+
+### Step 5
+
+(Step 5 applies to "Named Cells" copy mode only)
+
+Specify the **Name** of the named range you wish to copy from.
+
+### Step 6
+
+Ensure that all required fields are completed. The copied data will be available for further use.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  The relevant fields will appear based on your **Copy Mode** selection, so
+  ensure you choose the correct mode first.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                            | Solution                                                                                                      |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Worksheet not found**            | Double-check the name in **Source Worksheet Name**; it must match exactly with the Excel sheet name.          |
+| **No output from specified range** | Verify that the range addresses and start/end points are within the bounds of the worksheet data.             |
+| **Named range data not copied**    | Ensure that the **Name** matches an existing named range in your Excel file.                                  |
+| **Required field missing error**   | Make sure all the required fields, indicated in the UI, are filled, especially for your chosen **Copy Mode**. |
+
+## Real-World Use Cases
+
+- **Data Analysis**: Quickly extract specific data points or calculations from workbooks for analysis in broader business processes.
+- **Report Generation**: Gather data from worksheets to compile into automated reports with varying data sources.
+- **Data Backups**: Copy important Excel data to alternative storage or processing locations to ensure data redundancy and availability.

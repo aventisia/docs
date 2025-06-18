@@ -9,7 +9,7 @@ const meta: MetaRecord = {
   },
   "set-clipboard-text": {
     title: "Set Clipboard Text",
-  }
+  },
 };
 
 export default meta;

@@ -1,0 +1,70 @@
+import { Callout, Steps } from "nextra/components";
+
+# Copy Range from Excel Worksheet to DataTable
+
+The **Copy Range from Excel Worksheet to DataTable** node allows you to extract data from a specified range of cells within an Excel worksheet and convert it into a DataTable format. This is useful for situations where you need to manipulate or analyze data from Excel without manually transferring data, saving time and reducing the risk of errors.
+
+Typical scenarios include:
+
+- Extracting data for reports based on specific cell ranges.
+- Preparing data for further processing or automated workflows.
+- Simplifying data integration from Excel to various applications.
+
+{/* ![Copy Range from Excel Worksheet to DataTable](./copy-range-from-excel-worksheet-to-datatable.png) */}
+
+## Configuration Options
+
+| Field Name            | Description                                                   | Input Type | Required? | Default Value |
+| --------------------- | ------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Excel Application** | The Excel Application object containing the source worksheet. | Text       | Yes       | _(empty)_     |
+| **Range to Copy**     | The range of cells to copy (e.g., 'A1:B10').                  | Text       | Yes       | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node is a **DataTable** object, which can be used in downstream processes or applications for further analysis and operations.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Copy Range from Excel Worksheet to DataTable** node into your flow.
+
+### Step 2
+
+In the **Excel Application** field, enter the object reference for the Excel application containing your source worksheet.
+
+### Step 3
+
+Specify the range of cells you want to copy in the **Range to Copy** field. For example, enter a value like 'A1:B10' to define the cell range.
+
+### Step 4
+
+The extracted data will be available as **CopiedData**, displayed as a DataTable, which you can utilize in other nodes or workflows.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure that the Excel Application is correctly referenced and actively running
+  to prevent errors during data extraction.
+</Callout>
+
+## Input/Output Examples
+
+| Excel Application | Range to Copy | Output (DataTable) | Output Type |
+| ----------------- | ------------- | ------------------ | ----------- |
+| excelApp1         | A1:B10        | CopiedData         | DataTable   |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                 | Solution                                                                                                       |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Invalid Excel Application reference** | Verify that the reference to the Excel application is correct and that the application is open and accessible. |
+| **Incorrect cell range formatting**     | Make sure the range is formatted correctly (e.g., 'A1:B10'). The range should exist in the worksheet.          |
+| **Empty output in CopiedData**          | Check if the specified range actually contains data. An empty range will result in no data being copied.       |
+
+## Real-World Use Cases
+
+- **Report Generation**: Automatically copy data from specific Excel workbook sheets to DataTables for use in report generation tools.
+- **Data Analysis**: Extract and convert ranges of data from Excel to leverage in data analysis and visualization platforms.
+- **Automated Workflows**: Incorporate Excel data into automated systems for scheduling, task management, or real-time data processing.

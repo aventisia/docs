@@ -24,7 +24,7 @@ const meta: MetaRecord = {
   },
   "wait-for-text-on-terminal-session": {
     title: "Wait for Text on Terminal Session",
-  }
+  },
 };
 
 export default meta;

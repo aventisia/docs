@@ -1,27 +1,74 @@
-# Show Desktop  
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Show Desktop
 
-This feature allows users to minimize all open windows and show the desktop. It is useful for quickly accessing the desktop or resetting the workspace during automation workflows.  
+The **Show Desktop** node helps you manage your computer desktop view by minimizing all open windows to show the desktop, restoring minimized windows back to their respective positions, or toggling between these two states. This is particularly useful when you need a quick overview of your desktop or want to return to your workspace setup.
 
-![Show Desktop](../../../assets/workstation/show-desktop.png)  
+For example:
 
-## Fields and Options  
+- Show the desktop by minimizing all active windows quickly.
+- Restore your windows to their previous state after viewing the desktop.
+- Toggle between these states easily without manual window management.
 
-### 1. **Operation** 
+{/* ![Show Desktop](./show-desktop.png) */}
 
-- **Description**: Choose the operation to perform.  
-  - **Minimize all windows (show desktop)**: Minimizes all open windows to show the desktop.
-  - **Restore all windows(undo show desktop)**:
-  Restores all minimised windows to undo show desktop  
-- **Purpose**: This ensures the desired action is performed on the system.  
+## Configuration Options
 
-## Use Cases  
+| Field Name | Description                                                         | Input Type | Required? | Default Value |
+| ---------- | ------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Action** | Decide if you want to show the desktop, restore windows, or toggle. | Select     | No        | Show          |
 
-- **Quick Desktop Access**: Minimizing all windows to quickly access the desktop.  
-- **Workspace Reset**: Resetting the workspace by minimizing all open windows.  
-- **Automation Workflows**: Including desktop access as part of larger automation tasks.  
+## Expected Output Format
 
-## Summary
+The output of this node is **a single boolean value** that indicates whether the desktop is visible after the action is completed.
 
-The **Show Desktop** action provides a way to minimize all open windows and show the desktop. It ensures quick access to the desktop and helps in resetting the workspace during automation workflows.
+- **True** if the desktop is visible.
+- **False** if the windows are restored or if the desktop is not visible.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Show Desktop** node into your flow.
+
+### Step 2
+
+In the **Action** dropdown, select your preferred action:
+
+- **Show Desktop**: Minimizes all open windows to display the desktop.
+- **Restore Windows**: Restores all previously minimized windows.
+- **Toggle**: Switches between showing the desktop and restoring windows.
+
+### Step 3
+
+Once the action is executed, the result will be shown in the **Current State**, indicating if the desktop is visible or not (as **IsDesktopVisible**).
+
+</Steps>
+
+<Callout type="info" title="Note">
+  The **Current State** is updated immediately after the chosen action is
+  performed. It reflects the state of the desktop, not the selected action.
+</Callout>
+
+## Input/Output Examples
+
+| Action                             | Output Value | Output Type |
+| ---------------------------------- | ------------ | ----------- |
+| Show Desktop                       | True         | Boolean     |
+| Restore Windows                    | False        | Boolean     |
+| Toggle (From showing to restoring) | False        | Boolean     |
+| Toggle (From restoring to showing) | True         | Boolean     |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                          | Solution                                                                                                           |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| **Selected action does not perform as expected** | Ensure your selection in the **Action** dropdown is correct. Try toggling if unsure of the current state.          |
+| **Current State shows incorrect visible status** | Consider the possibility that external factors may have changed window positions (unrelated to the node's action). |
+
+## Real-World Use Cases
+
+- **Focus Shift**: Instantly clearing up all distractions by showing just the desktop when you need a moment to refocus.
+- **Workspace Organization**: Quickly toggle back to your organized window setup with minimal effort.
+- **Presentation Environment**: Seamlessly manage the windows during presentations without manually rearranging them.

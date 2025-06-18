@@ -1,0 +1,83 @@
+import { Callout, Steps } from "nextra/components";
+
+# Pad Text
+
+The **Pad Text** node is a useful tool when you need to ensure a text string meets a specific length by adding characters either to the left or the right side. This can be particularly helpful in formatting text for uniformity in user interfaces, generating standardized labels, or preparing data for export where columns need fixed widths.
+
+For example:
+
+- Adding leading zeros to numbers (e.g., `123` becomes `00123` for a five-character width).
+- Ensuring product IDs have consistent lengths by padding with spaces or other characters.
+
+{/* ![Pad Text](./pad-text.png) */}
+
+## Configuration Options
+
+| Field Name            | Description                                                     | Input Type | Required? | Default Value |
+| --------------------- | --------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Original Text**     | The starting text you want to pad.                              | Text       | Yes       | _(empty)_     |
+| **Padding Direction** | Choose to add padding to the left or right.                     | Select     | Yes       | _(empty)_     |
+| **Padding Character** | The character(s) added for padding; e.g. a space or zero (`0`). | Text       | Yes       | _(empty)_     |
+| **Total Length**      | The final desired length of the text, including padding.        | Text       | Yes       | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node is a **string** that represents your original text extended to the desired length using the padding character.
+
+- If the total length is larger than the original text, padding will fill the remaining space.
+- Output is shown as `PaddedText` and is a simple text format.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Pad Text** node into your flow.
+
+### Step 2
+
+In the **Original Text** field, enter the text you want to pad.
+
+### Step 3
+
+Select **Padding Direction** from the dropdown menu to decide if padding should be added to the left or right of the text.
+
+### Step 4
+
+In the **Padding Character** field, specify which character(s) should be used for padding, like a space or zero.
+
+### Step 5
+
+Enter the **Total Length**, indicating the final number of characters desired (including the original text).
+
+### Step 6
+
+The padded result will be available as **PaddedText** for integration in further processes.
+
+</Steps>
+
+<Callout type="warning" title="Important Note">
+  Ensure the Total Length is greater than or equal to the length of the Original
+  Text to avoid errors.
+</Callout>
+
+## Input/Output Examples
+
+| Original Text | Padding Direction | Padding Character | Total Length | Output   | Output Type |
+| ------------- | ----------------- | ----------------- | ------------ | -------- | ----------- |
+| `cat`         | Left              | `*`               | 5            | `**cat`  | Text        |
+| `cat`         | Right             | `0`               | 6            | `cat000` | Text        |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                         | Solution                                                                                              |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Output is not as expected**   | Verify your Total Length is correct and greater than the length of Original Text.                     |
+| **Incorrect Padding Direction** | Double-check the selected Padding Direction corresponds to your intended placement of new characters. |
+| **Invalid Padding Character**   | Ensure the Padding Character is not left empty or improperly specified.                               |
+
+## Real-World Use Cases
+
+- **Invoice Number Formatting**: Add leading zeros or spaces to ensure uniform invoice numbers (e.g., `45` becomes `00045`).
+- **Data Columns in Spreadsheets**: Use padding to guarantee each row in a column is the same length for CSV file consistency.
+- **User ID Formatting**: Standardize lengths of user identifiers by padding with specific characters for sorting or listing.

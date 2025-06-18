@@ -10,7 +10,7 @@ const meta: MetaRecord = {
   "append-range-to-excel-worksheet": {
     title: "Append Range to Excel Worksheet",
   },
-  "attach-to-running-excel": {
+  "attach-to-running-excel-workbook": {
     title: "Attach to Running Excel Workbook",
   },
   "auto-fill-range-in-excel-worksheet": {
@@ -19,7 +19,7 @@ const meta: MetaRecord = {
   "clear-cells-in-excel-worksheet": {
     title: "Clear Cells in Excel Worksheet",
   },
-  "close-excel": {
+  "close-excel-application": {
     title: "Close Excel Worksheet",
   },
   "copy-cells-from-excel-worksheet": {
@@ -49,7 +49,7 @@ const meta: MetaRecord = {
   "find-and-replace-in-excel-worksheet": {
     title: "Find and Replace in Excel Worksheet",
   },
-  "get-active-excel-worksheet": {
+  "get-active-cell-on-excel-worksheet": {
     title: "Get Active Cell on Excel Worksheet",
   },
   "get-all-excel-worksheets": {
@@ -76,7 +76,7 @@ const meta: MetaRecord = {
   "insert-row-to-excel-worksheet": {
     title: "Insert Row to Excel Worksheet",
   },
-  "launch-excel": {
+  "launch-excel-application": {
     title: "Launch Excel",
   },
   "lookup-range-in-excel-worksheet": {
@@ -85,7 +85,7 @@ const meta: MetaRecord = {
   "paste-cells-to-excel-worksheet": {
     title: "Paste Cells to Excel Worksheet",
   },
-  "read-formula-from-excel": {
+  "read-formula-from-excel-cell": {
     title: "Read Formula from Excel Worksheet",
   },
   "read-from-excel-worksheet": {
@@ -94,13 +94,13 @@ const meta: MetaRecord = {
   "rename-excel-worksheet": {
     title: "Rename Excel Worksheet",
   },
-  "resize-columns-rows-in-excel-worksheet": {
+  "resize-columns-or-rows-in-excel-worksheet": {
     title: "Resize Columns/Rows in Excel Worksheet",
   },
   "run-excel-macro": {
     title: "Run Excel Macro",
   },
-  "save-excel": {
+  "save-excel-workbook": {
     title: "Save Excel Workbook",
   },
   "select-cells-in-excel-worksheet": {
@@ -109,7 +109,7 @@ const meta: MetaRecord = {
   "set-active-excel-worksheet": {
     title: "Set Active Excel Worksheet",
   },
-  "set-color-of-cells-in-excel-worksheet": {
+  "set-color-in-excel-worksheet": {
     title: "Set Color of Cells in Excel Worksheet",
   },
   "write-to-excel-worksheet": {

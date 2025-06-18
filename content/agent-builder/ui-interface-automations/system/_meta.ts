@@ -10,7 +10,7 @@ const meta: MetaRecord = {
   "if-process": {
     title: "If Process",
   },
-  "ping": {
+  ping: {
     title: "Ping",
   },
   "run-application": {
@@ -21,7 +21,10 @@ const meta: MetaRecord = {
   },
   "terminate-process": {
     title: "Terminate Process",
-  }
+  },
+  "wait-for-process": {
+    title: "Wait for Process",
+  },
 };
 
 export default meta;

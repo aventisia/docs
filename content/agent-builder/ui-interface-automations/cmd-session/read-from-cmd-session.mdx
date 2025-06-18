@@ -1,36 +1,72 @@
-# **Read from CMD Session**
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Read from CMD Session
 
-The **Read from CMD Session** action allows retrieving output from an active command-line (CMD) session.
+The **Read from CMD Session** node is used to extract the output from a running Command Prompt (CMD) session. This can include both the standard output and the standard error of the session, depending on your configuration. Use this node when you need to capture and utilize the outputs from CMD execution in your automation processes.
 
-![alt text](../../../assets/cmd-session/read-from-cmd-session-1.png)
+For instance, you can:
 
----
+- Capture logs or results produced by a command.
+- Monitor and handle errors separately from regular output.
 
-## **Features & Parameters**
+{/* ![Read from CMD Session](./read-from-cmd-session.png) */}
 
-| Parameter | Description | Example Value |
-|-----------|------------|---------------|
-| **CMD Session** | Specifies the active CMD session to read from. | `Session_1` |
-| **Separate Output from Error** | If enabled, standard output and error will be stored separately. | ❌ Disabled |
-| **CmdOutput (Output)** | Stores the standard output of the CMD session. | ❌ Disabled |
-| **CmdError (Output)** | Stores the standard error of the CMD session. | ❌ Disabled |
+## Configuration Options
 
----
+| Field Name                     | Description                                                                          | Input Type | Required? | Default Value |
+| ------------------------------ | ------------------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **CMD Session**                | The process representing the CMD session. This is the session you want to read from. | Text       | Yes       | _(empty)_     |
+| **Separate Output from Error** | Choose to handle standard output separately from errors. Turn ON to separate them.   | Switch     | No        | ON            |
 
-## **How It Works**
+## Expected Output Format
 
-1. **Select the CMD Session** – Choose an active session from which to read output.
-2. **Enable "Separate Output from Error"** (if needed) – Split standard output and error.
-3. **Enable CmdOutput and CmdError (if needed)** – Store the output/error separately.
-4. **Click "Submit"** to retrieve the output.
+Depending on your configuration, the output(s) from this node will be:
 
----
+- **CmdOutput**: Regular output from the CMD session, expressed as a string.
+- **CmdError**: Error output, also as a string, if separation is enabled.
 
-## **Use Cases**
+## Step-by-Step Guide
 
-✔ Capturing the result of a command executed in CMD  
-✔ Debugging errors by storing standard error separately  
-✔ Automating processes that rely on CMD output  
-✔ Logging command outputs for analysis  
+<Steps>
+### Step 1
+
+Add the **Read from CMD Session** node into your flow.
+
+### Step 2
+
+In the **CMD Session** field, enter the identifier for the CMD session you wish to read output from. This should be the process initiated by a previous node.
+
+### Step 3
+
+To separate standard output from error, toggle **Separate Output from Error** to ON. If left OFF, both outputs will be combined in CmdOutput.
+
+### Step 4
+
+The CMD session's standard outputs will be ready as **CmdOutput** and **CmdError** to be used by other nodes in your process flow.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  Separating output from error is particularly useful when you need to handle
+  errors separately or log them differently from standard output.
+</Callout>
+
+## Input/Output Examples
+
+| CMD Session ID | Separate Output from Error | Example Output                                   | Example Error                  |
+| -------------- | -------------------------- | ------------------------------------------------ | ------------------------------ |
+| `12345`        | ON                         | `File downloaded successfully.`                  | `File not found.`              |
+| `12345`        | OFF                        | `File downloaded successfully.\nFile not found.` | _(Includes both in CmdOutput)_ |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                  | Solution                                                                                     |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **Empty CmdOutput**                      | Ensure the CMD session is valid and output is being generated.                               |
+| **CmdError not appearing when expected** | Confirm that **Separate Output from Error** is toggled to ON to allow separate error output. |
+
+## Real-World Use Cases
+
+- **Batch Processes**: Capture CMD outputs from scripts and monitor errors separately.
+- **Diagnostics**: Separate and log errors from diagnostic tools running in CMD for easier examination.
+- **Automation Reports**: Gather and format results from CMD commands for reports or dashboards.

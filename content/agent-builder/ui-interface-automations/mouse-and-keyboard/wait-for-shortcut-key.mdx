@@ -1,0 +1,79 @@
+import { Callout, Steps } from "nextra/components";
+
+# Wait for Shortcut Key
+
+The **Wait for Shortcut Key** node allows you to pause the execution of your workflow until a specified shortcut key is pressed. It's useful when you need the flow to await user input via keyboard shortcuts, ensuring that actions are synchronized with user commands.
+
+For example:
+
+- Awaiting a user to press 'Ctrl + S' for saving actions.
+- Waiting for a specific key combination like 'Alt + F4' to trigger a shutdown sequence.
+
+{/* ![Wait for Shortcut Key](./wait-for-shortcut-key.png) */}
+
+## Configuration Options
+
+| Field Name              | Description                                                                          | Input Type | Required? | Default Value |
+| ----------------------- | ------------------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **Shortcut Keys**       | The list of shortcut keys to wait for.                                               | Text       | Yes       | _(empty)_     |
+| **Continue on Timeout** | If set to true, it proceeds with the flow after a certain time if no key is pressed. | Switch     | No        | False         |
+| **Timeout (seconds)**   | Maximum time in seconds to wait for the shortcut key to be pressed.                  | Text       | No        | 0             |
+
+## Expected Output Format
+
+The output of this node is a **numeric index** that signifies which shortcut key was pressed from your list (0-based index).
+
+- If 'Ctrl + S' is the first in your list and pressed: output is `0`.
+- Index is returned if a key is recognized within the timeout period.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Wait for Shortcut Key** node into your flow.
+
+### Step 2
+
+In the **Shortcut Keys** textbox, specify the key or combination of keys you want to monitor. Example: "Ctrl + S, Alt + F4".
+
+### Step 3
+
+Toggle **Continue on Timeout** if you want the flow to automatically continue after a set timeout period.
+
+### Step 4
+
+Enter the desired number of seconds in the **Timeout (seconds)** field to define how long to wait before timing out.
+
+### Step 5
+
+The index of the shortcut key pressed will be available as **IndexOfShortcutKeyPressed** for use in subsequent nodes.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  If you leave **Timeout (seconds)** at the default value `0`, the node will
+  wait indefinitely until a key is pressed.
+</Callout>
+
+## Input/Output Examples
+
+| Shortcut Keys              | Continue on Timeout | Timeout (seconds) | Key Pressed | Output Index       | Output Type |
+| -------------------------- | ------------------- | ----------------- | ----------- | ------------------ | ----------- |
+| Ctrl + S, Alt + F4         | False               | 0                 | Ctrl + S    | 0                  | Number      |
+| Ctrl + S, Alt + F4         | True                | 10                | Alt + F4    | 1                  | Number      |
+| Ctrl + P, Shift + Ctrl + Z | True                | 5                 | _(Timeout)_ | _(flow continues)_ | N/A (flow)  |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                      | Solution                                                                                                                              |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| **Flow doesn't continue**    | Ensure **Continue on Timeout** is enabled and **Timeout (seconds)** is properly set if you want the flow to proceed without keypress. |
+| **Wrong key index returned** | Double-check your list in **Shortcut Keys** to ensure correct order and expected key combinations.                                    |
+| **Indefinite wait**          | Set a **Timeout (seconds)** if infinite waiting is not desired.                                                                       |
+
+## Real-World Use Cases
+
+- **Software Editing**: Wait for a save key combination during document editing before proceeding with submitting the document.
+- **Presentation Mode**: Await for a specific key to be pressed during a presentation before changing slides.
+- **Gaming Inputs**: Listen for a particular game command shortcut during gameplay to trigger an event.

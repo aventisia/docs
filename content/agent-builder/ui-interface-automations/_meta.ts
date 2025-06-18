@@ -1,22 +1,22 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
-  "file": {
+  file: {
     title: "File",
   },
-  "folder": {
+  folder: {
     title: "Folder",
   },
-  "system": {
+  system: {
     title: "System",
   },
-   "workstation": {
+  workstation: {
     title: "Workstation",
   },
-  "scripting": {
+  scripting: {
     title: "Scripting",
   },
-   "compression": {
+  compression: {
     title: "Compression",
   },
   "ui-automation": {
@@ -25,22 +25,21 @@ const meta: MetaRecord = {
   "browser-automation": {
     title: "Browser Automation",
   },
-  "message-boxes": {
-    title: "Message Boxes",
+  "message-box": {
+    title: "Message Box",
   },
   "mouse-and-keyboard": {
     title: "Mouse and Keyboard",
   },
-  "clipboard": {
+  clipboard: {
     title: "Clipboard",
   },
   "cmd-session": {
     title: "CMD Session",
   },
-  "xml": {
+  xml: {
     title: "XML",
-  }
+  },
 };
 
 export default meta;
-

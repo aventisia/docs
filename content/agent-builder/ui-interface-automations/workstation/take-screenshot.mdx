@@ -1,38 +1,85 @@
-# Take Screenshot  
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Take Screenshot
 
-This feature allows users to capture a screenshot of the screen or a specific screen area. It is useful for documenting workflows, debugging, or capturing visual data.  
+The **Take Screenshot** node automates the process of capturing a screen or a specific window as an image. This functionality is valuable when you want to capture visuals for records, presentations, error logs, or reporting purposes. It offers flexibility for saving the captured image in different formats or copying it directly to your clipboard.
 
-![Take Screenshot](../../../assets/workstation/take-screenshot.png)  
+{/* ![Take Screenshot](./take-screenshot.png) */}
 
-## Fields and Options  
+## Configuration Options
 
-### 1. **Capture** 
+| Field Name             | Description                                                                                                | Input Type | Required? | Default Value |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Capture**            | Selects which part of the screen or window to capture: all screens, primary screen, or by specific screen. | Select     | Yes       | _(empty)_     |
+| **Screen to Capture**  | Specifies the screen/window handle to capture; this is needed only when capturing a specific screen.       | Text       | No        | _(empty)_     |
+| **Save Screenshot To** | Determines where the screenshot is saved: to a file or directly to the clipboard.                          | Select     | No        | _(empty)_     |
+| **Image File Path**    | The file path where the screenshot should be saved; required if saving to a file.                          | Text       | No        | _(empty)_     |
+| **Image Format**       | Defines the format for the saved screenshot; options are BMP, GIF, JPG, PNG, TIFF. Default is BMP.         | Select     | No        | BMP           |
 
-- **Description**: Choose what to capture:  
-  - **All Screens**: Capture the entire screen.  
-  - **Specific Screen**: Capture a specific screen or monitor.  
-- **Purpose**: This ensures the correct screen area is captured.  
+## Expected Output Format
 
-### 2. **Screen to Capture** 
+The output from this operation varies based on the `Save Screenshot To` option. If saved to a file, the image will be stored at the specified path in the selected format. If saved to the clipboard, the image will be available for pasting.
 
-- **Description**: Specify the screen or monitor to capture (if selecting a specific screen).  
-- **Purpose**: This ensures the desired screen is captured.  
+## Step-by-Step Guide
 
-### 3. **Save Screenshot To** 
+<Steps>
+### Step 1
 
-- **Description**: Choose where to save the screenshot:  
-  - **Clipboard**: Save the screenshot to the clipboard for quick pasting.  
-  - **File**: Save the screenshot as an image file.  
-- **Purpose**: This ensures the screenshot is saved in the desired location.  
+Add **Take Screenshot** node to your workflow.
 
-## Use Cases
+### Step 2
 
-- **Documentation**: Capturing screenshots for workflow documentation.  
-- **Debugging**: Taking screenshots to debug issues in automation workflows.  
-- **Visual Data Capture**: Saving visual data for analysis or reporting.  
+In the **Capture** dropdown, choose what you want to capture:
 
-## Summary  
+- **All screens**: Captures every screen available.
+- **Primary screen**: Captures only the main screen.
+- **Select screen**: Choose a specific screen or window to capture.
 
-The **Take Screenshot** action provides a way to capture screenshots of the entire screen or specific screens. It ensures accurate and flexible screenshot capture, making it ideal for documentation, debugging, and data capture in automation workflows.
+### Step 3
+
+If you selected **Select screen** in the capture dropdown, provide the screen handle in **Screen to Capture**.
+
+### Step 4
+
+Determine where to save the screenshot by selecting from **Save Screenshot To**:
+
+- **Clipboard**: The screenshot will be copied for immediate use.
+- **File**: The screenshot will be stored as an image file.
+
+### Step 5
+
+If saving to a file, input the file location in **Image File Path**.
+
+### Step 6
+
+Choose an **Image Format** for the file (BMP, GIF, JPG, PNG, TIFF), applicable only if saving to a file.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  If you opt for "Clipboard" in **Save Screenshot To**, the "Image File Path"
+  and "Image Format" options will not be necessary.
+</Callout>
+
+## Input/Output Examples
+
+| Capture Mode   | Save To   | Image Format | Output                                 |
+| -------------- | --------- | ------------ | -------------------------------------- |
+| All screens    | Clipboard | _(n/a)_      | Image copied to clipboard              |
+| Primary screen | File      | PNG          | Image saved at the specified file path |
+| Select screen  | File      | JPG          | Image saved at the specified file path |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                               | Solution                                                                                                             |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Screen to Capture required**        | Make sure to provide a valid screen/window handle when using "Select screen".                                        |
+| **File path or image format not set** | These fields must be completed when saving to a file. Ensure you complete both "Image File Path" and "Image Format". |
+| **Unexpected output location**        | Double-check the settings for "Save Screenshot To" and ensure correct paths/handles are given if applicable.         |
+
+## Real-World Use Cases
+
+- **Quality Assurance**: Capture specific applications or error screens to document bugs.
+- **Training Materials**: Save screenshots for guides or presentations.
+- **Data Collection**: Automatically capture and save data displayed on screens at regular intervals.
+- **User Documentation**: Regularly update documents with current screenshots of a software interface.

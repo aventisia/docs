@@ -1,46 +1,103 @@
-# Auto Fill Cells in Excel Worksheet  
+import { Callout, Steps } from "nextra/components";
 
-## Description
-This feature allows users to automatically fill cells in an Excel worksheet by copying data from a source range to a destination range.  
+# Auto Fill Range in Excel Worksheet
 
-![Auto Fill Cells in Excel](../../../assets/excel/auto-fill-cells-in-excel-worksheet.png)  
+The **Auto Fill Range in Excel Worksheet** node is designed to automate the process of copying data from a source range of cells in an Excel worksheet and pasting it into a destination range. This functionality is particularly useful when you need to manipulate or replicate data over large sets of Excel sheets without manual input.
 
-## Fields and Options  
+For example:
 
-### 1. Excel Instance
-- A dropdown to select the active Excel instance.  
-- Ensures the correct workbook is used for the operation.  
+- When data needs to be mirrored across different sections of a worksheet.
+- When preparing consistent data input formats for presentations or reports.
+- When updating templates with new data quickly.
 
-### 2. Ranges Format
-- Defines how the ranges are specified. Options may include:  
-  - **Named cells** (default)  
-  - **Cell references**  
-  - **Column/Row indices**  
+{/* ![Auto Fill Range in Excel Worksheet](./auto-fill-range.png) */}
 
-### 3. Start Column
-- The starting column index if specifying a range using indices.  
+## Configuration Options
 
-### 4. Start Row
-- The starting row index if specifying a range using indices.  
+| Field Name                 | Description                                                          | Input Type | Required? | Default Value  |
+| -------------------------- | -------------------------------------------------------------------- | ---------- | --------- | -------------- |
+| **Excel Application**      | The Excel Application object containing the target worksheet.        | Text       | Yes       | _(empty)_      |
+| **Ranges Format**          | Specifies how ranges are defined: by specific ranges or named cells. | Select     | Yes       | SpecificRanges |
+| **Start Column**           | The starting column of the source range (e.g., 'A').                 | Text       | No        | _(empty)_      |
+| **Start Row**              | The starting row of the source range (e.g., '1').                    | Text       | No        | _(empty)_      |
+| **Source End Column**      | The ending column of the source range (e.g., 'B').                   | Text       | No        | _(empty)_      |
+| **Source End Row**         | The ending row of the source range (e.g., '5').                      | Text       | No        | _(empty)_      |
+| **Destination End Column** | The ending column of the target range (e.g., 'C').                   | Text       | No        | _(empty)_      |
+| **Destination End Row**    | The ending row of the target range (e.g., '10').                     | Text       | No        | _(empty)_      |
+| **Source Cells Name**      | The name of the named range containing the source data.              | Text       | No        | _(empty)_      |
+| **Destination Cells Name** | The name of the named range where the data should be pasted.         | Text       | No        | _(empty)_      |
 
-### 5. Source End Column
-- Specifies the named range or reference for the source cells to be copied.  
+## Expected Output Format
 
-### 6. Destination End Row
-- Specifies the named range or reference for the destination where the data should be copied.  
+The output of this node is a confirmation or success message indicating that the data fill operation was successfully executed between the specified source and destination ranges.
 
-### 7. Destination End Column
-- The ending column of the target range (e.g., 'C').
+## Step-by-Step Guide
 
-### 8. Destination End Row
--  The ending row of the target range (e.g., '10').
+<Steps>
+### Step 1
 
-###
-## Use Cases
-- Automatically filling a report template with predefined data.  
-- Copying data from one range to another dynamically.  
-- Populating a dataset with calculated or referenced values.  
-- Reducing manual effort in data entry and formatting.  
+Add **Auto Fill Range in Excel Worksheet** node into your flow.
 
-## Summary
-The **Auto Fill Cells in Excel Worksheet** feature allows seamless copying of data between cell ranges in an Excel sheet, optimizing automation workflows.
+### Step 2
+
+Select the **Excel Application** object that contains your target worksheet by entering its reference.
+
+### Step 3
+
+In the **Ranges Format** dropdown, choose how you want the ranges to be defined:
+
+- **Specific Ranges**: Define using explicit cell references (e.g., A1:B5).
+- **Named Cells**: Use predefined named ranges.
+
+### Step 4
+
+If **Specific Ranges** was selected, proceed to enter:
+
+- **Start Column** and **Start Row** for the start of the source range.
+- **Source End Column** and **Source End Row** for the end of the source range.
+- **Destination End Column** and **Destination End Row** for the destination range.
+
+### Step 5
+
+If **Named Cells** was selected, enter:
+
+- **Source Cells Name** to specify the name of the source data range.
+- **Destination Cells Name** for the destination range name.
+
+### Step 6
+
+Run the node to execute the auto-fill operation.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure your Excel file is open and the required worksheet is available for the
+  fill operation to proceed.
+</Callout>
+
+## Input/Output Examples
+
+- **Specific Ranges Example**:
+
+  - Source Range: A1:A5
+  - Destination Range: C1:C5
+  - Outcome: Data from column A rows 1-5 is copied to column C rows 1-5.
+
+- **Named Cells Example**:
+  - Source Cells Name: DataRange1
+  - Destination Cells Name: DataRange2
+  - Outcome: Data from DataRange1 is copied to DataRange2.
+
+## Common Mistakes & Troubleshooting
+
+| Problem                           | Solution                                                                                                        |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Excel Application not found**   | Double-check the Excel object reference to ensure it points to the correct open instance with the target sheet. |
+| **Missing Specific Range fields** | Make sure **Specific Ranges** is selected in the Ranges Format for these fields to be visible.                  |
+| **Named Range does not exist**    | Verify the named ranges exist in the Excel document and are correctly referenced.                               |
+
+## Real-World Use Cases
+
+- **Data Synchronization**: Automatically duplicate sales figures across spreadsheets for different regional reports.
+- **Template Updation**: Update master Excel templates with new data and distribute filled versions across teams.
+- **Financial Reporting**: Ensure uniform data formats in period-end reports by automatically verifying data placement.

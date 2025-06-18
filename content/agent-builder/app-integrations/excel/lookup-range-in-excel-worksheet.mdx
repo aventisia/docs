@@ -1,26 +1,98 @@
+import { Callout, Steps } from "nextra/components";
+
 # Lookup Range in Excel Worksheet
 
-## Description
-This activity is used in **RPA workflows** (like Power Automate Desktop) to perform a **lookup** operation within an Excel worksheet. It searches for a value in a specified row or column and returns the value from the same position in another row or column.
+The **Lookup Range in Excel Worksheet** node allows you to search for a specific value within an Excel worksheet and retrieve corresponding data from a specified range. This node is useful for quickly finding data in large Excel files, automating data searches, or generating reports based on specific criteria.
 
-![Launch Excel](../../../assets/excel/lookup-range-in-excel-worksheet.png)  
----
+{/* ![Lookup Range in Excel Worksheet](./lookup-range-excel-worksheet.png) */}
 
-### Fields and Option 
+## Configuration Options
 
-| **Field**            | **Description** |
-|----------------------|------------------|
-| `Excel Application`  | The Excel instance where the lookup is to be performed. Usually passed from a previously launched Excel activity. |
-| `Lookup Value`       | The value that needs to be searched in the specified range. |
-| `Ranges Format`      | The format of the ranges to be used. Options include: Named Cells (as in the image) Range Addresses Excel Tables |
-| `Cells Name`         | The name of the cell(s) or range used for lookup and corresponding return value. Used only when `Ranges Format` is set to "Named Cells". |
-| `Array Form`         | If enabled, performs an **array-based lookup** (returns approximate matches). If disabled, does a **scalar (exact)** lookup. |
+| Field Name                         | Description                                                                          | Input Type | Required? | Default Value |
+| ---------------------------------- | ------------------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **Excel Application**              | The Excel Application object containing the target worksheet.                        | Text       | Yes       | _(empty)_     |
+| **Lookup Value**                   | The value to search for in the lookup range.                                         | Text       | Yes       | _(empty)_     |
+| **Ranges Format**                  | Specifies how the ranges are defined: Named Cells or Specific Ranges.                | Select     | Yes       | NamedCells    |
+| **Cells Name**                     | The name of the named range to use for lookup (if 'Ranges Format' is 'Named Cells'). | Text       | No        | _(empty)_     |
+| **Start Column**                   | The starting column of the lookup range (if 'Ranges Format' is 'Specific Ranges').   | Text       | No        | _(empty)_     |
+| **Start Row**                      | The starting row of the lookup range (if 'Ranges Format' is 'Specific Ranges').      | Text       | No        | _(empty)_     |
+| **End Column**                     | The ending column of the lookup range (if 'Ranges Format' is 'Specific Ranges').     | Text       | No        | _(empty)_     |
+| **End Row**                        | The ending row of the lookup range (if 'Ranges Format' is 'Specific Ranges').        | Text       | No        | _(empty)_     |
+| **Array Form**                     | If true, performs array-based lookup; otherwise, performs scalar lookup.             | Switch     | No        | False         |
+| **Start Column of Results Source** | The starting column of the result range (if 'Array Form' is false).                  | Text       | No        | _(empty)_     |
+| **Start Row of Results Source**    | The starting row of the result range (if 'Array Form' is false).                     | Text       | No        | _(empty)_     |
+| **End Column of Results Source**   | The ending column of the result range (if 'Array Form' is false).                    | Text       | No        | _(empty)_     |
+| **End Row of Results Source**      | The ending row of the result range (if 'Array Form' is false).                       | Text       | No        | _(empty)_     |
 
----
-### Outputs
+## Expected Output Format
 
-| **Output Variable** | **Description** |
-|---------------------|------------------|
-| `LookupResult`      | Returns the value found at the same index as the `Lookup Value` in the parallel row/column. |
+The output of this node is a **lookup result** based on the specified criteria and ranges. It returns the matched result as a text or number, depending on the content of the Excel cell found.
 
----
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Lookup Range in Excel Worksheet** node into your flow.
+
+### Step 2
+
+In the **Excel Application** field, specify the Excel application instance you are working with.
+
+### Step 3
+
+Enter the **Lookup Value** you wish to find within the Excel worksheet.
+
+### Step 4
+
+Select a **Ranges Format** option:
+
+- **Named Cells**: Choose this if you have defined named ranges in your worksheet.
+- **Specific Ranges**: Choose this if you want to specify exact columns and rows for the lookup range.
+
+### Step 5
+
+If you chose **Named Cells**, enter the **Cells Name** for the lookup.
+
+### Step 6
+
+If you chose **Specific Ranges**, fill in the **Start Column**, **Start Row**, **End Column**, and **End Row** fields to define the lookup range.
+
+### Step 7
+
+Decide on the **Array Form** switch:
+
+- Enable it for an array-based lookup.
+- Disable it for a scalar lookup, and then specify the **Start Column of Results Source**, **Start Row of Results Source**, **End Column of Results Source**, and **End Row of Results Source**.
+
+### Step 8
+
+The processed or found value will be output as **LookupResult** for use in other nodes.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Choose "Named Cells" in **Ranges Format** if your worksheet makes use of named
+  ranges for ease and clarity.
+</Callout>
+
+## Input/Output Examples
+
+| Lookup Value | Ranges Format   | Cells Name | Start Column | Start Row | End Column | End Row | Array Form | Output Value  | Output Type |
+| ------------ | --------------- | ---------- | ------------ | --------- | ---------- | ------- | ---------- | ------------- | ----------- |
+| "123"        | Named Cells     | "Orders"   | _(n/a)_      | _(n/a)_   | _(n/a)_    | _(n/a)_ | True       | "Order 12345" | Text        |
+| "XYZ"        | Specific Ranges | _(n/a)_    | A            | 1         | D          | 10      | False      | "Result XYZ"  | Text        |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                     | Solution                                                                                                    |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Cells Name field missing**                | Ensure that **Ranges Format** is set to "Named Cells" for the **Cells Name** field to appear.               |
+| **Lookup not returning expected results**   | Verify that your lookup and result ranges are correctly specified. Also check the entered **Lookup Value**. |
+| **Array Form fields visible unnecessarily** | Fields specific to Array Form will appear only if Array Form is set to enabled.                             |
+
+## Real-World Use Cases
+
+- **Automate Report Generation**: Easily pull data from a large dataset for reports by specifying lookup values and ranges.
+- **Data Validation**: Ensure data integrity by finding and cross-verifying data entries quickly.
+- **Inventory Checks**: Instantly retrieve product details based on SKU numbers or product IDs.

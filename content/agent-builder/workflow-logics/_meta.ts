@@ -1,7 +1,7 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
-  "conditionals": {
+  conditionals: {
     title: "Conditionals",
   },
   "flow-control": {
@@ -10,4 +10,3 @@ const meta: MetaRecord = {
 };
 
 export default meta;
-

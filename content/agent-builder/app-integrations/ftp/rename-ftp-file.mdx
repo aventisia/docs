@@ -1,54 +1,83 @@
+import { Callout, Steps } from "nextra/components";
+
 # Rename FTP File
 
-The **Rename FTP File** operation allows users to rename a specified file on an FTP server.
+The **Rename FTP File** node is designed to change the name of a file stored on a remote FTP server. Use this node when you need to organize files on your FTP server by renaming them in a structured manner, ensuring consistency in file naming conventions or simply updating outdated file names.
 
-![alt text](../../../assets/ftp/rename-ftp-file.png)
+This feature is particularly useful for tasks such as:
 
----
+- Renaming files before processing them in subsequent workflows.
+- Harmonizing file names according to updated naming standards.
+- Preparing files for download or further actions by a different department or team.
+
+{/* ![Rename FTP File](./rename-ftp-file.png) */}
+
 ## Configuration Options
 
-| Parameter         | Description                                   | Example Value                   |
-|------------------|---------------------------------------------|---------------------------------|
-| **FTP Connection** | The handle for an active FTP session.     | `FTP_Connection_1`              |
-| **Old File Name** | The full path of the file to be renamed. | `/public/uploads/old_name.txt`  |
-| **New file name**  | The new name for the file.               | `new_name.txt`                  |
-| **Timeout Seconds**  | Maximum time in seconds to wait before failing due to timeout.              | `30`                  |
-| **Outputs**  | Returns true if the file was successfully renamed. | `Success`                  |
----
+| Field Name          | Description                                                                    | Input Type | Required? | Default Value |
+| ------------------- | ------------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **FTP Connection**  | The connection details to your FTP server.                                     | Text       | Yes       | _(empty)_     |
+| **Old File Name**   | The current name of the file you wish to rename.                               | Text       | Yes       | _(empty)_     |
+| **New File Name**   | The new desired name for the file on the FTP server.                           | Text       | Yes       | _(empty)_     |
+| **Timeout Seconds** | The maximum time the node will wait for the operation to complete, in seconds. | Text       | No        | 30            |
 
-## Process Flow
+## Expected Output Format
 
-1. A **valid FTP connection** is selected.
-2. The **existing file path** is specified.
-3. A **new file name** is provided.
-4. The system attempts to **rename the file** on the FTP server.
-5. If successful, a **confirmation message** is returned.
-6. If the operation fails (e.g., file not found, permission denied), an **error message** is displayed.
+The output is a **success indicator** as a boolean value:
 
----
+- **True**: Indicates the file has been successfully renamed.
+- **False**: Indicates the file could not be renamed.
 
-## Expected Output
+## Step-by-Step Guide
 
-| Parameter      | Description                                       |
-|---------------|---------------------------------------------------|
-| **Success Message** | Confirms that the file has been renamed.     |
-| **Error Message**   | If renaming fails, an error message is shown. |
+<Steps>
+### Step 1
 
----
+Add the **Rename FTP File** node to your flow.
 
-## Example Use Cases
+### Step 2
 
-### 1. Successfully Renaming a File
+In the **FTP Connection** field, enter your FTP server connection details.
 
-#### Input:
-FTP Connection: FTP_Connection_1 File to rename: /public/uploads/old_name.txt New file name: new_name.txt
+### Step 3
 
-#### Expected Output:
-Success: File '/public/uploads/old_name.txt' has been renamed to 'new_name.txt'.
+Provide the **Old File Name** that you want to change.
 
-## Summary
-- The **Rename FTP File** operation changes the **name of a file** on an FTP server.
-- Requires a **valid FTP connection**, an **existing file path**, and a **new name**.
-- If successful, the file is **renamed**.
-- If failed, an **error message is returned**.
-- Useful for **file organization and maintenance** on FTP servers.
+### Step 4
+
+Enter the new desired name in the **New File Name** field.
+
+### Step 5
+
+Optionally, set your preference for **Timeout Seconds** to specify how long to wait for the operation before timing out (default is 30 seconds).
+
+### Step 6
+
+Once the setup is complete, the node will attempt to rename the file. Check the **Success** output to confirm the operation was performed correctly.
+
+</Steps>
+
+<Callout type="tip" title="Tip">
+  Ensure the FTP connection details and file names are correct to avoid
+  connection errors or misnamed files.
+</Callout>
+
+## Input/Output Examples
+
+| FTP Connection  | Old File Name | New File Name      | Timeout Seconds | Output Value | Output Type |
+| --------------- | ------------- | ------------------ | --------------- | ------------ | ----------- |
+| `ftp://example` | report1.txt   | updated_report.txt | 30              | True         | Boolean     |
+
+## Common Mistakes & Troubleshooting
+
+| Problem               | Solution                                                                                           |
+| --------------------- | -------------------------------------------------------------------------------------------------- |
+| **Connection Errors** | Ensure the FTP connection details are correct, including the complete FTP address and credentials. |
+| **File Not Found**    | Double-check the **Old File Name** to make sure it matches exactly with the one on the server.     |
+| **Timeout Issues**    | Increase the **Timeout Seconds** if the server response is slow or there are network delays.       |
+
+## Real-World Use Cases
+
+- **Organizing Backup Files**: Rename files daily or weekly automatically for better tracking and management.
+- **Archiving Process**: Rename files with a timestamp before moving them to an archive location.
+- **Data Processing Pipelines**: Prepare files with new names for subsequent processes in your automation workflow.

@@ -1,0 +1,90 @@
+import { Callout, Steps } from "nextra/components";
+
+# Extract Tables From PDF (PDFPig)
+
+The **Extract Tables From PDF (PDFPig)** node allows you to retrieve tables from PDF documents. This can be particularly useful for extracting structured data from reports, statements, or documents where data is laid out in tables.
+
+Common uses include:
+
+- Pulling table data from invoice PDFs for further analysis.
+- Extracting tables from PDF reports for summarization or reformatting.
+- Automating table data extraction from PDFs in workflows.
+
+{/* ![Extract Tables From PDF (PDFPig)](./extract-tables-from-pdf-pdfpig.png) */}
+
+## Configuration Options
+
+| Field Name                           | Description                                                                               | Input Type | Required? | Default Value |
+| ------------------------------------ | ----------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **PDF File Path**                    | The path to the PDF file from which to extract tables.                                    | Text       | Yes       | _(empty)_     |
+| **Page Selection Mode**              | Select how to choose pages for table extraction: All, Single, or Range.                   | Select     | Yes       | _(empty)_     |
+| **Password**                         | Optional password for encrypted PDF files. Leave empty if not required.                   | Text       | No        | _(empty)_     |
+| **Merge Tables Across Pages**        | If enabled, merges tables across multiple pages into one. Otherwise, keeps them separate. | Switch     | No        | True          |
+| **First Line Contains Column Names** | If enabled, uses the first line as headers for columns. Otherwise, uses default names.    | Switch     | No        | True          |
+| **Page Number (for Single)**         | Specific page to extract tables from. Only used if Page Selection Mode is "Single".       | Text       | No        | _(empty)_     |
+| **From Page Number (for Range)**     | Starting page for table extraction. Only used if Page Selection Mode is "Range".          | Text       | No        | _(empty)_     |
+| **To Page Number (for Range)**       | Ending page for table extraction. Only used if Page Selection Mode is "Range".            | Text       | No        | _(empty)_     |
+
+## Expected Output Format
+
+The output from this node is a **list of DataTables**. You can use these tables in further processes within your automation flow.
+
+- Each DataTable will contain the extracted rows and columns from the specified pages in the PDF.
+- If the **Merge Tables Across Pages** option is enabled, the tables may be combined into a single DataTable.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Extract Tables From PDF (PDFPig)** node to your workflow.
+
+### Step 2
+
+In the **PDF File Path** field, enter the path where your target PDF file is located.
+
+### Step 3
+
+Select the desired **Page Selection Mode** in the dropdown:
+
+- **All**: Extract tables from all pages.
+- **Single**: Extract tables from a specific page. Enter the page number in **Page Number (for Single)**.
+- **Range**: Extract tables from a range of pages. Enter values for **From Page Number (for Range)** and **To Page Number (for Range)**.
+
+### Step 4
+
+If your PDF is password-protected, enter the **Password**.
+
+### Step 5
+
+Decide if you want to **Merge Tables Across Pages** or not by switching the option On or Off.
+
+### Step 6
+
+Enable the **First Line Contains Column Names** option if the first line of the tables contains column headers.
+
+### Step 7
+
+The extracted tables will be available as **ExtractedTables** for further use in your automation process.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  If you select "All" in the Page Selection Mode, the fields for specific pages
+  or range of pages won't be used.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                             | Solution                                                                                                                                                          |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Incorrect page range selected**                   | Check that the "From" and "To" page numbers are correct when using Range selection.                                                                               |
+| **No output generated**                             | Ensure the PDF file path is correct and the file is accessible. Confirm that the Page Selection Mode and any pages/settings specific to it are set appropriately. |
+| **Password-protected PDF not functioning properly** | Confirm that the correct password is provided for encrypted PDFs.                                                                                                 |
+| **Unexpected table merging**                        | Make sure the **Merge Tables Across Pages** switch reflects your intent; toggle it off if separate tables are needed.                                             |
+
+## Real-World Use Cases
+
+- **Financial Analysis**: Extract tables containing balance sheets or other financial reports from PDF documents for data processing and analysis.
+- **Academic Research**: Obtain statistical tables from scientific papers for further examination or comparison.
+- **Invoice Handling**: Pull tables from PDF invoices into spreadsheets for automated accounting processes.

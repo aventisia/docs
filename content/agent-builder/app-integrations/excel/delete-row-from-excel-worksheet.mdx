@@ -1,24 +1,60 @@
+import { Callout, Steps } from "nextra/components";
+
 # Delete Row from Excel Worksheet
 
-## Description  
-This dialog allows users to delete a specific row from an Excel worksheet based on the given row index.
+The **Delete Row from Excel Worksheet** node is designed to remove a specific row from an Excel worksheet. This can be particularly useful in workflows where you need to clean or reorganize data by removing unnecessary or obsolete entries from your Excel sheets.
 
-![alt text](../../../assets/excel/delete-row-from-excel-worksheet.png)
+{/* ![Delete Row from Excel Worksheet](./delete-row-excel.png) */}
 
-## Fields and Options  
+## Configuration Options
 
-### 1. Excel Application
-- A dropdown list to select the active Excel instance.  
-- Ensures the operation is performed on the correct workbook.  
+| Field Name            | Description                                                | Input Type | Required? | Default Value |
+| --------------------- | ---------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Excel Application** | Specify the Excel Application object with your worksheet.  | Text       | Yes       | _(empty)_     |
+| **Row Index**         | Enter the row number you wish to delete (starting from 1). | Text       | Yes       | _(empty)_     |
 
-### 2. Row Index
-- Specifies the row index of the row to be deleted.  
-- Once deleted, rows below the specified index will shift up automatically.  
+## Expected Output Format
 
-## Use Cases  
-- Removing unwanted or outdated data from an Excel worksheet.  
-- Automating data cleanup processes.  
-- Managing structured data by dynamically deleting specific rows.  
+This operation does not produce a direct output value like a number or text. Instead, it results in an altered Excel worksheet where the specified row has been removed.
 
-## Summary  
-The **Delete Row from Excel Worksheet** dialog provides an efficient way to remove a specific row from an Excel sheet. This feature helps automate data management and cleanup processes within structured spreadsheets.  
+- **Output Format**: Altered Excel Worksheet
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Delete Row from Excel Worksheet** node into your workflow.
+
+### Step 2
+
+In the **Excel Application** field, provide the reference to the Excel Application object that contains the worksheet from which you want to delete a row.
+
+### Step 3
+
+Enter the **Row Index** indicating which row should be removed. Note that the row index is 1-based, meaning it starts from 1 for the first row.
+
+### Step 4
+
+Upon setting these parameters, the specified row will be deleted from your Excel worksheet once you execute the workflow.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure you have the correct Excel Application context set before running the
+  workflow to avoid affecting unintended files.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                 | Solution                                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| **Row not deleted**     | Check if the specified Excel Application object is correctly linked to the intended worksheet. |
+| **Invalid Row Index**   | Ensure the Row Index is a valid number within the range of existing rows on the worksheet.     |
+| **Unexpected deletion** | Verify the Row Index entered is the correct one; note rows in Excel start from index 1.        |
+
+## Real-World Use Cases
+
+- **Data Cleanup**: Remove outdated or incorrect entries from an inventory list.
+- **Preparation for Analysis**: Delete empty rows to prepare data for analysis.
+- **Automate Reports**: Clear rows containing old data during the generation of a new periodic report.

@@ -1,55 +1,80 @@
+import { Callout, Steps } from "nextra/components";
+
 # List FTP Directory
 
-This screenshot demonstrates an interface for listing the contents of a directory on an FTP server. Users can specify the FTP connection and the directory path to retrieve a list of directories and files.
+The **List FTP Directory** node allows you to view and interact with the contents of a specified directory on a remote FTP server. It is useful for automating processes that involve monitoring, organizing, or managing file directories.
 
-![alt text](../../../assets/ftp/list-ftp-directory.png)
+Scenarios where this is helpful include:
 
----
+- Retrieving a list of new files uploaded to a server for processing.
+- Monitoring specific FTP directories for organizational purposes.
+
+{/* ![List FTP Directory](./list-ftp-directory.png) */}
 
 ## Configuration Options
 
-### FTP Connection
-- Select or specify the FTP connection to use.
+| Field Name         | Description                                                  | Input Type | Required? | Default Value     |
+| ------------------ | ------------------------------------------------------------ | ---------- | --------- | ----------------- |
+| **FTP Connection** | The FTP connection object required to connect to the server. | Text       | Yes       | _(empty)_         |
+| **Directory Name** | The name of the directory to list contents from.             | Text       | Yes       | _(empty)_         |
+| **List Type**      | Select the type of items to list: files, folders, or both.   | Select     | No        | Files and Folders |
 
-### Directory Name
-- Enter the directory path on the FTP server to list (e.g., `/documents`).
+## Expected Output Format
 
-### List Type
-- Specifies the type of items to list in the FTP directory.
-  - **Files and Folders**
-  - **Files**
-  - **Folders**
----
+The output of this node, **Files and Folders Result**, is a **list of directory items** and can include files, folders, or both, depending on the **List Type** selected. The format is typically an array containing the names of the files and/or folders.
 
-## Output
-- **Result** Returns the list subdirectories and files
----
+## Step-by-Step Guide
 
-## Example: Input and Output
+<Steps>
+### Step 1
 
-### Scenario
-You want to list the contents of the `/documents` directory on an FTP server.
+Add the **List FTP Directory** node to your workflow.
 
----
+### Step 2
 
-### Input
-- **Connection**: `FTP_Connection_1` (pre-configured FTP connection).
-- **Path**: `/documents`.
+In the **FTP Connection** field, enter the credentials required to access the FTP server.
 
----
+### Step 3
 
-### Expected Output
+Enter the directory name you wish to explore in the **Directory Name** field.
 
-- **Directories**:
-/documents/reports
-/documents/archives
+### Step 4
 
-- **Files**:
-/documents/report1.pdf
-/documents/report2.pdf
-/documents/notes.txt
+Choose the appropriate **List Type**:
 
----
+- **Files and Folders**: to see both files and directories.
+- **Files**: to see files only.
+- **Folders**: to see folders only.
 
-## Summary
-This tool is useful for retrieving the contents of a directory on an FTP server. It provides a clear list of directories and files, making it easier to navigate and manage files on remote servers.
+### Step 5
+
+The list of items will be available in **Files and Folders Result** and can be used in subsequent nodes or processes.
+
+</Steps>
+
+<Callout type="info" title="Important Note">
+  If no directories or files are listed, ensure the FTP Connection details and
+  Directory Name are correct.
+</Callout>
+
+## Input/Output Examples
+
+| List Type         | Directory Name | Output Value                            | Output Type     |
+| ----------------- | -------------- | --------------------------------------- | --------------- |
+| Files and Folders | /my-directory  | ['file1.txt', 'file2.txt', 'subfolder'] | List of strings |
+| Files             | /docs          | ['doc1.pdf', 'doc2.docx']               | List of strings |
+| Folders           | /pictures      | ['photos', '2021', 'backup']            | List of strings |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                         | Solution                                                                                   |
+| ------------------------------- | ------------------------------------------------------------------------------------------ |
+| **Invalid FTP Connection**      | Ensure that the credentials entered are correct and the server is accessible.              |
+| **Directory Name not found**    | Double-check the Directory Name for typos and ensure it exists on the FTP server.          |
+| **Incorrect List Type results** | Verify that the correct List Type has been chosen to get the desired files/folders output. |
+
+## Real-World Use Cases
+
+- **Digital Asset Management**: Automatically list new digital assets added to FTP for categorization.
+- **Automated File Processing**: Trigger processes when new files are added to specific directories.
+- **Data Backup Monitoring**: Monitor backup folders to ensure all necessary files are present.

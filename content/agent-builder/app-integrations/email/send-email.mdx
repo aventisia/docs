@@ -1,94 +1,115 @@
-# **Send Email**
+import { Callout, Steps } from "nextra/components";
 
-## **Description**
+# Send Email
 
-This interface allows users to **send an email** by specifying the sender, recipient(s), subject, and body content. This interface allows users to configure **SMTP settings** for sending emails, including defining the SMTP server, port, authentication, and SSL settings.
+The **Send Email** node allows you to automate email sending within your business workflows. You can utilize this feature to notify stakeholders, deliver reports, or pass along important information without manually drafting an email each time.
 
-![alt text](../../../assets/email/send-email.png)
+{/* ![Send Email](./send-email.png) */}
 
-![alt text](../../../assets/email/send-email2.png)
+## Configuration Options
 
----
+| Field Name                           | Description                                                                         | Input Type | Required? | Default Value |
+| ------------------------------------ | ----------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **From**                             | The sender's email address.                                                         | Text       | Yes       | _(empty)_     |
+| **To**                               | The recipient's email address(es), separated by commas.                             | Text       | Yes       | _(empty)_     |
+| **CC**                               | Email addresses for CC recipients, separated by commas.                             | Text       | No        | _(empty)_     |
+| **BCC**                              | Email addresses for BCC recipients, separated by commas.                            | Text       | No        | _(empty)_     |
+| **Subject**                          | The subject line of the email.                                                      | Text       | Yes       | _(empty)_     |
+| **Body**                             | The main content of your email.                                                     | Text       | Yes       | _(empty)_     |
+| **Body Format**                      | Choose the email format: Plain text or HTML.                                        | Select     | No        | Text          |
+| **Attachments**                      | File paths for attachments, separated by commas.                                    | Text       | No        | _(empty)_     |
+| **SMTP Server**                      | URL of the SMTP server for email sending.                                           | Text       | Yes       | _(empty)_     |
+| **Server Port**                      | Port number for the SMTP server (default is 587).                                   | Text       | No        | 587           |
+| **Security Protocol**                | Security protocol for the connection (e.g., SSL, TLS).                              | Select     | No        | Auto          |
+| **SMTP Server Needs Authentication** | Does the SMTP server require login? Toggle this option if authentication is needed. | Switch     | No        | true          |
+| **User Name**                        | Username required for SMTP authentication.                                          | Text       | No        | _(empty)_     |
+| **Password**                         | Password needed for SMTP authentication.                                            | Text       | No        | _(empty)_     |
+| **Accept Untrusted Certificates**    | Allow untrusted SSL certificates if necessary.                                      | Switch     | No        | false         |
+| **Timeout (seconds)**                | The time period to wait for the connection to establish (default is 30 seconds).    | Text       | No        | 30            |
 
-## **Input Fields**
+## Expected Output Format
 
-### **1. From**
+The output of the **Send Email** node is a confirmation message indicating that the email was successfully dispatched, or an error message if the operation could not be completed.
 
-- Specifies the sender's email address.
-- **Value:** `user@example.com`
+## Step-by-Step Guide
 
-### **2. Sender Display Name**
+<Steps>
+### Step 1
 
-- Specifies the sender’s display name.
-- **Value:** `XYZ`
+Add the **Send Email** node into your automation flow.
 
-### **3. To**
+### Step 2
 
-- Specifies the primary recipient's email address.
-- **Value:** `user@example.com`
+Enter the sender's email address in the **From** field.
 
-### **4. CC (Carbon Copy)**
+### Step 3
 
-- Specifies additional recipients who will receive a copy of the email.
-- **Value:** _(Empty)_
+In the **To** field, input the recipient's email addresses. For multiple recipients, separate each address with a comma.
 
-### **5. BCC (Blind Carbon Copy)**
+### Step 4
 
-- Specifies additional recipients who will receive a hidden copy of the email.
-- **Value:** _(Empty)_
+(Optional) Enter any CC and BCC email addresses in the respective fields, using commas to separate multiple addresses.
 
-### **6. Subject**
+### Step 5
 
-- Specifies the subject line of the email.
-- **Value:** `Project Deadline`
+Fill in the **Subject** line to give your email a purpose or topic.
 
-### **7. Body**
+### Step 6
 
-- Contains the main content of the email.
+Compose the **Body** of your email with the main message content.
 
-- **Value:**
+### Step 7
 
-### **1. Body is HTML**
+Choose the **Body Format** depending on whether you want plain text or HTML formatting.
 
-- Specifies whether the email body should be interpreted as HTML.
-- **Value:** Disabled (☐)
+### Step 8
 
-### **2. Attachments**
+(Optional) Provide paths to any files you want to attach in the **Attachments** field, separated by commas if necessary.
 
-- Allows the user to attach files to the email.
-- **Value:** _(Empty)_
+### Step 9
 
----
+Input the **SMTP Server** URL and ensure the correct **Server Port** is specified.
 
-## **SMTP Server Configuration**
+### Step 10
 
-### **3. SMTP Server**
+Configure the **Security Protocol** to fit your security requirements.
 
-- Specifies the SMTP server to be used for sending emails.
-- **Value:** `smtp.gmail.com`
+### Step 11
 
-### **4. Server Port**
+Review if **SMTP Server Needs Authentication** is enabled, supplying **User Name** and **Password** if needed.
 
-- Defines the port number for the SMTP server.
-- **Value:** `25` (Default SMTP port)
+### Step 12
 
-### **5. Enable SSL**
+Decide whether to accept **Untrusted Certificates** based on your security protocol.
 
-- Determines whether to use a **secure connection** (SSL) for email transmission.
-- **Value:** Disabled (☐)
+### Step 13
 
-### **6. SMTP Server Needs Authentication**
+Set a **Timeout** if a longer connection time is required by your server (default is 30 seconds).
 
-- Specifies whether the SMTP server requires authentication.
-- **Value:** Disabled (☐)
+</Steps>
 
----
+<Callout type="info" title="Tip">
+  Always double-check recipient addresses and SMTP server credentials to avoid
+  failed email transmissions.
+</Callout>
 
-## **Summary**
+## Input/Output Examples
 
-This tool enables users to configure **SMTP settings** for sending emails, including:
+| From            | To            | Subject          | Body                                 | Output                  |
+| --------------- | ------------- | ---------------- | ------------------------------------ | ----------------------- |
+| alice@email.com | bob@email.com | Meeting Reminder | Don't forget our 3 PM meeting today! | Email Sent Successfully |
 
-- **SMTP server & port selection**
-- **SSL encryption settings**
-- **Authentication requirements**
-- **Support for HTML email bodies and attachments**
+## Common Mistakes & Troubleshooting
+
+| Problem                   | Solution                                                                                                                                                       |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Email not sent**        | Verify SMTP configuration details, recipient addresses, and network connectivity. Ensure no typos are present in configuration inputs.                         |
+| **Authentication errors** | Check that the **User Name** and **Password** are correct and that authentication is enabled when required by the SMTP server.                                 |
+| **Email marked as spam**  | Ensure the email content is clear and reputable. Verify that sending limits from the SMTP server are not being exceeded, and consider adding SPF/DKIM records. |
+
+## Real-World Use Cases
+
+- **Automate Notification**: Instantly notify team members of system updates or alerts.
+- **Streamlined Reporting**: Send daily/weekly/monthly reports to managers or clients.
+- **Customer Service**: Automatically reply to customer inquiries with pre-set templates.
+- **Event Invitations**: Send personalized invites for webinars, meetings, or events.

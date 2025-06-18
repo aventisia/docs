@@ -1,37 +1,81 @@
-# Select Radio Button on Web Page  
+import { Callout, Steps } from "nextra/components";
 
-## Description
-This feature allows users to select a radio button (UI element) on a web page within a web browser instance. It includes options to wait for the page to load and handle pop-up dialogs if they appear.  
+# Select Radio Button on Web Page
 
-![Select Radio Button on Web Page](../../../assets/browser-automation/select-radio-button-on-web-page.png)  
+The **Select Radio Button on Web Page** node helps you automate the task of selecting a radio button on a webpage. This is especially useful when filling out forms or performing tasks that require interaction with web elements to automate workflows efficiently.
 
-## Fields and Options  
+This node allows you to specify how to locate the radio button using various methods, such as XPath or CSS Selector, and provides options to handle pop-up dialogs if they appear, ensuring a seamless automation experience.
 
-### 1. Web Browser Instance 
-- Select the web browser instance where the radio button is located.  
-- This ensures the action is performed on the correct browser session.  
+{/* ![Select Radio Button on Web Page](./select-radio-button-on-web-page.png) */}
 
-### 2. Find Type
-- Specify the radio button (UI element) to select.  
+## Configuration Options
 
-### 3. Value To find
-- The value used to locate the element (e.g., 'username', '//input[@id='email']').
- 
-### 4. Wait for Page to Load
-- Enable this option to wait for the web page to load completely after selecting the radio button.  
+| Field Name                 | Description                                                                                                                              | Input Type | Required? | Default Value |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Web Browser Instance**   | Enter or choose the variable that contains the web browser instance to work with.                                                        | Text       | Yes       | _(empty)_     |
+| **Find Type**              | Specifies how to find the element (e.g., ID, XPath, CssSelector).                                                                        | Select     | Yes       | XPath         |
+| **Value To Find**          | The value used to locate the element (e.g., 'username', '//input[@id='email']').                                                         | Text       | Yes       | _(empty)_     |
+| **Wait for Page Load**     | If true, waits for the page to fully load after selection.                                                                               | Switch     | No        | true          |
+| **Timeout for Page Load**  | Maximum time in seconds to wait for the page to load.                                                                                    | Text       | No        | 60            |
+| **Handle Dialog**          | Specifies what to do if a dialog appears after selecting the radio button.                                                               | Select     | No        | DoNothing     |
+| **Dialog Button to Press** | The name of the button to press if a dialog appears (e.g., 'Ok', 'Cancel'). _Relevant if "Press a Button" is selected in Handle Dialog._ | Text       | No        | Ok            |
 
-### 5. Timeout for Page Load
-- Set the maximum time (in seconds) to wait for the page to load (e.g., `60` seconds).  
+## Expected Output Format
 
-### 6. Handle Dialog
-- Choose how to handle pop-up dialogs:  
-  - **Do Nothing**: Ignore the pop-up dialog.  
-  - **Dialog Button to Press**: Specify a button to press on the pop-up dialog (e.g., `OK`, `Cancel`).  
+This node does not produce an output value directly but performs an action on the webpage. The outcome is the successful selection of the specified radio button on a web page.
 
-## Use Cases
-- Automating form interactions by selecting radio buttons.  
-- Ensuring the web page is fully loaded before proceeding with further actions.  
-- Handling pop-up dialogs that may appear after selecting a radio button.  
+## Step-by-Step Guide
 
-## Summary
-The **Select Radio Button on Web Page** action provides a way to select a radio button on a web page, with options to wait for the page to load and handle pop-up dialogs. It ensures smooth and reliable interaction with web elements during automation workflows.  
+<Steps>
+### Step 1
+
+Add **Select Radio Button on Web Page** node into your flow.
+
+### Step 2
+
+In the **Web Browser Instance** field, enter or select the variable that contains your active web browser session.
+
+### Step 3
+
+Select a **Find Type** from the dropdown to determine how the radio button will be located on the webpage.
+
+### Step 4
+
+Enter the **Value To Find** that corresponds to the method chosen in the previous step. This is typically a selector string, such as an XPath expression or a CSS selector.
+
+### Step 5
+
+(Optional) Set **Wait for Page Load** switch to true if you want the node to wait for the webpage to load completely after selecting the radio button.
+
+### Step 6
+
+(Optional) Specify the **Timeout for Page Load** in seconds if you opted to wait for the page to load.
+
+### Step 7
+
+(Optional) Choose how to **Handle Dialog** if a pop-up appears after selection. You might opt to close it, press a button, or do nothing.
+
+### Step 8
+
+If you selected **Press a Button** for handling dialogs, specify the **Dialog Button to Press**.
+
+</Steps>
+
+<Callout type="warning" title="Important">
+  Ensure that your web browser instance is active and the webpage is accessible
+  to avoid errors.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                     | Solution                                                                                                |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Element not found**                       | Verify the **Find Type** and **Value To Find** are correct and match an existing radio button.          |
+| **Page load timeout**                       | Increase the **Timeout for Page Load** if the webpage is slow to load or consider optimizing the page.  |
+| **Dialog handling not working as expected** | Check if the **Handle Dialog** option is correctly set. Ensure dialogs can be programmatically handled. |
+
+## Real-World Use Cases
+
+- **Automated Form Submission**: Automatically select specific options within web forms for batch processing or testing.
+- **Web Testing**: Simulate user actions during automated testing to validate web application behavior.
+- **Data Entry Automation**: Streamline data entry tasks by pre-selecting options on a client or internal portal.

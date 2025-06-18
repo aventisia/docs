@@ -1,0 +1,92 @@
+import { Callout, Steps } from "nextra/components";
+
+# Extract PDF Pages to New File
+
+The **Extract PDF Pages to New File** node enables you to create a new PDF document consisting of selected pages extracted from an existing PDF file. This is valuable when you want to isolate specific sections of a PDF, such as extracting individual chapters from an e-book or specific sections of a report.
+
+{/* ![Extract PDF Pages to New File](./extract-pdf-pages.png) */}
+
+## Configuration Options
+
+| Field Name                       | Description                                                                              | Input Type | Required? | Default Value |
+| -------------------------------- | ---------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Source PDF File Path**         | The path to the source PDF file from which pages will be extracted.                      | Text       | Yes       | _(empty)_     |
+| **Output PDF File Path**         | The path where the new PDF file with extracted pages will be saved.                      | Text       | Yes       | _(empty)_     |
+| **Page Selection Mode**          | The mode for selecting pages to extract: All, Single, or Range.                          | Select     | Yes       | _(empty)_     |
+| **Password**                     | The password for the source PDF file, if it is encrypted. Leave empty if not applicable. | Text       | No        | _(empty)_     |
+| **Page Number (for Single)**     | The specific page number to extract when using Single page selection mode.               | Text       | No        | _(empty)_     |
+| **From Page Number (for Range)** | The starting page number for the range of pages to extract.                              | Text       | No        | _(empty)_     |
+| **To Page Number (for Range)**   | The ending page number for the range of pages to extract.                                | Text       | No        | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node is a **new PDF file** containing the selected pages from the source PDF.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Extract PDF Pages to New File** node into your flow.
+
+### Step 2
+
+In the **Source PDF File Path** field, enter the file path of the PDF from which you want to extract pages.
+
+### Step 3
+
+In the **Output PDF File Path** field, specify the path where the new PDF with extracted pages should be saved.
+
+### Step 4
+
+Select the **Page Selection Mode** from the dropdown:
+
+- **All**: Extracts all pages from the source PDF.
+- **Single**: Extracts a single, specified page.
+- **Range**: Extracts a range of pages.
+
+### Step 5
+
+If you select **Single** in the Page Selection Mode, input the specific page number in the **Page Number** field.
+
+### Step 6
+
+If you select **Range**, enter the starting and ending page numbers in **From Page Number** and **To Page Number** fields, respectively.
+
+### Step 7
+
+If your PDF is encrypted, enter the password in the **Password** field. Leave it blank if no password is required.
+
+### Step 8
+
+The extracted pages will be saved as a new PDF at the specified output path.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure file paths are correct and accessible from your current system to avoid
+  errors in file handling.
+</Callout>
+
+## Input/Output Examples
+
+| Page Selection Mode | Source PDF Path       | Output PDF Path       | Page Number | From Page Number | To Page Number | Output Description                                  |
+| ------------------- | --------------------- | --------------------- | ----------- | ---------------- | -------------- | --------------------------------------------------- |
+| All                 | /documents/source.pdf | /documents/output.pdf | _(n/a)_     | _(n/a)_          | _(n/a)_        | New PDF with all pages from the source PDF.         |
+| Single              | /documents/source.pdf | /documents/output.pdf | 5           | _(n/a)_          | _(n/a)_        | New PDF with page 5 from the source PDF.            |
+| Range               | /documents/source.pdf | /documents/output.pdf | _(n/a)_     | 2                | 5              | New PDF with pages 2 through 5 from the source PDF. |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                  | Solution                                                                                                              |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| **Empty Output File**    | Verify that the page numbers specified actually exist in the source PDF.                                              |
+| **File Path Errors**     | Double-check that the file paths are correct and that you have permission to read/write in the specified directories. |
+| **Incorrect Page Range** | Ensure that the "From Page Number" is less than or equal to "To Page Number".                                         |
+| **PDF Password Issues**  | If the file is encrypted, the correct password must be provided. Make sure it's entered without spaces.               |
+
+## Real-World Use Cases
+
+- **Report Compilation**: Extract specific sections of a large report for targeted review sessions.
+- **E-book Chapters**: Save individual chapters from an e-book for study or sharing.
+- **Project Documentation**: Isolate and distribute relevant sections of project documents to team members for feedback or archiving.

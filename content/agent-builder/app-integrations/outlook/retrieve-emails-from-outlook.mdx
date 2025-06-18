@@ -1,0 +1,75 @@
+import { Callout, Steps } from "nextra/components";
+
+# Retrieve Emails from Outlook
+
+The **Retrieve Emails from Outlook** node helps you automatically collect emails from a specific folder within your Outlook mailbox, with options to apply filters like subject text and read/unread status. This is particularly useful for automating tasks that involve processing or analyzing email content, such as generating reports or responding to customer inquiries.
+
+{/* ![Retrieve Emails from Outlook](./retrieve-emails-from-outlook.png) */}
+
+## Configuration Options
+
+| Field Name              | Description                                                                                | Input Type | Required? | Default Value |
+| ----------------------- | ------------------------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **Outlook Application** | The object representing your Outlook Application, necessary for accessing your email data. | Text       | Yes       | _(empty)_     |
+| **Folder Name**         | Name of the folder from which you wish to retrieve emails (e.g., 'Inbox', 'Sent', 'Junk'). | Text       | Yes       | Inbox         |
+| **Filter Subject**      | **Optional:** Specify text to filter emails that contain this text in their subject line.  | Text       | No        | _(empty)_     |
+| **Only Unread**         | Toggle this to only retrieve emails that haven’t been read yet.                            | Switch     | No        | False         |
+
+## Expected Output Format
+
+The output from this node is a list of email messages, each formatted as a **MailItem object**. This list is accessible via the variable named **EmailMessages**.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Retrieve Emails from Outlook** node into your flow.
+
+### Step 2
+
+Enter your Outlook Application object in the **Outlook Application** field to connect to your email account.
+
+### Step 3
+
+Specify the **Folder Name** to decide which folder's emails to retrieve. If left blank, the default is 'Inbox'.
+
+### Step 4
+
+(Optional) Use **Filter Subject** to narrow down emails to those containing specific text in the subject. Leave empty if no specific filter is needed.
+
+### Step 5
+
+(Optional) Toggle **Only Unread** if you want to collect only those emails that haven't been marked as read.
+
+### Step 6
+
+Your retrieved emails will now be available as **EmailMessages**, which you can use in subsequent nodes or operations.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  If you apply a subject filter but find no results, check if the text
+  accurately matches the subjects you are filtering.
+</Callout>
+
+## Input/Output Examples
+
+| Example Scenario                 | Folder Name | Filter Subject | Only Unread | Output Variable | Output Content Example  |
+| -------------------------------- | ----------- | -------------- | ----------- | --------------- | ----------------------- |
+| Retrieve all inbox emails        | Inbox       | _(empty)_      | False       | EmailMessages   | [MailItem, MailItem...] |
+| Retrieve unread, filtered emails | Sent        | "Meeting"      | True        | EmailMessages   | [MailItem...]           |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                            | Solution                                                                                                    |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Emails not appearing**           | Ensure the Outlook Application object is correctly configured and you have an active connection to Outlook. |
+| **No emails matching the filters** | Double-check your folder and filter specifications (case-sensitive checks may apply to subject filters).    |
+| **Incorrect folder name**          | If you receive an error, ensure the folder name matches exactly (Outlook folders are case-sensitive).       |
+
+## Real-World Use Cases
+
+- **Daily Summaries**: Automatically retrieve emails from the 'Inbox' each day and forward a summary to your team.
+- **Customer Support**: Filter out unread emails containing "Support" in the subject to quickly identify new support tickets.
+- **Project Coordination**: Collect emails from a 'Projects' folder and extract action items mentioned in the messages for better task management.

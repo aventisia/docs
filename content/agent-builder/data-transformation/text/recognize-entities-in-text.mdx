@@ -1,0 +1,77 @@
+import { Callout, Steps } from "nextra/components";
+
+# Recognize Entities in Text
+
+The **Recognize Entities in Text** node helps you extract specific types of information from a block of text. This can be helpful for tasks such as automatically identifying email addresses, dates, or specific numbers within sentences. Use this node when you need to break down a body of text to pull out structured information efficiently.
+
+{/* ![Recognize Entities in Text](./recognize-entities-in-text.png) */}
+
+## Configuration Options
+
+| Field Name          | Description                                                              | Input Type | Required? | Default Value |
+| ------------------- | ------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **Text To Analyze** | The text from which entities will be recognized.                         | Text       | Yes       | _(empty)_     |
+| **Entity Type**     | Specifies the type of entities to recognize (e.g., Date, Number, Email). | Select     | Yes       | _(empty)_     |
+| **Language**        | The language of the text, which can improve recognition accuracy.        | Select     | No        | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node is a **list of recognized entities**, which is labeled as **RecognizedEntities**. Each entity can be identified based on the specifications, such as type and position in the text.
+
+## Step-by-Step Guide
+
+<Steps>
+
+### Step 1
+
+Add **Recognize Entities in Text** node into your flow.
+
+### Step 2
+
+In the **Text To Analyze** field, enter the text from which you wish to extract specific entities.
+
+### Step 3
+
+In the **Entity Type** dropdown, select the type of entity you want to recognize. Options include:
+
+- **Date Time** for dates and times.
+- **Email** for email addresses.
+- **URL** for web URLs.
+- and many more.
+
+### Step 4
+
+Optionally, select a **Language** from the dropdown to help improve recognition for texts in specific languages.
+
+### Step 5
+
+The recognized entities will be available as **RecognizedEntities** for use in other nodes.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Selecting the correct **Entity Type** is crucial for accurate recognition.
+  Ensure your input text correlates with the chosen entity for best results.
+</Callout>
+
+## Input/Output Examples
+
+| Entity Type | Input Text                                                         | Language | Output Value                | Output Type |
+| ----------- | ------------------------------------------------------------------ | -------- | --------------------------- | ----------- |
+| Email       | "Please contact us at support@example.com for further assistance." | English  | ["support@example.com"]     | List        |
+| Date Time   | "Let's meet on April 5th, 2025."                                   | English  | ["April 5th, 2025"]         | List        |
+| URL         | "Visit our site at https://www.example.com."                       | English  | ["https://www.example.com"] | List        |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                    | Solution                                                                                                                                              |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **No entities recognized**                 | Check that the text contains the selected entity type. Ensure that the correct **Entity Type** is selected in the dropdown.                           |
+| **Incorrect language affects recognition** | Choose the appropriate **Language** if the text is not in English. This can enhance recognition performance for some languages.                       |
+| **Multiple entity types mixed**            | If you need to recognize multiple entity types, you may need to apply this node sequentially for each type or reconsider the text or entity strategy. |
+
+## Real-World Use Cases
+
+- **Contact Information Extraction**: Automatically pull out phone numbers and emails from customer service queries.
+- **Financial Data Identification**: Extract currency amounts or dates from transaction logs for financial analysis.
+- **Document Parsing**: Recognize URLs and email addresses in legal documents to streamline automation processes.

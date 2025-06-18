@@ -13,8 +13,14 @@ const meta: MetaRecord = {
   "delete-ftp-directory": {
     title: "Delete FTP Directory",
   },
+  "delete-ftp-file": {
+    title: "Delete FTP File",
+  },
   "download-file(s)-from-ftp": {
     title: "Download File(s) from FTP",
+  },
+  "download-folder(s)-from-ftp": {
+    title: "Download Folder(s) from FTP",
   },
   "invoke-ftp-command": {
     title: "Invoke FTP Command",
@@ -32,11 +38,14 @@ const meta: MetaRecord = {
     title: "Rename FTP File",
   },
   "synchronize-directories": {
-    title: "Synchrinize Directories",
+    title: "Synchronize Directories",
   },
   "upload-file(s)-to-ftp": {
     title: "Upload File(s) to FTP",
-  }
+  },
+  "upload-folder(s)-to-ftp": {
+    title: "Upload Folder(s) to FTP",
+  },
 };
 
 export default meta;

@@ -1,9 +1,9 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
-  "router": {
+  router: {
     title: "Router",
-  }
+  },
 };
 
 export default meta;

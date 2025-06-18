@@ -1,36 +1,55 @@
-# **Close CMD Session**
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Close CMD Session
 
-The **Close CMD Session** action terminates an active command-line session to free up system resources and prevent conflicts.
+The **Close CMD Session** node allows you to properly terminate an open Command Prompt (CMD) session that was previously started. This is useful for ensuring that any resources or processes associated with the CMD session are released and closed properly. It's typically used as a step to maintain orderly automation workflows without leaving inactive sessions open.
 
-![alt text](../../../assets/cmd-session/close-cmd-session-1.png)
+{/* ![Close CMD Session](./close-cmd-session.png) */}
 
----
+## Configuration Options
 
-## **Features & Parameters**
+| Field Name      | Description                                                      | Input Type | Required? | Default Value |
+| --------------- | ---------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **CMD Session** | The process representing the open CMD session you wish to close. | Text       | Yes       | _(empty)_     |
 
-| Parameter | Description | Example Value |
-|-----------|------------|---------------|
-| **CMD Session** | Specifies the active CMD session to be closed. | `Session_1` |
+## Expected Output Format
 
----
+The **Close CMD Session** node does not produce a direct output value; instead, it performs an action that terminates the specified CMD session.
 
-## **How It Works**
+## Step-by-Step Guide
 
-1. **Select the CMD Session** – Choose the active session from the dropdown list.
-2. **Click "Submit"** to close the session.
-3. The selected session will be terminated, and all associated processes will stop.
+<Steps>
+### Step 1
 
----
+Add the **Close CMD Session** node into your flow.
 
-## **Use Cases**
+### Step 2
 
-✔ Closing a CMD session after executing all necessary commands  
-✔ Freeing up system resources  
-✔ Preventing unnecessary session conflicts  
-✔ Ensuring that the automation does not leave background processes running  
+In the **CMD Session** field, input the identifier for the CMD session you need to close. This is usually provided by a prior node that created or handled the CMD session.
 
----
+### Step 3
 
-⚠ **Note**: Closing a session will terminate all running commands within that session. Ensure that all necessary operations are complete before proceeding.
+Execute your workflow to close the specified CMD session.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  Ensure that the **CMD Session** field is filled correctly with the appropriate
+  session identifier to avoid closing the wrong session.
+</Callout>
+
+## Input/Output Examples
+
+This node focuses on actions rather than data input and output. Ensure that the correct CMD session identifier is used as input for successful operation.
+
+## Common Mistakes & Troubleshooting
+
+| Problem                            | Solution                                                                                           |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Invalid CMD Session Identifier** | Make sure the session identifier is correct and exists. Check against the node that initiated it.  |
+| **Session Not Closing**            | Verify that the session was not already closed or that the identifier points to an active session. |
+
+## Real-World Use Cases
+
+- **Resource Management**: Automatically close CMD sessions after completion of automation tasks to free system resources.
+- **Workflow Completion**: Ensure all processes are properly terminated at the end of a workflow, preventing issues in continuous automation environments.

@@ -1,0 +1,63 @@
+import { Callout, Steps } from "nextra/components";
+
+# Close Outlook Application
+
+The **Close Outlook Application** node is designed to safely terminate your Outlook session without losing any unsaved data. It is especially useful for ensuring that Outlook does not interfere with other automated tasks or processing activities, helping to maintain optimal performance on your system.
+
+By using this node, you can programmatically control when Outlook should close, fitting seamlessly into your broader workflow automation sequences.
+
+{/* ![Close Outlook Application](./close-outlook-application.png) */}
+
+## Configuration Options
+
+| Field Name              | Description                                             | Input Type | Required? | Default Value |
+| ----------------------- | ------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Outlook Application** | Reference to the Outlook application instance to close. | Text       | Yes       | _(empty)_     |
+
+## Expected Output Format
+
+This node does not produce a direct output value or data type. Instead, it performs the action of closing the specified Outlook application session.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Close Outlook Application** node into your workflow.
+
+### Step 2
+
+In the **Outlook Application** field, enter the identifier or reference for the specific Outlook application instance you wish to close.
+
+### Step 3
+
+Ensure that no critical tasks are pending in Outlook to prevent data loss.
+
+### Step 4
+
+Once configured, execute your workflow to automatically close the specified Outlook session when this node is triggered.
+
+</Steps>
+
+<Callout type="warning" title="Caution">
+  Ensure that all important data in Outlook is saved before initiating the close
+  operation to prevent accidental data loss.
+</Callout>
+
+## Input/Output Examples
+
+Since this node is primarily action-driven, there are no typical input value examples beyond identifying the specific Outlook application instance. The output is the successful closure of the application.
+
+## Common Mistakes & Troubleshooting
+
+| Problem                             | Solution                                                                                  |
+| ----------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Outlook does not close**          | Ensure the correct Outlook application instance is specified. Double-check the reference. |
+| **Error if Outlook is not running** | This node is meant to close Outlook; it will generate an error if Outlook is not open.    |
+| **Data loss warnings**              | Save all work in progress before executing this node to prevent data loss.                |
+
+## Real-World Use Cases
+
+- **Automated End-of-Day Protocols**: Include closing Outlook in automated scripts to wrap up daily operations securely.
+- **Resource Optimization**: Free up system resources by closing Outlook during non-business hours.
+- **Workflow Synchronization**: Ensure other automation tasks are not delayed by active Outlook sessions.

@@ -1,6 +1,7 @@
 # Triggers
 
 Triggers allow you to execute jobs automatically based on predefined rules. From the **Triggers** page in Orchestrator, you can:
+
 - Create new triggers
 - Manage existing triggers
 - Manually start jobs based on existing processes
@@ -10,14 +11,17 @@ Triggers allow you to execute jobs automatically based on predefined rules. From
 ## Trigger Types
 
 ### Based on Scope:
+
 - **Time Triggers**: Start automations at scheduled intervals.  
-  *[Learn more](#)*
+  _[Learn more](#)_
 
 - **Queue Triggers**: Start automations when new items are added to queues.  
-  *[Learn more](#)*
+  _[Learn more](#)_
 
 ### Based on Where They Are Created:
+
 - **Outside the Workflow**:
+
   - Created by folder admins in Orchestrator
   - Includes both time and queue triggers
 
@@ -40,6 +44,7 @@ Non-working days allow you to prevent triggers from executing on specific dates 
 - Once non-business days pass, triggers resume as usual
 
 To apply restrictions:
+
 1. Go to the **Non-Working Days** tab under **Settings**
 2. Select a calendar in the **Non-working day restrictions** drop-down when creating/editing a trigger
 
@@ -54,23 +59,26 @@ To apply restrictions:
 The `Triggers.JobsCountStrategy` parameter controls how many jobs a trigger will launch. You can choose from:
 
 ### 1. `PerProcess`
+
 - Takes into account pending jobs for the same process
-- Example:  
-  - Trigger A: configured to launch 3 jobs  
-  - Trigger B: configured to launch 5 jobs  
+- Example:
+  - Trigger A: configured to launch 3 jobs
+  - Trigger B: configured to launch 5 jobs
   - If A launches 3 jobs first, B will only launch **2** more jobs (total 5)
 
 ### 2. `PerTrigger`
+
 - Each trigger is independent and tracks its own job count
-- Example:  
-  - A trigger set to launch 9 jobs  
+- Example:
+  - A trigger set to launch 9 jobs
   - If 2 jobs have already completed, next run will launch **2** more (to make up the difference)
 
 ### 3. `NoLimit`
+
 - Ignores all existing/pending jobs
-- Always launches the full number of jobs as configured  
-- Example:  
-  - Trigger is set to launch 5 jobs  
+- Always launches the full number of jobs as configured
+- Example:
+  - Trigger is set to launch 5 jobs
   - Every time it runs, it launches **5 new jobs**
 
 ---

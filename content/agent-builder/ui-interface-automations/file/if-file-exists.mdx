@@ -1,30 +1,77 @@
-# If File Exists  
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# If File Exists
 
-This feature allows users to check if a file exists at a specified path. It is useful for implementing conditional logic in automation workflows based on the presence of a file.  
+The **If File Exists** node is designed to verify the existence or non-existence of a specified file in your system. This is particularly useful when you need to perform different actions based on whether a file is present or missing in a folder or directory.
 
-![If File Exists](../../../assets/file/if-file-exists.png)  
+For example:
 
-## Fields and Options  
+- Check if a configuration file is in place before starting an application.
+- Verify if a file has been deleted after a cleanup operation.
+- Determine the presence of a backup file before proceeding with data recovery.
 
-### 1. **If File** 
+{/* ![If File Exists](./if-file-exists.png) */}
 
-- **Description**: Choose the condition to check:  
-  - **Exists**: Check if the file exists at the specified path.  
-- **Purpose**: This ensures the correct condition is evaluated.  
+## Configuration Options
 
-### 2. **File Path** 
+| Field Name    | Description                                           | Input Type | Required? | Default Value |
+| ------------- | ----------------------------------------------------- | ---------- | --------- | ------------- |
+| **Condition** | Choose to check if the file should exist or not.      | Select     | Yes       | Exists        |
+| **File Path** | Specify the exact path of the file you want to check. | Text       | Yes       | _(empty)_     |
 
-- **Description**: Enter the full path of the file to check (e.g., `C:\Documents\example.txt`).  
-- **Purpose**: This ensures the correct file is checked for existence.  
+## Expected Output Format
 
-## Use Cases
+The output of this node is a **boolean value**:
 
-- **Conditional Logic**: Implementing workflows that depend on the existence of a file.  
-- **File Validation**: Verifying the presence of a file before performing further actions.  
-- **Error Handling**: Preventing errors by ensuring a file exists before attempting to use it.  
+- **True**: If the condition specified (exists or doesn't exist) matches the reality.
+- **False**: If there's a mismatch between the specified condition and actual file status.
 
-## Summary
+## Step-by-Step Guide
 
-The **If File Exists** action provides a way to check if a file exists at a specified path. It ensures reliable conditional logic in automation workflows, making it ideal for file validation and error prevention.
+<Steps>
+### Step 1
+
+Add **If File Exists** node into your flow.
+
+### Step 2
+
+In the **File Path** field, enter the complete path to the file you want to check for existence.
+
+### Step 3
+
+From the **Condition** dropdown, select your desired condition:
+
+- **Exists**: Check if the file is present at the specified path.
+- **Doesn't Exist**: Verify that the file is absent from the specified path.
+
+### Step 4
+
+After checking, the result (True/False) will be available as **FileExistenceStatus** for further use.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure that the file path is accurate and accessible to the system to avoid
+  unexpected false results.
+</Callout>
+
+## Input/Output Examples
+
+| Condition     | File Path               | Output Value | Output Type |
+| ------------- | ----------------------- | ------------ | ----------- |
+| Exists        | C:\Documents\report.txt | True         | Boolean     |
+| Doesn't Exist | D:\Backup\oldfile.bak   | False        | Boolean     |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                  | Solution                                                                                                                                     |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **False negatives**                      | Double-check if the specified directory or drive is accessible and path is correct.                                                          |
+| **Unexpected False result**              | Ensure the file path does not have typos or permission restrictions causing access issues.                                                   |
+| **Condition not performing as expected** | Make sure you've chosen the correct condition in the dropdown, i.e., check `Exists` for existing files and `Doesn't Exist` for missing ones. |
+
+## Real-World Use Cases
+
+- **Automated System Checks**: Confirm critical configuration files are present before launching software.
+- **Daily Backups**: Verify the absence of old backup files before creating new ones, ensuring storage efficiency.
+- **File Maintenance Scripts**: Use file existence checks to trigger deletion or archival processes conditionally.

@@ -1,0 +1,69 @@
+import { Callout, Steps } from "nextra/components";
+
+# Filter Data Table
+
+The **Filter Data Table** node allows you to filter rows in a data table based on specified criteria. This node is ideal for extracting specific subsets of data, enabling you to focus on the information you need most for your analysis or reports.
+
+For example, use it to:
+
+- Retrieve rows where a numeric value is above a certain threshold (e.g., ages over 30).
+- Filter text fields that match specific conditions (e.g., names starting with "A").
+- Select entries that meet multiple criteria using complex expressions.
+
+{/* ![Filter Data Table](./filter-data-table.png) */}
+
+## Configuration Options
+
+| Field Name            | Description                                                                                                   | Input Type | Required? | Default Value |
+| --------------------- | ------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Data Table**        | The data table to filter. This should be the table containing all the rows and columns you want to work with. | Text       | Yes       | _(empty)_     |
+| **Filter Expression** | The filter expression that defines the filtering criteria (e.g., "Age > 30").                                 | Text       | Yes       | _(empty)_     |
+| **Match Case**        | If enabled, the filtering process will be case-sensitive. Disable if you want a case-insensitive filter.      | Switch     | No        | Off           |
+
+## Expected Output Format
+
+The output is a **Filtered Data Table**, which is a data table consisting of rows that meet the filter criteria you specified. It retains the original table format but only includes entries that match the expression.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Filter Data Table** node into your flow.
+
+### Step 2
+
+In the **Data Table** field, input the name or reference of the data table you want to filter.
+
+### Step 3
+
+Specify the **Filter Expression** that defines your filtering criteria, such as `"Age > 30"`.
+
+### Step 4
+
+Toggle the **Match Case** switch depending on whether you require the filter to be case-sensitive.
+
+### Step 5
+
+The filtered data available will be represented as **FilteredDataTable** for further use or integration.
+
+</Steps>
+
+<Callout type="warning" title="Be Precise">
+  When creating the Filter Expression, ensure that you use the correct syntax
+  and field names found in your Data Table.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                       | Solution                                                                                       |
+| ----------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Empty Filter Result**       | Double-check the Filter Expression for errors and ensure there are rows matching the criteria. |
+| **Case-Sensitive Issue**      | Verify the **Match Case** setting if expected matches are absent due to case differences.      |
+| **Invalid Filter Expression** | Ensure the expression syntax is correct, especially logical operators and conditions.          |
+
+## Real-World Use Cases
+
+- **Customer Segmentation**: Quickly identify customers over a certain age for targeted marketing.
+- **Inventory Management**: Filter products below a specified stock threshold for replenishment needs.
+- **Human Resources**: Select employees meeting criteria for specific programs or benefits.

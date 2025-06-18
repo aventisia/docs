@@ -9,16 +9,16 @@ const meta: MetaRecord = {
   },
   "run-javascript": {
     title: "Run Javascript",
-  }, 
+  },
   "run-powershell-script": {
     title: "Run Powershell Script",
-  }, 
+  },
   "run-python-script": {
     title: "Run Python Script",
   },
   "run-vbscript": {
     title: "Run VBScript",
-  }
+  },
 };
 
 export default meta;

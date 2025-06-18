@@ -14,20 +14,17 @@ const meta: MetaRecord = {
     title: "Insert Image in Word Document",
   },
   "launch-word": {
-    title: "Launch Word Document",
+    title: "Launch Word",
   },
   "read-from-word-document": {
     title: "Read from Word Document",
   },
   "save-word": {
-    title: "Save Word Document",
+    title: "Save Word",
   },
   "write-to-word-document": {
     title: "Write to Word Document",
   },
-
-
 };
 
 export default meta;
-

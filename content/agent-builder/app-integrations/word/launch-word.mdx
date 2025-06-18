@@ -1,35 +1,80 @@
-# Launch Word  
+import { Callout, Steps } from "nextra/components";
 
-This feature allows users to launch Microsoft Word, either with a blank document or by opening an existing document. It includes options to control visibility, read-only mode, and advanced settings.  
+# Launch Word
 
-![Launch Word](../../../assets/word/launch-word.png)  
+The **Launch Word** node is designed to help you start Microsoft Word directly from your workflow. You can either open a new blank document for immediate use or open an existing document for review or editing. This functionality is particularly useful when you need to automate document preparation or editing tasks as part of a larger automated process.
 
-## Configuration Options 
+For example:
 
-### 1. Launch Mode
--  Choose how to launch Microsoft Word:  
-  - **With a blank document**: Open Word with a new, blank document.  
-  - **Document path**: Open Word with an existing document by specifying its file path.  
-- This ensures Word is launched with the desired document or a blank file.  
+- Start a new Word document automatically when processing reports.
+- Open an existing document for an automated batch edit.
+- Ensure specific Word documents are used in automation workflows.
 
-### Document path
-  -  The file path of the document to open. Required if 'Launch Mode' is 'Open Existing Document'.
-  - This ensures the Word instance or document can be used in subsequent actions.  
+{/* ![Launch Word](./launch-word.png) */}
 
-### Make Instance Visible
-- Specify whether to make the Word window visible or hide it.  
-  - **Enabled**: Make the Word window visible.  
-  - **Disabled**: Hide the Word window.  
-- This controls the visibility of the Word instance during automation.  
+## Configuration Options
 
-### **Output**   
--  Retrieve the Word instance or document object for further use in the workflow.  
-- This ensures the Word instance or document can be used in subsequent actions.  
+| Field Name                | Description                                                                             | Input Type | Required? | Default Value  |
+| ------------------------- | --------------------------------------------------------------------------------------- | ---------- | --------- | -------------- |
+| **Launch Mode**           | Choose whether Word starts with a blank document or opens an existing one.              | Text       | No        | Blank Document |
+| **Document Path**         | Enter the path if you want to open an existing document. Required for opening existing. | Text       | No        | _(empty)_      |
+| **Make Instance Visible** | Decide if Word should be visible when launched.                                         | Switch     | No        | True           |
 
-## Use Cases  
-- **Document Creation**: Launching Word with a blank document for creating new files.  
-- **Document Editing**: Opening existing documents for editing or processing.  
-- **Workflow Automation**: Integrating Word launch into larger automation workflows.  
+## Expected Output Format
 
-## Summary  
-The **Launch Word** action provides a way to launch Microsoft Word with customizable options like document path, visibility, read-only mode, and advanced settings. It ensures seamless integration of Word into automation workflows, enabling efficient document handling and processing.
+The node outputs a **Word Instance** used for further Word operations. This identifies Word for other automation tasks involving Word documents.
+
+- When launching Word, you get an instance key (like `WordInstance`) that denotes the specific session. This is crucial when multiple documents are managed.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Launch Word** node to your flow.
+
+### Step 2
+
+In the **Launch Mode** field, select from the dropdown:
+
+- **Blank Document**: Opens a new blank document.
+- **Open Existing Document**: Opens a specified document.
+
+### Step 3
+
+If you choose **Open Existing Document**, provide the **Document Path** for the file you need to open.
+
+### Step 4
+
+Toggle the **Make Instance Visible** switch to set whether you want the Word interface visible or not.
+
+### Step 5
+
+The launched Word service will output a **Word Instance** for use in subsequent nodes handling document operations.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  You must specify a **Document Path** if you select "Open Existing Document".
+</Callout>
+
+## Input/Output Examples
+
+| Launch Mode            | Document Path          | Make Instance Visible | Output Value | Output Type   |
+| ---------------------- | ---------------------- | --------------------- | ------------ | ------------- |
+| Blank Document         | _(n/a)_                | True                  | WordInstance | Word Instance |
+| Open Existing Document | /path/to/document.docx | False                 | WordInstance | Word Instance |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                  | Solution                                                  |
+| ---------------------------------------- | --------------------------------------------------------- |
+| **Word not opening**                     | Verify Microsoft Word is installed and accessible.        |
+| **Document Path not functioning**        | Ensure the correct file path is specified and accessible. |
+| **Switch makes application non-visible** | Check the **Make Instance Visible** toggle settings.      |
+
+## Real-World Use Cases
+
+- **Drafting Memos**: Automatically open a blank document for taking notes during meetings.
+- **Batch Processing**: Open multiple documents in sequence for batch modifications or data extraction.
+- **Workflow Integration**: Launch a document for data entry after processing data in other systems.

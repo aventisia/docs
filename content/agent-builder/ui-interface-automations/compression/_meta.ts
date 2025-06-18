@@ -6,7 +6,7 @@ const meta: MetaRecord = {
   },
   "zip-files": {
     title: "Zip Files",
-  }
+  },
 };
 
 export default meta;

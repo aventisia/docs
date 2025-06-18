@@ -1,102 +1,64 @@
+import { Callout, Steps } from "nextra/components";
+
 # Set Text on Terminal Session
 
-## Description
+The **Set Text on Terminal Session** node enables you to send specific text input to an active terminal session. This is useful for automating command line activities, scripting, or inputting data directly into a terminal without manual typing, ensuring accuracy and saving time.
 
-This screenshot demonstrates an interface for setting or updating text in an active terminal session. Users can input text directly, use a variable, or provide an expression to set the text in a specific field.
+{/* ![Set Text on Terminal Session](./set-text-on-terminal-session.png) */}
 
-![alt text](../../../assets/terminal-emulation/set-text-on-terminal-session1.png)
+## Configuration Options
 
----
+| Field Name    | Description                              | Input Type | Required? | Default Value |
+| ------------- | ---------------------------------------- | ---------- | --------- | ------------- |
+| **SessionId** | The session ID of the terminal session.  | Text       | Yes       | _(empty)_     |
+| **Text**      | The text to set on the terminal session. | Text       | Yes       | _(empty)_     |
 
-## Configuration
+## Expected Output Format
 
-### Terminal Session
+This node does not produce a traditional output but performs an action by setting the provided text into the given terminal session.
 
-- **Field**: Select the terminal session where the text will be set.
+## Step-by-Step Guide
 
-### Input Text As
+<Steps>
+### Step 1
 
-- **Option**: Choose how to input the text (e.g., as text, variable, or expression).
+Add the **Set Text on Terminal Session** node into your flow.
 
-### Text
+### Step 2
 
-- **Field**: Enter the text, variable, or expression to set in the terminal session.
+In the **SessionId** field, enter the ID of your active terminal session.
 
-### Set Text
+### Step 3
 
-- **Option**: Specify where to set the text (e.g., in a `Field`).
+In the **Text** field, type the text or command you want to input into the terminal session.
 
-### Get Field By
+### Step 4
 
-- **Option**: Choose how to identify the field (e.g., by `Label`).
+Ensure that your terminal session is active and connected. The text will be set when the node executes.
 
-### Label
+</Steps>
 
-- **Field**: Enter the label associated with the field (if applicable).
+<Callout type="info" title="Note">
+  Ensure your terminal session is established and the SessionId is correctly
+  copied to prevent issues.
+</Callout>
 
-### Index
+## Input/Output Examples
 
-- **Field**: Specify the index of the field (if applicable).
+| SessionId | Text               | Action Outcome                   |
+| --------- | ------------------ | -------------------------------- |
+| `123456`  | `echo Hello World` | Echoes "Hello World" in terminal |
 
----
+## Common Mistakes & Troubleshooting
 
-## Example
+| Problem                            | Solution                                                                    |
+| ---------------------------------- | --------------------------------------------------------------------------- |
+| **Session does not respond**       | Verify that the entered **SessionId** is correct and the session is active. |
+| **Text not appearing in terminal** | Double-check the **Text** input for any missing or incorrect commands.      |
+| **Node execution with no effect**  | Confirm that terminal permissions and connection are properly set up.       |
 
-## Scenario
+## Real-World Use Cases
 
-You need to update a specific field in a terminal session with the text `"USER123"`. The field is identified by the label `"Username"`.
-
----
-
-### Eg. Terminal Session
-
-- **Field**: Select the terminal session (e.g., `MainframeSession`).
-
-### Eg. Input Text As
-
-- **Option**: `Text` (direct input).
-
-### Eg. Text
-
-- **Field**: Enter the text: USER123
-
-### Eg. Set Text
-
-- **Option**: `Field`.
-
-### Eg. Get Field By
-
-- **Option**: `Label`.
-
-### Eg. Label
-
-- **Field**: Enter the label: Username
-
-### Eg. Index
-
-- **Field**: Leave blank (not required for this example).
-
----
-
-### Eg. Actions
-
-- **Submit**: Confirm and set the text `"USER123"` in the field labeled `"Username"`.
-
----
-
-## Example Code (Pseudocode)
-
-```plaintext
-# Set Text in Terminal Session
-TerminalSession session = GetSession("MainframeSession");
-session.SetText(
-  InputType: "Text",
-  Text: "USER123",
-  FieldIdentifier: "Label",
-  Label: "Username"
-);
-```
-
-## Summary
-
-This tool is useful for updating or setting text in a terminal session, whether directly or through variables/expressions. It provides flexibility in defining the text source and target field, making it ideal for automating interactions with terminal-based applications.
+- **Automating Scripts**: Send commands to execute scripts automatically within a terminal session.
+- **Deploying Applications**: Enter deployment commands without manual typing to streamline processes.
+- **System Monitoring**: Send inquiry commands to a session for real-time system status checks.

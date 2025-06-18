@@ -1,49 +1,78 @@
+import { Callout, Steps } from "nextra/components";
+
 # Wait for Text on Terminal Session
 
-## Description
+The **Wait for Text on Terminal Session** node is designed to monitor an active terminal session and wait until a specific text appears. This is particularly useful when automating sequences of commands in a terminal environment where you need to pause execution until certain output is visible before proceeding with the next steps.
 
-This screenshot demonstrates an interface for waiting until specific text appears in an active terminal session. Users can specify the text to wait for, whether it’s a regular expression or plain text, and define the location (e.g., screen or field) where the text should appear.
+For example:
 
-![alt text](../../../assets/terminal-emulation/wait-for-text-on-terminal-session.png)
+- Monitoring for a successful login prompt in a remote session.
+- Waiting for a confirmation message before proceeding with the next command.
+- Synchronizing automated processes based on terminal output.
 
----
+{/* ![Wait for Text on Terminal Session](./wait-for-text-on-terminal-session.png) */}
 
-## Configuration
+## Configuration Options
 
-### Terminal Session
+| Field Name        | Description                                                                                                      | Input Type | Required? | Default Value |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **SessionId**     | The session ID of the terminal session you're working with. Use this to designate the active session to monitor. | Text       | Yes       | _(empty)_     |
+| **TextToWaitFor** | The specific text string you are waiting to appear in the terminal session.                                      | Text       | Yes       | _(empty)_     |
 
-- **Field**: Select the terminal session to monitor for the text.
+## Expected Output Format
 
-### Text to Wait For
+The output from this node is a **boolean value** (either `true` or `false`).
 
-- **Field**: Enter the text or regular expression to wait for.
+- **true**: The specified text has been found in the terminal session.
+- **false**: The specified text was not found (or the process timed out).
 
-### Regular Expression
+## Step-by-Step Guide
 
-- **Option**: Specify whether the text is a regular expression (e.g., enable for pattern matching).
+<Steps>
+### Step 1
 
-### Wait for Text Location
+Add the **Wait for Text on Terminal Session** node into your flow.
 
-- **Option**: Choose where to wait for the text (e.g., `Screen` or a specific field).
+### Step 2
 
-### Get Field By
+In the **SessionId** field, enter the unique identifier of the terminal session you aim to monitor.
 
-- **Option**: Specify how to identify the field (e.g., by `Label`).
+### Step 3
 
-### Label
+In the **TextToWaitFor** field, input the specific text string you expect to see in the terminal session output.
 
-- **Field**: Enter the label associated with the field (if applicable).
+### Step 4
 
-### Index
+Once configured, the node will actively check for the text in the chosen terminal session.
 
-- **Field**: Specify the index of the field (if applicable).
+### Step 5
 
-### Row
+The output, **Result**, will inform you whether the text was detected (`true`) or not (`false`) and is available for subsequent actions in your flow.
 
-- **Field**: Enter the row number to monitor (if applicable).
+</Steps>
 
----
+<Callout type="info" title="Tip">
+  Ensure the <b>SessionId</b> corresponds to an active session. If the session
+  has ended, you will not receive the expected result.
+</Callout>
 
-## Summary
+## Input/Output Examples
 
-This tool is useful for automating interactions with terminal-based applications by waiting for specific text to appear on the screen or in a field. It supports both plain text and regular expressions, providing flexibility for complex scenarios.
+| Input Example           | Expected Terminal Output | Expected Result | Result Type |
+| ----------------------- | ------------------------ | --------------- | ----------- |
+| SessionId: `123`        | "Connected successfully" | true            | Boolean     |
+| TextToWaitFor: `login:` |                          |                 |             |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                    | Solution                                                                                                        |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| **SessionId or TextToWaitFor left blank**  | Both fields are required. Ensure you fill in both to successfully monitor the terminal session.                 |
+| **Did not detect text, even when visible** | Verify that SessionId is correct, and check for exact matches in text, including whitespace and capitalization. |
+| **Result returns false unexpectedly**      | Double-check the session status. If it's closed or inactive, text detection will fail.                          |
+
+## Real-World Use Cases
+
+- **Remote Server Management**: Wait for a login prompt before sending automated login credentials to a remote server.
+- **Database Operations**: Monitor for "Operation completed" before starting a data backup script.
+- **Software Deployment**: Await "Deployment successful" message before proceeding to post-deployment testing steps.

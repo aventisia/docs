@@ -1,38 +1,62 @@
+import { Callout, Steps } from "nextra/components";
+
 # Send Key to Terminal Session
 
-## Description
+The **Send Key to Terminal Session** node enables you to interact with a terminal session by sending specified keystrokes. This is particularly useful when automating repetitive tasks that require keystrokes, such as navigating through terminal applications or triggering commands.
 
-This screenshot demonstrates an interface for sending control keys or transmit commands to an active terminal session. Users can specify the terminal session and the type of key or command to send.
+{/* ![Send Key to Terminal Session](./send-key-to-terminal-session.png) */}
 
-![alt text](../../../assets/terminal-emulation/send-key-to-terminal-session.png)
+## Configuration Options
 
----
+| Field Name    | Description                                                        | Input Type | Required? | Default Value |
+| ------------- | ------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **SessionId** | The unique ID of the terminal session you wish to interact with.   | Text       | Yes       | _(empty)_     |
+| **Key**       | The specific key you want to send to the terminal (e.g., 'Enter'). | Text       | Yes       | _(empty)_     |
 
-## Configuration
+## Expected Output Format
 
-### Terminal Session
+The action of sending a key to a terminal session does not produce a direct output in the data flow. The effect will be observed by the response or action performed within the targeted terminal session.
 
-- **Field**: Select the terminal session where the key or command will be sent.
+## Step-by-Step Guide
 
-### Control Key
+<Steps>
+### Step 1
 
-- **Option**: Choose the control key or command to send (e.g., `Transmit`
-`Alt cursor`
-`Attention`
-`Backspace`
-`Back tab`
-`Block toggle`
-`Break`
-`Cancel`
-`Center`
-`Clear`
-`Clear comm`
-`Clear display`
-`Clear line`
-`Clear page`, etc).
+Add **Send Key to Terminal Session** node into your flow.
 
----
+### Step 2
 
-## Summary
+In the **SessionId** field, enter the ID of the active terminal session that you want to interact with.
 
-This tool is useful for sending control keys or commands (e.g., `Transmit`, `Enter`, `Tab`) to a terminal session. It ensures proper interaction with terminal-based applications, such as submitting forms or navigating screens.
+### Step 3
+
+In the **Key** field, specify the key you wish to send (e.g., 'Enter', 'Tab').
+
+### Step 4
+
+Execute the process to send the key to the specified terminal session and observe the desired action in the session interface.
+
+</Steps>
+
+<Callout type="warning" title="Important">
+  Ensure the terminal session specified in **SessionId** is active and correctly
+  identified to prevent errors.
+</Callout>
+
+## Input/Output Examples
+
+- Sending the 'Enter' key to execute a command: If you have navigated to a folder in a terminal and need to list files with `ls`, sending 'Enter' would execute the command.
+- Sending 'Tab' to auto-complete a command or path: If typing a partial command or path, using 'Tab' can auto-complete your input effectively.
+
+## Common Mistakes & Troubleshooting
+
+| Problem                    | Solution                                                                                                        |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **SessionId not found**    | Verify that the correct and active `SessionId` is entered. Check your terminal session list for the correct ID. |
+| **Unintended key actions** | Double-check the key specified in **Key** to ensure it matches the expected command or navigation input.        |
+
+## Real-World Use Cases
+
+- **Automating Terminal Tasks**: Use in script automation to perform tasks like navigation, file manipulation, or running commands.
+- **Development Automation**: Useful in CI/CD pipelines or developer environments where certain operations need repeat easy execution.
+- **System Administration**: Administrators can automate server configurations or maintenance tasks via terminal interactions.

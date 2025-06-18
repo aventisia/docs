@@ -1,57 +1,75 @@
+import { Callout, Steps } from "nextra/components";
+
 # Get Text from Terminal Session
 
-## Description
+The **Get Text from Terminal Session** node is designed to extract and retrieve text from a specified terminal session. This node is useful for situations where you need to pull information or results from terminal-based activities within an automated workflow.
 
-This screenshot demonstrates an interface for extracting text from an active terminal session. Users can specify the source of the text (e.g., the entire screen or a specific field) and configure additional parameters such as label, index, text length, and row.
+Common scenarios include:
 
-![alt text](../../../assets/terminal-emulation/get-text-from-terminal-session1.png)
+- Gathering output after a script execution.
+- Extracting log data or status messages for further processing.
+- Integrating terminal interactions smoothly into workflows.
 
-![alt text](../../../assets/terminal-emulation/get-text-from-terminal-session2.png)
+{/* ![Get Text from Terminal Session](./get-text-from-terminal-session.png) */}
 
----
+## Configuration Options
 
-## Configuration
+| Field Name    | Description                                                                    | Input Type | Required? | Default Value |
+| ------------- | ------------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **SessionId** | The unique identifier for the terminal session you want to retrieve text from. | Text       | Yes       | _(empty)_     |
+| **Result**    | A container that holds the resulting text extracted from the terminal session. | Output     | No        | Result        |
 
-### Terminal Session
+## Expected Output Format
 
-- **Field**: Select the terminal session from which to extract text.
+The output from the **Get Text from Terminal Session** node is:
 
-### Get Text From
+- A **string of text** that was retrieved from the terminal session.
 
-- **Option**: Choose the source of the text (e.g., `Entire screen`).
+This output is ready to be used in consecutive nodes within your automation workflow.
 
-### Get Field By
+## Step-by-Step Guide
 
-- **Option**: Specify how to identify the field (e.g., by `Label`).
+<Steps>
+### Step 1
 
-### Label
+Add the **Get Text from Terminal Session** node into your flow.
 
-- **Field**: Enter the label associated with the field (e.g., `pspfitnessclub`).
+### Step 2
 
-### Index
+In the **SessionId** field, enter the session ID of the specific terminal session from which you wish to retrieve text.
 
-- **Field**: Specify the index of the field (e.g., `-1` for no specific index).
+### Step 3
 
-### Text Length
+Ensure that your workflow provides or correctly processes the session ID to match an active terminal session.
 
-- **Field**: Define the length of the text to extract (e.g., `7` characters).
+### Step 4
 
-### Row
+Proceed with the workflow. The node will output the retrieved text as **Result**, which can be utilized or stored by subsequent nodes.
 
-- **Field**: Enter the row number from which to extract the text (e.g., `0`).
+</Steps>
 
-### Column
+<Callout type="info" title="Note">
+  It's crucial to use a correct and active session ID in the **SessionId**
+  field. Incorrect session IDs will not return any text.
+</Callout>
 
-- **Field**: Enter the column number from which to extract the text (e.g., `1`).
+## Input/Output Examples
 
----
+| Session ID | Output Value                             | Output Type |
+| ---------- | ---------------------------------------- | ----------- |
+| 12345      | "Login successful. User data fetched."   | String      |
+| 67890      | "Process completed. No errors detected." | String      |
 
-## Output
+## Common Mistakes & Troubleshooting
 
-- **TerminalText**: The text extracted from the specified column.
+| Problem                                 | Solution                                                                                     |
+| --------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **Invalid Session ID error**            | Verify that the session ID entered corresponds to an active session or is correctly entered. |
+| **Empty output despite active session** | Double-check the terminal session's output within the time frame of the node's activation.   |
+| **Unexpected text output**              | Ensure the terminal session is producing the expected textual result during the retrieval.   |
 
----
+## Real-World Use Cases
 
-## Summary
-
-This tool is useful for extracting specific text from a terminal session, whether from the entire screen or a particular field. It provides flexibility in defining the source and scope of the text, making it ideal for automating interactions with terminal-based applications.
+- **Automation Reporting**: Extract script results from a server to document or analyze outcomes automatically.
+- **Monitoring Systems**: Collect log data from a terminal interface to track system status or error messages.
+- **Real-Time Status Updates**: Retrieve ongoing session outputs to provide live feedback or status notifications.

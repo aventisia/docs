@@ -4,14 +4,12 @@ const meta: MetaRecord = {
   "open-sql-connection": {
     title: "Open SQL Connection",
   },
-  "execute-sql-statment": {
+  "execute-sql-statement": {
     title: "Execute SQL Statement",
   },
   "close-sql-connection": {
     title: "Close SQL Connection",
-  }
-  
+  },
 };
 
 export default meta;
-

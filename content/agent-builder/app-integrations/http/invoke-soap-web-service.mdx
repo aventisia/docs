@@ -1,0 +1,87 @@
+import { Callout, Steps } from "nextra/components";
+
+# Invoke SOAP Web Service
+
+The **Invoke SOAP Web Service** node allows you to interact with a SOAP-based web service by sending requests and receiving responses. This is useful for integrating with various legacy systems and web services that still use the SOAP protocol.
+
+For example:
+
+- Fetching data from a remote service.
+- Performing actions via an online service that utilizes SOAP.
+- Accessing older systems that offer SOAP endpoints.
+
+{/* ![Invoke SOAP Web Service](./invoke-soap-web-service.png) */}
+
+## Configuration Options
+
+| Field Name                      | Description                                                                                                         | Input Type | Required? | Default Value |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Endpoint URL**                | The endpoint URL of the SOAP web service (e.g., http://example.com/Service.asmx).                                   | Text       | Yes       | _(empty)_     |
+| **Method Name**                 | The name of the method to invoke on the SOAP service.                                                               | Text       | Yes       | _(empty)_     |
+| **Parameters**                  | The parameters for the method as a Dictionary&lt;string, object.                                                    | Text       | Yes       | _(empty)_     |
+| **Timeout Seconds**             | Maximum time in seconds to wait for the web service to respond.                                                     | Text       | No        | 60            |
+| **Use Custom Action Namespace** | Enable this if the service requires a specific namespace for the SOAP action.                                       | Switch     | No        | _(empty)_     |
+| **Action Namespace**            | Optional namespace for the action (if required by the service). (Appears if Use Custom Action Namespace is enabled) | Text       | No        | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node is the **raw XML response** returned by the SOAP service, labeled as "Result".
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Invoke SOAP Web Service** node into your flow.
+
+### Step 2
+
+In the **Endpoint URL** field, enter the URL of the SOAP service you want to call.
+
+### Step 3
+
+Enter the **Method Name** as specified by the SOAP service to perform the desired operation.
+
+### Step 4
+
+Provide any **Parameters** required by the method in the format Dictionary&lt;string, object>.
+
+### Step 5
+
+Optionally, specify **Timeout Seconds** to control how long the node should wait for a response before timing out.
+
+### Step 6
+
+If your service requires it, enable **Use Custom Action Namespace** by switching it on. Enter the **Action Namespace** if this has been specified by your service documentation.
+
+### Step 7
+
+After executing the node, the response from the SOAP service will appear in the flow as **Result**.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Make sure the **Endpoint URL** and **Method Name** are correct. Any errors in
+  these fields can lead to a failed invocation.
+</Callout>
+
+## Input/Output Examples
+
+| Endpoint URL                    | Method Name | Parameters      | Timeout Seconds | Use Custom Action Namespace | Action Namespace | Output       |
+| ------------------------------- | ----------- | --------------- | --------------- | --------------------------- | ---------------- | ------------ |
+| http://example.com/Service.asmx | GetDetails  | {"{"} "Id": 1 } | 60              | False                       | _(n/a)_          | XML Response |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                      | Solution                                                                                                                                    |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Incorrect URL format**     | Ensure the Endpoint URL is a valid URL and points to a SOAP service.                                                                        |
+| **Timeout exceeded**         | Increase the **Timeout Seconds** to allow more time for slow responses from the SOAP service.                                               |
+| **No response from service** | Check network connectivity and ensure that the SOAP service is reachable. Verify the service's availability with another tool if necessary. |
+| **SOAP Action issues**       | Use **Custom Action Namespace** if the service requires specific SOAP action XML namespaces and ensure they are correctly configured.       |
+
+## Real-World Use Cases
+
+- **Legacy System Integration**: Connect with enterprise systems still running on SOAP services.
+- **Enterprise Resource Planning**: Invoke methods to interact with ERP systems offering SOAP interfaces.
+- **Remote Data Retrieval**: Access detailed information from online services providing SOAP endpoints.

@@ -1,117 +1,109 @@
+import { Callout, Steps } from "nextra/components";
+
 # Retrieve Email Messages
 
-## **Description**
+The **Retrieve Email Messages** node allows you to access and retrieve email messages from your email account using the IMAP protocol. It can connect to your email server, authenticate your credentials, and allow you to filter and retrieve emails based on several criteria such as unread emails, specific senders, or keywords in the subject or body. This node is useful for automating email handling, such as reading notifications, extracting data from emails, and downloading attachments.
 
-This screenshot displays an interface for retrieving email messages using an IMAP server. Users can configure the email server settings, authentication credentials, and security options.
+{/* ![Retrieve Email Messages](./retrieve-email-messages.png) */}
 
-![alt text](../../../assets/email/retrieve-email-messages.png)
+## Configuration Options
 
-![alt text](../../../assets/email/retrieve-email-messages2.png)
+| Field Name                        | Description                                                                                | Input Type | Required? | Default Value        |
+| --------------------------------- | ------------------------------------------------------------------------------------------ | ---------- | --------- | -------------------- |
+| **IMAP Server**                   | The IMAP server URL.                                                                       | Text       | Yes       | _(empty)_            |
+| **Username**                      | The username for authentication.                                                           | Text       | Yes       | _(empty)_            |
+| **Password**                      | The password for authentication.                                                           | Text       | Yes       | _(empty)_            |
+| **Port**                          | The port number for the IMAP server (default is 993).                                      | Text       | No        | 993                  |
+| **Enable SSL**                    | If true, uses SSL encryption for the connection.                                           | Switch     | No        | True                 |
+| **Accept Untrusted Certificates** | If true, accepts untrusted SSL certificates.                                               | Switch     | No        | False                |
+| **Mail Folder**                   | The folder to retrieve emails from (e.g., Inbox).                                          | Text       | No        | Inbox                |
+| **Retrieve Mode**                 | Specifies which emails to retrieve.                                                        | Select     | No        | AllEmails            |
+| **Mark as Read**                  | If true, marks retrieved emails as read.                                                   | Switch     | No        | False                |
+| **From Field Contains**           | Filters emails where the 'From' field contains this text.                                  | Text       | No        | _(empty)_            |
+| **To Field Contains**             | Filters emails where the 'To' field contains this text.                                    | Text       | No        | _(empty)_            |
+| **Subject Contains**              | Filters emails where the subject contains this text.                                       | Text       | No        | _(empty)_            |
+| **Body Contains**                 | Filters emails where the body contains this text.                                          | Text       | No        | _(empty)_            |
+| **Save Attachments**              | Specifies whether to save attachments.                                                     | Select     | No        | DoNotSaveAttachments |
+| **Save Attachments Into**         | The directory where attachments will be saved (required if 'Save Attachments' is enabled). | Text       | No        | _(empty)_            |
 
-![alt text](../../../assets/email/retrieve-email-messages3.png)
+## Expected Output Format
 
----
+The output of this node is **a list of email messages**, each containing details such as sender, recipient, subject, and body. If attachments are saved, they are stored in the specified directory.
 
-## **Input Fields**
+## Step-by-Step Guide
 
-### **1. IMAP Server**
+<Steps>
+### Step 1
 
-- A text input field for specifying the IMAP server address.
-- The provided value: `imap.gmail.com`.
+Add **Retrieve Email Messages** node into your flow.
 
-### **2. Port**
+### Step 2
 
-- A numeric input field for specifying the port number used for IMAP communication.
-- The provided value: `993`.
+Enter the **IMAP Server** URL for your email provider (e.g., `imap.gmail.com`).
 
-### **3. Enable SSL**
+### Step 3
 
-- A toggle switch to enable or disable **SSL encryption** for secure email communication.
-- This option is **enabled** in the screenshot.
-- Description: "Specify whether to use a secure connection to communicate with the IMAP Server."
+Input your **Username** and **Password** to allow the node to access your emails.
 
-### **4. User Name**
+### Step 4
 
-- A text input field for specifying the email username.
-- The provided value: `user@example.com`.
+Specify the **Port** if different from the default port `993` for secure connections.
 
-### **5. Password**
+### Step 5
 
-- A password input field for entering the email account password.
-- The password is hidden for security.
+Decide whether to **Enable SSL**. For secure connections, it should be `True`.
 
-### **6. Accept Untrusted Certificates**
+### Step 6
 
-- A toggle switch to specify whether untrusted SSL certificates should be accepted.
-- This option is **disabled** in the screenshot.
-- Description: "Specify whether untrusted certificates will be accepted."
+Choose if you want to **Accept Untrusted Certificates** when connecting using SSL.
 
-## **Email Filters**
+### Step 7
 
-### **1. Mail Folder**
+Select the **Mail Folder** to retrieve emails from, such as `Inbox`.
 
-- A text input field to specify the folder from which emails should be retrieved.
-- The selected value: `Inbox`.
+### Step 8
 
-### **2. Retrieve**
+Set the **Retrieve Mode** to determine which emails are retrieved (e.g., all emails, unread only).
 
-- A dropdown menu to select which emails to retrieve.
-- The selected value: `Unread email messages only`.
+### Step 9
 
-### **3. Mark as Read**
+(Optional) Use the **From Field Contains**, **To Field Contains**, **Subject Contains**, or **Body Contains** to filter specific emails based on desired content.
 
-- A toggle switch that determines whether retrieved messages should be marked as **read**.
-- This option is **enabled** in the screenshot.
-- Description: "Specify whether to mark as read the retrieved messages or leave them as is."
+### Step 10
 
----
+(Optional) If attachments need to be saved, choose **Save Attachments** and specify the **Save Directory**.
 
-## **Filtering Criteria**
+### Step 11
 
-### **4. 'From' Field Contains**
+The retrieved emails will be available as **RetrievedEmails** for further use in your flow.
 
-- A text input field to filter emails by sender.
-- The provided value: `user@example.com`.
+</Steps>
 
-### **5. 'To' Field Contains**
+<Callout type="info" title="Important Note">
+  Ensure that your email server settings allow access via IMAP and that
+  credentials entered are valid, as incorrect information will prevent email
+  retrieval.
+</Callout>
 
-- A text input field to filter emails by recipient.
-- The provided value: `user@example.com`.
+## Input/Output Examples
 
-### **6. 'Subject' Contains**
+| Retrieve Mode | From Contains      | Subject Contains | Output                                                                    |
+| ------------- | ------------------ | ---------------- | ------------------------------------------------------------------------- |
+| AllEmails     | _(none)_           | _(none)_         | List of emails                                                            |
+| UnreadOnly    | example@domain.com | Invoice          | List of unread emails with "Invoice" in subject from "example@domain.com" |
 
-- A text input field to filter emails based on the subject line.
-- The provided value: `ProjectDeadline`.
+## Common Mistakes & Troubleshooting
 
-### **7. 'Body' Contains**
+| Problem                                  | Solution                                                                                                  |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Unable to connect to the IMAP server** | Check that the IMAP server URL, port, and SSL settings are correct and reachable.                         |
+| **Authentication failed**                | Ensure the Username and Password are correct. Consider any special characters that may affect the input.  |
+| **Retrieved emails not as expected**     | Verify filter settings under 'From Field Contains', 'Subject Contains', and other conditions are correct. |
+| **Attachments not saving**               | Ensure the "Save Attachments" option is activated and that a valid directory is specified.                |
 
-- A text input field to filter emails based on content within the email body.
-- This field is **empty** in the screenshot.
+## Real-World Use Cases
 
-## **Attachment Handling**
-
-### **8. Save Attachments**
-
-- A dropdown menu to specify whether attachments should be saved.
-- The selected value: `Save attachments`.
-
-### **9. Save Attachments Into**
-
-- A text input field to specify the directory where email attachments should be saved.
-- The provided value: `c://MailFolder`.
-
----
-
-## **Output**
-
-### **10. RetrieveEmails**
-
-- A toggle switch that determines whether retrieved emails should be stored for further processing.
-- This option is **enabled** in the screenshot.
-- Description: "The retrieved email message for later processing as a list of email message objects."
-
----
-
-## **Summary**
-
-This tool is designed to retrieve email messages by connecting to an **IMAP server** using the provided credentials and security settings. Users can enable SSL for secure communication and decide whether to accept untrusted certificates.
+- **Automated Email Summary**: Automatically collect unread email summaries for daily reports or dashboards.
+- **Customer Support**: Retrieve and categorize client emails automatically, marking them as read post-processing.
+- **Invoice Processing**: Filter and download invoices from a specific sender, saving attachments for processing.
+- **Email Marketing**: Extract leads from emails with specific subject lines or bodies, streamlining data entry.

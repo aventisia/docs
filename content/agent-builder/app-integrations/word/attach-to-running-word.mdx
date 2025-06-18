@@ -1,23 +1,59 @@
+import { Callout, Steps } from "nextra/components";
+
 # Attach to Running Word
 
-This feature allows users to attach to an already running instance of Microsoft Word. It is useful for interacting with open Word documents without launching a new instance.  
+The **Attach to Running Word** node connects to an active Microsoft Word document, allowing you to perform further actions on it. This is particularly useful when you want to automate tasks or extend functionality within an already open Word document.
 
-![Attach to Running Word](../../../assets/word/attach-to-running-word.png)  
+Use cases include editing, analyzing, or extracting text from an opened document without needing to open a new instance of Word.
+
+{/* ![Attach to Running Word](./attach-to-running-word.png) */}
 
 ## Configuration Options
 
-### Document Name   
-- **Description**: Specify the name of the open Word document to attach to.  
-- **Purpose**: This ensures the correct document is selected for interaction.  
+| Field Name        | Description                                 | Input Type | Required? | Default Value |
+| ----------------- | ------------------------------------------- | ---------- | --------- | ------------- |
+| **Document Name** | The name of the Word document to attach to. | Text       | Yes       | _(empty)_     |
 
-### Output: WordInstance
-- **Description**: Retrieves the Word instance that this action has attached to.  
-- **Purpose**: This allows the attached Word instance to be used in subsequent Word actions.  
- 
-## Use Cases
-- **Automating Tasks**: Attaching to an open Word document for further automation tasks.  
-- **Avoiding Multiple Instances**: Reusing an existing Word instance instead of launching a new one.  
-- **Workflow Integration**: Integrating Word document handling into larger workflows.  
+## Expected Output Format
 
-## Summary  
-The **Attach to Running Word** action provides a way to attach to an already running instance of Microsoft Word. It ensures efficient interaction with open Word documents, making it ideal for automation workflows involving Word.
+This node outputs a **Word Instance**, which serves as a reference to the specific Word document you are interacting with. It enables further automated actions within this document setup.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Attach to Running Word** node into your flow.
+
+### Step 2
+
+In the **Document Name** field, enter the exact name of the Word document you wish to attach to. Ensure the document is currently open in Word.
+
+### Step 3
+
+The node will output a reference as **WordInstance**, which can be used for subsequent tasks on this document.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  The document must be open in Word for the node to attach to it successfully.
+</Callout>
+
+## Input/Output Examples
+
+| Input         | Output       | Output Type            |
+| ------------- | ------------ | ---------------------- |
+| "report.docx" | WordInstance | Word Document Instance |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                           | Solution                                                                                                 |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Document not found**            | Ensure the document name matches exactly with the open Word document. Check for typos or cases.          |
+| **WordInstance not recognizable** | Make sure that the Word instance is active and ready to interact with before attempting further actions. |
+
+## Real-World Use Cases
+
+- **Collaboration**: Attach to a shared Word document to monitor changes or updates in real-time.
+- **Automated Edits**: Automate the process of editing a document already opened, such as adding data or comments.
+- **Data Extraction**: Extract specific parts of an open document for analysis, like extracting all instances of a certain keyword.

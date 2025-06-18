@@ -1,47 +1,90 @@
-# Go to Web Page  
+import { Callout, Steps } from "nextra/components";
 
-## Description
-This action allows users to navigate to a specified web page using an existing browser instance.  
-It is useful for web automation tasks such as data extraction, form filling, and website interaction.  
+# Go To Web Page
 
-![Go to Web Page](../../../assets/browser-automation/go-to-web-page.png)  
+The **Go To Web Page** node is designed to control a browser instance and navigate web pages. This node provides flexibility to perform various browser actions like navigating to a specific URL, going backwards or forwards in the browser history, and refreshing the current page. It's particularly useful for automating web browsing tasks, accessing information, or handling web-based applications seamlessly.
 
-## Fields and Options  
+{/* ![Go To Web Page](./go-to-web-page.png) */}
 
-### 1. Web Browser Instance
-- Select the browser instance where the navigation should occur.  
-- Ensures automation takes place in the correct browser session.  
+## Configuration Options
 
-### 2. Navigate Action
-- Choose the navigation mode (default: "To URL").  
-- Allows users to specify how they want to navigate.  
+| Field Name                 | Description                                                                       | Input Type | Required? | Default Value |
+| -------------------------- | --------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Web Browser Instance**   | Enter or choose the variable that contains the web browser instance to work with. | Text       | Yes       | _(empty)_     |
+| **Navigate Action**        | Specifies the type of navigation action to perform.                               | Select     | No        | ToUrl         |
+| **URL**                    | The URL to navigate to when 'Navigate Action' is 'To URL'.                        | Text       | No        | _(empty)_     |
+| **Wait for Page to Load**  | If true, waits for the page to fully load before continuing.                      | Switch     | No        | False         |
+| **Timeout for Page Load**  | Maximum time in seconds to wait for the page to load.                             | Text       | No        | 60            |
+| **Handle Dialog**          | Specifies what to do if a dialog appears after navigating.                        | Select     | No        | DoNothing     |
+| **Dialog Button to Press** | The name of the button to press if a dialog appears (e.g., 'Ok', 'Cancel').       | Text       | No        | Ok            |
 
-### 3. URL
-- Input the web address where the automation should navigate.  
-- The toggle option ensures the automation waits for the page to load completely before proceeding.  
+## Expected Output Format
 
-### 4. Wait for Page to Load
-- If true, waits for the page to fully load before continuing.
+The node does not produce a direct output value. It performs browser navigation actions based on the configurations set within the node.
 
-### 5. Timeout for Page Load
-- Maximum time in seconds to wait for the page to load.
+## Step-by-Step Guide
 
-### 6. Handle Dialog
-- Specifies what to do if a dialog appears after navigating.
-- Do Nothing
-- Press a Button
-- Do Nothing
-- Close it/Press a Button
+<Steps>
+### Step 1
 
-### 4. Dialog Button to Press
-- If a pop-up dialog appears, specify which button to press (e.g., "OK" or "Cancel").  
-- Useful for handling alert dialogs during navigation.  
+Add the **Go To Web Page** node into your flow.
 
-## Use Cases
-- Automating web-based login procedures.  
-- Navigating to a webpage to extract data.  
-- Interacting with pop-ups and alerts on websites.  
+### Step 2
 
-## Summary
-The **Go to Web Page** action provides a seamless way to automate web navigation.  
-It ensures efficient handling of pop-ups and ensures web pages load fully before continuing.  
+In the **Web Browser Instance** field, enter the variable representing your web browser instance.
+
+### Step 3
+
+Choose an option from the **Navigate Action** dropdown, based on the action you want to perform:
+
+- **To URL**: Navigate to a specific URL.
+- **Back**: Move backward in the browser history.
+- **Forward**: Move forward in the browser history.
+- **Reload Web Page**: Reload the current page.
+
+### Step 4
+
+If you chose **To URL** in the previous step, specify the URL in the **URL** field.
+
+### Step 5
+
+Toggle **Wait for Page to Load** if you need the flow to pause until the page fully loads. Set the **Timeout for Page Load** if necessary.
+
+### Step 6
+
+Configure **Handle Dialog** to decide how to manage any dialog boxes that might appear.
+
+### Step 7
+
+For dialog handling that involves button clicking, provide the button name in **Dialog Button to Press**.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  If you do not select "To URL" in the **Navigate Action** dropdown, the "URL"
+  field will not appear.
+</Callout>
+
+## Input/Output Examples
+
+- **Navigate to URL**:
+  - **Web Browser Instance**: `myBrowser`
+  - **Navigate Action**: To URL
+  - **URL**: `https://example.com`
+  - **Wait for Page to Load**: True
+  - **Timeout for Page Load**: 30 seconds
+
+## Common Mistakes & Troubleshooting
+
+| Problem                          | Solution                                                                                                 |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Web Browser Instance missing** | Ensure you have a valid browser instance variable entered in the **Web Browser Instance** field.         |
+| **No URL field appearing**       | Remember that the **URL** field only appears if **Navigate Action** is set to **To URL**.                |
+| **Page not fully loading error** | Increase the **Timeout for Page Load** value or verify your internet connection.                         |
+| **Unexpected dialog behavior**   | Ensure the 'Dialog Button to Press' matches the actual button text if using the pressing button feature. |
+
+## Real-World Use Cases
+
+- **Automated Login**: Use this node to navigate to a login page and automate login submissions.
+- **Data Retrieval**: Navigate through a series of web pages to collect or analyze data automatically.
+- **Performance Testing**: Quickly test load times by navigating and reloading specific web pages.

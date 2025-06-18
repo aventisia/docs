@@ -1,0 +1,65 @@
+import { Callout, Steps } from "nextra/components";
+
+# Download Folder(s) from FTP
+
+The **Download Folder(s) from FTP** node allows you to retrieve entire folders from a remote FTP server and store them in a specified local directory. This is particularly useful for automating the process of obtaining large sets of files or maintaining regular backups from FTP servers in an organized manner.
+
+In scenarios where you need to collect project files or data archives periodically from an FTP server for reporting or analysis, this node can efficiently handle bulk folder downloads and ensure they are saved correctly to your intended location.
+
+{/* ![Download Folder(s) from FTP](./download-folders-from-ftp.png) */}
+
+## Configuration Options
+
+| Field Name          | Description                                                      | Input Type | Required? | Default Value |
+| ------------------- | ---------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **FTP Connection**  | The FTP connection object that holds the server details.         | Text       | Yes       | _(empty)_     |
+| **Folder Names**    | List of folder names you wish to download from the FTP.          | Text       | Yes       | _(empty)_     |
+| **Local Directory** | The directory on your local machine where folders will be saved. | Text       | Yes       | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node does not directly yield a value but delivers downloaded folders into the specified local directory. Here, each folder will be downloaded from the FTP server and stored as a directory on your local file system.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Download Folder(s) from FTP** node into your workflow.
+
+### Step 2
+
+In the **FTP Connection** field, input the connection object that includes your FTP server's login information and address.
+
+### Step 3
+
+Enter the names of the folders you wish to download in the **Folder Names** field. Use a comma-separated format if downloading multiple folders.
+
+### Step 4
+
+Specify the path to your local directory where you want the downloaded folders to be saved in the **Local Directory** field.
+
+### Step 5
+
+Execute the flow to commence downloading. The folders will be retrieved from the FTP server and stored in your indicated local directory.
+
+</Steps>
+
+<Callout type="warning" title="Important">
+  Ensure that your FTP connection details are correct; an incorrect connection
+  object can cause the download process to fail.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                            | Solution                                                                              |
+| ---------------------------------- | ------------------------------------------------------------------------------------- |
+| **Invalid FTP Connection**         | Verify the FTP credentials and server address in your connection string for accuracy. |
+| **Folders Not Found**              | Check the folder names for typos and ensure they exist on the server.                 |
+| **Local Directory Path Incorrect** | Double-check that the local directory path is valid and accessible from your system.  |
+
+## Real-World Use Cases
+
+- **Data Backup**: Regularly backup important project directories from your FTP server to your local machine for safekeeping.
+- **Data Analysis**: Download sets of data files for processing or analysis directly to your working environment.
+- **Content Management**: Automatically pull website resource folders from a server to update local copies for development or review.

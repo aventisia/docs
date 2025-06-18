@@ -1,30 +1,67 @@
+import { Callout, Steps } from "nextra/components";
+
 # Get Active Excel Worksheet
 
-## Description
-This dialog provides an interface to retrieve details about the currently active worksheet in a selected Excel instance. Users must choose an active Excel instance to fetch the worksheet name and index. The output provides structured data to identify the active worksheet.
+The **Get Active Excel Worksheet** node is designed to help you easily identify the worksheet that is currently active or in use within an Excel application. This is particularly useful when managing multiple worksheets in a workbook and needing to direct workflows or operations to the active sheet specifically.
 
-![alt text](../../../assets/excel/get-active-excel-worksheet.png)
+By using this node, you can automate processes that depend on or specifically target the active sheet in an Excel workbook.
 
-## Fields and Options
+{/* ![Get Active Excel Worksheet](./get-active-excel-worksheet.png) */}
 
-### 1. Excel Application
-- A dropdown list where users can select an active Excel instance.
-- Ensures that the correct Excel workbook is targeted for fetching worksheet details.
+## Configuration Options
 
-## Output
-- 1. **SheetName**  
-- Displays the name of the active worksheet.
-- Useful for referencing the current sheet dynamically in automation.
+| Field Name            | Description                                                  | Input Type | Required? | Default Value |
+| --------------------- | ------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **Excel Application** | The Excel Application object containing the target workbook. | Text       | Yes       | _(empty)_     |
 
-- 2. **SheetIndex**  
-- Returns the index of the active worksheet within the Excel workbook.
-- Helps in scenarios where sheets are accessed programmatically by index.
+## Expected Output Format
 
-## Use Cases
-- Identifying the currently selected worksheet in an automation workflow.
-- Referencing active worksheets dynamically in data processing tasks.
-- Logging or tracking the active sheet before performing operations.
-- Ensuring that automation actions are performed on the correct worksheet.
+The output provides two pieces of information:
 
-## Summary
-The **Get Active Excel Worksheet** dialog enables users to retrieve the active worksheet's name and index from a selected Excel instance. This functionality is essential for dynamic spreadsheet operations, ensuring workflows interact with the correct sheet.
+- **Sheet Name**: A text string representing the currently active worksheet's name.
+- **Sheet Index**: A number indicating the position of the active worksheet within the workbook.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Get Active Excel Worksheet** node into your flow.
+
+### Step 2
+
+In the **Excel Application** field, input the Excel Application object that contains your target workbook. This step ensures that the node is aware of the Excel context you are working within.
+
+### Step 3
+
+Once configured, the node will output the **Sheet Name** and **Sheet Index** of the active worksheet. You can use these outputs in other parts of your workflow as needed.
+
+### Step 4
+
+Run the automation to retrieve the active worksheet information.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  Ensure that the Excel application is open and the workbook is loaded before
+  using this node to get accurate results.
+</Callout>
+
+## Input/Output Examples
+
+| Excel Application  | Output Sheet Name | Output Sheet Index |
+| ------------------ | ----------------- | ------------------ |
+| MyExcelAppObject   | "Sales Q1"        | 1                  |
+| AnotherExcelObject | "Summary"         | 3                  |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                         | Solution                                                                                                                         |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Excel Application not found** | Double-check that your Excel application is open and the object name is correctly referenced in the **Excel Application** field. |
+
+## Real-World Use Cases
+
+- **Financial Reports Automation**: Automatically retrieve and process data from the active worksheet in a complex financial workbook.
+- **Data Comparison**: Use the active worksheet data for immediate analysis against another dataset in a dynamic report.
+- **Inventory Updates**: Directly update inventory records on the active sheet without needing to specify which sheet manually.

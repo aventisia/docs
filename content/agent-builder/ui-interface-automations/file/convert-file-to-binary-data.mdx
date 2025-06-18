@@ -1,40 +1,60 @@
+import { Callout, Steps } from "nextra/components";
+
 # Convert File to Binary Data
 
-## Description
+The **Convert File to Binary Data** node is a tool you use when you need to transform a file into its binary data representation. This is particularly useful when you're preparing file data for processing, storage, or transmission in systems that require non-textual data formats.
 
-The **Convert File to Binary Data** action reads a file and converts its contents into a binary format.
+For example, if you have a file stored locally on your computer and you wish to send its contents to a server or embed it within another system, converting it to binary data is essential to ensure all the bits are correctly interpreted.
 
-![Convert File to Binary Data UI](../../../assets/file/convert-file-to-binary-data.png)
+{/* ![Convert File to Binary Data](./convert-file-to-binary-data.png) */}
 
-## Fields and Options  
+## Configuration Options
 
-### **1. File Path** *(Required)* 
+| Field Name    | Description                           | Input Type | Required? | Default Value |
+| ------------- | ------------------------------------- | ---------- | --------- | ------------- |
+| **File Path** | The full path of the file to convert. | Text       | Yes       | _(empty)_     |
 
-- The path to the file that needs to be converted into binary format.
-- Ensure the file exists and is accessible.
+## Expected Output Format
 
-### **2. Output** *(Optional)*
+The output is the **binary data** representation of the file as a raw binary sequence. This binary data can then be used as needed in subsequent nodes or systems.
 
-- **Binary Data** *(Enabled by default)* → Converts the file’s contents into a binary data output.
-- This binary data can be used for further processing, storage, or transmission.
+## Step-by-Step Guide
 
-### **3. On Error** *(Optional)*
+<Steps>
+### Step 1
 
-- Defines the action to take if an error occurs during the conversion process.
-- Options may include logging the error, stopping execution, or retrying.
+Add **Convert File to Binary Data** node into your flow.
 
-## Use Cases
+### Step 2
 
-- Preparing files for storage in databases or cloud services that require binary formats.
-- Encoding files for secure transmission or embedding into other data structures.
-- Converting documents, images, or any file type into binary for processing in automation workflows.
+In the **File Path** field, enter the full directory path to the file you wish to convert. This path should point directly to the file on your computer.
 
-## Important Notes
+### Step 3
 
-- Large files may require more processing time.
-- Ensure proper handling of binary data to avoid corruption when saving or transmitting.
-- The output binary data should be properly interpreted when used in subsequent steps.
+Once the file path is configured, the node will output the file's binary data. This is available as **BinaryData** for use in the following parts of your automation workflow.
 
-## Summary
+</Steps>
 
-The **Convert File to Binary Data** action reads a file, extracts its binary contents, and makes it available for further use in workflows requiring binary data processing.
+<Callout type="warning" title="Note">
+  Ensure that the file path you provide is correct and that the file is
+  accessible from your system. Incorrect paths will lead to errors.
+</Callout>
+
+## Input/Output Examples
+
+| File Path                   | Output Value                           | Output Type |
+| --------------------------- | -------------------------------------- | ----------- |
+| `/users/documents/file.txt` | Binary data representation of file.txt | Binary Data |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                     | Solution                                                                                                  |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **File not found at specified path**        | Double-check the **File Path** to ensure it's correct and that the file exists at the specified location. |
+| **Insufficient permissions to access file** | Verify that you have the necessary permissions to access the file. Adjust permissions if needed.          |
+
+## Real-World Use Cases
+
+- **Embedding Files**: Convert images to binary data for embedding directly within databases or HTML.
+- **Data Backup Systems**: Automate the conversion of files to binary for efficient backup processes.
+- **File Transfer Protocols**: Transform files into binary data for secure and correct transmission over network protocols.

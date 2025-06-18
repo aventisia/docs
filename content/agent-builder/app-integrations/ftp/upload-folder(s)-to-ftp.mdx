@@ -1,0 +1,90 @@
+import { Callout, Steps } from "nextra/components";
+
+# Upload Folder(s) to FTP
+
+The **Upload Folder(s) to FTP** node allows you to upload entire folders from your local system to a specified directory on a remote FTP server. This is particularly useful when you need to backup files, transfer project directories, or automate the transfer of regularly updated data to a server, ensuring your remote directories are up-to-date.
+
+{/* ![Upload Folder(s) to FTP](./upload-folders-to-ftp.png) */}
+
+## Configuration Options
+
+| Field Name                 | Description                                                                   | Input Type | Required? | Default Value |
+| -------------------------- | ----------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **FTP Connection**         | The FTP connection details needed to connect to the FTP server.               | Text       | Yes       | _(empty)_     |
+| **Local Folders**          | Paths to the local folders you want to upload.                                | Text       | Yes       | _(empty)_     |
+| **Remote Directory**       | Location on the server where folders will be uploaded.                        | Text       | Yes       | _(empty)_     |
+| **Overwrite Files**        | Toggle to overwrite files on the server if they exist in the target location. | Switch     | No        | False         |
+| **Include Subdirectories** | Toggle to upload subdirectories within the provided folders.                  | Switch     | No        | False         |
+| **Timeout Seconds**        | Time limit in seconds for the upload operation to complete before timing out. | Text       | No        | 60            |
+
+## Expected Output Format
+
+The outputs for this node include:
+
+- **Folders Uploaded Count**: An integer representing how many folders were uploaded.
+- **Files Uploaded Count**: An integer showing the total number of files uploaded.
+- **Skipped Files**: A list of file names that were not uploaded.
+
+## Step-by-Step Guide
+
+<Steps>
+
+### Step 1
+
+Add an **Upload Folder(s) to FTP** node into your flow.
+
+### Step 2
+
+In the **FTP Connection** field, enter your FTP connection details. This is necessary to establish a connection to your desired FTP server.
+
+### Step 3
+
+In the **Local Folders** field, specify the paths of the folders you wish to upload. Ensure that these paths are accessible from your environment.
+
+### Step 4
+
+Specify the **Remote Directory** on the FTP server where you want the folders to be uploaded.
+
+### Step 5
+
+(Optional) Enable **Overwrite Files** if you wish to overwrite files that may already exist in the target location on the server.
+
+### Step 6
+
+(Optional) Enable **Include Subdirectories** if your folders contain subfolders that should also be uploaded.
+
+### Step 7
+
+(Optional) Adjust **Timeout Seconds** to define the maximum wait time for uploads. The default is set to 60 seconds.
+
+### Step 8
+
+Once the operation completes, check the output panel to see the count of folders and files uploaded, as well as any files that were skipped.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure that your FTP server settings permit file overwriting and subdirectory
+  uploads if you plan to use these features.
+</Callout>
+
+## Input/Output Examples
+
+| FTP Connection | Local Folders  | Remote Directory | Overwrite Files | Include Subdirectories | Timeout Seconds | Folders Uploaded | Files Uploaded | Skipped Files |
+| -------------- | -------------- | ---------------- | --------------- | ---------------------- | --------------- | ---------------- | -------------- | ------------- |
+| ftp://example  | /local/folder1 | /remote/folder   | True            | True                   | 120             | 3                | 20             | [file1.txt]   |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                   | Solution                                                                                  |
+| ------------------------- | ----------------------------------------------------------------------------------------- |
+| **Connection failure**    | Ensure FTP details (e.g., username, password, server address) are correctly entered.      |
+| **Folders not uploading** | Double-check folder paths for typos or lack of permissions.                               |
+| **Files not overwriting** | Verify if the **Overwrite Files** option is enabled and if the server allows overwriting. |
+| **Timeout errors**        | Increase the **Timeout Seconds** if files are large or if the network connection is slow. |
+
+## Real-World Use Cases
+
+- **Routine Backups**: Automatically backup specific local directories to an FTP server at regular intervals.
+- **Project Deployments**: Transfer completed stages of a project to a shared server for collaborative access.
+- **Data Transfers**: Move large datasets from local storage to a shared server space efficiently.

@@ -1,32 +1,72 @@
+import { Callout, Steps } from "nextra/components";
+
 # Run JavaScript
 
-This section allows users to execute JavaScript code.
+The **Run JavaScript** node lets you execute a snippet of JavaScript code within your workflow. This can be useful for performing custom calculations, data transformations, or logic processing that might not be directly available through the pre-defined nodes.
 
-![alt text](../../../assets/scripting/run-javascript1.png)
-![alt text](../../../assets/scripting/run-javascript2.png)
+For example:
 
-## Input Fields
+- Calculating custom formulas.
+- Transforming or manipulating data structures.
+- Making decisions or branching logic based on input values.
 
-1. **JavaScript to run**  
-   - A text box to enter the JavaScript code to be executed.
+{/* ![Run JavaScript](./run-javascript.png) */}
 
-2. **Fail after timeout**  
-   - An optional field to specify the timeout duration.  
-   - If the script takes longer than this duration, execution fails.
+## Configuration Options
 
-## Output fields
+| Field Name          | Description                       | Input Type | Required? | Default Value |
+| ------------------- | --------------------------------- | ---------- | --------- | ------------- |
+| **JavaScript Code** | The JavaScript code to execute.   | Text       | Yes       | (empty)       |
+| **Script Output**   | Returns the output of the script. | --         | No        | ScriptOutput  |
 
-### 1. JavascriptOutput
+## Expected Output Format
 
-- Option to retrieve the script's output.
+The output of this node is determined by the JavaScript code you provide. It can vary widely, including numbers, strings, arrays, or objects.
 
-### 2. ScriptError
+- The processed result from your JavaScript code is made available as **ScriptOutput** for use in subsequent nodes.
 
-- Option to capture errors that may occur during the execution of the JavaScript code.
+## Step-by-Step Guide
 
-## Usage
+<Steps>
+### Step 1
 
-- Enter the JavaScript code in the text box.
-- (Optional) Set a timeout limit.
-- Enable output options if needed.
-- Click **Submit** to run the script.
+Add the **Run JavaScript** node to your flow.
+
+### Step 2
+
+In the **JavaScript Code** field, enter the script you want to execute. This code should be valid JavaScript, aligning with your intended logic or computation.
+
+### Step 3
+
+Once the node runs, the result of the JavaScript execution will be accessible through **ScriptOutput**.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure your JavaScript code is correct and thoroughly tested, as errors in the
+  code will prevent execution and halt the flow.
+</Callout>
+
+## Input/Output Examples
+
+| JavaScript Code                     | Expected Script Output | Output Type |
+| ----------------------------------- | ---------------------- | ----------- |
+| `return 5 + 3;`                     | 8                      | Number      |
+| `return inputString.toUpperCase();` | Uppercased input       | String      |
+| `return {name: "Alice", age: 30};`  | Object with properties | Object      |
+| `return [1, 2, 3].map(x => x * 2);` | [2, 4, 6]              | Array       |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                              | Solution                                                                                               |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| **Syntax Errors in JavaScript Code** | Double-check your code for any syntax mistakes. Use tools or editors that highlight JavaScript errors. |
+| **Unexpected Output**                | Verify the logic of your JavaScript code. Ensure your code handles all expected input variations.      |
+| **Script Execution Fails**           | If the code does not run, ensure all variables or functions used are defined and accessible.           |
+
+## Real-World Use Cases
+
+- **Data Formatting**: Format data fields dynamically based on conditions.
+- **Custom Calculations**: Use complex mathematical formulas that aren't supported natively.
+- **Logic Decisions**: Implement flexible decision logic, enabling flow branching based on real-time data.
+- **String Manipulations**: Convert and format text data efficiently.

@@ -1,45 +1,96 @@
+import { Callout, Steps } from "nextra/components";
+
 # Connect to Exchange Server
 
-This interface allows users to **connect to an Exchange server** using specified settings, including Exchange server version, connection type, credentials, and timeout configuration.
+The **Connect to Exchange Server** node is a powerful tool that simplifies the process of establishing a connection to a Microsoft Exchange server. By customizing a few key settings, such as the version of the Exchange server, connection type, and credentials, you can quickly set up a robust link for managing emails and calendars directly through the Exchange Service object. This node is especially useful for businesses that rely on Exchange Server for their communication needs and want to automate tasks involving Exchange resources.
 
-![alt text](../../../assets/exchange-server/connect-to-exchange-server.png)
+{/* ![Connect to Exchange Server](./connect-to-exchange-server.png) */}
 
----
+## Configuration Options
 
-##  Configuration Options
+| Field Name                  | Description                                                                                                       | Input Type | Required? | Default Value |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Exchange Server Version** | The version of the Exchange server (e.g., Exchange 2013 SP1).                                                     | Select     | Yes       |               |
+| **Connection Type**         | Specifies how to connect to the Exchange server.                                                                  | Select     | Yes       |               |
+| **Email Address**           | The email address used for auto-discovery (required if 'Connection Type' is 'Auto discovery').                    | Text       | No        | _(empty)_     |
+| **Server Address**          | The direct URL or IP address of the Exchange server (required if 'Connection Type' is 'Exchange server address'). | Text       | No        | _(empty)_     |
+| **Credentials**             | Specifies the authentication method to use.                                                                       | Select     | No        |               |
+| **Domain**                  | The domain name for user-defined credentials (required if 'Credentials' is 'User defined').                       | Text       | No        | _(empty)_     |
+| **Username**                | The username for user-defined credentials (required if 'Credentials' is 'User defined').                          | Text       | No        | _(empty)_     |
+| **Password**                | The password for user-defined credentials (required if 'Credentials' is 'User defined').                          | Text       | No        | _(empty)_     |
+| **Timeout**                 | The timeout in seconds for the connection attempt.                                                                | Text       | No        | 30            |
 
-### Exchange Server Version
-- Specifies the version of the Exchange server.
-**Value:** `Exchange 2013 SP1`
+## Expected Output Format
 
-### Connection Type
-- Defines the method used to connect to the Exchange server.
-**Value:** `Auto discovery`
+The output of this node is an **Exchange Connection** object, which represents the connection to the Exchange server, allowing you to perform various operations with the Exchange server.
 
-### Email Address
-- Specifies the **email address** to use for the connection.
-**Value:** `user@example.com`
+## Step-by-Step Guide
 
-### Credentials
-- Specifies the credentials used for authentication.
-**Value:** `Exchange default`
+<Steps>
+### Step 1
 
-### Timeout
-- Defines the time (in seconds) before the connection attempt times out.
-**Value:** `30`
+Add **Connect to Exchange Server** node into your workflow.
 
----
+### Step 2
 
-## Output
-- **ExchangeConnection** (Enabled)
-Generates an **Exchange connection object** for later use in Exchange-related actions.
+Select the desired **Exchange Server Version** from the dropdown menu. Ensure that you pick the correct version to match your organization's server setup.
 
----
+### Step 3
 
-## Summary
-This tool enables users to connect to an **Exchange Server** with configurable settings, including:
-- **Exchange server version selection**
-- **Auto discovery or manual connection setup**
-- **Email authentication using credentials**
-- **Timeout configuration**
-- **Exchange connection object for further actions**
+In **Connection Type**, choose how you want to connect:
+
+- **Auto discovery**: Discover the server automatically using an email address.
+- **Exchange server address**: Connect using a specific server address.
+
+### Step 4
+
+Depending on the **Connection Type** selected:
+
+- If **Auto discovery**, enter the appropriate **Email Address**.
+- If **Exchange server address**, provide the **Server Address**.
+
+### Step 5
+
+Set the **Credentials** option, specifying the authentication method:
+
+- Choose **Exchange default** for default credentials.
+- Select **User defined** to provide custom domain, username, and password.
+
+### Step 6
+
+If you selected **User defined** in **Credentials**, fill in:
+
+- **Domain**
+- **Username**
+- **Password**
+
+### Step 7
+
+Optionally, adjust **Timeout** if you need a custom setting (default is 30 seconds).
+
+### Step 8
+
+The configured node now establishes the connection, and you can use this as **Exchange Connection** in subsequent nodes.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  Ensure all mandatory fields are filled correctly to establish a connection
+  successfully. If using **Auto discovery**, ensure your email server supports
+  it.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                      | Solution                                                                              |
+| -------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **Invalid or missing credentials**           | Verify that all credential fields are correctly filled if using **User defined**.     |
+| **Server not found using auto discovery**    | Double-check the email address entered and ensure the server supports auto-discovery. |
+| **Timeout errors**                           | Increase the timeout value if your server needs more time to establish connections.   |
+| **Incorrect Exchange Server Version chosen** | Ensure that the selected version matches your actual server setup.                    |
+
+## Real-World Use Cases
+
+- **Automated Email Management**: Establish connections to automate email-sending tasks within a business.
+- **Calendar Synchronization**: Use connections to sync and update calendar appointments accurately across systems.
+- **Exchange Server Monitoring**: Connect to monitor and manage server operations, ensuring seamless business communications.

@@ -1,0 +1,96 @@
+import { Callout, Steps } from "nextra/components";
+
+# Send Email Message Through Outlook
+
+The **Send Email Message Through Outlook** node allows you to send an email using Microsoft Outlook directly from the platform. It integrates seamlessly with Outlook and can handle regular email fields such as recipient addresses, subject, body, and even attachments. Use this node when you need to automate sending emails as part of your workflows, like notifying team members, sending reports, or distributing information quickly without leaving the platform.
+
+{/* ![Send Email Message Through Outlook](./send-email-message-through-outlook.png) */}
+
+## Configuration Options
+
+| Field Name              | Description                                                                               | Input Type | Required? | Default Value |
+| ----------------------- | ----------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Outlook Application** | The Outlook Application object used to send the email.                                    | Text       | Yes       | _(empty)_     |
+| **Recipient(s)**        | The email address(es) of the recipient(s). Separate multiple addresses by semicolons (;). | Text       | Yes       | _(empty)_     |
+| **CC Recipient(s)**     | Optional: The CC email address(es), separated by semicolons (;).                          | Text       | No        | _(empty)_     |
+| **BCC Recipient(s)**    | Optional: The BCC email address(es), separated by semicolons (;).                         | Text       | No        | _(empty)_     |
+| **Subject**             | The subject line of the email message.                                                    | Text       | Yes       | _(empty)_     |
+| **Body**                | The body content of the email message.                                                    | Text       | Yes       | _(empty)_     |
+| **Is Body HTML**        | Determines whether the body should be interpreted as HTML.                                | Switch     | No        | false         |
+| **Save As Draft**       | If true, the email is saved as a draft instead of being sent immediately.                 | Switch     | No        | false         |
+| **Attachments**         | Full path of any attachment files. Multiple paths can be separated by spaces.             | Text       | No        | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node is a **confirmation status** that indicates whether the email was sent successfully or saved as a draft.
+
+- **Email Sent**: Confirmation message indicating successful sending.
+- **Draft Saved**: Confirmation message indicating successful saving as a draft.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Send Email Message Through Outlook** node into your flow.
+
+### Step 2
+
+In the **Outlook Application** field, specify the Outlook Application object you are using.
+
+### Step 3
+
+Fill in the **Recipient(s)** field with the email addresses of the recipients. For multiple recipients, use semicolons to separate the email addresses.
+
+### Step 4
+
+(Optional) Provide any additional **CC Recipient(s)** and **BCC Recipient(s)** if needed.
+
+### Step 5
+
+Enter the **Subject** of your email to give the recipient a brief idea of the email content.
+
+### Step 6
+
+Populate the **Body** field with the main content of your email. This can be plain text or HTML formatted depending on your preference.
+
+### Step 7
+
+Set **Is Body HTML** to true if your email body contains HTML content; otherwise, leave it as false.
+
+### Step 8
+
+Decide if the email should be sent immediately or saved as a draft by setting the **Save As Draft** field.
+
+### Step 9
+
+(Optional) Attach files by entering the full file path(s) in the **Attachments** field, separated by spaces if there are multiple attachments.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure all email addresses are correct and separated by semicolons (;) where
+  multiple recipients are needed. Check paths for any attachments.
+</Callout>
+
+## Input/Output Examples
+
+| Subject           | Recipient(s)                         | Body Type  | Save As Draft | Output      |
+| ----------------- | ------------------------------------ | ---------- | ------------- | ----------- |
+| "Meeting Updates" | user@example.com                     | Plain Text | false         | Email Sent  |
+| "Monthly Report"  | team@example.com;manager@example.com | HTML       | false         | Email Sent  |
+| "Project Plan"    | partner@example.com                  | Plain Text | true          | Draft Saved |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                    | Solution                                                                                           |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| **Email fails to send**                    | Verify that the Outlook Application object is properly configured and connected.                   |
+| **Invalid email address format**           | Ensure email addresses are typed correctly and multiple addresses are separated by semicolons (;). |
+| **Body content not appearing as expected** | If using HTML, ensure the content is correctly formatted and set **Is Body HTML** to true.         |
+
+## Real-World Use Cases
+
+- **Automated Notifications**: Send automatic notifications to team members when certain conditions are met in your workflow.
+- **Weekly Reports**: Dispatch weekly or monthly reports to stakeholders with consistent formatting and attachments included.
+- **Project Memos**: Share project updates or meeting minutes as drafts in your Outlook, allowing for quick edits and sending later.

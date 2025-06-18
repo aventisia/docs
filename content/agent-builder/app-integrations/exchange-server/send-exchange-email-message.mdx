@@ -1,0 +1,95 @@
+import { Callout, Steps } from "nextra/components";
+
+# Send Exchange Email Message
+
+The **Send Exchange Email Message** node enables you to send emails directly through an Exchange server. This is ideal for automating the sending of reports, notifications, or any routine communication without opening an email client. By connecting to your Exchange server, you can specify details like the sender, recipient, subject, body, and attachments of your email message, ensuring a seamless integration into your automated workflows.
+
+{/* ![Send Exchange Email Message](./send-exchange-email-message.png) */}
+
+## Configuration Options
+
+| Field Name              | Description                                                                     | Input Type | Required? | Default Value |
+| ----------------------- | ------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Exchange Connection** | The Exchange service object representing the connection to the Exchange server. | Text       | Yes       | _(empty)_     |
+| **From**                | The sender's email address or display name.                                     | Text       | Yes       | _(empty)_     |
+| **To**                  | The recipient's email addresses (comma-separated).                              | Text       | Yes       | _(empty)_     |
+| **CC**                  | The CC recipient's email addresses (comma-separated).                           | Text       | No        | _(empty)_     |
+| **BCC**                 | The BCC recipient's email addresses (comma-separated).                          | Text       | No        | _(empty)_     |
+| **Subject**             | The subject of the email message.                                               | Text       | Yes       | _(empty)_     |
+| **Body**                | The body content of the email message.                                          | Text       | Yes       | _(empty)_     |
+| **Body is HTML**        | If true, treats the body as HTML content.                                       | Switch     | No        | _(empty)_     |
+| **Attachments**         | Paths to files to attach to the email message (comma-separated).                | Text       | No        | _(empty)_     |
+
+## Expected Output Format
+
+After the email is sent, the output does not include a direct value from this node. Instead, it indicates the successful transmission of the email through the Exchange server process.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Send Exchange Email Message** node into your workflow.
+
+### Step 2
+
+In the **Exchange Connection** field, provide the connection details to your Exchange server.
+
+### Step 3
+
+Enter the email address or display name in the **From** field to define the sender of the email.
+
+### Step 4
+
+In the **To** field, input the recipient's email addresses, separated by commas if there are multiple recipients.
+
+### Step 5
+
+(Optional) Populate the **CC** and **BCC** fields with comma-separated email addresses if additional recipients should receive carbon copies of the email.
+
+### Step 6
+
+Fill in the **Subject** field with the intended subject line of your email.
+
+### Step 7
+
+In the **Body** field, write the main message content of your email. Toggle **Body is HTML** if the content is formatted in HTML.
+
+### Step 8
+
+(Optional) To attach files, list their paths in the **Attachments** field, separated by commas.
+
+### Step 9
+
+Send your configured email message by executing the workflow. Check for successful completion in your flow logs.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  Ensure your Exchange Connection details are correct and valid to avoid sending
+  failures.
+</Callout>
+
+## Input/Output Examples
+
+- **From**: "john.doe@example.com"
+- **To**: "recipient1@example.com, recipient2@example.com"
+- **Subject**: "Monthly Report"
+- **Body**: "Please find the attached report for this month."
+
+In this example, the email will be sent from "john.doe@example.com" to the specified recipients with the provided subject and body content.
+
+## Common Mistakes & Troubleshooting
+
+| Problem                               | Solution                                                                             |
+| ------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Incorrect Exchange Connection**     | Double-check the connection settings and credentials for server access.              |
+| **Email Sending Fails**               | Verify all required fields (From, To, Subject, and Body) are correctly filled.       |
+| **Attachments Not Properly Attached** | Ensure file paths in the Attachments field are correct and accessible by the server. |
+| **Emails Not Received**               | Check spam/junk folders and confirm recipient email addresses are correct.           |
+
+## Real-World Use Cases
+
+- **Automated Report Delivery**: Automatically send daily sales reports to stakeholders, ensuring timely updates.
+- **Notification Systems**: Inform employees of policy changes or upcoming deadlines via scheduled emails.
+- **Customer Engagement**: Send greeting messages to customers on special occasions directly from your business applications.

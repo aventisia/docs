@@ -1,0 +1,93 @@
+import { Callout, Steps } from "nextra/components";
+
+# Resize Columns or Rows in Excel Worksheet
+
+The **Resize Columns or Rows in Excel Worksheet** node is designed to adjust the size of columns or rows within an Excel worksheet automatically or by setting a specific size. This is particularly helpful when formatting your Excel data for presentation or analysis, ensuring consistency and readability in your spreadsheet.
+
+Some common uses include:
+
+- Automatically fitting the size of columns or rows to match the content they contain.
+- Setting a uniform width for all columns or height for all rows within a specified range.
+
+{/* ![Resize Columns or Rows in Excel Worksheet](./resize-columns-or-rows.png) */}
+
+## Configuration Options
+
+| Field Name            | Description                                                                                | Input Type | Required? | Default Value |
+| --------------------- | ------------------------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **Excel Application** | The Excel Application object containing the target worksheet.                              | Text       | Yes       | _(empty)_     |
+| **Resize Target**     | Specifies whether to resize Columns or Rows.                                               | Select     | Yes       | Columns       |
+| **Selection Range**   | Specifies how to select the range to resize: All available, Range, or Single.              | Select     | Yes       | AllAvailable  |
+| **Start Column**      | The starting column of the range to resize (required if 'Selection Range' is 'Range').     | Text       | No        | _(empty)_     |
+| **End Column**        | The ending column of the range to resize (required if 'Selection Range' is 'Range').       | Text       | No        | _(empty)_     |
+| **Column**            | The column letter (e.g., 'A', 'B') to resize (required if 'Selection Range' is 'Single').  | Text       | No        | _(empty)_     |
+| **Resize Type**       | Choose whether to resize using a custom size or autofit.                                   | Select     | Yes       | CustomSize    |
+| **Width**             | The new width for columns or height for rows (required if 'Resize Type' is 'Custom Size'). | Text       | No        | _(empty)_     |
+
+## Expected Output Format
+
+This node operates without a distinct output but changes the target Excel worksheet by adjusting the size of specified columns or rows within it.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Resize Columns or Rows in Excel Worksheet** node to your workflow.
+
+### Step 2
+
+In the **Excel Application** field, specify the Excel Application object that contains the worksheet you want to modify.
+
+### Step 3
+
+Select whether to resize **Columns** or **Rows** from the **Resize Target** dropdown.
+
+### Step 4
+
+Choose your **Selection Range**:
+
+- **All available**: Resizes all columns or rows within the worksheet.
+- **Range**: You’ll need to specify **Start Column** and **End Column** when this option is selected.
+- **Single**: Specify the **Column** if this option is chosen.
+
+### Step 5
+
+In **Resize Type**, choose between:
+
+- **Autofit**: Automatically adjusts based on content.
+- **Custom size**: Requires you to enter a specific **Width**.
+
+### Step 6
+
+If you selected **Custom size** under **Resize Type**, enter the desired new size in the **Width** field.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  If you select "Range" in the **Selection Range** dropdown, ensure you've
+  provided both the **Start Column** and **End Column**. If "Single" is
+  selected, enter the specific column letter in **Column**.
+</Callout>
+
+## Input/Output Examples
+
+| Resize Target | Selection Range | Start Column | End Column | Resize Type | Width   | Action Description                                          |
+| ------------- | --------------- | ------------ | ---------- | ----------- | ------- | ----------------------------------------------------------- |
+| Columns       | All available   | _(n/a)_      | _(n/a)_    | Autofit     | _(n/a)_ | Resizes all columns based on the content automatically.     |
+| Columns       | Range           | A            | D          | Custom size | 20      | Sets the width of columns A to D to a custom size of 20.    |
+| Rows          | Single          | _(n/a)_      | _(n/a)_    | Autofit     | _(n/a)_ | Automatically adjusts the height of a single specified row. |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                             | Solution                                                                                                                                 |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Column/Row selection invalid**    | Ensure the **Selection Range** and corresponding start/end settings match. Check you have selected the correct target (Columns or Rows). |
+| **Custom Size not applied**         | Be sure you've entered a value in **Width** if you've chosen **Custom size** in **Resize Type**.                                         |
+| **Resizing not reflecting changes** | Double-check the **Excel Application** reference and confirm it points to the correct worksheet.                                         |
+
+## Real-World Use Cases
+
+- **Data Presentation**: Automatically resize all columns before presenting data for a professional appearance.
+- **Template Preparation**: Set custom sizes for specific columns when crafting templates for recurring reports.
+- **Content Adjustment**: Whenever content is updated, use Autofit to ensure columns are visibly accommodating new data efficiently.

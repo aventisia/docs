@@ -13,15 +13,27 @@ const meta: MetaRecord = {
   "move-mouse": {
     title: "Move Mouse",
   },
-  "press-release-key": {
+  "move-mouse-to-image": {
+    title: "Move Mouse to Image",
+  },
+  "press-or-release-key": {
     title: "Press/Release Key",
+  },
+  "send-keys": {
+    title: "Send Keys",
+  },
+  "send-mouse-click": {
+    title: "Send Mouse Click",
   },
   "set-key-state": {
     title: "Set Key State",
   },
   "wait-for-mouse": {
     title: "Wait for Mouse",
-  }
+  },
+  "wait-for-shortcut-key": {
+    title: "Wait for Shortcut Key",
+  },
 };
 
 export default meta;

@@ -1,0 +1,95 @@
+import { Callout, Steps } from "nextra/components";
+
+# Extract Substring from Text
+
+The **Extract Substring from Text** node is a tool that helps you extract a specific portion of a text. This is particularly useful for manipulating strings when you need to focus on or isolate parts of text for data processing, cleaning, or transformation tasks.
+
+For instance, you might want to:
+
+- Capture a specific section of a text, such as a product code from a longer description.
+- Trim details to include only relevant information in a report or export.
+- Automatically extract information like names or dates from a standard text format.
+
+{/* ![Extract Substring from Text](./extract-substring.png) */}
+
+## Configuration Options
+
+| Field Name               | Description                                                                                                               | Input Type | Required? | Default Value  |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------- | ---------- | --------- | -------------- |
+| **Original Text**        | The full text value from which to extract a substring.                                                                    | Text       | Yes       | _(empty)_      |
+| **Start Index Type**     | Choose whether to start from the beginning of the text or a specific character position.                                  | Select     | Yes       | StartOfText    |
+| **Start Index**          | The zero-based starting position for extraction. This is applicable only when `Start Index Type` is "Character Position". | Text       | No        | _(empty)_      |
+| **Length Type**          | Select if you want a specific number of characters or to continue until the end of the string.                            | Select     | No        | SpecificLength |
+| **Number of Characters** | How many characters you wish to extract. Appears only if `Length Type` is "Specific Length".                              | Text       | No        | _(empty)_      |
+
+## Expected Output Format
+
+The output of this node is a **text string**, representing the portion of the original text that you specified for extraction.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Extract Substring from Text** node into your flow.
+
+### Step 2
+
+Enter the text you want to extract a portion from in the **Original Text** field.
+
+### Step 3
+
+In the **Start Index Type** dropdown, select your starting point for extraction:
+
+- **Start of Text**: Begin from the very start of your text.
+- **Character Position**: Begin from a specific position in your text.
+
+### Step 4
+
+If you chose **Character Position**, enter the starting position in the **Start Index** field. Remember, this uses a zero-based index (e.g., "0" starts at the first character).
+
+### Step 5
+
+Choose the **Length Type**:
+
+- **Until End**: Continue extraction until the end of the text.
+- **Specific Length**: Specify the number of characters you want to extract.
+
+### Step 6
+
+If you selected **Specific Length**, input the number of characters in the **Number of Characters** field.
+
+### Step 7
+
+The extracted portion will be available as **Substring Result** for use in other nodes.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  The fields **Start Index** and **Number of Characters** appear based on
+  previous selections, such as "Character Position" or "Specific Length". Ensure
+  your inputs make sense contextually.
+</Callout>
+
+## Input/Output Examples
+
+| Start Index Type   | Start Index | Length Type     | Number of Characters | Original Text   | Output Value    |
+| ------------------ | ----------- | --------------- | -------------------- | --------------- | --------------- |
+| Start of Text      | _(n/a)_     | Until End       | _(n/a)_              | "Hello, World!" | "Hello, World!" |
+| Start of Text      | _(n/a)_     | Specific Length | 5                    | "Hello, World!" | "Hello"         |
+| Character Position | 7           | Until End       | _(n/a)_              | "Hello, World!" | "World!"        |
+| Character Position | 7           | Specific Length | 5                    | "Hello, World!" | "World"         |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                               | Solution                                                                                                                                                   |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Start Index or Number of Characters not appearing** | Make sure you have chosen options in **Start Index Type** and **Length Type** that require these fields (e.g., "Character Position" or "Specific Length"). |
+| **Non-existent character position issue**             | Verify that your **Start Index** value is not greater than the text length.                                                                                |
+| **Incorrect output**                                  | Check your starting position and length settings to ensure they match desired extraction.                                                                  |
+
+## Real-World Use Cases
+
+- **Data Parsing**: Isolate a transaction ID from a full log entry.
+- **Text Cleaning**: Extract and display only the first few characters of a lengthy input.
+- **Document Automation**: Select portions of standardized forms or text to insert elsewhere in a workflow.

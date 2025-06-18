@@ -1,41 +1,63 @@
-# Save Outlook Email Messages  
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Save Outlook Email Messages
 
-This feature allows users to save Outlook email messages in a specified format and location. It is useful for archiving or exporting emails for further use or analysis.  
+The **Save Outlook Email Messages** node is designed to save selected email messages from your Outlook email account onto your computer. This can be particularly useful if you need to back up important emails, share them with others, or store them in a different location for compliance or archival purposes.
 
-![Save Outlook Email Messages](../../../assets/outlook/save-outlook-email-messages.png)  
+{/* ![Save Outlook Email Messages](./save-outlook-email-messages.png) */}
 
-## Fields and Options  
+## Configuration Options
 
-### 1. **Email Message(s) to Save** 
+| Field Name              | Description                                                 | Input Type | Required? | Default Value |
+| ----------------------- | ----------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Outlook Application** | The Outlook Application object used to access mail items.   | Text       | Yes       | _(empty)_     |
+| **Email Messages**      | A list of MailItem objects representing the emails to save. | Text       | Yes       | _(empty)_     |
+| **Save Location**       | The folder path where the .msg files should be saved.       | Text       | Yes       | _(empty)_     |
 
-- **Description**: Select the email messages to save.  
-- **Purpose**: This ensures the correct emails are saved.  
+## Expected Output Format
 
-### 2. **Save Format** 
+The output of this node is the saved email messages as **.msg files** on your specified folder path. There is no direct output displayed in the platform as this operation saves files to your file system.
 
-- **Description**: Choose the format in which to save the email messages (e.g., `.msg`, `.eml`, `.txt`).  
-- **Purpose**: This ensures the emails are saved in the desired format.  
+## Step-by-Step Guide
 
-### 3. **File Name** 
+<Steps>
+### Step 1
 
-- **Description**: Specify the file name for the saved email messages.  
-  - **Default**: Use a default naming convention.  
-  - **Custom**: Enter a custom file name.  
-- **Purpose**: This ensures the saved files are named appropriately.  
+Add the **Save Outlook Email Messages** node into your flow.
 
-### 4. **Save Email Message(s) To** 
+### Step 2
 
-- **Description**: Specify the folder or directory where the email messages will be saved.  
-- **Purpose**: This ensures the emails are saved in the correct location.
+In the **Outlook Application** field, specify the Outlook Application object. This allows access to your email account.
 
-## Use Cases
+### Step 3
 
-- **Email Archiving**: Saving emails for long-term storage or compliance purposes.  
-- **Email Export**: Exporting emails for further analysis or sharing.  
-- **Workflow Automation**: Integrating email saving into larger automation workflows.  
+In the **Email Messages** field, list the email items you wish to save. This is typically a selection of emails you want backed up or stored externally.
 
-## Summary
+### Step 4
 
-The **Save Outlook Email Messages** action provides a way to save Outlook emails in a specified format and location. It ensures efficient email archiving and exporting, making it ideal for automation workflows involving Outlook.
+Enter the **Save Location**, which is the folder path on your computer where you want the .msg files to be stored.
+
+### Step 5
+
+Complete the flow to automatically save the selected email messages to the desired folder.
+
+</Steps>
+
+<Callout type="warning" title="Important">
+  Ensure the folder path entered in **Save Location** exists and you have write
+  access to it, otherwise the save operation may fail.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                     | Solution                                                                                                                                             |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Emails not saving**       | Verify that the **Outlook Application** and **Email Messages** fields are correctly filled out with valid objects and email items.                   |
+| **Invalid Save Location**   | Double-check that the folder path is correct and that you have permission to save files there.                                                       |
+| **No .msg files generated** | Ensure that email messages are selected properly and that you have not reached any limits on the number of emails that can be processed at one time. |
+
+## Real-World Use Cases
+
+- **Client Correspondence**: Save important client emails to a secure backup location for long-term storage.
+- **Compliance & Audits**: Automatically archive emails for compliance with company policies or regulatory requirements.
+- **Collaboration**: Share email threads with team members who need access to discussions, without forwarding each email.

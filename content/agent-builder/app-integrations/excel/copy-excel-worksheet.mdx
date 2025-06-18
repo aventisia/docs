@@ -1,38 +1,84 @@
+import { Callout, Steps } from "nextra/components";
+
 # Copy Excel Worksheet
 
-## Description
-This dialog allows users to copy a specific worksheet from one Excel instance to another or within the same workbook. Users can identify the worksheet by either its name or index and specify the target location for the copied sheet.
+The **Copy Excel Worksheet** node makes it simple to duplicate a worksheet from one Excel workbook to another within an automated process. This is useful when copying template sheets, consolidating data from multiple sources, or simply transferring sheets between workbooks for further processing.
 
-![alt text](../../../assets/excel/copy-excel-worksheet.png)
+For example:
 
-## Fields and Options
+- Copying a template worksheet to start a new workbook.
+- Consolidating several sections of data by transferring sheets across workbooks.
+- Sharing specific worksheet data without sharing the entire workbook.
 
-### 1. Source Excel Application
-- A dropdown list where users select an active Excel instance.  
-- Ensures that the copying action is applied to the correct workbook.  
+{/* ![Copy Excel Worksheet](./copy-excel-worksheet.png) */}
 
-### 2. Copy Mode
-- A dropdown allowing users to choose between copying by **Name** or **Index**.  
-- Selecting "Name" enables the **Worksheet Name** field.  
-- Selecting "Index" enables the **Worksheet Index** field.    
+## Configuration Options
 
-### 4. Worksheet Name 
-- A text input field for specifying the sheet name (if copying by name is selected).  
-- The name should match exactly as it appears in Excel.  
+| Field Name                   | Description                                                              | Input Type | Required? | Default Value  |
+| ---------------------------- | ------------------------------------------------------------------------ | ---------- | --------- | -------------- |
+| **Source Excel Application** | The Excel Application object containing the source worksheet.            | Text       | Yes       | _(empty)_      |
+| **Copy Mode**                | Specifies how to identify the source worksheet: by Name or Index.        | Select     | Yes       | Name           |
+| **Worksheet Name**           | The name of the worksheet to copy (required if 'Copy Mode' is 'Name').   | Text       | No        | _(empty)_      |
+| **Worksheet Index**          | The index of the worksheet to copy (required if 'Copy Mode' is 'Index'). | Text       | No        | _(empty)_      |
+| **Target Excel Application** | The Excel Application object where the worksheet will be copied.         | Text       | Yes       | _(empty)_      |
+| **Paste Position**           | Specifies where to paste the copied worksheet in the target workbook.    | Select     | No        | FirstWorksheet |
 
-### 5. Target Excel Application
-- A dropdown list where users select the target Excel instance where the worksheet will be copied.  
-- If left blank, the sheet will be copied within the same workbook.  
+## Expected Output Format
 
-### 6. Paste Position  
-- A text input field where users enter the new name for the copied worksheet **First worksheet** or **Last worksheet**.  
+This node does not directly produce an output value but results in a worksheet being moved from the source to the target workbook within the Excel Application objects specified.
 
-## Use Cases  
+## Step-by-Step Guide
 
-- Duplicating a worksheet for backup or testing purposes.  
-- Copying a worksheet to another Excel instance for data transfer.  
-- Creating templates by copying existing worksheets with predefined formats.  
+<Steps>
+### Step 1
 
-## Summary  
+Add the **Copy Excel Worksheet** node into your flow.
 
-The **Copy Excel Worksheet** dialog provides a simple interface for duplicating a worksheet within the same workbook or transferring it to another Excel instance. Users can copy the sheet by specifying its name or index, ensuring flexibility in automation workflows.  
+### Step 2
+
+Enter or select the **Source Excel Application** that contains the worksheet you want to copy.
+
+### Step 3
+
+Choose the **Copy Mode** from the dropdown:
+
+- **Name**: You need to provide the worksheet's name in the **Worksheet Name** field.
+- **Index**: You need to provide the worksheet's index number in the **Worksheet Index** field.
+
+### Step 4
+
+Write the name of the worksheet in **Worksheet Name**, or its index in **Worksheet Index**, based on the chosen Copy Mode.
+
+### Step 5
+
+Enter or select the **Target Excel Application** to which you want to copy the worksheet.
+
+### Step 6
+
+Optionally, choose the **Paste Position** for the worksheet:
+
+- **First worksheet**: Inserts as the first sheet.
+- **Last worksheet**: Inserts as the last sheet.
+
+After configuration, your worksheet will be duplicated into the specified target workbook.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  Ensure the Excel Application objects (source and target) are properly set up
+  before running the flow, or the process will fail.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                              | Solution                                                                                               |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **Missing Worksheet Name or Index**                  | Ensure you have entered a valid name or index number based on your selected **Copy Mode**.             |
+| **Incorrect Source or Target Excel Application**     | Double-check that you've specified the correct Excel objects for both source and target applications.  |
+| **Worksheet not appearing in the expected position** | Verify the **Paste Position** setting to ensure it matches your intended order in the target workbook. |
+
+## Real-World Use Cases
+
+- **Template Replication**: Copy and use standard worksheets as templates across multiple projects or workbooks.
+- **Data Migration**: Move data sheets to new Excel applications for consolidation or reporting.
+- **Workbook Preparation**: Prepopulate specific workbooks with worksheets necessary before distribution.

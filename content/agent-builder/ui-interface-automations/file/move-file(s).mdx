@@ -1,0 +1,80 @@
+import { Callout, Steps } from "nextra/components";
+
+# Move File(s)
+
+The **Move File(s)** node allows you to transfer multiple files from one location to another on your computer. It's particularly useful for organizing files, moving them to archive folders, or preparing for further file processing.
+
+For example:
+
+- Moving reports from a downloads folder to a specific project folder.
+- Organizing image files from a temporary folder to an image library.
+
+{/* ![Move File(s)](./move-file.png) */}
+
+## Configuration Options
+
+| Field Name             | Description                                                                                   | Input Type | Required? | Default Value |
+| ---------------------- | --------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **File(s) to move**    | The path(s) of the file(s) to move. Supports wildcards like `*.txt` to select multiple files. | Text       | Yes       | _(empty)_     |
+| **Destination folder** | The destination folder where the files will be moved.                                         | Text       | Yes       | _(empty)_     |
+| **If file exists**     | Specifies the behavior when a file already exists in the destination folder.                  | Select     | Yes       | DoNothing     |
+
+## Expected Output Format
+
+The output of this node is a **file path** of the successfully moved file.
+
+- If files are moved, their new locations are returned as a string path (e.g., `/archive/reports/file1.txt`).
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Move File(s)** node to your flow.
+
+### Step 2
+
+In the **File(s) to move** field, enter the path(s) of the file(s) you want to relocate. You can use wildcards to move multiple files of the same type (e.g., all `.txt` files in a directory).
+
+### Step 3
+
+In the **Destination folder** field, specify the target folder where you want these files to be moved.
+
+### Step 4
+
+In the **If file exists** dropdown, select what should happen if a file with the same name already exists in the destination:
+
+- **Do nothing**: The existing file will stay unchanged.
+- **Overwrite**: The existing file in the destination will be deleted and replaced with the new one.
+
+### Step 5
+
+The path of each successfully moved file will be available as **MovedFile** for use in other nodes.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Using wildcards like `*.docx` helps selectively move specific types of files.
+</Callout>
+
+## Input/Output Examples
+
+| Input File Pattern | Destination Folder   | If File Exists | Output File Path               |
+| ------------------ | -------------------- | -------------- | ------------------------------ |
+| `C:/Reports/*.txt` | `C:/Archive/Reports` | Overwrite      | `C:/Archive/Reports/file1.txt` |
+| `/images/*.jpg`    | `/archive/images`    | DoNothing      | `/archive/images/photo1.jpg`   |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                          | Solution                                                                                                          |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **Path not found**               | Ensure the file paths and destination folder paths are correct and accessible. Check for typos in the path names. |
+| **Wildcard not effective**       | Make sure to include the correct wildcard patterns and ensure the folder contains matching file types.            |
+| **Overwriting unintended files** | Double-check that the "If file exists" setting is correctly set to avoid accidental overwrites.                   |
+
+## Real-World Use Cases
+
+- **Project Organization**: Move all project documents from your desktop to a specific project folder.
+- **Regular Backup**: Automated file transfer from working directories to backup locations at the end of each day.
+- **Multi-Format File Handling**: Easily organize multiple file formats, e.g., `.png` or `.jpg`, into categorized folders.
+- **Compliance and Archiving**: Transfer expense reports to an archive folder for compliance or record keeping.

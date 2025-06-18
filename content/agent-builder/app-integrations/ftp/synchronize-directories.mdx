@@ -1,73 +1,116 @@
+import { Callout, Steps } from "nextra/components";
+
 # Synchronize Directories
 
-This screenshot demonstrates an interface for synchronizing directories between a local system and a remote FTP server. Users can specify the synchronization direction, local folder, FTP directory, and additional options like deleting absent files or including subdirectories.
+The **Synchronize Directories** node enables you to manage files between a local directory and a remote FTP server efficiently. This node allows you to upload, download, or synchronize files in both directions, ensuring that your local and remote file systems are harmonized.
 
-![alt text](../../../assets/ftp/synchronize-directories.png)
+This function is particularly valuable when you need to routinely upload updates from a local project folder to a server or keep local backups of remote server directories.
 
----
+{/* ![Synchronize Directories](./synchronize-directories.png) */}
 
 ## Configuration Options
 
-### FTP Connection
-- Select the active FTP connection to use for synchronization.
+| Field Name                           | Description                                                                                | Input Type | Required? | Default Value          |
+| ------------------------------------ | ------------------------------------------------------------------------------------------ | ---------- | --------- | ---------------------- |
+| **FTP Connection**                   | The FtpClient object representing an open connection to an FTP server.                     | Text       | Yes       | _(empty)_              |
+| **Local Directory**                  | The local folder path to synchronize with the remote directory.                            | Text       | Yes       | _(empty)_              |
+| **Remote Directory**                 | The remote folder path to synchronize with the local directory.                            | Text       | Yes       | _(empty)_              |
+| **Sync Mode**                        | Specifies whether to upload, download, or synchronize files in both directions.            | Select     | No        | Upload                 |
+| **File Comparison Method**           | Determines how to recognize files that need synchronization.                               | Select     | No        | ByNameAndSize          |
+| **Delete Files Not Present Locally** | Deletes files from the remote directory not present in the local directory if set to true. | Switch     | No        | _(empty)_              |
+| **Include Subdirectories**           | Includes subdirectories during synchronization if enabled.                                 | Switch     | No        | _(empty)_              |
+| **Overwrite Mode**                   | Specifies conditions for overwriting files on the remote server.                           | Select     | No        | IfNewerOrSizeDifferent |
+| **Timeout Seconds**                  | Maximum time in seconds to wait before synchronization times out.                          | Text       | No        | 30                     |
 
-### Synchronization Direction
-- Choose the direction of synchronization (e.g., `Remote->local` for downloading files).
+## Expected Output Format
 
-### Local Folder
-- Specify the local folder where files will be synchronized.
+The node returns two pieces of numeric data:
 
-### FTP Directory
-- Enter the remote FTP directory to synchronize with the local folder.
+- **Files Transferred**: A number indicating how many files were moved during synchronization.
+- **Directories Created**: A number indicating how many directories were created on the remote server.
 
-### Delete if Source is Absent
--  Enable this option to delete files or folders in the target directory that do not exist in the source directory.
+## Step-by-Step Guide
 
-### Include Subdirectories
-- Enable this option to include subdirectories in the synchronization process.
+<Steps>
+### Step 1
 
-### Time Difference in Minutes
-- Specify the time difference threshold for synchronization (e.g., `0` for no delay).
+Add the **Synchronize Directories** node to your workflow.
 
----
-## Time Difference Ahead
-- Specify whether the server’s time zone is ahead of the local system’s time zone.
+### Step 2
 
----
+In the **FTP Connection** field, input the FtpClient object that connects to your FTP server.
 
-## Output
+### Step 3
 
-### FtpFilesDeleted
-- A list of FTP files that initially existed in the target directory but were deleted after the synchronization process.
+Enter the path for the **Local Directory** you wish to synchronize with the remote directory.
 
-### FtpFilesModified
-- A list of FTP files that initially existed in both the source and target directories and were modified during the synchronization process.
+### Step 4
 
-### FtpFilesAdded
-- A list of FTP files that were added to the target directory during the synchronization process.
+Enter the path for the **Remote Directory** you wish to synchronize.
 
----
+### Step 5
 
-## Example:
-You want to synchronize a remote FTP directory (`/documents`) with a local folder (`C:\LocalDocs`). The server’s time zone is ahead by 2 hours, and you want to track which files were deleted, modified, or added during the process.
----
+Select the desired **Sync Mode** to define how files should be transferred. Options include:
 
-### ex. Input
-- **Time Difference Ahead**: Enabled (server’s time zone is ahead by 2 hours).
----
-### ex. Output
-- **FtpFilesDeleted**:
-/documents/old_report.pdf
-/documents/archived_file.txt
+- **Upload**: From local to remote.
+- **Download**: From remote to local.
+- **Bidirectional**: Both ways.
 
-- **FtpFilesModified**:
-/documents/report1.pdf
-/documents/report2.pdf
+### Step 6
 
-- **FtpFilesAdded**:
-/documents/new_file.docx
-/documents/updated_notes.txt
----
+Choose the **File Comparison Method** to decide how files are compared:
 
-## Summary
-This tool provides advanced synchronization capabilities, including handling time zone differences and generating detailed reports about file changes. It is ideal for maintaining consistent file structures across systems and tracking changes during synchronization.
+- **By Name and Size**: Compares both.
+- **By Name Only**: Only names.
+- **By Name and Date**: Names and modification dates.
+
+### Step 7
+
+(Optional) Set the **Delete Files Not Present Locally** switch to true if you want to remove remote files not found locally.
+
+### Step 8
+
+(Optional) Enable **Include Subdirectories** if you want to include them in the sync process.
+
+### Step 9
+
+Select an **Overwrite Mode** to determine when files should be overwritten:
+
+- **Always**, **Never**, **If newer**, **If size different**, **If newer or size different**.
+
+### Step 10
+
+Set the **Timeout Seconds** to limit how long the synchronization process should attempt before timing out.
+
+### Step 11
+
+After configuration, the synchronization will execute. You can view the **Files Transferred** and **Directories Created** outputs for details.
+
+</Steps>
+
+<Callout type="warning" title="Important Note">
+  Ensure all connection details are accurate in the **FTP Connection** to
+  prevent any synchronization failures.
+</Callout>
+
+## Input/Output Examples
+
+| Local Directory | Remote Directory | Sync Mode | Files Transferred | Directories Created |
+| --------------- | ---------------- | --------- | ----------------- | ------------------- |
+| /local/path     | /remote/path     | Upload    | 10                | 2                   |
+| /local/backup   | /remote/backup   | Download  | 5                 | 1                   |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                    | Solution                                                                          |
+| ------------------------------------------ | --------------------------------------------------------------------------------- |
+| **Incorrect FTP Connection**               | Verify your FTP credentials and connection string.                                |
+| **Cannot find directory path**             | Ensure that the specified local and remote paths exist and are accurate.          |
+| **Unexpected overwrites or missing files** | Review your sync settings and overwrite modes.                                    |
+| **Timeout errors**                         | Increase **Timeout Seconds** if larger datasets or slow connections are expected. |
+
+## Real-World Use Cases
+
+- **Remote Website Updates**: Automatically update live website files from a local development environment.
+- **Data Backup**: Keep a synchronized backup of important server directories locally.
+- **Data Collation**: Combine data from various sources into a central repository using Bidirectional syncing.

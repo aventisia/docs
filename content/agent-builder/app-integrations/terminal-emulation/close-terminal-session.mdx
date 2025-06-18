@@ -1,21 +1,54 @@
+import { Callout, Steps } from "nextra/components";
+
 # Close Terminal Session
 
-## Description
+The **Close Terminal Session** node is designed to terminate an active terminal session identified by a specific Session ID. This is particularly useful when you want to ensure that remote terminal sessions are closed after completing tasks to maintain security and resource efficiency.
 
-This screenshot demonstrates an interface for closing an active terminal session. Users can select the terminal session they want to close and confirm the action.
+{/* ![Close Terminal Session](./close-terminal-session.png) */}
 
-![alt text](../../../assets/terminal-emulation/close-terminal.png)
+## Configuration Options
 
----
+| Field Name    | Description                                               | Input Type | Required? | Default Value |
+| ------------- | --------------------------------------------------------- | ---------- | --------- | ------------- |
+| **SessionId** | The session ID of the terminal session you want to close. | Text       | Yes       | _(empty)_     |
 
-## Configuration
+## Expected Output Format
 
-### Terminal Session to Close
+This node does not produce an output value by itself; it executes an action in the background (i.e., closing the terminal session).
 
-- **Field**: Select the terminal session you want to close.
+## Step-by-Step Guide
 
----
+<Steps>
+### Step 1
 
-## Summary
+Add **Close Terminal Session** node into your flow.
 
-This tool is useful for managing terminal sessions, allowing users to close active sessions when they are no longer needed. It ensures proper cleanup and resource management in terminal emulation environments.
+### Step 2
+
+In the **SessionId** field, enter the session ID of the terminal session that you need to close.
+
+### Step 3
+
+The session specified will be closed, completing the node's task.
+
+</Steps>
+
+<Callout type="info" title="Important Note">
+  Ensure that the **SessionId** entered is correct and active. Closing an
+  incorrect session ID might not yield any action or may disrupt another user's
+  session inadvertently.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                        | Solution                                                                                          |
+| ------------------------------ | ------------------------------------------------------------------------------------------------- |
+| **No session closed**          | Verify that the **SessionId** is correct and refers to an active session that needs to be closed. |
+| **SessionId field left empty** | This field is mandatory; must be filled with a valid session ID before executing the node.        |
+| **Unintended session closed**  | Double-check the session ID input to ensure it matches the intended session to be terminated.     |
+
+## Real-World Use Cases
+
+- **Security Compliance**: Automatically close terminal sessions to prevent unauthorized access when tasks are completed.
+- **Resource Management**: Shut down inactive or unnecessary sessions to free up server resources.
+- **Operational Efficiency**: Ensure terminal sessions are not left open unintentionally to maintain an organized workflow.

@@ -1,45 +1,84 @@
-# Process Email Messages in Outlook  
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Process Email Messages in Outlook
 
-This feature allows users to process email messages in Outlook, such as moving them to a specified mail folder. It is useful for automating email organization and management tasks.  
+The **Process Email Messages in Outlook** node allows you to manage your email messages in Microsoft Outlook directly through this platform. You can use this node to automate actions such as moving emails to different folders or permanently deleting them. This is particularly useful for organizing your inbox or for cleaning up unnecessary email clutter.
 
-![Process Email Messages in Outlook](../../../assets/outlook/process-email-messages-in-outlook.png)  
+- Automate email organization by moving messages to designated folders.
+- Quickly delete unwanted emails to keep your inbox tidy.
 
-## Fields and Options  
+{/* ![Process Email Messages in Outlook](./process-email-messages-outlook.png) */}
 
-### 1. **Outlook Instance** 
+## Configuration Options
 
-- **Description**: Select the Outlook instance where the email messages are located.  
-- **Purpose**: This ensures the action is performed on the correct Outlook instance.  
+| Field Name              | Description                                                                                    | Input Type | Required? | Default Value |
+| ----------------------- | ---------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Outlook Application** | Enter the Outlook application object needed to process emails.                                 | Text       | Yes       | _(empty)_     |
+| **Email Messages**      | Enter the list of email messages you wish to move or delete.                                   | Text       | Yes       | _(empty)_     |
+| **Action Type**         | Select the action to perform on the emails: either delete them or move them.                   | Select     | Yes       | Delete        |
+| **Target Folder**       | Specify the folder to move emails to, if "Move" is selected; options include Inbox, Sent, etc. | Text       | No        | _(empty)_     |
 
-### 2. **Account** 
+## Expected Output Format
 
-- **Description**: Specify the email account from which to process messages.  
-- **Purpose**: This ensures the correct email account is targeted.  
+The output after processing the email messages is simply a confirmation that the emails have been either moved or deleted. This is presented as a **status message**.
 
-### 3. **Email Messages to Process** 
+- If emails are deleted: the output will confirm the deletion.
+- If emails are moved: the output will confirm the move and include the target folder name.
 
-- **Description**: Select the email messages to process (e.g., specific emails, filtered emails).  
-- **Purpose**: This ensures the correct emails are processed.  
+## Step-by-Step Guide
 
-### 4. **Operation** 
+<Steps>
+### Step 1
 
-- **Description**: Choose the operation to perform on the selected email messages:  
-  - **Move Email Messages to Mail Folder**: Move the emails to a specified folder.  
-- **Purpose**: This ensures the desired operation is performed on the emails.  
+Add the **Process Email Messages in Outlook** node into your flow.
 
-### 5. **Mail Folder** 
+### Step 2
 
-- **Description**: Specify the mail folder where the emails will be moved (e.g., Inbox, Archive).  
-- **Purpose**: This ensures the emails are moved to the correct folder.
+In the **Outlook Application** field, enter the Outlook application object you are using to manage your emails.
 
-## Use Cases
+### Step 3
 
-- **Email Organization**: Moving emails to specific folders for better organization.  
-- **Automated Email Management**: Automating tasks like archiving or categorizing emails.  
-- **Workflow Integration**: Integrating email processing into larger automation workflows.  
+Enter the emails you want to process in the **Email Messages** field. This should be a list of emails you wish to manage.
 
-## Summary
+### Step 4
 
-The **Process Email Messages in Outlook** action provides a way to process email messages, such as moving them to a specified folder. It ensures efficient email organization and management, making it ideal for automation workflows involving Outlook.
+In the **Action Type** dropdown, select the desired action for these emails:
+
+- **Delete**: Remove the emails permanently.
+- **Move**: Relocate the emails to another folder.
+
+### Step 5
+
+If "Move" is selected as the **Action Type**, an additional **Target Folder** field will appear. Enter the name of the folder where you wish to move the emails (e.g., Inbox, Sent).
+
+### Step 6
+
+Execute the node to perform the selected action on the emails.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  If you select "Delete" in the **Action Type**, the **Target Folder** field
+  will not appear since it is not needed for deletion.
+</Callout>
+
+## Input/Output Examples
+
+| Action | Input Emails   | Target Folder | Output Message                               |
+| ------ | -------------- | ------------- | -------------------------------------------- |
+| Delete | Email1, Email2 | _(n/a)_       | "Emails have been deleted."                  |
+| Move   | Email1, Email2 | Sent          | "Emails have been moved to the Sent folder." |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                | Solution                                                                                              |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Target Folder field not showing up** | Ensure you have selected "Move" in **Action Type**. This field is only applicable when moving emails. |
+| **Invalid Outlook Application input**  | Double-check that you have entered a valid Outlook Application object.                                |
+| **Emails not processing**              | Confirm that email addresses are correctly entered and formatted in the **Email Messages** field.     |
+
+## Real-World Use Cases
+
+- **Inbox Management**: Automatically move emails from known senders to specific folders like "Clients" or "Partners".
+- **Automated Cleanup**: Regularly delete newsletters or spam emails that overwhelm your inbox.
+- **Project Organization**: Transfer project-related emails to dedicated project folders for easy retrieval.

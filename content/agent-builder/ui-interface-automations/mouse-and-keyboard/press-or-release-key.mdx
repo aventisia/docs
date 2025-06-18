@@ -1,0 +1,88 @@
+import { Callout, Steps } from "nextra/components";
+
+# Press or Release Key
+
+The **Press or Release Key** node enables you to automate keyboard actions by simulating key presses and releases. This node is useful when you need to automate tasks that require pressing or releasing keyboard keys in applications or web forms.
+
+For example:
+
+- Automate repeated keypress tasks in desktop applications.
+- Trigger shortcut keys in software automation.
+
+{/* ![Press or Release Key](./press-or-release-key.png) */}
+
+## Configuration Options
+
+| Field Name                | Description                                                                             | Input Type | Required? | Default Value |
+| ------------------------- | --------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Action To Perform**     | Choose whether to press or release the selected key(s).                                 | Select     | Yes       | _(empty)_     |
+| **Control**               | Include the Control key in the action.                                                  | Switch     | No        |               |
+| **Alt**                   | Include the Alt key in the action.                                                      | Switch     | No        |               |
+| **Shift**                 | Include the Shift key in the action.                                                    | Switch     | No        |               |
+| **Win**                   | Include the Windows key in the action.                                                  | Switch     | No        |               |
+| **Wait Before Releasing** | Time delay in milliseconds before releasing the key (applicable for press action only). | Text       | No        | 0             |
+
+## Expected Output Format
+
+This node does not produce a traditional data output. Instead, it performs an action simulating keyboard key presses or releases. The effect of this node may manifest directly in the application or environment where the node is used.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Press or Release Key** node into your flow.
+
+### Step 2
+
+In the **Action To Perform** dropdown, select whether you want to press or release the key(s). Options include:
+
+- **Press**: Presses and holds the keys.
+- **Release**: Releases the keys.
+
+### Step 3
+
+If necessary, toggle on any of the following keys to include them in your action:
+
+- **Control**
+- **Alt**
+- **Shift**
+- **Win**
+
+### Step 4
+
+(Optional) If you selected **Press** in Step 2, enter a delay in milliseconds in the **Wait Before Releasing** field. This specifies how long to wait before releasing the key(s).
+
+### Step 5
+
+Once configured, the node executes the specified keyboard action when triggered in the flow.
+
+</Steps>
+
+<Callout type="warning" title="Warning">
+  Use this node carefully to avoid sending unintended keypress actions to your
+  applications, especially when working in sensitive or unsaved environments.
+</Callout>
+
+## Input/Output Examples
+
+Here's how different configurations influence the action:
+
+| Action  | Control | Alt | Shift | Win | Wait (ms) | Outcome                                                        |
+| ------- | ------- | --- | ----- | --- | --------- | -------------------------------------------------------------- |
+| Press   | Yes     | No  | No    | No  | 100       | Control key is pressed and held for 100 ms, then released.     |
+| Release | No      | Yes | No    | Yes | _(n/a)_   | Alt and Win keys are released if they were previously pressed. |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                      | Solution                                                                                                                                        |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Action doesn't seem to perform correctly** | Double-check your toggles and settings to ensure the right keys and delays are configured.                                                      |
+| **Unintended keys being pressed**            | Verify that no additional keys or toggles are accidentally activated in your configuration.                                                     |
+| **No visible effect in the application**     | Ensure the application is in the foreground or ready to receive keyboard input when the node executes. Support for certain key combos may vary. |
+
+## Real-World Use Cases
+
+- **Automated Testing**: Simulate user input in software testing scenarios by automating key shortcuts.
+- **Data Entry**: Quickly press a sequence of keys for navigating and entering data in applications.
+- **Shortcut Activation**: Program actions like "Ctrl + S" to automate saving documents in productivity suites.

@@ -1,44 +1,76 @@
-# Set Key State  
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Set Key State
 
-This feature allows users to set the state of a specific key, such as Caps Lock, Num Lock, or Scroll Lock. It is useful for controlling keyboard states during automation workflows.  
+The **Set Key State** node allows you to change the state of certain keys on your keyboard, specifically the Caps Lock, Num Lock, and Scroll Lock keys. This can be particularly useful for automating keyboard-related tasks where you need to ensure that these keys are set to a specific state (On or Off) without manual intervention.
 
-![Set Key State](../../../assets/mouse-and-keyboard/set-key-state.png)  
+By using this node, you can automate tasks such as:
 
-## Fields and Options  
+- Ensuring that Caps Lock is off while inputting passwords.
+- Verifying that Num Lock is on for numeric data entry.
+- Disabling Scroll Lock to maintain scroll functionality in spreadsheets.
 
-### 1. **Key** 
+{/* ![Set Key State](./set-key-state.png) */}
 
-- **Description**: Select the key whose state will be set:  
-  - **Caps Lock**: Set the state of the Caps Lock key.  
-  - **Num Lock**: Set the state of the Num Lock key.  
-  - **Scroll Lock**: Set the state of the Scroll Lock key.  
-- **Purpose**: This ensures the correct key is targeted for state change.  
+## Configuration Options
 
-### 2. **State** 
+| Field Name | Description                                            | Input Type | Required? | Default Value |
+| ---------- | ------------------------------------------------------ | ---------- | --------- | ------------- |
+| **Key**    | Choose which key you want to modify (e.g., Caps Lock). | Select     | Yes       | _(empty)_     |
+| **State**  | Decide whether to set the key state to On or Off.      | Select     | Yes       | _(empty)_     |
 
-- **Description**: Choose the state to set for the selected key:  
-  - **On**: Turn the key state on.  
-  - **Off**: Turn the key state off.  
-- **Purpose**: This ensures the desired state is applied to the key.  
+## Expected Output Format
 
-### 3. **Output** 
+The output of this node doesn't produce a direct output value. Instead, it modifies the state of the selected key on your keyboard.
 
-- **Description**: Retrieve the result of the key state change (if applicable).  
-- **Purpose**: This provides feedback or results for further use in the workflow.  
+## Step-by-Step Guide
 
-### 4. **On Error**
+<Steps>
+### Step 1
 
-- **Description**: Define how errors should be handled during execution (e.g., fail, retry, ignore).  
-- **Purpose**: This ensures proper error handling in case the key state change fails.
+Add the **Set Key State** node into your flow.
 
-## Use Cases
+### Step 2
 
-- **Keyboard State Control**: Turning Caps Lock, Num Lock, or Scroll Lock on or off.  
-- **Workflow Preparation**: Setting keyboard states before performing specific tasks.  
-- **Error Prevention**: Ensuring the correct keyboard state for applications that depend on it.  
+In the **Key** dropdown, select the key whose state you want to change:
 
-## Summary
+- **Caps Lock**: Toggles the Caps Lock state.
+- **Num Lock**: Toggles the Num Lock state.
+- **Scroll Lock**: Toggles the Scroll Lock state.
 
-The **Set Key State** action provides a way to control the state of specific keys, such as Caps Lock, Num Lock, or Scroll Lock. It ensures accurate keyboard state management, making it ideal for automation workflows that require specific key states.
+### Step 3
+
+In the **State** dropdown, select the desired state for the chosen key:
+
+- **On**: Enables the key state.
+- **Off**: Disables the key state.
+
+### Step 4
+
+Once set, the node will update the selected key's state accordingly.
+
+</Steps>
+
+<Callout type="warning" title="Important">
+  Be cautious when modifying key states, as it may affect text input or data
+  entry, particularly if you are leaving any automated process unattended.
+</Callout>
+
+## Input/Output Examples
+
+- Setting Caps Lock to On will activate the Caps Lock key.
+- Switching Num Lock to Off will deactivate the Num Lock key.
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                        | Solution                                                                                    |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **No visible change in key state**             | Ensure your keyboard keys function correctly and there's no physical damage or misbehavior. |
+| **Incorrect key being modified**               | Double-check that you've selected the correct key and state in the configuration options.   |
+| **Automation not triggering the state change** | Confirm the node is properly connected and triggered within your automation flow.           |
+
+## Real-World Use Cases
+
+- **Password Input**: Automatically turn off Caps Lock to avoid common password entry errors.
+- **Data Entry**: Ensure Num Lock is activated for sessions involving numeric keypad usage.
+- **Spreadsheet Navigation**: Deactivate Scroll Lock to enhance navigation efficiency in Excel sheets.

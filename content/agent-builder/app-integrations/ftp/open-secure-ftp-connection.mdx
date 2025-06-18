@@ -1,48 +1,92 @@
+import { Callout, Steps } from "nextra/components";
+
 # Open Secure FTP Connection
 
-This screenshot demonstrates an interface for opening a secure FTP (SFTP) connection to a remote server. Users can specify the host, port, authentication method, and other connection details.
+The **Open Secure FTP Connection** node allows you to establish a secure connection to an FTP server using different secure protocols such as SFTP or FTPS. This node is essential for safely transferring files, managing file access permissions, or logging into FTP servers securely.
 
-![alt text](../../../assets/ftp/open-secure-ftp-connection.png)
+For example:
 
----
+- Connecting to an FTP server securely to upload reports.
+- Downloading data files from a secure server.
+- Managing files on a server without exposing sensitive information via unencrypted connections.
+
+{/* ![Open Secure FTP Connection](./open-secure-ftp-connection.png) */}
 
 ## Configuration Options
 
-### Host
-- Enter the host address of the SFTP server (e.g., `sftp.example.com`).
+| Field Name                        | Description                                                                                                  | Input Type | Required? | Default Value |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **Host**                          | The FTP server URL (e.g., ftp.example.com).                                                                  | Text       | Yes       | _(empty)_     |
+| **Port**                          | The port number for the FTP connection (default is 21 for FTPS, 22 for SFTP).                                | Text       | No        | 22            |
+| **Secure FTP Protocol**           | Specifies the secure FTP protocol to use (SFTP, FTPS explicit, FTPS implicit).                               | Select     | Yes       | _(empty)_     |
+| **Authentication Method**         | Specifies the authentication method to use (Username and password, Private key, Private key and passphrase). | Select     | Yes       | _(empty)_     |
+| **Username**                      | The username for authentication (required if Authentication Method is 'Username and password').              | Text       | No        | _(empty)_     |
+| **Password**                      | The password for authentication (required if Authentication Method is 'Username and password').              | Text       | No        | _(empty)_     |
+| **Path to Private Key**           | The path to the private key file (required if using SFTP with private key).                                  | Text       | No        | _(empty)_     |
+| **Private Key Passphrase**        | The passphrase for the private key (required if using private key with passphrase).                          | Text       | No        | _(empty)_     |
+| **Active Mode**                   | If true, uses active mode for FTP connection.                                                                | Switch     | No        | _(empty)_     |
+| **Accept Untrusted Certificates** | If true, accepts untrusted certificates during TLS negotiation.                                              | Switch     | No        | _(empty)_     |
+| **Timeout**                       | The timeout in seconds for the FTP connection attempt.                                                       | Text       | No        | 10            |
 
-### Port
-- Specify the port number for the SFTP connection (default is `22`).
+## Expected Output Format
 
-### Secure FTP Protocol
-- Specifies the secure FTP protocol to use (SFTP, FTPS explicit, FTPS implicit).
+The output of this node is an **SFTP Connection ID** representing the established secure connection.
 
-### Authentication Method
-- Specifies the authentication method to use (Username and password, Private key, Private key and passphrase).
+## Step-by-Step Guide
 
-### Active Mode
-- If true, uses active mode for FTP connection.
+<Steps>
+### Step 1
 
-### Accept Untrusted Certificates
-- If true, accepts untrusted certificates during TLS negotiation.
+Add the **Open Secure FTP Connection** node into your flow.
 
-### Timeout
-- Set the connection timeout in seconds (e.g., `10`).
+### Step 2
 
-## Outputs
-- **SftpConnection** is a secure FTP connection object for interacting with the remote server.
----
+In the **Host** field, enter the FTP server URL you wish to connect to (e.g., ftp.example.com).
 
-## Example: Input and Output
-You want to connect to an SFTP server with the following details:
-- **Host**: `sftp.example.com`
-- **Port**: `22`
-- **Username**: `user123`
-- **Password**: `password123`
-- **Timeout**: `10` seconds
-### Output
-- **SFTP Connection**: A connection object is created, allowing you to interact with the SFTP server (e.g., list files, upload/download files).
----
+### Step 3
 
-## Summary
-This tool is useful for establishing secure FTP (SFTP) connections to remote servers. It supports authentication via username and password, and allows configuration of connection details like host, port, and timeout.
+Set the **Port** field if the FTP server uses a non-default port.
+
+### Step 4
+
+Choose a **Secure FTP Protocol** from the dropdown to define the encryption method (e.g., SFTP).
+
+### Step 5
+
+Select an **Authentication Method**. Depending on your choice, additional fields may appear:
+
+- If you choose **Username and password**, enter the credentials in the **Username** and **Password** fields.
+- If you choose **Private key** or **Private key and passphrase**, specify the **Path to Private Key** and, if applicable, enter the **Private Key Passphrase**.
+
+### Step 6
+
+Decide on the **Active Mode** and **Accept Untrusted Certificates** options by switching them on if necessary.
+
+### Step 7
+
+Set a **Timeout** duration for how long the connection attempt should last before timing out.
+
+### Step 8
+
+The successfully established connection will be indicated by the **SFTP Connection** output, which you can use in subsequent nodes.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  Ensure the selected authentication method corresponds to the correct fields
+  filled. Missing fields will prevent establishing a secure connection.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                             | Solution                                                                                                                                                          |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Failed to connect to FTP server** | Verify that the correct **Host**, **Port**, and **Secure FTP Protocol** are specified.                                                                            |
+| **Timeout issues**                  | Increase the **Timeout** setting value to allow more time for the connection attempt.                                                                             |
+| **Authentication errors**           | Ensure the **Username**, **Password**, **Path to Private Key**, and **Private Key Passphrase** are accurately provided as per the selected authentication method. |
+
+## Real-World Use Cases
+
+- **Secure File Transfers**: Transfer sensitive financial documents over an encrypted connection to ensure data security.
+- **Automated Backups**: Use SFTP to securely connect to remote servers for scheduled backup retrievals.
+- **Remote Access File Management**: Maintain file structures remotely on secure servers without exposing private information.

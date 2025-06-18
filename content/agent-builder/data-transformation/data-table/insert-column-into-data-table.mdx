@@ -1,0 +1,89 @@
+import { Callout, Steps } from "nextra/components";
+
+# Insert Column Into Data Table
+
+The **Insert Column Into Data Table** node is used to add a new column to an existing data table. You can choose the name, data type, and position for the new column, making it easy to expand and customize your data tables as needed for analysis or reporting tasks.
+
+You might use this feature to:
+
+- Add a new data field for calculations or categorization.
+- Prepare data for reporting by including additional columns.
+- Customize datasets for specific business requirements.
+
+{/* ![Insert Column Into Data Table](./insert-column-into-data-table.png) */}
+
+## Configuration Options
+
+| Field Name          | Description                                                                                                                                                      | Input Type | Required? | Default Value     |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ----------------- |
+| **Data Table**      | The data table you want to modify.                                                                                                                               | Text       | Yes       | _(empty)_         |
+| **Column Name**     | The name for the new column you are adding.                                                                                                                      | Text       | Yes       | _(empty)_         |
+| **Data Type**       | Specify the data type for the new column (e.g., text, number, date).                                                                                             | Text       | Yes       | _(empty)_         |
+| **Insert Location** | Decide where to place the new column: before a specific index or at the end of the table.                                                                        | Select     | No        | BeforeColumnIndex |
+| **Column Index**    | The index at which to insert the column, required if "Insert Location" is set to "Before Column Index". This is zero-based, meaning the first column is index 0. | Text       | No        | _(empty)_         |
+
+## Expected Output Format
+
+The output of this node is a **modified data table** with a new column added as specified. The data table structure remains intact, with the new column included according to your configuration.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Insert Column Into Data Table** node into your flow.
+
+### Step 2
+
+In the **Data Table** field, enter the name of the data table you wish to modify.
+
+### Step 3
+
+Enter the **Column Name** for the new column you want to add.
+
+### Step 4
+
+Specify the **Data Type** of the new column, such as text, number, or date.
+
+### Step 5
+
+Select an **Insert Location** from the dropdown menu:
+
+- **Before Column Index**: To insert the column before a specified index.
+- **End of Data Table**: To append the column at the end.
+
+### Step 6
+
+If you chose "Before Column Index" for **Insert Location**, enter the **Column Index** where the new column should appear.
+
+### Step 7
+
+The updated data table with the newly inserted column will be available for use in other nodes.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Remember to specify the Column Index if you choose "Before Column Index" in
+  the Insert Location to avoid errors.
+</Callout>
+
+## Input/Output Examples
+
+| Column Name | Data Type | Insert Location     | Column Index | Result                                                |
+| ----------- | --------- | ------------------- | ------------ | ----------------------------------------------------- |
+| Age         | Number    | Before Column Index | 2            | New column "Age" is inserted before the third column. |
+| Status      | Text      | End of Data Table   | _(n/a)_      | New column "Status" is added at the end of the table. |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                       | Solution                                                                                                     |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Missing Column Index**      | If "Insert Location" is set to "Before Column Index", ensure the Column Index is provided.                   |
+| **Incorrect Data Table Name** | Double-check that the name of the data table is correct and matches the table you intend to modify.          |
+| **Inconsistent Data Type**    | Ensure the data type specified is compatible with the type of data you will be entering into the new column. |
+
+## Real-World Use Cases
+
+- **Customer Data Enhancement**: Add new columns to a customer data table for tracking additional details like customer age or membership status.
+- **Financial Analysis Preparation**: Insert calculated columns into financial datasets for more detailed analysis and reporting.
+- **Sales Report Customization**: Add columns with new sales metrics or categorizations to enhance standard reports with customized insights.

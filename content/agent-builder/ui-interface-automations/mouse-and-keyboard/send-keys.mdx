@@ -1,0 +1,83 @@
+import { Callout, Steps } from "nextra/components";
+
+# Send Keys
+
+The **Send Keys** node allows you to automatically input text or keystrokes into applications or windows. This can be very useful for automating repetitive tasks where text input is required, such as filling out forms, entering data into software, or navigating through applications using keyboard shortcuts.
+
+For example:
+
+- Sending a predefined message into a chat application.
+- Automating the entry of login credentials in a secure environment.
+- Controlling applications through simulated keyboard operations.
+
+{/* ![Send Keys](./send-keys.png) */}
+
+## Configuration Options
+
+| Field Name                     | Description                                                                                                                 | Input Type | Required? | Default Value |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Send Keys To**               | Defines the target for the keystrokes. You can choose from the active window, a UI element, window handle, or title/class.  | Select     | Yes       | _(empty)_     |
+| **UI Element**                 | The specific UI element to which keys should be sent. Only relevant when the target is "UI element".                        | Text       | No        | _(empty)_     |
+| **Window Handle**              | The specific window handle for targeting the keystrokes. Only relevant for "Window instance/handle".                        | Text       | No        | _(empty)_     |
+| **Window Title**               | Title of the window to send keys to. Used when the target is "Title and/or class".                                          | Text       | No        | _(empty)_     |
+| **Window Class**               | Class name of the target window. Used with "Title and/or class".                                                            | Text       | No        | _(empty)_     |
+| **Text to Send**               | The actual text or keystrokes you want to send. This can include special key codes.                                         | Text       | Yes       | _(empty)_     |
+| **Delay Between Keystrokes**   | Adds a delay in milliseconds between each keystroke, helping to mimic natural typing speed.                                 | Text       | No        | `0`           |
+| **Send Text as Hardware Keys** | Toggle this option to send text using hardware key codes, which can be necessary for certain applications to register them. | Switch     | No        | `false`       |
+
+## Expected Output Format
+
+This node does not produce an output value. Instead, it performs an action within your specified target by sending the keys.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Send Keys** node into your flow.
+
+### Step 2
+
+In the **Send Keys To** dropdown, select where you want the keys to be sent. Options include:
+
+- **Foreground Window**: Sends to the currently active window.
+- **UI Element**: Sends to a specific UI component.
+- **Window Instance/Handle**: Uses a window handle to identify the target.
+- **Title and/or Class**: Uses window title or class for identification.
+
+### Step 3
+
+If you picked **UI Element**, **Window Handle**, or **Title and/or Class**, fill in the corresponding fields: **UI Element**, **Window Handle**, **Window Title**, or **Window Class**.
+
+### Step 4
+
+Enter the desired text or keystrokes in the **Text to Send** field.
+
+### Step 5
+
+Set a **Delay Between Keystrokes** if you want a pause between each key press.
+
+### Step 6
+
+Enable **Send Text as Hardware Keys** if specific hardware key codes are required by the target application.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  Using "Delay Between Keystrokes" helps prevent system overloads during mass
+  keystrokes and mimics more natural human typing.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                | Solution                                                                                                     |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Keys not reaching the right window** | Double-check the location fields (UI Element, Window Handle, etc.) to ensure the correct window is targeted. |
+| **Delay not working as expected**      | Ensure the delay is set as an integer and in milliseconds.                                                   |
+| **Hardware keys not functioning**      | Verify if the target application specifically requires hardware key presses and enable the option if so.     |
+
+## Real-World Use Cases
+
+- **Process Automation**: Automatically fill forms or navigate software where constant text entry is required.
+- **Testing Scenarios**: Simulate user keystrokes for testing applications, especially where manual entry would be time-consuming.
+- **Remote Operations**: Use keystrokes to perform remote operations on PCs where GUI controls are not suitable.

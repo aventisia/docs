@@ -1,68 +1,102 @@
+import { Callout, Steps } from "nextra/components";
+
 # Run Application
 
-## Description
+The **Run Application** node is designed to launch applications or open documents from your computer directly within your workflow. Use this node when you need to automate tasks that involve running software or accessing files not integrated directly into the automation platform.
 
-This interface allows users to execute an application with customizable options.
-![alt text](../../../assets/system/run-application.png)
-![alt text](../../../assets/system/run-application2.png)
+Common uses include:
 
-## **Fields & Descriptions**
+- Launching data processing or reporting software.
+- Opening documents for viewing, editing, or printing.
+- Automating software-driven tasks as part of a comprehensive workflow.
 
-### **1. Application Path** 
+{/* ![Run Application](./run-application.png) */}
 
-- Specifies the full path of the application to run.
-- **Example:** `C:\Program Files\Notepad++\notepad++.exe`
+## Configuration Options
 
-### **2. Command Line Arguments**
+| Field Name                   | Description                                                            | Input Type | Required? | Default Value |
+| ---------------------------- | ---------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Application path**         | The path to the application or document to execute.                    | Text       | Yes       | _(empty)_     |
+| **Command line arguments**   | Optional command-line arguments to pass to the application.            | Text       | No        | _(empty)_     |
+| **Working folder**           | The working directory for the application.                             | Text       | No        | _(empty)_     |
+| **Window style**             | Specifies how the application window should be displayed.              | Select     | No        | _(empty)_     |
+| **After application launch** | Specifies the behavior after launching the application.                | Select     | No        | _(empty)_     |
+| **Timeout**                  | The maximum time (in seconds) to wait for the application to complete. | Text       | No        | 0             |
 
-- Optional parameters to pass to the application.
-- **Example:** `-file "C:\example.txt"`
+## Expected Output Format
 
-### **3. Working Folder**
+This node provides several pieces of information about the launched application:
 
-- The directory in which the application will be executed.
+- **AppProcessId**: The process ID of the launched application (as a number).
+- **AppExitCode**: The exit code of the application if it completes (as a number).
+- **StatusMessages**: Textual information about the application's execution status.
 
-### **4. Window Style**
+## Step-by-Step Guide
 
-- Defines how the application window appears:
-  - `Normal` (default)
-  - `Minimized`
-  - `Maximized`
-  - `Hidden`
+<Steps>
+### Step 1
 
-### **5. After Application Launch**
+Add the **Run Application** node to your workflow.
 
-- Defines what happens after starting the application:
-  - `Continue immediately`
-  - `Wait for the application to exit`
+### Step 2
 
-### **6. Timeout**
+In the **Application path** field, enter the full path to the application or document you wish to open.
 
-- Maximum wait time (in seconds) before stopping execution.
+### Step 3
 
-## **Available Outputs**
+(Optional) Enter any necessary command-line arguments into the **Command line arguments** field.
 
-### **1. AppProcessId** *(Toggle)*
+### Step 4
 
-- Captures the **Process ID (PID)** of the launched application.
-- Useful for tracking or managing the application process later.
+(Optional) Specify a **Working folder** if the application requires it to operate correctly.
 
-### **2. WindowHandle** *(Toggle)*
+### Step 5
 
-- Captures the **Window Handle** when opening a new window.
-- Helps uniquely identify a window for later interactions.
-- **Example Use Case:** Automating window management (minimize, maximize, close).
+Choose a **Window style** from the dropdown to define how the application window should appear:
 
----
+- **Hidden**: The window is not visible.
+- **Normal**: The window is displayed in its default size.
+- **Minimized**: The window starts minimized.
+- **Maximized**: The window starts maximized.
 
-### **How It Works**
+### Step 6
 
-1. Enable the toggle switch for the required output.
-2. The system will capture and store the value when the application launches.
-3. The stored values can be used in later actions or scripts.
+Select an option for **After application launch** to manage how your workflow proceeds:
 
-### **Use Cases**
+- **Continue Immediately**: The workflow continues running right after the application starts.
+- **Wait for Application to Load**: The workflow pauses until the application is fully loaded.
+- **Wait for Application to Complete**: The workflow pauses until the application exits.
 
-- Launching applications with specific parameters  
-- Automating tasks that require a particular program to start  
-- Running batch scripts or command-line utilities  
+### Step 7
+
+(Optional) If you selected **Wait for Application to Complete**, set a **Timeout** value (in seconds).
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  If you opt for "Wait for Application to Complete" in **After application
+  launch**, the **Timeout** field becomes relevant to avoid indefinite waiting
+  periods.
+</Callout>
+
+## Input/Output Examples
+
+| Application path                      | Command line arguments | After application launch         | AppProcessId | AppExitCode | StatusMessages |
+| ------------------------------------- | ---------------------- | -------------------------------- | ------------ | ----------- | -------------- |
+| `C:\Program Files\ExampleApp\app.exe` | `-h`                   | Wait for Application to Complete | 1024         | 0           | _(None)_       |
+| `C:\Docs\Report.docx`                 | _(none)_               | Continue Immediately             | 2048         | _(none)_    | _Running_      |
+| `C:\Tools\calc.exe`                   | _(none)_               | Wait for Application to Load     | 3072         | _(none)_    | _Loaded_       |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                           | Solution                                                                                                   |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Application fails to start**                    | Check the **Application path** for accuracy; ensure the path points directly to an executable or document. |
+| **Timeout does not function**                     | The **Timeout** setting only applies when the "Wait for Application to Complete" option is selected.       |
+| **Incorrect command-line arguments cause errors** | Verify that all **Command line arguments** are supported by the application.                               |
+
+## Real-World Use Cases
+
+- **Data Analysis Automation**: Launch specialized data processing tools with specific datasets as part of an analysis workflow.
+- **Batch Document Printing**: Open and print documents automatically by launching them in a designated document viewer application.
+- **Scheduled Software Maintenance**: Run software updaters or cleanup utilities based on scheduled automation tasks within a larger workflow.

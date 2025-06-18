@@ -9,7 +9,7 @@ const meta: MetaRecord = {
   },
   "click-link-on-web-page": {
     title: "Click Link on Webpage",
-  }, 
+  },
   "close-web-browser": {
     title: "Close Web Browser",
   },
@@ -19,7 +19,7 @@ const meta: MetaRecord = {
   "extract-data-from-web-page": {
     title: "Extract Data from Webpage",
   },
-  "focus-text-feild-on-web-page": {
+  "focus-text-field-on-web-page": {
     title: "Focus Text Feild on Webpage",
   },
   "get-checkbox-value": {
@@ -52,7 +52,7 @@ const meta: MetaRecord = {
   "launch-browser": {
     title: "Launch Browser",
   },
-  "populate-text-feild-on-web-page": {
+  "populate-text-field-on-web-page": {
     title: "Populate Text Feild on Webpage",
   },
   "press-button-on-web-page": {
@@ -61,13 +61,13 @@ const meta: MetaRecord = {
   "run-javascript-function-on-web-page": {
     title: "Run Javascript Function on Webpage",
   },
-  "scroll-to-element-position": {
+  "scroll-to-element-or-position": {
     title: "Scroll to Element Position",
   },
   "select-radio-button-on-web-page": {
     title: "Select Radio Button on Webpage",
   },
-  "set-check-box-state-on-web-page": {
+  "set-checkbox-state-on-web-page": {
     title: "Set Checkbox State on Webpage",
   },
   "set-drop-down-list-value-on-web-page": {

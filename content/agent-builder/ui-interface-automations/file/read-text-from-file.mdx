@@ -1,42 +1,65 @@
+import { Callout, Steps } from "nextra/components";
+
 # Read Text from File
 
-## Description
+The **Read Text from File** node is designed to access and retrieve text content from a specified file. You might use this node when you need to process or analyze the content of a text file without manually opening it. It's particularly useful in automation workflows where text data extraction from files is necessary for further processing or decision-making.
 
-The **Read Text from File** action allows users to extract text content from a specified file and store it as a text variable.
+{/* ![Read Text from File](./read-text-from-file.png) */}
 
-![Read Text from File UI](../../../assets/file/read-text-from-file.png)
+## Configuration Options
 
-## Fields and Options  
+| Field Name       | Description                                    | Input Type | Required? | Default Value |
+| ---------------- | ---------------------------------------------- | ---------- | --------- | ------------- |
+| **File Path**    | The full path of the file to read.             | Text       | Yes       | _(empty)_     |
+| **Trim Content** | Set to true to trim the content after reading. | Switch     | No        | true          |
 
-### 1. **File Path** *(Required)* 
+## Expected Output Format
 
-- Specify the file path from which text should be read.  
-- The file must be accessible and contain readable text data.  
+The output of this node is the **text content** retrieved from the file specified in the file path. The text content can be plain text or formatted text, depending on the file content.
 
-### 2. **Store Content As** *(Required)* 
+## Step-by-Step Guide
 
-- Determines how the text content is stored. Options include:  
-  - **Single text value** – Stores all content as a single string.  
-  - **List of lines** – Splits content into a list, where each item represents a line.  
+<Steps>
+### Step 1
 
-### 3. **Encoding** *(Required)* 
+Add the **Read Text from File** node into your flow.
 
-- Defines the character encoding used to read the file.  
-- Default: **UTF-8** (recommended for most cases).  
-- Other options include ASCII, ISO-8859-1, etc.  
+### Step 2
 
-## Use Cases
+In the **File Path** field, enter the full file path to the text file you wish to read.
 
-- Extracting and processing text from log files, reports, or documents.  
-- Reading structured data stored in plain text files.  
-- Automating file reading in data processing workflows.  
+### Step 3
 
-## Important Notes
+If you want the content to be trimmed (removing leading and trailing spaces), ensure the **Trim Content** switch is turned on. It's switched on by default.
 
-- Ensure the correct **file path** is provided to avoid errors.  
-- Selecting the correct **encoding** is crucial for proper text interpretation.  
-- For large files, consider performance impacts when storing as a **single text value**.  
+### Step 4
 
-## Summary
+Once configured and executed, the node will output the text content as **FileContent** for use in other nodes.
 
-The **Read Text from File** action is a useful tool for reading and processing text-based file content efficiently.
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure the file path is correct and accessible before executing the node,
+  otherwise, it may result in an error.
+</Callout>
+
+## Input/Output Examples
+
+- **File Path**: `C:\Users\Documents\example.txt`
+- **Trim Content**: Switched on
+- **Output**: The content of `example.txt`, trimmed of any leading or trailing whitespace.
+
+## Common Mistakes & Troubleshooting
+
+| Problem                               | Solution                                                                                |
+| ------------------------------------- | --------------------------------------------------------------------------------------- |
+| **Invalid File Path**                 | Ensure that the file path is correct and that the file exists at that location.         |
+| **Empty Output**                      | Check if the file is not empty and confirm that the file path is correct.               |
+| **Unexpected Output with Whitespace** | Ensure "Trim Content" is switched on to remove unwanted leading or trailing whitespace. |
+
+## Real-World Use Cases
+
+- **Data Analysis**: Automatically read configuration files or logs to process data further.
+- **Content Management**: Extract text content from files for use in content management systems.
+- **Automated Reports**: Gather data from text files for inclusion in reports or dashboards.
+- **File Monitoring**: Examine logs or other changing files and trigger actions based on content.

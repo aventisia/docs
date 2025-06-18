@@ -1,26 +1,78 @@
-# Log Off User  
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Log Off User
 
-This feature allows users to log off the current user account from the system. It includes an option to force the logoff, even if there are unsaved files or programs that won’t close.  
+The **Log Off User** node is designed to allow you to log off a session on a Windows computer. This can be useful for ensuring that user sessions are properly terminated, freeing system resources, or preparing a system for shutdown. It offers various methods to perform the logoff operation and can forcefully close applications if they do not respond, ensuring a smooth logoff process.
 
-[Log Off User](../../../assets/workstation/log-off-user.png)  
+{/* ![Log Off User](./log-off-user.png) */}
 
-## Fields and Options  
+## Configuration Options
 
-### 1. **Force** 
+| Field Name          | Description                                                                           | Input Type | Required? | Default Value   |
+| ------------------- | ------------------------------------------------------------------------------------- | ---------- | --------- | --------------- |
+| **Logoff Method**   | Choose the method to use when logging off: Shutdown Command, Windows API, or WTS API. | Select     | No        | ShutdownCommand |
+| **Force Logoff**    | Option to force logoff if applications don't respond.                                 | Switch     | No        | False           |
+| **Timeout Seconds** | Number of seconds to wait before forcing logoff if applications don't respond.        | Text       | No        | 30              |
 
-- **Description**: Specify whether to force the user account to log off:  
-  - **Enabled**: Force logoff, ignoring unsaved files or programs that won’t close.  
-  - **Disabled**: Log off only if all programs and files can be safely closed.  
-- **Purpose**: This ensures the logoff behavior aligns with the workflow requirements.
+## Expected Output Format
 
-## Use Cases
+The node will produce a **Boolean** output, indicating whether the logoff was successfully initiated. The output is titled **Success** and will be `true` if the operation begins properly.
 
-- **System Maintenance**: Logging off users during system updates or maintenance.  
-- **Security**: Forcing logoff to secure the system when unauthorized access is detected.  
-- **Workflow Automation**: Including user logoff as part of larger automation workflows.  
+## Step-by-Step Guide
 
-## Summary
+<Steps>
+### Step 1
 
-The **Log Off User** action provides a way to log off the current user account, with an option to force the logoff if necessary. It ensures proper system management and security during automation workflows.  
+Add the **Log Off User** node to your automation flow.
+
+### Step 2
+
+In the **Logoff Method** dropdown, choose how you want the system to perform the logoff. You have three options:
+
+- **Shutdown Command**: Uses the built-in shutdown.exe command.
+- **Windows API**: Utilizes the ExitWindowsEx function from the Windows API.
+- **WTS API**: Employs the Terminal Services API for logoff.
+
+### Step 3
+
+Decide if you need to force the logoff. Toggle the **Force Logoff** switch:
+
+- **On**: Forces logoff, useful if applications are unresponsive.
+- **Off**: Attempts a regular logoff, allowing time for apps to close.
+
+### Step 4
+
+If you activated **Force Logoff**, set the **Timeout Seconds**. This is how long (in seconds) the system will wait before forcing the logoff.
+
+### Step 5
+
+Once configured, the operation initiates, and you can use the **Success** output to check if the logoff process started successfully.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  It’s often best to avoid using **Force Logoff** unless absolutely necessary,
+  as it may cause unsaved data to be lost.
+</Callout>
+
+## Input/Output Examples
+
+| Logoff Method    | Force Logoff | Timeout Seconds | Success (Output) |
+| ---------------- | ------------ | --------------- | ---------------- |
+| Shutdown Command | Off          | _(n/a)_         | true             |
+| Windows API      | On           | 45              | true             |
+| WTS API          | On           | 30              | true             |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                    | Solution                                                                                                               |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| **Logoff not occurring**                   | Check that the method selected is compatible with your system and that you have the necessary permissions.             |
+| **Force Logoff timeout too short**         | Ensure **Timeout Seconds** is sufficient for your applications to respond, especially if they perform save operations. |
+| **Successful message but still logged in** | Verify all processes are closing; some may become stuck and require attention beyond the automated action.             |
+
+## Real-World Use Cases
+
+- **Scheduled System Maintenance**: Log off users to ensure all processes are ended before maintenance activities.
+- **Shared Computer Environments**: Use in libraries or labs for regular session management.
+- **Automated Recovery Plans**: As part of a recovery protocol, log off users before system reboots or shutdowns.

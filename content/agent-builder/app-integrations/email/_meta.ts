@@ -9,8 +9,7 @@ const meta: MetaRecord = {
   },
   "send-email": {
     title: "Send Email",
-  }
+  },
 };
 
 export default meta;
-

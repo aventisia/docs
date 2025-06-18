@@ -1,10 +1,10 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
-  "comment": {
+  comment: {
     title: "Comment",
   },
-  "end": {
+  end: {
     title: "End",
   },
   "end-region": {
@@ -19,10 +19,10 @@ const meta: MetaRecord = {
   "go-to": {
     title: "Go To",
   },
-  "label": {
+  label: {
     title: "Label",
   },
-  "region": {
+  region: {
     title: "Region",
   },
   "run-subflow": {
@@ -31,10 +31,9 @@ const meta: MetaRecord = {
   "stop-flow": {
     title: "Stop Flow",
   },
-  "wait": {
+  wait: {
     title: "Wait",
   },
-  
 };
 
 export default meta;

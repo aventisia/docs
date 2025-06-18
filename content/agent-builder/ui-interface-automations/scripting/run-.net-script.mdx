@@ -1,34 +1,62 @@
+import { Callout, Steps } from "nextra/components";
+
 # Run .NET Script
 
-## Description
+The **Run .NET Script** node allows you to execute custom .NET script code within your automation flow. This node is beneficial when you need to perform advanced logic or calculations that aren't directly supported by the predefined nodes in the platform.
 
-This section allows users to execute .NET scripts with customizable settings.
+Typical use cases include:
 
-![alt text](../../../assets/scripting/run-.net-script1.png)
-![alt text](../../../assets/scripting/run-.net-script2.png)
+- Performing complex calculations or data manipulations.
+- Integrating with .NET libraries for extended capabilities.
+- Processing data in ways specific to your business logic.
 
-### **1. Language**
+{/* ![Run .NET Script](./run-dotnet-script.png) */}
 
-- Dropdown selection for choosing the .NET scripting language (e.g., C#, F#, VB.NET).
+## Configuration Options
 
-### **2. .NET Script Imports**
+| Field Name           | Description                                                              | Input Type | Required? | Default Value |
+| -------------------- | ------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **.NET Script Code** | The .NET script code to execute. This must be a valid .NET code snippet. | Text       | Yes       | _(empty)_     |
 
-- Area for specifying necessary namespaces and libraries to be imported.
+## Expected Output Format
 
-### **3. References to be Loaded**
+The output of this node is the result of the executed .NET script, and it will be returned as **ScriptOutput**, containing the processed data resulting from your script.
 
-- Input field for listing additional assemblies or references required for script execution.
+- Data Type: Depends on the script logic (e.g., number, text, or any data structure).
+- Format: As defined by the script's return statement.
 
-### **4. Script Parameters**
+## Step-by-Step Guide
 
-- Field to enter parameters that should be passed to the script at runtime.
+<Steps>
+### Step 1
 
-## .NET Code Execution
+Add the **Run .NET Script** node into your flow.
 
-This section allows users to enter and run .NET code.
+### Step 2
 
-### **.NET Code to Run**
+In the **.NET Script Code** field, enter the .NET script that you want to execute. Ensure that it's a valid snippet that can run independently.
 
-- A text editor where users can input the .NET script they want to execute.
+### Step 3
 
-The script will be processed based on the selected language and provided configurations.
+Use the **ScriptOutput** in other nodes to utilize the processed result from your script.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  Ensure that your script is written correctly and accounts for potential
+  exceptions or errors to prevent runtime issues.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                      | Solution                                                                                                       |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Invalid .NET Script Code** | Double-check your script for syntax and logical errors. Use a code editor to validate code.                    |
+| **No Output Received**       | Ensure that your script has a return statement or output assignment defining **ScriptOutput**.                 |
+| **Script Execution errors**  | Look for unhandled exceptions or runtime errors within your code logic that might be causing the node to fail. |
+
+## Real-World Use Cases
+
+- **Custom Data Transformation**: Use .NET code to transform data that doesn't fit standard processing capabilities.
+- **Complex Calculations**: Implement custom numerical calculations directly within your automation.
+- **Data Integration**: Leverage .NET libraries to pull in data from other systems or APIs, enabling more complex workflows.

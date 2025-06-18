@@ -1,47 +1,71 @@
-# Zip Files Action Interface
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Zip Files
 
-This interface allows users to create compressed ZIP archives.
+The **Zip Files** node enables you to compress multiple files or entire folders into a single zip file. This function is useful for reducing file size, organizing multiple files into one package, or preparing files for easy sharing and transfer.
 
-![alt text](../../../assets/compression/zip-files-1.png)
+For example:
 
-## **Fields & Descriptions**
+- Combining several related documents into a single zip file for distribution.
+- Archiving data folders into a compressed format to save storage space.
+- Preparing files for quick and secure upload to servers or emails.
 
-### **1. Archive Path**
+{/* ![Zip Files](./zip-files.png) */}
 
-- Specifies where the ZIP file will be saved.  
-- **Example:** `C:\Users\YourName\Documents\archive.zip`
+## Configuration Options
 
-### **2. File(s) to Zip**
+| Field Name          | Description                                            | Input Type | Required? | Default Value |
+| ------------------- | ------------------------------------------------------ | ---------- | --------- | ------------- |
+| **Source Paths**    | The list of file or folder paths you wish to compress. | Text       | Yes       | _(empty)_     |
+| **Output Zip Path** | The path where the resulting zip file will be saved.   | Text       | Yes       | _(empty)_     |
 
-- List of files or folders to be compressed.  
-- **Example:** `C:\Users\YourName\Documents\file1.txt, file2.docx`
+## Expected Output Format
 
-### **3. Compression Level**
+The output of this node is a **single zip file**, containing all specified files and folders, located at the specified output path.
 
-- Determines the balance between compression speed and file size.  
-- **Options:**
-  - **Best balance of speed and compression** (default)
-  - **Fastest (larger file size, quicker compression)**
-  - **Smallest size (slower compression, highest compression ratio)**
+## Step-by-Step Guide
 
-### **4. Password (Optional)**
+<Steps>
+### Step 1
 
-- Protects the ZIP archive with a password.  
-- **Example:** `mypassword123`
+Add the **Zip Files** node into your flow.
 
-### **5. Archive Comment (Optional)**
+### Step 2
 
-- Adds metadata or notes to the ZIP file.  
-- **Example:** `Backup of project files - February 2025`
+In the **Source Paths** field, enter the paths of the files or folders you want to zip. Ensure paths are separated by commas if you list multiple entries.
 
-### **6. Output**
+### Step 3
 
-- Displays the results or status of the ZIP operation.
+In the **Output Zip Path** field, enter the destination path where the resulting zip file should be saved. Make sure the path includes the desired zip file name with the `.zip` extension.
 
-## **Use Cases**
+### Step 4
 
-✔ Creating backups of important files  
-✔ Compressing multiple files for easy sharing  
-✔ Encrypting files with a password for security  
+The node will process the specified files and folders, compressing them into a zip file located at your defined path.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Verify that all file paths in the **Source Paths** field are correct and
+  accessible to avoid issues during the zipping process.
+</Callout>
+
+## Input/Output Examples
+
+| Source Paths                       | Output Zip Path              | Output Description                                                  |
+| ---------------------------------- | ---------------------------- | ------------------------------------------------------------------- |
+| `/documents/report.docx`           | `/backups/all_reports.zip`   | Zips `report.docx` into `all_reports.zip` at `/backups`             |
+| `/photos/`, `/documents/notes.txt` | `/archives/photos_notes.zip` | Zips contents of `/photos/` and `notes.txt` into `photos_notes.zip` |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                   | Solution                                                                                     |
+| ------------------------- | -------------------------------------------------------------------------------------------- |
+| **Path not found error**  | Ensure all paths in **Source Paths** are correct and accessible.                             |
+| **Output file not saved** | Make sure the **Output Zip Path** includes a valid directory and file name ending in `.zip`. |
+| **Permission denied**     | Verify you have write permissions to the specified output directory.                         |
+
+## Real-World Use Cases
+
+- **Project Archives**: Compress project files into a zip for version control and backup.
+- **Distribution Packages**: Prepare software or document packages for distribution by zipping them.
+- **Email Attachments**: Reduce the size of email attachments by zipping large files before sending.

@@ -1,46 +1,78 @@
+import { Callout, Steps } from "nextra/components";
+
 # Write Text to File
 
-This interface allows you to write specified text to a file with various configuration options.
+The **Write Text to File** node enables you to automatically save text content to a specified file on your computer. This node is helpful when you want to automate the process of creating, updating, or maintaining text files with specific data content. You can decide whether to add new text to the existing content of a file or replace everything in it.
 
-![Write Text to File UI](../../../assets/file/write-text-to-file.png)
+For example:
 
----
+- Saving dynamically generated reports or logs to a file.
+- Appending user inputs to a log file for future reference.
+- Overwriting contents of a configuration file with new settings.
 
-## Input Fields
+{/* ![Write Text to File](./write-text-to-file.png) */}
 
-### File path *(Required)*
-- **Field**: _(Empty in the screenshot)_
-- **Description**: The full path where the file should be created or updated (e.g., `C:\Documents\output.txt`).
+## Configuration Options
 
-### Text to write *(Required)*
-- **Field**: _(Empty in the screenshot)_
-- **Description**: The text content that will be written to the specified file.
+| Field Name        | Description                                          | Input Type | Required? | Default Value |
+| ----------------- | ---------------------------------------------------- | ---------- | --------- | ------------- |
+| **File Path**     | The full file path where the text should be written. | Text       | Yes       | _(empty)_     |
+| **Text to Write** | The text content to write to the file.               | Text       | Yes       | _(empty)_     |
+| **Write Mode**    | Specifies the write mode: Append or Overwrite.       | Select     | No        | Append        |
 
----
+## Expected Output Format
 
-## Options
+This node does not produce a direct output in terms of data. Instead, it performs an action – writing text to a file specified in the **File Path** field. You won’t see an output value like a number or string, but you can verify the action by checking the file contents.
 
-### Append new line
-- **Toggle**: Enabled
-- **Description**: When enabled, a newline character is added after the text (like pressing "Enter").
+## Step-by-Step Guide
 
-### If file exists
-- **Dropdown Selection**: `Overwrite existing content`
-- **Description**: Defines how to handle existing files.
-  - **Options may include**:
-    - `Overwrite existing content`
-    - `Append to existing content`
-    - `Do nothing` or `Fail if exists`
+<Steps>
+### Step 1
 
-### Encoding
-- **Dropdown Selection**: `Unicode`
-- **Description**: Sets the character encoding for the file.
-  - **Common values**: `Unicode`, `UTF-8`, `ASCII`
+Add **Write Text to File** node into your flow.
 
----
+### Step 2
 
-## Notes
+In the **File Path** field, enter the path where you want the text to be saved. Ensure this path includes the full filename and extension (e.g., `C:\Users\YourName\Documents\output.txt`).
 
-- The file will be created if it does not exist.
-- Be cautious when `Overwrite` is selected to prevent accidental data loss.
-- The encoding setting ensures compatibility with systems or applications that read the file.
+### Step 3
+
+In the **Text to Write** field, type or paste the text you want to save into the file.
+
+### Step 4
+
+Choose the **Write Mode** from the dropdown:
+
+- **Append**: Adds the new text to the existing file content.
+- **Overwrite**: Completely replaces the existing content with the new text.
+
+### Step 5
+
+Confirm your settings and execute the node to write the text to the specified file path.
+
+</Steps>
+
+<Callout type="warning" title="Important">
+  Make sure the file path is correct and accessible; otherwise, the text will
+  not be written. Double-check permissions and directory existence.
+</Callout>
+
+## Input/Output Examples
+
+| File Path                    | Text to Write          | Write Mode | File Content After Operation              |
+| ---------------------------- | ---------------------- | ---------- | ----------------------------------------- |
+| `C:\Users\Docs\summary.txt`  | `Monthly sales report` | Append     | Previous content + `Monthly sales report` |
+| `C:\Users\Logs\activity.log` | `User logged in`       | Overwrite  | Only `User logged in` will remain in file |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                              | Solution                                                                                                                          |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Invalid file path or permissions** | Ensure the file path is correct and you have write permissions for the directory.                                                 |
+| **Text not appearing in file**       | Check the Write Mode setting and ensure the path and filename are typed accurately. Also, verify the node execution is completed. |
+
+## Real-World Use Cases
+
+- **Automated Reporting**: Generate text reports periodically and save them with the current date in their filenames.
+- **Log Maintenance**: Continuously append user interactions to a log file for audit trails.
+- **Configuration Management**: Update settings files dynamically by overwriting them with new configurations.

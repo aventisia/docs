@@ -1,3 +1,59 @@
+import { Callout, Steps } from "nextra/components";
+
 # Set Default Printer
 
-Coming soon
+The **Set Default Printer** node allows you to designate a specific printer as the default for your computer. This is useful when you frequently print documents and want to streamline the process by ensuring that they automatically direct to your preferred printer, saving you the step of choosing it each time.
+
+{/* ![Set Default Printer](./set-default-printer.png) */}
+
+## Configuration Options
+
+| Field Name      | Description                                | Input Type | Required? | Default Value |
+| --------------- | ------------------------------------------ | ---------- | --------- | ------------- |
+| **PrinterName** | The name of the printer to set as default. | Text       | Yes       | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node will confirm that the specified printer has been set as the default. There is no numerical or text output, but rather a successful configuration change on your system.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Set Default Printer** node into your flow.
+
+### Step 2
+
+In the **PrinterName** field, enter the exact name of the printer you wish to set as default. This must match the printer name listed in your system settings.
+
+### Step 3
+
+Complete your flow with any additional steps needed, then execute it to update the default printer.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure that the printer you choose is connected and recognized by your system.
+  Use the exact printer name as it appears in your system's printer settings.
+</Callout>
+
+## Input/Output Examples
+
+| PrinterName  | Output Confirmation                             |
+| ------------ | ----------------------------------------------- |
+| "Office HP1" | Printer Office HP1 set as default successfully. |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                     | Solution                                                                                           |
+| --------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Printer not found**       | Double-check that the printer name matches exactly with the one in your system's printer settings. |
+| **Printer is offline**      | Ensure the printer is powered on and connected to the same network or directly to your computer.   |
+| **Default printer not set** | Verify that you have necessary permissions to change default printer settings on your computer.    |
+
+## Real-World Use Cases
+
+- **Office Environment**: Set the office network printer as default to efficiently manage print jobs without manual selection.
+- **Home Office**: Quickly switch your default printer between home and office setups if you work in hybrid environments.
+- **Shared Resources**: Toggle default printers in shared spaces to accommodate different workflows or frequent users.

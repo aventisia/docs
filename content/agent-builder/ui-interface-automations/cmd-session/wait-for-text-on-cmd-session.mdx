@@ -1,37 +1,85 @@
-# **Wait for Text on CMD Session**
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Wait for Text on CMD Session
 
-The **Wait for Text on CMD Session** action allows waiting for a specific text or pattern in an active CMD session before proceeding with further automation.
+The **Wait for Text on CMD Session** node is used to pause a workflow until specific text appears in an open Command Prompt (CMD) session. This is particularly useful when you need to automate tasks that depend on command line outputs, such as loading scripts, monitoring iterative processes, or waiting for specific status messages before proceeding.
 
-![alt text](../../../assets/cmd-session/wait-for-text-on-cmd-session-1.png)
+For example:
 
----
+- Waiting for a specific command output before executing further automation.
+- Automating interactive CMD scripts that require text-based confirmation before continuing.
 
-## **Features & Parameters**
+{/* ![Wait for Text on CMD Session](./wait-for-text-on-cmd-session.png) */}
 
-| Parameter | Description | Example Value |
-|-----------|------------|---------------|
-| **CMD Session** | Specifies the active CMD session to monitor for output text. | `Session_1` |
-| **Text to Wait** | The text or pattern to wait for in the CMD session output. | `Process Complete` |
-| **Is Regular Expression** | If enabled, the text to wait for will be treated as a regular expression. | ❌ Disabled |
-| **Ignore Case** | If enabled, the matching process will be case-insensitive. | ✅ Enabled |
+## Configuration Options
 
----
+| Field Name                | Description                                                                      | Input Type | Required? | Default Value |
+| ------------------------- | -------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **CMD Session**           | The process representing the open CMD session.                                   | Text       | Yes       | _(empty)_     |
+| **Text to Wait For**      | The text or regular expression to wait for in the CMD session output.            | Text       | Yes       | _(empty)_     |
+| **Is Regular Expression** | Specifies if the 'Text to Wait For' is a regular expression.                     | Switch     | No        | false         |
+| **Ignore Case**           | Indicates whether case should be ignored when matching the text.                 | Switch     | No        | true          |
+| **Timeout**               | The maximum time (in seconds) to wait before timing out; enter 0 for no timeout. | Text       | No        | 10            |
 
-## **How It Works**
+## Expected Output Format
 
-1. **Select the CMD Session** – Choose the session where the text should appear.
-2. **Enter the Text to Wait For** – Specify the expected output.
-3. **Enable "Is Regular Expression"** (if needed) – Use regex patterns for advanced matching.
-4. **Enable "Ignore Case"** (if necessary) – Match text regardless of capitalization.
-5. **Click "Submit"** to begin monitoring.
+Once the specified text is detected in the CMD session, the node successfully completes and allows the workflow to resume. There is no direct output other than the node completion status indicating the text was found.
 
----
+## Step-by-Step Guide
 
-## **Use Cases**
+<Steps>
+### Step 1
 
-✔ Synchronizing automation with real-time CMD output  
-✔ Waiting for process completion messages  
-✔ Detecting error messages before proceeding  
-✔ Using regex to match dynamic patterns in CMD logs  
+Add **Wait for Text on CMD Session** node into your flow.
+
+### Step 2
+
+In the **CMD Session** field, specify the open CMD session you are monitoring. This should correspond to a running CMD process.
+
+### Step 3
+
+In the **Text to Wait For** field, enter the text or pattern you expect to see in the session. If the text is part of formatted output, ensure correct syntax.
+
+### Step 4
+
+If the text you're waiting for is a pattern, toggle the **Is Regular Expression** switch to ON.
+
+### Step 5
+
+Decide if you want to ignore case when searching and toggle the **Ignore Case** switch accordingly.
+
+### Step 6
+
+Set a timeout duration in seconds using the **Timeout** field. Set to 0 if you don't want the wait to expire.
+
+### Step 7
+
+The node will complete and allow further workflow steps only after detecting the specified text.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Use a regular expression for flexible text matching if the exact text includes
+  variables or changing content.
+</Callout>
+
+## Input/Output Examples
+
+| CMD Session      | Text to Wait For | Is Regular Expression | Ignore Case | Timeout | Outcome                                                                     |
+| ---------------- | ---------------- | --------------------- | ----------- | ------- | --------------------------------------------------------------------------- |
+| `my-cmd-session` | "Success"        | No                    | Yes         | 10      | Continues when "success" appears (case ignored) within 10 seconds.          |
+| `session-01`     | "^ERROR.\*$"     | Yes                   | No          | 5       | Continues only if a line starts with "ERROR", case-sensitive, in 5 seconds. |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                             | Solution                                                                                    |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **Timeout too short, missing the text**             | Consider increasing the **Timeout** value if the expected text takes longer to appear.      |
+| **Is Regular Expression toggle causing no matches** | Ensure your regular expression syntax is correct and matches the intended output structure. |
+| **CMD Session not found**                           | Verify that the CMD session specified is active and correctly referenced by the workflow.   |
+
+## Real-World Use Cases
+
+- **Deployment Automation**: Pause until deployment scripts output a "Completed" message before proceeding.
+- **Build Systems**: Waits for "Build Successful" from a continuous integration process before notifying teams.
+- **Data Operations**: Monitors directory listings in CMD to ensure a file is processed before triggering downstream tasks.

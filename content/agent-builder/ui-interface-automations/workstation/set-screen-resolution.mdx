@@ -1,31 +1,77 @@
-# Get Screen Resolution  
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Set Screen Resolution
 
-This feature allows users to retrieve the resolution and display settings of a specific monitor. It is useful for workflows that require information about screen dimensions, bit count, or refresh rate.  
+The **Set Screen Resolution** node allows you to specify and adjust the resolution settings of a display device connected to your computer. This includes setting the width, height, bit count, and refresh rate (frequency) for one specific monitor or for all monitors. This node is useful when you need to ensure a particular display setup is maintained, such as in presentations, software testing, or adjusting for specific application requirements.
 
-![Get Screen Resolution](../../../assets/workstation/get-screen-resolution.png)  
+{/* ![Set Screen Resolution](./set-screen-resolution.png) */}
 
-## Fields and Options  
+## Configuration Options
 
-### 1. **Monitor Number** 
+| Field Name    | Description                                                                                                                | Input Type | Required? | Default Value |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Display**   | The name or number of the display to set resolution for. Use 'Primary' for the primary monitor, or 'All' for all monitors. | Text       | Yes       | _(empty)_     |
+| **Width**     | The width of the screen.                                                                                                   | Text       | Yes       | _(empty)_     |
+| **Height**    | The height of the screen.                                                                                                  | Text       | Yes       | _(empty)_     |
+| **Bit Count** | The bit count of the screen, indicating color depth.                                                                       | Text       | Yes       | _(empty)_     |
+| **Frequency** | The frequency (refresh rate) of the screen, indicating how many times the screen is refreshed per second.                  | Text       | Yes       | _(empty)_     |
 
-- **Description**: Specify the monitor number for which to retrieve the resolution.  
-- **Purpose**: This ensures the correct monitor is selected for retrieving resolution details.  
+## Expected Output Format
 
-### 2. **Output**
+The node does not generate a separate output value to be used in other nodes. Instead, it directly alters the screen resolution settings of the specified display device(s).
 
-- **MonitorWidth**: Retrieves the width of the monitor in pixels.  
-- **MonitorHeight**: Retrieves the height of the monitor in pixels.  
-- **MonitorBitCount**: Retrieves the color depth (bit count) of the monitor.  
-- **MonitorFrequency**: Retrieves the refresh rate (frequency) of the monitor in Hz.  
+## Step-by-Step Guide
 
-## Use Cases
+<Steps>
+### Step 1
 
-- **Screen Configuration**: Retrieving monitor resolution for configuring display settings.  
-- **Workflow Adaptation**: Adjusting workflows based on screen dimensions or display capabilities.  
-- **Debugging**: Gathering monitor information for troubleshooting display-related issues.  
+Add the **Set Screen Resolution** node into your flow.
 
-## Summary
+### Step 2
 
-The **Get Screen Resolution** action provides a way to retrieve the resolution, bit count, and refresh rate of a specific monitor. It ensures accurate information about display settings, making it ideal for workflows involving screen configuration or adaptation.
+In the **Display** field, specify which monitor you want to adjust. Use 'Primary' to target the main monitor or 'All' to apply changes to every connected monitor.
+
+### Step 3
+
+Enter the desired screen dimensions in **Width** and **Height** fields, respectively, to define the resolution.
+
+### Step 4
+
+Specify the **Bit Count** to set the color depth of the display.
+
+### Step 5
+
+Enter the **Frequency** to define the refresh rate, ensuring smoother image changes.
+
+</Steps>
+
+<Callout type="warning" title="Important">
+  Ensure that the resolution settings you input are supported by your monitor(s)
+  to avoid display issues.
+</Callout>
+
+## Input/Output Examples
+
+While the **Set Screen Resolution** node does not produce an output value, it modifies the display properties as inputted. For example:
+
+- **Display**: 'Primary'
+- **Width**: '1920'
+- **Height**: '1080'
+- **Bit Count**: '32'
+- **Frequency**: '60'
+
+In this case, the primary display would be set to a resolution of 1920x1080, with a 32-bit color depth and a refresh rate of 60Hz.
+
+## Common Mistakes & Troubleshooting
+
+| Problem                             | Solution                                                                                                                 |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Incorrect Display Specification** | Verify that you correctly specify the display name as 'Primary', 'All', or as a particular display number.               |
+| **Unsupported Resolution Settings** | Check the monitor's documentation to ensure your input values for resolution and frequency are supported.                |
+| **No Visual Changes After Setting** | Ensure that all required fields are accurately filled and refresh settings through the OS display settings if necessary. |
+
+## Real-World Use Cases
+
+- **Switch Configurations for Presentation**: Quickly adjust screen resolution settings for better visibility and formatting during presentations.
+- **Software Testing and Development**: Set specific configurations to test applications on different screen resolutions and refresh rates.
+- **Optimize Display for Multimedia**: Adjust resolution and refresh rate to enhance viewing experiences for videos and games.

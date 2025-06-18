@@ -1,41 +1,67 @@
+import { Callout, Steps } from "nextra/components";
+
 # Get Mouse Position
 
-## Description
+The **Get Mouse Position** node captures the current location of your mouse cursor on the screen or within the active window. This node is useful for automations that depend on mouse coordinates, such as programmatically interacting with elements on a screen, monitoring cursor movement, or tracing screen activity.
 
-The **Get Mouse Position** action retrieves the current position of the mouse cursor relative to a specified reference point.
+{/* ![Get Mouse Position](./get-mouse-position.png) */}
 
-![Get Mouse Position UI](../../../assets/mouse-and-keyboard/get-mouse-position.png)
+## Configuration Options
 
-## Fields and Options  
+| Field Name      | Description                                                                                    | Input Type | Required? | Default Value |
+| --------------- | ---------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Relative To** | Choose if the mouse position should be relative to the whole screen or just the active window. | Select     | No        | _(empty)_     |
 
-### **1. Relative To** 
+## Expected Output Format
 
-- Defines the reference point for mouse position measurement.
-- Options:
-  - **Screen** (default): Retrieves the cursor's position relative to the entire screen.
-  - **Window**: Retrieves the cursor's position relative to the active window.
-  - **Element**: Retrieves the cursor's position relative to a specific UI element.
+The output of this node consists of two values representing the mouse position in pixels:
 
-### **2. Output**
+- **MousePosX**: Horizontal position (X axis) as a number.
+- **MousePosY**: Vertical position (Y axis) as a number.
 
-- **Mouse X Position**: Returns the horizontal (X) coordinate of the mouse.  
-- **Mouse Y Position**: Returns the vertical (Y) coordinate of the mouse.  
+## Step-by-Step Guide
 
-### **3. On Error** 
+<Steps>
+### Step 1
 
-- Defines an action to take if an error occurs (e.g., unable to detect cursor position).
+Add **Get Mouse Position** node into your flow.
 
-## Use Cases
+### Step 2
 
-- Tracking user interaction for analytics.  
-- Implementing custom cursor-based actions.  
-- Automating UI workflows that depend on mouse position.
+Click on the **Relative To** dropdown option. Select:
 
-## Important Notes
+- **Screen** to get the mouse position relative to the entire screen.
+- **Foreground Window** to get the mouse position relative to the current active window.
 
-- Ensure the reference frame is correctly set to get accurate coordinates.  
-- This action does not track movement over time, only capturing a snapshot of the current position.
+### Step 3
 
-## Summary
+Connect the node's output to subsequent nodes to use **MousePosX** and **MousePosY** values in your automation.
 
-The **Get Mouse Position** action is useful for detecting cursor location in automation and interaction tracking.
+</Steps>
+
+<Callout type="info" title="Note">
+  The default output values for **MousePosX** and **MousePosY** are available
+  immediately upon node execution. No additional configuration is needed in this
+  node.
+</Callout>
+
+## Input/Output Examples
+
+| Relative To       | Output MousePosX | Output MousePosY | Output Type    |
+| ----------------- | ---------------- | ---------------- | -------------- |
+| Screen            | 1200             | 500              | Number (Pixel) |
+| Foreground Window | 300              | 200              | Number (Pixel) |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                       | Solution                                                                                                             |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Outputs not as expected**   | Make sure you've selected the correct option in the **Relative To** dropdown as this affects the output values.      |
+| **Node not providing output** | Ensure that the node is correctly connected and executed within a flow context where mouse position can be captured. |
+
+## Real-World Use Cases
+
+- **Automated Testing**: Retrieve mouse position to validate cursor actions in user interface tests.
+- **Game Development**: Capture and react to mouse movements for dynamic interactions or in-game mechanics.
+- **Creative Applications**: Monitor and use cursor positions for interactive art or performance tools.
+- **Surveillance Tools**: Log or monitor cursor movement for user behavior analysis.

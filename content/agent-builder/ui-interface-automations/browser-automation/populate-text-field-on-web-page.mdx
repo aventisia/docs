@@ -1,0 +1,89 @@
+import { Callout, Steps } from "nextra/components";
+
+# Populate Text Field on Web Page
+
+The **Populate Text Field on Web Page** node allows you to automatically fill in text fields on a web page with specified text. This is useful for automating form submissions, logins, or any scenario where you need to input text into web forms efficiently.
+
+For example:
+
+- Automatically fill in a username and password on a login page.
+- Populate contact details into web forms for registration purposes.
+- Enter search terms into search fields on e-commerce sites for automation testing.
+
+{/* ![Populate Text Field on Web Page](./populate-text-field.png) */}
+
+## Configuration Options
+
+| Field Name                  | Description                                                                        | Input Type | Required? | Default Value |
+| --------------------------- | ---------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Web Browser Instance**    | Enter or choose the variable that contains the web browser instance to work with.  | Text       | Yes       | _(empty)_     |
+| **Find Type**               | Specifies how to find the element (e.g., ID, XPath, CssSelector).                  | Select     | No        | XPath         |
+| **Value To Find**           | The value used to locate the element (e.g., 'username', '//input[@id='email']').   | Text       | No        | _(empty)_     |
+| **Text To Populate**        | The text to type into the text field.                                              | Text       | Yes       | _(empty)_     |
+| **Input Mode**              | Specifies whether to use plain text or secure string input.                        | Select     | No        | PlainText     |
+| **Field Content Action**    | Specifies what to do if the text field already has content.                        | Select     | No        | ReplaceText   |
+| **Wait For Element**        | If true, waits for the element to appear before typing.                            | Switch     | No        | True          |
+| **Timeout Seconds**         | Maximum time in seconds to wait for the element before failing.                    | Text       | No        | 60            |
+| **Emulate Typing**          | If true, types character-by-character instead of pasting all at once.              | Switch     | No        | _(empty)_     |
+| **Use Physical Keystrokes** | If true, uses JavaScript to simulate real keyboard interaction.                    | Switch     | No        | _(empty)_     |
+| **Unfocus After Typing**    | If true, unfocuses the text box after filling it (e.g., to trigger auto-complete). | Switch     | No        | _(empty)_     |
+| **Wait for Page Load**      | If true, waits for the page to fully load before proceeding.                       | Switch     | No        | _(empty)_     |
+| **Handle Dialog**           | Specifies what to do if a dialog appears after populating the field.               | Select     | No        | DoNothing     |
+| **Dialog Button to Press**  | The name of the button to press if a dialog appears (e.g., 'Ok', 'Cancel').        | Text       | No        | Ok            |
+
+## Expected Output Format
+
+There is no direct output from this node since its purpose is to interact with web page text fields. It affects the state of the web page by populating text fields as configured.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Populate Text Field on Web Page** node into your flow.
+
+### Step 2
+
+In the **Web Browser Instance** field, specify the browser instance that contains the web page you wish to interact with.
+
+### Step 3
+
+Choose the **Find Type** from the dropdown to determine how to locate the text field on the web page.
+
+### Step 4
+
+Enter the **Value To Find** associated with the chosen **Find Type** to accurately pinpoint the text field.
+
+### Step 5
+
+Fill in the **Text To Populate** field with the text you want to enter into the web page's text field.
+
+### Step 6
+
+Optionally configure **Input Mode**, **Field Content Action**, **Wait For Element**, and other settings based on your automation needs.
+
+### Step 7
+
+Once configured, run the flow, and the node will populate the specified text field on the web page as per your settings.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  The node works with various locator strategies like XPath, ID, and CSS
+  selectors to ensure flexibility in finding web elements.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                           | Solution                                                                                                                           |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **Element not found**             | Ensure the correct **Find Type** and **Value To Find** are used. Double-check selectors and values against the web page structure. |
+| **Text not entering**             | Confirm the **Web Browser Instance** is correctly specified and active.                                                            |
+| **Timeout errors**                | Increase the **Timeout Seconds** value if the page or element takes longer to load or appear.                                      |
+| **Unexpected dialog not managed** | Set the **Handle Dialog** option to appropriately manage any dialogs that may pop up after populating the field.                   |
+
+## Real-World Use Cases
+
+- **Automated Login**: Fill out login forms with pre-defined credentials for automatic testing or routine access.
+- **Data Entry**: Populate long forms or surveys efficiently to save time in repetitive data entry tasks.
+- **Testing Automation**: Fill input fields with test values to ensure forms and fields behave correctly during automated testing procedures.

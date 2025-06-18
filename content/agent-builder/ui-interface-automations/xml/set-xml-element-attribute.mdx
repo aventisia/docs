@@ -1,58 +1,79 @@
+import { Callout, Steps } from "nextra/components";
+
 # Set XML Element Attribute
 
-## Description
+The **Set XML Element Attribute** node allows you to modify XML document attributes by specifying the element's XPath and setting a new attribute value. This is particularly useful for updating data stored in XML format, such as configuration files or data feeds.
 
-The **Set XML Element Attribute** action allows modifying an attribute value within an XML document using an XPath query.
+For example:
 
-![Set XML Element Attribute UI](../../../assets/xml/set-xml-element-attribute.png)
+- Adding or modifying an attribute on a specific XML element.
+- Dynamically updating attributes in XML documents used in web services or integrations.
 
-## Fields and Options  
+{/* ![Set XML Element Attribute](./set-xml-element-attribute.png) */}
 
-### **1. XML Document**   
+## Configuration Options
 
-- Select the XML document variable where the attribute should be set.
+| Field Name           | Description                                 | Input Type | Required? | Default Value |
+| -------------------- | ------------------------------------------- | ---------- | --------- | ------------- |
+| **XML Content**      | The XML content as a string.                | Text       | Yes       | _(empty)_     |
+| **XPath Expression** | The XPath expression to locate the element. | Text       | Yes       | _(empty)_     |
+| **Attribute Name**   | The name of the attribute to set.           | Text       | Yes       | _(empty)_     |
+| **Attribute Value**  | The value to set for the attribute.         | Text       | Yes       | _(empty)_     |
 
-### **2. XPath Query**   
+## Expected Output Format
 
-- Provide an **XPath query** to locate the XML element where the attribute needs to be set.
-- Example:  
+The output of this node is **Updated XML Content**, which is an XML string with the modified attribute set.
 
-  ```xpath
-  /bookstore/book[@category='fiction']
-  ```
+## Step-by-Step Guide
 
-This selects \<book> elements where the category attribute is "fiction".
+<Steps>
+### Step 1
 
-### **3. Attribute Name (Required) 🛈
+Add **Set XML Element Attribute** node into your flow.
 
-The name of the attribute that should be set or modified.
+### Step 2
 
-Example:
+In the **XML Content** field, enter the XML string where you want to set an attribute.
 
-If the XML contains \<book title="XML Guide">, specifying title will modify its value.
+### Step 3
 
-### **4. Attribute Value (Required) 🛈
+Fill in the **XPath Expression** field with the XPath that points to the specific XML element you want to edit.
 
-The new value to assign to the specified attribute.
+### Step 4
 
-Example:
+Enter the **Attribute Name** of the attribute you wish to set or update.
 
-Setting Attribute Name as title and Attribute Value as "Advanced XML" will modify:
+### Step 5
 
-```xml
-\<book title="Advanced XML">
-```
+In the **Attribute Value** field, provide the new value for the attribute.
 
-## Use Cases
+### Step 6
 
-Updating metadata in XML documents.
-Modifying configuration settings in XML files.
-Automating structured data updates.
-Important Notes
-Ensure the XPath query correctly identifies the target element.
-If the attribute does not exist, it will be created.
-If the element does not exist, the action may fail.
+The **Updated XML Content** output will now contain the modified XML with your specified attribute changes.
 
-## Summary
+</Steps>
 
-The Set XML Element Attribute action enables precise modification of XML attributes using XPath, making it useful for automation workflows involving XML data manipulation.
+<Callout type="info" title="Note">
+  Ensure the XPath expression correctly identifies the intended elements within
+  your XML to avoid unexpected results.
+</Callout>
+
+## Input/Output Examples
+
+| XML Content Sample                                  | XPath Expression | Attribute Name | Attribute Value | Output Value                                                  | Output Type |
+| --------------------------------------------------- | ---------------- | -------------- | --------------- | ------------------------------------------------------------- | ----------- |
+| `<book><title>XML Developer's Guide</title></book>` | `//title`        | `lang`         | `en`            | `<book><title lang="en">XML Developer's Guide</title></book>` | XML String  |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                              | Solution                                                                               |
+| ------------------------------------ | -------------------------------------------------------------------------------------- |
+| **Invalid XPath expression**         | Ensure that your XPath expression is correct and can locate the appropriate element.   |
+| **Attribute not being set**          | Verify that the Attribute Name is correctly spelled and not already present elsewhere. |
+| **Incorrect XML Content formatting** | Ensure the XML Content is correctly formatted and valid XML syntax is maintained.      |
+
+## Real-World Use Cases
+
+- **Configuration Updates**: Dynamically update application settings stored in XML files.
+- **Data Exchange**: Modify XML-based data feeds for integrations with external systems.
+- **Web Services**: Customize response XML in web services by adjusting XML data attributes on-the-fly.

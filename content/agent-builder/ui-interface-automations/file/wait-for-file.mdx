@@ -1,42 +1,80 @@
-# Wait for File  
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Wait For File
 
-This feature allows users to wait for a file to be created at a specified path. It includes options to set a timeout or wait indefinitely, ensuring flexibility in automation workflows.  
+The **Wait For File** node is designed to monitor your computer's file system for specific changes. It pauses the execution of your automation until a selected file is either created or deleted, based on your specified conditions. This node is particularly helpful in workflows where the presence or absence of a file signals the next step in the process.
 
-![Wait for File](../../../assets/file/wait-for-file.png)  
+For instance, use this when you need to pause until a report is generated or to wait for a temporary file to be removed as a signal to proceed.
 
-## Fields and Options  
+{/* ![Wait For File](./wait-for-file.png) */}
 
-### 1. **Wait for File to Be** 
+## Configuration Options
 
-- **Description**: Choose the condition to wait for:  
-  - **Created**: Wait for the file to be created at the specified path.  
-- **Purpose**: This ensures the correct condition is monitored.  
+| Field Name                  | Description                                                                                                  | Input Type | Required? | Default Value |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------- | --------- | ------------- |
+| **File Path**               | The full path of the file to wait for.                                                                       | Text       | Yes       | _(empty)_     |
+| **Wait for File to be**     | Specifies whether to wait for file creation or deletion.                                                     | Select     | No        | Create        |
+| **Fail with Timeout Error** | Enable this to fail the activity if the file does not appear within the specified duration.                  | Switch     | No        | false         |
+| **Duration (seconds)**      | The maximum time to wait for the file before timing out. Only shows if 'Fail with Timeout Error' is enabled. | Text       | No        | 5             |
 
-### 2. **File Path** 
+## Expected Output Format
 
-- **Description**: Enter the full path of the file to wait for (e.g., `C:\Documents\example.txt`).  
-- **Purpose**: This ensures the correct file is monitored for creation.  
+This node outputs a **boolean value** indicating whether the file change (creation or deletion) was detected within the specified conditions.
 
-### 3. **Fall with Timeout Error** 
+- `true`: The file was successfully created or deleted as specified.
+- `false`: The file did not meet the specified conditions within the allotted time.
 
-- **Description**: Specify whether the action should wait indefinitely or fail after a set time period:  
-  - **Enabled**: Fail after the specified duration.  
-  - **Disabled**: Wait indefinitely for the file to be created.  
-- **Purpose**: This ensures the action behaves as expected based on the workflow requirements.  
+## Step-by-Step Guide
 
-### 4. **Duration** 
+<Steps>
+### Step 1
 
-- **Description**: Set the maximum time (in seconds) to wait for the file to be created (if timeout is enabled).  
-- **Purpose**: This ensures the action fails gracefully if the file is not created within the specified time.
+Add the **Wait For File** node into your automation flow.
 
-## Use Cases
+### Step 2
 
-- **File Monitoring**: Waiting for a file to be created before proceeding with further actions.  
-- **Workflow Synchronization**: Ensuring a file is available before processing it.  
-- **Error Handling**: Preventing indefinite waits by setting a timeout for file creation.  
+In the **File Path** field, enter the complete file path you wish to monitor. Ensure the path is correct and accessible.
 
-## Summary
+### Step 3
 
-The **Wait for File** action provides a way to wait for a file to be created at a specified path, with options to set a timeout or wait indefinitely. It ensures reliable synchronization and error handling in automation workflows involving file operations.
+Use the **Wait for File to be** dropdown to choose whether you are waiting for the file to be "Created" or "Deleted".
+
+### Step 4
+
+To handle situations where the file change may not happen, toggle the **Fail with Timeout Error** switch to enable or disable this option.
+
+### Step 5
+
+If you chose to enable **Fail with Timeout Error**, specify the **Duration (seconds)** to set a maximum wait time.
+
+### Step 6
+
+Once configured, proceed with the rest of your flow. The node will wait accordingly and produce a boolean output reflecting the result.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  If waiting indefinitely isn't an option, ensure you enable "Fail with Timeout
+  Error" to control the flow's responsiveness.
+</Callout>
+
+## Input/Output Examples
+
+| File Path                | Wait Mode | Timeout Enabled | Duration (sec) | Output |
+| ------------------------ | --------- | --------------- | -------------- | ------ |
+| `C:\Reports\Summary.txt` | Created   | Yes             | 10             | true   |
+| `C:\Temp\RemoveMe.tmp`   | Deleted   | No              | _(n/a)_        | false  |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                              | Solution                                                                                                                  |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| **Incorrect File Path**              | Double-check the file path for typos or incorrect directory references. Verify the file is accessible by the application. |
+| **File not detected within timeout** | Ensure the timeout duration is sufficient for the file operation expected. Consider adjusting the duration or workflow.   |
+| **Duration field not appearing**     | Enable "Fail with Timeout Error" to adjust the wait duration for file operations.                                         |
+
+## Real-World Use Cases
+
+- **Batch Processing**: Wait for a batch file to signal completion before starting data processing.
+- **Report Generation**: Pause workflow until a report file appears at a specified location.
+- **Cleanup Operations**: Ensure that temporary files are deleted before moving to the next step in a maintenance process.

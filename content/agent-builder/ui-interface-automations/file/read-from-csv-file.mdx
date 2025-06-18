@@ -1,51 +1,92 @@
+import { Callout, Steps } from "nextra/components";
+
 # Read from CSV File
 
-## Description
+The **Read from CSV File** node is designed to help you import data from a CSV (Comma-Separated Values) file into your automated process. This is useful when you need to process or analyze data stored in spreadsheets or exported from different systems.
 
-The **Read from CSV File** action allows users to extract data from a CSV file and store it as a structured data table.
+It lets you specify which file to read, choose how to separate the data columns, and configure reading options such as encoding and trimming whitespace. This node is perfect for tasks such as data migration, reporting, or data cleansing.
 
-![Read from CSV File UI](../../../assets/file/read-from-csv-file.png)
+{/* ![Read from CSV File](./read-from-csv-file.png) */}
 
-## Fields and Options  
+## Configuration Options
 
-### 1. **File Path** *(Required)* 
+| Field Name                           | Description                                                            | Input Type | Required? | Default Value |
+| ------------------------------------ | ---------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **File Path**                        | The full path of the CSV file to read.                                 | Text       | Yes       | _(empty)_     |
+| **Encoding**                         | The encoding of the CSV file.                                          | Select     | No        | UTF8          |
+| **Trim Fields**                      | Specifies whether to trim whitespace from the fields.                  | Switch     | No        | Enabled       |
+| **First Line Contains Column Names** | Specifies whether the first row of the CSV file contains column names. | Switch     | No        | Enabled       |
+| **Columns Separator**                | The type of separator used in the CSV file (Predefined or Custom).     | Select     | No        | Predefined    |
+| **Predefined Separator**             | The predefined delimiter used in the CSV file (e.g., Comma, Tab).      | Select     | No        | Comma         |
+| **Custom Separator**                 | The custom delimiter used in the CSV file.                             | Text       | No        | _(empty)_     |
 
-- Specify the full file path of the CSV file to be read.  
-- The file must be accessible from the specified location.  
+## Expected Output Format
 
-### 2. **Encoding** *(Optional)* 
+The output of this node is a **DataTable** containing the content of the CSV file. Each row in the CSV file becomes a row in the DataTable, and each CSV column corresponds to a DataTable column.
 
-- Defines the character encoding used to read the file.  
-- Default: **UTF-8** (recommended for most cases).  
-- Other options include ASCII, ISO-8859-1, etc.  
+- **Output Value**: CsvTable
 
-### 3. **Advanced** *(Optional)*
+## Step-by-Step Guide
 
-- This section may contain additional settings, such as delimiter selection and header row inclusion (if available in the tool).  
+<Steps>
+### Step 1
 
-### 4. **Output** *(Required)*
+Add the **Read from CSV File** node into your flow.
 
-- **CSVTable** (Enabled by default)  
-  - Stores the contents of the CSV file as a structured data table.  
-  - This allows for further processing, filtering, and transformation of data.  
+### Step 2
 
-### 5. **On Error** *(Optional)*
+In the **File Path** field, enter the full path of the CSV file you wish to read.
 
-- Defines how errors should be handled if the file cannot be read.  
-- Options may include logging errors or stopping execution (if applicable in the tool).  
+### Step 3
 
-## Use Cases
+Select the **Encoding** option suited to your file's format. If unsure, the default **UTF-8** usually works.
 
-- Importing tabular data for further processing.  
-- Extracting structured data from a CSV file for automation or reporting.  
-- Transforming CSV data into a format compatible with databases or APIs.  
+### Step 4
 
-## Important Notes
+Decide whether to enable **Trim Fields**. This will remove any extra spaces from your data.
 
-- Ensure that the file path is correctly specified to avoid errors.  
-- The selected encoding should match the CSV file’s encoding to prevent character corruption.  
-- Large CSV files may take longer to process.  
+### Step 5
 
-## Summary
+Choose whether the **First Line Contains Column Names**. This affects how the DataTable is formatted.
 
-The **Read from CSV File** action is a powerful tool for extracting and processing structured data efficiently.
+### Step 6
+
+In the **Columns Separator** dropdown, select **Predefined** or **Custom** to specify how your columns are separated:
+
+- If **Predefined**, choose from common separators like **Comma**, **Tab**, or **Semicolon**.
+- If **Custom**, enter your own custom separator character in the **Custom Separator** field that appears.
+
+### Step 7
+
+Once configured, the CSV will be read into a DataTable named **CsvTable** for subsequent use in your workflow.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Use the **Custom Separator** option if you're dealing with unusual or specific
+  delimiters not covered by the predefined choices.
+</Callout>
+
+## Input/Output Examples
+
+| Separator Type | Predefined Separator | Custom Separator | Output Table                       | Output Type                     |
+| -------------- | -------------------- | ---------------- | ---------------------------------- | ------------------------------- | --- | --------- |
+| Predefined     | Comma                | _(n/a)_          | Rows and columns from the CSV file | DataTable                       |
+| Predefined     | Tab                  | _(n/a)_          | Rows and columns separated by tabs | DataTable                       |
+| Custom         | _(n/a)_              | `                | `                                  | Rows and columns separated by ` | `   | DataTable |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                     | Solution                                                                                                |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **File cannot be found**                    | Double-check the file path for accuracy or ensure the file exists at the specified location.            |
+| **Incorrect column separation**             | Adjust the **Columns Separator** settings to the correct type (Predefined or Custom as needed).         |
+| **Data appears with unexpected whitespace** | Make sure **Trim Fields** is enabled to remove these excess whitespaces.                                |
+| **First row data appears as column names**  | Ensure **First Line Contains Column Names** is enabled only if your first row truly holds column names. |
+
+## Real-World Use Cases
+
+- **Data Import**: Quickly import spreadsheet data into your system for processing.
+- **Generating Reports**: Automatically read and summarize CSV data for business reports.
+- **Data Conversion**: Read data from CSV to prepare it for entry into a database.
+- **Analysis Preparation**: Load CSV data for detailed analysis by data scientists or analysts.

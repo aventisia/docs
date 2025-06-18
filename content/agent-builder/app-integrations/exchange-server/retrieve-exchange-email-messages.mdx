@@ -1,89 +1,102 @@
+import { Callout, Steps } from "nextra/components";
+
 # Retrieve Exchange Email Messages
 
-This interface enables users to **retrieve email messages** from an Exchange server, allowing configuration of mailbox type, folders, filters, and read status.
+The **Retrieve Exchange Email Messages** node allows you to access and process your emails from an Exchange server. You can retrieve emails from personal or shared mailboxes based on various criteria, filter specific messages, and decide how to handle attachments. This is useful for automating email workflows, managing inbox content, and integrating email data with other applications.
 
-![alt text](../../../assets/exchange-server/retrieve-exchange-email-messages1.png)
-
-![alt text](../../../assets/exchange-server/retrieve-exchange-email-messages2.png)
-
----
+{/* ![Retrieve Exchange Email Messages](./retrieve-exchange-email-messages.png) */}
 
 ## Configuration Options
 
-### Exchange Connection
-- Specifies the **Exchange connection** to be used for retrieving emails.
-- **Value:** _(User must select an existing connection)_
+| Field Name                                     | Description                                                                                                   | Input Type | Required? | Default Value |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Exchange Connection**                        | The Exchange service object representing the connection to the Exchange server.                               | Text       | Yes       | _(empty)_     |
+| **Mailbox Type**                               | Specifies whether the mailbox is personal or shared.                                                          | Select     | Yes       | _(empty)_     |
+| **Shared Mailbox Address**                     | The email address of the shared mailbox (required if Mailbox Type is 'Shared').                               | Text       | No        | _(empty)_     |
+| **Retrieve Email Messages from Custom Folder** | If true, retrieves emails from a custom folder instead of predefined folders.                                 | Switch     | No        | _(empty)_     |
+| **Exchange Folder**                            | The folder to retrieve emails from (e.g., Inbox, Sent Items). Appears if not retrieving from a custom folder. | Select     | No        | _(empty)_     |
+| **Mail Folder**                                | The name of the custom folder to retrieve emails from, if retrieving from a custom folder.                    | Text       | No        | _(empty)_     |
+| **Retrieve**                                   | Specifies which emails to retrieve (e.g., All, Unread, Read).                                                 | Select     | No        | _(empty)_     |
+| **Mark as Read**                               | If true, marks retrieved emails as read.                                                                      | Switch     | No        | _(empty)_     |
+| **From Contains**                              | Filters emails where the sender's address contains this text.                                                 | Text       | No        | _(empty)_     |
+| **To Contains**                                | Filters emails where the recipient's address contains this text.                                              | Text       | No        | _(empty)_     |
+| **Subject Contains**                           | Filters emails where the subject contains this text.                                                          | Text       | No        | _(empty)_     |
+| **Body Contains**                              | Filters emails where the body contains this text.                                                             | Text       | No        | _(empty)_     |
+| **Attachments**                                | Specifies how to handle attachments.                                                                          | Select     | No        | _(empty)_     |
+| **Save Attachments Into**                      | The directory to save attachments. Required if Attachments is set to 'Save Attachments'.                      | Text       | No        | _(empty)_     |
 
-### Mailbox Type
-- Defines the type of mailbox from which emails will be retrieved.
-- **Value:** `Personal`
+## Expected Output Format
 
-### Retrieve Email Messages from Custom Folder
-- Enables retrieval of emails from a **custom folder** instead of a predefined Exchange folder.
-- **Status:** Disabled (Retrieving from a standard Exchange folder)
+The output of this node is a **list of email messages**, referred to as **Retrieved Emails**. This output can be further processed or integrated with other nodes and systems.
 
-### Exchange Folder
-- Specifies the Exchange folder from which emails will be retrieved.
-**Value:**
-```plaintext
-Inbox
-Deleted items
-Drafts
-Outbox
-Sent items
-Junk email
-```
+- **Retrieved Emails** will be a list containing the retrieved email details based on the configuration and filters set.
 
-### Retrieve
-- Filters emails based on read/unread status.
-**Value:**
-```plaintext
-All email messages
-Unread email messages only
-Read email messages only
-```
+## Step-by-Step Guide
 
-### Mark as Read
-- Defines whether retrieved emails should be **marked as read** after retrieval.
-- **Status:** Enabled (Emails will be marked as read)
+<Steps>
+### Step 1
 
-### From Contains
-- Filters emails based on the **sender's email address**.
-- **Example:** `example@domain.com`
+Add the **Retrieve Exchange Email Messages** node to your flow.
 
-### To Contains
-- Filters emails based on the **recipient's email address**.
-- **Example:** `recipient@domain.com`
+### Step 2
 
-### Subject Contains
-- Retrieves emails where the **subject line** contains specific keywords.
-- **Example:** `Project Deadline`
+In the **Exchange Connection** field, enter the connection information for your Exchange server.
 
-### Body Contains
-- Searches emails for specified keywords in the **email body**.
-- **Example:** `Meeting Agenda`
+### Step 3
 
-### Attachments
-- Defines how attachments should be handled.
-**Options:**
-  - `Ignore attachments`
-  - `Save attachments` (Selected)
-  - `Process attachments`
+Select the **Mailbox Type**:
 
----
+- **Personal**: For your personal mailbox.
+- **Shared**: For a shared mailbox. You will need to provide the **Shared Mailbox Address**.
 
-## Output
-- **RetrievedEmails** (Enabled)
-- Stores retrieved emails for **further processing** as Exchange mail objects.
+### Step 4
 
----
+Decide if you want to retrieve emails from a **Custom Folder**. If yes, enable the corresponding switch and specify the **Mail Folder** name. Otherwise, select the desired folder from the **Exchange Folder** list.
 
-## Summary
-This tool allows users to:
-- **Retrieve emails** from an Exchange mailbox.
-- **Choose a specific folder** (e.g., Inbox).
-- **Filter unread emails only** for retrieval.
-- **Mark emails as read** after retrieval.
-- Apply **filters** based on sender, recipient, subject, and content.
-- Handle **email attachments**.
-- Store retrieved emails for **later processing**.
+### Step 5
+
+Set the **Retrieve** option to determine which emails to access (All, Unread, or Read).
+
+### Step 6
+
+Choose if emails should be marked as read by toggling the **Mark as Read** switch.
+
+### Step 7
+
+Use the filter options **From Contains**, **To Contains**, **Subject Contains**, and **Body Contains** to specify criteria for filtering emails.
+
+### Step 8
+
+Select the **Attachments** handling method. If saving attachments, specify the directory in **Save Attachments Into**.
+
+### Step 9
+
+The retrieved emails will be available as **Retrieved Emails** for further use in your automation, identified as `RetrievedEmails`.
+
+</Steps>
+
+<Callout type="important" title="Note">
+  If you choose to retrieve from a custom folder, ensure that the folder name is
+  correct to avoid retrieval errors.
+</Callout>
+
+## Input/Output Examples
+
+| Mailbox Type | Retrieve                   | Filters (Subject) | Output Value    | Output Type           |
+| ------------ | -------------------------- | ----------------- | --------------- | --------------------- |
+| Personal     | All email messages         | blank             | RetrievedEmails | List of Emails        |
+| Shared       | Unread email messages only | "Important"       | RetrievedEmails | List of Unread Emails |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                         | Solution                                                                                                     |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Connection failure**          | Verify the **Exchange Connection** details and check server accessibility.                                   |
+| **Emails not retrieving**       | Ensure correct **Mailbox Type** and folder selections (custom or predefined). Also, check filter conditions. |
+| **Attachment directory issues** | Ensure that the directory specified for attachments exists and has write permissions if saving attachments.  |
+
+## Real-World Use Cases
+
+- **Customer Support**: Automate retrieval of unread support emails to ensure timely responses.
+- **Team Collaboration**: Fetch emails from a shared mailbox to consolidate communication in team projects.
+- **Data Collection**: Automatically retrieve emails with specific criteria for data gathering and analysis workflows.

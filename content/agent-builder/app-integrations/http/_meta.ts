@@ -4,9 +4,9 @@ const meta: MetaRecord = {
   "download-from-web": {
     title: "Download From Web",
   },
-  "invoke-web-service": {
-    title: "Invoke SOAP Web Serviceß",
-  }
+  "invoke-soap-web-service": {
+    title: "Invoke SOAP Web Service",
+  },
 };
 
 export default meta;

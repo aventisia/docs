@@ -1,59 +1,82 @@
+import { Callout, Steps } from "nextra/components";
+
 # Open FTP Connection
 
-The **Open FTP Connection** operation establishes a connection to an FTP server using a set of required credentials and configurations.
+The **Open FTP Connection** node lets you establish a connection to an FTP server, allowing you to transfer files to and from the server. It is essential for automating tasks involving file management on remote servers.
 
-![alt text](../../../assets/ftp/open-ftp-connection.png)
+You would use this node when you need to upload, download, or manipulate files on an FTP server as part of a larger automated workflow.
 
----
+{/* ![Open FTP Connection](./open-ftp-connection.png) */}
 
 ## Configuration Options
 
-| Parameter     | Description                                             | Example Value                |
-|--------------|---------------------------------------------------------|------------------------------|
-| **Host**     | The **FTP server address** (IP or domain).              | `ftp.example.com`            |
-| **Port**     | The port number for the **FTP server**. Default: `21`.  | `21`                         |
-| **Active Mode** | Enables Active Mode instead of Passive Mode.         | `Enabled` / `Disabled`       |
-| **Username**   | The username for authentication.                      | `username`
-| **Password** | The **password** for authentication.                    | `MySecurePassword`           |
-| **Timeout**  | The time (in seconds) before the connection times out.  | `10`                         |
+| Field Name      | Description                                             | Input Type | Required? | Default Value |
+| --------------- | ------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Host**        | The FTP server URL (e.g., ftp.example.com).             | Text       | Yes       | _(empty)_     |
+| **Port**        | The port number for the FTP connection (default is 21). | Text       | No        | 21            |
+| **Active Mode** | If true, uses active mode for FTP connection.           | Switch     | No        | _(empty)_     |
+| **Username**    | The username for authentication.                        | Text       | Yes       | _(empty)_     |
+| **Password**    | The password for authentication.                        | Text       | Yes       | _(empty)_     |
 
----
+## Expected Output Format
 
-## Process Flow
-1. The user enters **FTP server details** such as Host, Port, and Password.
-2. The system attempts to **establish a connection** using the provided details.
-3. If successful, a **connection handle** is created.
-4. If an error occurs (e.g., incorrect credentials, server down), the **On Error** section handles it.
+The output is a **configuration object** known as `FtpConnection`. This object holds the details of the active FTP connection and can be used by other nodes to perform file operations.
 
----
+## Step-by-Step Guide
 
-## Output Parameters
+<Steps>
+### Step 1
 
-| Parameter        | Description                                             |
-|-----------------|---------------------------------------------------------|
-| **FTP Connection** | A reference handle for the **FTP session**.           |
+Add **Open FTP Connection** node into your flow.
 
----
+### Step 2
 
-## Example Use Cases
+In the **Host** field, enter the FTP server URL where you wish to connect.
 
-### 1. Connecting to an FTP Server (Successful Case)
+### Step 3
 
-#### Input:
+(Optionally) Enter the **Port** number used by the server. The default value is `21`.
 
-Host: ftp.example.com Port: 21 Active Mode: Disabled Password: MySecurePassword Timeout: 10
+### Step 4
 
-#### Expected Output:
+To use active mode instead of passive mode, toggle **Active Mode** to "Yes".
 
-- FTP **Connection handle** is created successfully.
-- User can now **upload/download** files from the FTP server.
+### Step 5
 
----
+Fill in the **Username** field with your authentication username.
 
-## Summary
-- The **Open FTP Connection** operation allows connecting to an FTP server using a **hostname, port, and password**.
-- A successful connection returns an **FTP Connection handle**.
-- This handle is used for **file transfers** (upload/download).
-- Proper **error handling** ensures a robust FTP connection process.
+### Step 6
 
----
+Enter your authentication **Password**.
+
+### Step 7
+
+The established FTP connection is available as **FtpConnection** for use in subsequent actions such as file upload or download.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Make sure that the server you are connecting to allows FTP and that you have
+  the correct credentials to access it.
+</Callout>
+
+## Input/Output Examples
+
+| Host              | Port | Active Mode | Username | Password | Output Value  | Output Type          |
+| ----------------- | ---- | ----------- | -------- | -------- | ------------- | -------------------- |
+| ftp.example.com   | 21   | No          | user123  | pass123  | FtpConnection | Configuration Object |
+| files.example.net | 22   | Yes         | admin    | admin123 | FtpConnection | Configuration Object |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                           | Solution                                                                                                                          |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Connection timeout or refused** | Ensure the FTP server URL and port are correct, and that the server is running. Also, check your network connection.              |
+| **Authentication failures**       | Verify that the username and password are entered correctly. Passwords are case-sensitive.                                        |
+| **Active Mode not working**       | If there are issues with Active Mode, try switching to the default Passive Mode which generally works better with most firewalls. |
+
+## Real-World Use Cases
+
+- **Automated Backups**: Connect to an FTP server to upload daily backups of important files.
+- **Website Management**: Automatically upload updated web files to a server for consistent and timely deployment.
+- **Data Synchronization**: Regularly download data files from an FTP server to keep local databases up-to-date.

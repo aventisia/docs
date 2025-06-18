@@ -10,10 +10,9 @@ const meta: MetaRecord = {
   "retrieve-exchange-email-messages": {
     title: "Retrieve Exchange Email Messages",
   },
-  "send-exchange-email-messages": {
+  "send-exchange-email-message": {
     title: "Send Exchange Email Messages",
-  }
+  },
 };
 
 export default meta;
-

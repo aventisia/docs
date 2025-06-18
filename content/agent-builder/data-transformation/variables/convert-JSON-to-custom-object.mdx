@@ -1,0 +1,71 @@
+import { Callout, Steps } from "nextra/components";
+
+# Convert JSON to Custom Object
+
+The **Convert JSON to Custom Object** node allows you to take a JSON-formatted string and transform it into a custom data object that fits your specific needs. This is particularly useful when you have JSON data coming from various sources (like APIs or files) and need to work with it in a structured format tailored to your business requirements.
+
+For example:
+
+- Convert JSON API responses into actionable data objects.
+- Prepare JSON data for use in applications that require specific object structures.
+- Ensure consistency in how JSON data is handled and manipulated within workflows.
+
+{/* ![Convert JSON to Custom Object](./convert-json-to-custom-object.png) */}
+
+## Configuration Options
+
+| Field Name      | Description                                                           | Input Type | Required? | Default Value |
+| --------------- | --------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **JSON Data**   | The JSON string that will be converted to a custom object.            | Text       | Yes       | _(empty)_     |
+| **Target Type** | Specifies the type of the custom object to deserialize the JSON into. | Text       | Yes       | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node is a **custom data object**. It can take any form that you define, making it flexible for various applications.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Convert JSON to Custom Object** node into your flow.
+
+### Step 2
+
+In the **JSON Data** field, enter the JSON string that you want to convert into an object.
+
+### Step 3
+
+In the **Target Type** field, specify the desired type of the custom object. This ensures the JSON data is accurately modeled into the appropriate structure.
+
+### Step 4
+
+The conversion process will produce a **CustomObject**, which you can use in subsequent nodes for processing or further operations.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Make sure that the JSON string you input is valid and properly formatted, as
+  this will affect the conversion process.
+</Callout>
+
+## Input/Output Examples
+
+| JSON Data                                | Target Type    | Output Value | Output Type |
+| ---------------------------------------- | -------------- | ------------ | ----------- |
+| `{"name": "John", "age": 30}`            | Person         | CustomObject | Object      |
+| `{"product": "Laptop", "price": 999.99}` | ProductDetails | CustomObject | Object      |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                              | Solution                                                                                    |
+| ------------------------------------ | ------------------------------------------------------------------------------------------- |
+| **Invalid JSON format**              | Make sure your JSON is valid. Use online validators to check for errors.                    |
+| **Incorrect or missing Target Type** | Ensure you have specified a valid target type that matches the expected structure.          |
+| **Unexpected conversion results**    | Double-check your JSON and target type specifications to ensure they align with each other. |
+
+## Real-World Use Cases
+
+- **Data Integration**: Simplify integration tasks by converting JSON API responses into ready-to-use objects.
+- **Dynamic Configurations**: Use JSON configurations to seamlessly update application settings into structured objects.
+- **Process Automation**: Efficiently handle and manipulate incoming JSON data in automated workflows, such as CRM or ERP systems.

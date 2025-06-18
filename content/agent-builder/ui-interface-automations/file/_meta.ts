@@ -10,13 +10,13 @@ const meta: MetaRecord = {
   "convert-file-to-binary-data": {
     title: "Convert File to Binary Data",
   },
-  "copy-files": {
+  "copy-file(s)": {
     title: "Copy Files",
   },
-  "delete-files": {
+  "delete-file(s)": {
     title: "Delete Files",
   },
-   "get-file-path-components": {
+  "get-file-path-components": {
     title: "Get File Path Components",
   },
   "get-temporary-file": {
@@ -25,7 +25,7 @@ const meta: MetaRecord = {
   "if-file-exists": {
     title: "If File Exists",
   },
-  "move-files": {
+  "move-file(s)": {
     title: "Move Files",
   },
   "read-from-csv-file": {
@@ -34,7 +34,7 @@ const meta: MetaRecord = {
   "read-text-from-file": {
     title: "Read Text from File",
   },
-  "rename-files": {
+  "rename-file(s)": {
     title: "Rename Files",
   },
   "write-text-to-file": {
@@ -45,9 +45,7 @@ const meta: MetaRecord = {
   },
   "wait-for-file": {
     title: "Wait for File",
-  }
-
+  },
 };
 
 export default meta;
-

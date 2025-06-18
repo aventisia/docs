@@ -1,54 +1,67 @@
+import { Callout, Steps } from "nextra/components";
+
 # Delete FTP File
 
-The **Delete FTP File** operation allows users to remove a specified file from an FTP server.
+The **Delete FTP File** node is designed to remove specified files from your FTP server. This function is helpful when you need to manage files on a server and want to automate the process of clearing out unnecessary or outdated files.
 
-![alt text](../../../assets/ftp/delete-ftp-file.png)
+For example:
 
----
+- Remove temporary files after processing them.
+- Clean up old backups or logs automatically.
+
+{/* ![Delete FTP File](./delete-ftp-file.png) */}
 
 ## Configuration Options
 
-| Parameter         | Description                                   | Example Value           |
-|------------------|---------------------------------------------|-------------------------|
-| **FTP Connection** | The handle for an active FTP session.     | `FTP_Connection_1`      |
-| **Files Name** | The full path to the file to be deleted. | `/public/uploads/file1.txt` |
+| Field Name         | Description                       | Input Type | Required? | Default Value |
+| ------------------ | --------------------------------- | ---------- | --------- | ------------- |
+| **FTP Connection** | The FTP connection object.        | Text       | Yes       | _(empty)_     |
+| **File Names**     | The list of file names to delete. | Text       | Yes       | _(empty)_     |
 
----
+## Expected Output Format
 
-## Process Flow
-1. A **valid FTP connection** is selected.
-2. The **file path** to be deleted is specified.
-3. The system attempts to **delete the file** on the FTP server.
-4. If successful, a **confirmation message** is returned.
-5. If the operation fails (e.g., file not found, permission denied), an **error message** is returned.
+The output of this node is a confirmation message or status indicating the success or failure of the file deletion operation.
 
----
+## Step-by-Step Guide
 
-## Expected Output
+<Steps>
+### Step 1
 
-| Parameter      | Description                                       |
-|---------------|---------------------------------------------------|
-| **Success Message** | Confirms that the file has been deleted.     |
-| **Error Message**   | If deletion fails, an error message is shown. |
+Add **Delete FTP File** node to your workflow.
 
----
+### Step 2
 
-## Example Use Cases
+In the **FTP Connection** field, enter the name of the FTP connection object. Make sure this is correctly configured to connect to your FTP server.
 
-### 1. Successfully Deleting a File
-#### Input:
-FTP Connection: FTP_Connection_1 Files to delete: /public/uploads/file1.txt
+### Step 3
 
-#### Expected Output:
-Success: File '/public/uploads/file1.txt' has been deleted.
+In the **File Names** field, specify the files you wish to delete from the server. This can be a single file or a list of multiple files separated by commas.
 
----
+### Step 4
 
-## Summary
-- The **Delete FTP File** operation removes a **specified file** from an FTP server.
-- Requires a **valid FTP connection** and a **target file path**.
-- If successful, the file is **permanently deleted**.
-- If failed, an **error message is returned**.
-- Important for **managing FTP storage and cleanup**.
+Check that all file names are correct to avoid unintended deletions.
 
----
+### Step 5
+
+Execute the workflow to delete the specified files from your FTP server.
+
+</Steps>
+
+<Callout type="warning" title="Warning">
+  Be cautious when specifying file names. Once a file is deleted, this action
+  cannot be undone.
+</Callout>
+
+## Common Mistakes & Troubleshooting
+
+| Problem                      | Solution                                                                          |
+| ---------------------------- | --------------------------------------------------------------------------------- |
+| **FTP Connection Fails**     | Ensure the FTP credentials are correctly configured and the server is reachable.  |
+| **File Not Found Error**     | Double-check the file names for typos or incorrect paths.                         |
+| **Unexpected File Deletion** | Verify the list of files specified for deletion before executing the node action. |
+
+## Real-World Use Cases
+
+- **Automated Cleanup**: Regularly remove temporary files or processed data from a shared FTP server to free up space.
+- **Maintain Server Organization**: Periodically delete older versions of files after new uploads, keeping only the latest versions.
+- **Security Management**: Automatically delete sensitive files from the server after a specified period to maintain data privacy.

@@ -1,44 +1,91 @@
-# Upload File(s) to CorporateFTP
+import { Callout, Steps } from "nextra/components";
 
-Uploads one or more files to a remote FTP server.
+# Upload File(s) to FTP
 
-![alt text](../../../assets/ftp/upload-file(s)-to-ftp.png)
+The **Upload File(s) to FTP** node enables you to transfer files from your local system to a specified directory on an FTP server. This node is handy when you need to automate the uploading of files as part of a process, like synchronizing local data with a server or backing up important documents.
 
----
-### Configuration Options
+{/* ![Upload File(s) to FTP](./upload-files-to-ftp.png) */}
 
-| **Field**             | **Description**                                                                 |
-|------------------------|---------------------------------------------------------------------------------|
-| `FTP Connection`      | The FTP connection to use (must be defined beforehand).                         |
-| `Local Files`         | The file path(s) on the local machine to upload. Can be a single file or list. |
-| `Remote Directory`    | Directory on the FTP server where files will be uploaded.                       |
-| `Overwrite Mode`      | Specifies overwrite conditions: `Always` `If newer or size different` `Never` |
-| `Include Subdirectories` | If true, includes subfolders when uploading multiple files.                |
-| `Timeout Seconds`     | Max time (in seconds) allowed for the operation to complete. Default is 30.     |
+## Configuration Options
 
----
+| Field Name                 | Description                                                   | Input Type | Required? | Default Value          |
+| -------------------------- | ------------------------------------------------------------- | ---------- | --------- | ---------------------- |
+| **FTP Connection**         | The connection details to access your FTP server.             | Text       | Yes       | _(empty)_              |
+| **Local Files**            | Paths to the local files you wish to upload.                  | Text       | Yes       | _(empty)_              |
+| **Remote Directory**       | The destination directory on the FTP server.                  | Text       | Yes       | _(empty)_              |
+| **Overwrite Mode**         | When to overwrite existing files on the server.               | Select     | No        | IfNewerOrSizeDifferent |
+| **Include Subdirectories** | Option to include files in subdirectories for upload.         | Switch     | No        | _(empty)_              |
+| **Timeout Seconds**        | Maximum wait time for upload before a timeout failure occurs. | Text       | No        | 30                     |
 
-### Output
+## Expected Output Format
 
-| **Output Variable**     | **Description**                                               |
-|--------------------------|---------------------------------------------------------------|
-| `UploadedFilesCount`    | Number of files successfully uploaded.                        |
-| `SkippedFiles`          | A list of files that were skipped due to overwrite settings.  |
+The output of this node includes:
 
----
+1. **Uploaded Files Count**: The number of files that were uploaded successfully.
+2. **Skipped Files**: A list of files that skipped uploading due to existing overwrite settings or errors.
 
-### Example Usage
+These outputs help track the success of file transfers.
 
-```plaintext
-FTP Connection: CorporateFTP
-Local Files: C:\Exports\*.csv
-Remote Directory: /upload/reports
-Overwrite Mode: If newer or size different
-Include Subdirectories: true
-Timeout: 60 seconds
-```
----
-### Notes
-- For multiple files, use wildcards like `*.txt`, or pass a list of full paths.
-- Enabling **Include Subdirectories** is useful when syncing folders.
-- The **Overwrite Mode** ensures only changed files are uploaded to save time and bandwidth.
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Upload File(s) to FTP** node to your flow.
+
+### Step 2
+
+In the **FTP Connection** field, enter your FTP connection details.
+
+### Step 3
+
+In the **Local Files** field, specify the paths of the local files you want to upload.
+
+### Step 4
+
+Fill in the **Remote Directory** field with the path to the directory on the FTP server where files will be uploaded.
+
+### Step 5
+
+Select the **Overwrite Mode** from the available options. This determines when files on the server are overwritten.
+
+### Step 6
+
+Toggle the **Include Subdirectories** switch if you want to include files from subdirectories.
+
+### Step 7
+
+(Optional) Set the **Timeout Seconds** to define how long the node should attempt the upload before timing out.
+
+### Step 8
+
+The node will process the files, and output the **Uploaded Files Count** and **Skipped Files** for further processing in your automation flow.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Customize the Overwrite Mode according to your needs. For instance, choose
+  "Never" to prevent any overwriting, useful in collaborative environments.
+</Callout>
+
+## Input/Output Examples
+
+| Local Files                                       | Remote Directory | Overwrite Mode         | Uploaded Files Count | Skipped Files                                 |
+| ------------------------------------------------- | ---------------- | ---------------------- | -------------------- | --------------------------------------------- |
+| `["/user/docs/book.pdf", "/user/photos/img.jpg"]` | `/backup/docs`   | Never                  | 0                    | ["book.pdf", "img.jpg"] if they exist already |
+| `["/data/sheet.xlsx"]`                            | `/data/archives` | IfNewerOrSizeDifferent | 1                    | []                                            |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                            | Solution                                                                                 |
+| ---------------------------------- | ---------------------------------------------------------------------------------------- |
+| **FTP connection fails**           | Ensure correct FTP connection details, and internet connection is stable.                |
+| **No files uploaded**              | Check that file paths are correct and files exist locally.                               |
+| **Timeout occurs frequently**      | Increase the Timeout Seconds if uploads take longer due to network speed or file size.   |
+| **Files overwritten unexpectedly** | Review Overwrite Mode settings and adjust as needed to prevent unintentional overwrites. |
+
+## Real-World Use Cases
+
+- **Daily Data Backup**: Automate the transfer of daily reports to an FTP server for backup and sharing.
+- **Website Management**: Upload updated web content files directly to a server, ensuring live site is current.
+- **Project Collaboration**: Share project files with remote teams by transferring files to a centralized FTP server.

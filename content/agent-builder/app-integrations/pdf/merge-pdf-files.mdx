@@ -1,0 +1,78 @@
+import { Callout, Steps } from "nextra/components";
+
+# Merge PDF Files
+
+The **Merge PDF Files** node allows you to combine multiple PDF documents into a single file. This is particularly useful for consolidating reports, presentations, or any documents that need to be viewed as one cohesive file.
+
+For example:
+
+- Combine individual chapters of an eBook into a single document.
+- Merge separate project reports into one comprehensive report.
+- Compile multiple PDF-based invoices into a single batch for review.
+
+{/* ![Merge PDF Files](./merge-pdf-files.png) */}
+
+## Configuration Options
+
+| Field Name          | Description                                          | Input Type | Required? | Default Value |
+| ------------------- | ---------------------------------------------------- | ---------- | --------- | ------------- |
+| **PDF File Paths**  | The paths of the PDF files that you want to merge.   | Text       | Yes       | _(empty)_     |
+| **Output PDF Path** | The path where you want to save the merged PDF file. | Text       | Yes       | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node is a **single merged PDF file** saved at your specified location.
+
+- The merged document is a standard PDF file.
+- The order of the merge follows the sequence of paths listed in the input.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add the **Merge PDF Files** node to your workflow.
+
+### Step 2
+
+In the **PDF File Paths** field, enter the paths of the PDF files you wish to merge. Ensure each path is correctly specified and the files are accessible from your system.
+
+### Step 3
+
+In the **Output PDF Path** field, enter the destination path where you need the merged PDF file to be saved. Ensure that this path is writable and the directory exists.
+
+### Step 4
+
+Proceed with your workflow execution. The system will process the paths and output a merged PDF at the specified path.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Verify access and write permissions for both input PDF paths and the output
+  destination to ensure seamless merging.
+</Callout>
+
+## Input/Output Examples
+
+**Inputs:**
+
+- **PDF File Paths**: `/home/user/doc1.pdf`, `/home/user/doc2.pdf`
+- **Output PDF Path**: `/home/user/merged_document.pdf`
+
+**Output:**
+
+- A single PDF file named `merged_document.pdf` located at `/home/user/`.
+
+## Common Mistakes & Troubleshooting
+
+| Problem                        | Solution                                                                                        |
+| ------------------------------ | ----------------------------------------------------------------------------------------------- |
+| **Invalid PDF file paths**     | Confirm that all the specified PDF paths are correct and accessible by the system.              |
+| **Output path does not exist** | Create the directory path specified in **Output PDF Path** before initiating the merge.         |
+| **Permission denied errors**   | Ensure you have the necessary permissions to read input files and write to the output location. |
+
+## Real-World Use Cases
+
+- **eBook Creation**: Easily merge separate chapter PDFs into one complete eBook.
+- **Project Reporting**: Combine individual project report PDFs into a master report for presentation.
+- **Invoice Processing**: Merge multiple invoices into a single file for streamlined invoice processing.

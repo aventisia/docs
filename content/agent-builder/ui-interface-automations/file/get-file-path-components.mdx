@@ -1,47 +1,80 @@
-# Get File Path Part
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Get File Path Components
 
-The **Get File Path Part** action extracts specific components from a given file path.
+The **Get File Path Components** node helps you to break down a full file path into its constituent elements. You can extract the root path, directory, file name, file name without extension, and file extension. This is especially useful for organizing files, processing paths, or when you need specific parts of a file path for further operations.
 
-![Get File Path Part UI](../../../assets/file/get-file-path-part.png)
+{/* ![Get File Path Components](./get-file-path-components.png) */}
 
-## Fields and Options  
+## Configuration Options
 
-### 1. **File Path** *(Required)* 
+| Field Name                      | Description                                                 | Input Type | Required? | Default Value       |
+| ------------------------------- | ----------------------------------------------------------- | ---------- | --------- | ------------------- |
+| **Source File Path**            | The full path of the file from which to extract components. | Text       | Yes       | _(empty)_           |
+| **Root Path**                   | The root path of the source file.                           | Output     | No        | RootPath            |
+| **Directory Path**              | The directory of the source file.                           | Output     | No        | Directory           |
+| **File Name**                   | The name of the source file.                                | Output     | No        | FileName            |
+| **File Name Without Extension** | The file name (without the extension) of the source file.   | Output     | No        | FileNameNoExtension |
+| **File Extension**              | The extension (for example, .doc) of the source file.       | Output     | No        | FileExtension       |
 
-- The full path of the file from which parts need to be extracted.  
+## Expected Output Format
 
-### 2. **Output Sections**
+The output of this node consists of multiple text values representing each component of the file path:
 
-You can enable or disable specific parts of the file path to extract:
+- **Root Path**: Root part of the path (e.g., `C:\` on Windows).
+- **Directory Path**: Path excluding file name (e.g., `C:\Users\Documents`).
+- **File Name**: Full file name including extension (e.g., `report.docx`).
+- **File Name Without Extension**: Name of the file without extension (e.g., `report`).
+- **File Extension**: The file's extension (e.g., `.docx`).
 
-- **RootPath**  
-  - Extracts the root path of the file (e.g., `C:\`, `/home/user/`).  
+## Step-by-Step Guide
 
-- **Directory**  
-  - Retrieves the directory path containing the file.  
-  - Example: If the file path is `/home/user/documents/file.txt`, the directory is `/home/user/documents/`.  
+<Steps>
+### Step 1
 
-- **FileName**  
-  - Extracts the full name of the file, including its extension.  
-  - Example: `file.txt`.  
+Add **Get File Path Components** node into your flow.
 
-- **FileNameNoExtension**  
-  - Extracts the filename without the extension.  
-  - Example: If the file is `file.txt`, this will return `file`.  
+### Step 2
 
-## Use Cases
+In the **Source File Path** field, enter the full path of the file you want to break down.
 
-- Extracting directory paths for file organization.  
-- Separating filenames from extensions for further processing.  
-- Logging or displaying only relevant portions of file paths.  
+### Step 3
 
-## Important Notes
+Review the output fields that will now be populated based on your input:
 
-- Ensure the provided file path exists or is correctly formatted.  
-- This function does not validate whether the file exists, only extracts parts from the path string.  
+- **Root Path**: Displays the root path.
+- **Directory Path**: Displays the directory path.
+- **File Name**: Displays the complete file name.
+- **File Name Without Extension**: Displays the file name without its extension.
+- **File Extension**: Displays the file's extension.
 
-## Summary
+### Step 4
 
-The **Get File Path Part** action helps extract key components of a file path, making it useful for automation tasks that require file organization or metadata retrieval.
+Use the extracted path components as needed in your automation flow.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure the **Source File Path** is correctly formatted and exists in your
+  system to avoid errors in output extraction.
+</Callout>
+
+## Input/Output Examples
+
+| Source File Path                       | Root Path | Directory Path             | File Name     | File Name Without Extension | File Extension |
+| -------------------------------------- | --------- | -------------------------- | ------------- | --------------------------- | -------------- |
+| `C:\Users\Alice\Documents\report.docx` | `C:\`     | `C:\Users\Alice\Documents` | `report.docx` | `report`                    | `.docx`        |
+| `/home/user/project/index.html`        | `/`       | `/home/user/project`       | `index.html`  | `index`                     | `.html`        |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                                      | Solution                                                                                                               |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **File path is incorrect or does not exist** | Double-check the **Source File Path** for typos or incorrect formatting. Ensure the file path is valid on your system. |
+| **Outputs are not populated correctly**      | Verify the **Source File Path** is accurate. Outputs are directly dependent on the validity of this input.             |
+
+## Real-World Use Cases
+
+- **File Management**: Automate organizing files by sorting them into directories based on their file extensions.
+- **Data Backup**: Extract and utilize file path components for custom backup folder hierarchies.
+- **Logging and Reporting**: Generate logs or reports where only specific parts of a file path are needed for clarity or reference.

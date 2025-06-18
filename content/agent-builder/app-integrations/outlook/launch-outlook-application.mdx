@@ -1,0 +1,66 @@
+import { Callout, Steps } from "nextra/components";
+
+# Launch Outlook Application
+
+The **Launch Outlook Application** node is designed to start the Microsoft Outlook application either by opening a new instance or by reusing an existing one. This node is particularly useful in automating processes that involve email handling, such as sending automated emails, checking inbox, or managing calendar events without manually launching Outlook each time.
+
+{/* ![Launch Outlook Application](./launch-outlook-application.png) */}
+
+## Configuration Options
+
+| Field Name              | Description                                                                   | Input Type | Required? | Default Value |
+| ----------------------- | ----------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Profile Name**        | Optional: The Outlook profile name to use when launching Outlook.             | Text       | No        | _(empty)_     |
+| **Create New Instance** | Determines whether to create a new Outlook instance or reuse an existing one. | Switch     | No        | True          |
+
+## Expected Output Format
+
+The output from this node is an **Outlook Application object**. This object refers to the Microsoft Outlook application that you have either opened or connected to. The output can be used in subsequent nodes to perform various email operations or other Outlook-related tasks.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Launch Outlook Application** node into your automation flow.
+
+### Step 2
+
+Optionally, in **Profile Name**, enter the profile you wish to use. Leaving this blank will use the default Outlook profile.
+
+### Step 3
+
+Use the **Create New Instance** switch to decide if Outlook should open as a new instance (switch on) or connect to an existing open instance (switch off).
+
+### Step 4
+
+Proceed with using the **Outlook Application** object in subsequent nodes for email and calendar operations.
+
+</Steps>
+
+<Callout type="info" title="Note">
+  If no profile is specified, Outlook will attempt to use the default profile
+  configured on your computer.
+</Callout>
+
+## Input/Output Examples
+
+| Profile Name | Create New Instance | Outlook Application Output | Output Type |
+| ------------ | ------------------- | -------------------------- | ----------- |
+| WorkProfile  | True                | OutlookApplication         | Object      |
+| _None_       | False               | OutlookApplication         | Object      |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                           | Solution                                                                                                                                 |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Outlook fails to launch**       | Ensure that Microsoft Outlook is installed and properly configured on your machine.                                                      |
+| **Profile not found**             | Double-check the profile name entered. Make sure the profile exists in your Outlook configuration.                                       |
+| **Multiple instances of Outlook** | If multiple Outlook windows are open, verify whether you want to allow or prevent this by adjusting the **Create New Instance** setting. |
+
+## Real-World Use Cases
+
+- **Automated Email Campaigns**: Use this node to launch Outlook and send scheduled emails without manual intervention.
+- **Calendar Management**: Quickly open Outlook and manage calendar events through automation.
+- **Email Inbox Monitoring**: Keep Outlook running to automatically process or respond to incoming emails.
+- **Enhanced Productivity**: Start Outlook as part of a daily workflow to ensure email and meeting readiness as soon as your day begins.

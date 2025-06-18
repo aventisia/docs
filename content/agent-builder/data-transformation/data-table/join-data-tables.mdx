@@ -1,0 +1,92 @@
+import { Callout, Steps } from "nextra/components";
+
+# Join Data Tables
+
+The **Join Data Tables** node enables you to combine data from two different data tables into one. This is useful when you need to combine information from multiple sources for thorough analyses or comprehensive reporting.
+
+For example:
+
+- Merging customer information from two separate records.
+- Integrating sales data with order details for combined reports.
+- Creating a unified dataset by incorporating data from two sources.
+
+{/* ![Join Data Tables](./join-data-tables.png) */}
+
+## Configuration Options
+
+| Field Name            | Description                                                                       | Input Type | Required? | Default Value |
+| --------------------- | --------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **First Data Table**  | The first data table you want to combine.                                         | Text       | Yes       | _(empty)_     |
+| **Second Data Table** | The second data table you want to combine with the first.                         | Text       | Yes       | _(empty)_     |
+| **Join Operation**    | Specifies how to combine the tables: Inner, Left, or Full join.                   | Select     | Yes       | Inner         |
+| **Join Rules**        | Define the condition for joining tables (e.g., 'FirstTable.ID = SecondTable.ID'). | Text       | Yes       | _(empty)_     |
+
+## Expected Output Format
+
+The output of this node is a **DataTable** that contains merged columns or rows based on the join conditions and operation selected.
+
+- **Inner Join**: Output contains only rows with matching keys in both tables.
+- **Left Outer Join**: Output contains all rows from the first table and matched rows from the second table.
+- **Full Outer Join**: Output contains all rows when there is a match in one of the tables.
+
+## Step-by-Step Guide
+
+<Steps>
+
+### Step 1
+
+Add **Join Data Tables** node into your flow.
+
+### Step 2
+
+For **First Data Table**, enter the name of the first table you want to use.
+
+### Step 3
+
+For **Second Data Table**, enter the name of the second table you want to combine it with.
+
+### Step 4
+
+In the **Join Operation** dropdown, select the type of join you want to perform:
+
+- **Inner Join**: Select when you need only matching rows.
+- **Left Outer Join**: Select when you need all rows from the first table regardless of matches.
+- **Full Outer Join**: Select when you need all rows from both tables.
+
+### Step 5
+
+In **Join Rules**, specify the criteria for columns to align, such as 'FirstTable.ID = SecondTable.ID'.
+
+### Step 6
+
+Once configured, the combined table will be generated as **JoinedDataTable** for further use.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  Ensure both tables used in joining have comparable column data types for
+  seamless operation.
+</Callout>
+
+## Input/Output Examples
+
+| Join Operation | Example Join Rule          | Example Output Description                            |
+| -------------- | -------------------------- | ----------------------------------------------------- |
+| Inner Join     | First.ID = Second.ID       | Rows with matching IDs from both tables are merged.   |
+| Left Join      | First.Email = Second.Email | All rows from first table, plus matched emails.       |
+| Full Join      | First.ID = Second.ID       | All rows from both tables are included in the result. |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                     | Solution                                                                                                                   |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| **Join Rules Syntax Error** | Ensure correct syntax: use 'Table1.Column = Table2.Column'.                                                                |
+| **Unexpected Output**       | Double-check join conditions and ensure the **Join Operation** selected matches your requirements.                         |
+| **Missing Data in Output**  | Consider using a Full Join to ensure all data is represented when missing expected rows.                                   |
+| **Mismatched Data Types**   | Ensure that columns used in the join have the same data type, as mismatches can lead to incorrect joins or runtime errors. |
+
+## Real-World Use Cases
+
+- **Customer Analysis**: Combine recent purchase data with demographic information for targeted marketing strategies.
+- **Inventory Management**: Merge warehouse data with product information for a complete inventory report.
+- **Financial Auditing**: Integrate transactional data with account records for comprehensive financial auditing.

@@ -1,0 +1,108 @@
+import { Callout, Steps } from "nextra/components";
+
+# Find or Replace in Data Table
+
+The **Find or Replace in Data Table** node allows you to search for specific values in a data table, and optionally, replace these values. This is particularly useful for cleaning data, finding patterns or values that need to be updated, or preparing data for further analysis.
+
+You can choose to simply locate values or replace them with new values. The flexibility of this node allows you to conduct searches across the entire table or within specific columns, making it an essential tool for data management.
+
+{/* ![Find or Replace in Data Table](./find-replace-data-table.png) */}
+
+## Configuration Options
+
+| Field Name                          | Description                                                                              | Input Type | Required? | Default Value |
+| ----------------------------------- | ---------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Data Table**                      | The data table to process.                                                               | Text       | Yes       | _(empty)_     |
+| **Search Mode**                     | Specifies whether to find or find and replace values.                                    | Select     | Yes       | Find          |
+| **Text to Find**                    | The value to find in the data table.                                                     | Text       | No        | _(empty)_     |
+| **Text to Replace With**            | The value to replace with (only required if "Search Mode" is "Find and Replace").        | Text       | No        | _(empty)_     |
+| **All Matches**                     | If true, processes all occurrences; if false, processes only the first occurrence.       | Switch     | No        | _(empty)_     |
+| **Find Using a Regular Expression** | If true, uses regular expressions for matching.                                          | Switch     | No        | _(empty)_     |
+| **Match Case**                      | If true, performs a case-sensitive search.                                               | Switch     | No        | _(empty)_     |
+| **Match Entire Cell Contents**      | If true, matches only cells that contain exactly the specified text.                     | Switch     | No        | _(empty)_     |
+| **Search By**                       | Specifies how to search the data table (everywhere or within a specific column).         | Select     | No        | Everywhere    |
+| **Column Index or Name**            | The column index or name to search within (only required if "Search By" is "On Column"). | Text       | No        | _(empty)_     |
+
+## Expected Output Format
+
+The output from the node is **Matched Rows**, which are the rows meeting the search criteria. The data is returned as a collection of rows from the data table.
+
+## Step-by-Step Guide
+
+<Steps>
+### Step 1
+
+Add **Find or Replace in Data Table** node into your flow.
+
+### Step 2
+
+In the **Data Table** field, input the data table you want to process.
+
+### Step 3
+
+Select the **Search Mode** from the dropdown:
+
+- **Find**: Locate values.
+- **Find and Replace**: Locate and replace values.
+
+### Step 4
+
+Enter the **Text to Find** that you wish to locate within the data table.
+
+### Step 5
+
+If you selected **Find and Replace**, enter the **Text to Replace With** for substitution.
+
+### Step 6
+
+Decide if you want to process **All Matches** or just the first, by toggling the switch accordingly.
+
+### Step 7
+
+Use the **Find Using a Regular Expression** toggle if you want to search using patterns.
+
+### Step 8
+
+Use the **Match Case** switch for case-sensitive searches.
+
+### Step 9
+
+Activate **Match Entire Cell Contents** if you need an exact cell match.
+
+### Step 10
+
+Choose the **Search By** method: search everywhere or in a specific column using **Column Index or Name**.
+
+### Step 11
+
+The matched rows will be available as **MatchedRows** for further use.
+
+</Steps>
+
+<Callout type="warning" title="Important">
+  Ensure correct setup in "Search By" and "Column Index or Name" if focusing on
+  specific columns to avoid incorrect search outputs.
+</Callout>
+
+## Input/Output Examples
+
+| Search Mode      | Text to Find | Text to Replace With | All Matches | Search By  | Column Index | Sample Output                     |
+| ---------------- | ------------ | -------------------- | ----------- | ---------- | ------------ | --------------------------------- |
+| Find             | "example"    | _(n/a)_              | True        | Everywhere | _(ignored)_  | Rows with "example" in any cell   |
+| Find and Replace | "old"        | "new"                | False       | On Column  | "NameColumn" | Rows with "old" replaced by "new" |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                               | Solution                                                                                                                                                           |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **No results found**                  | Verify that **Text to Find** matches the exact data. Consider toggling **Match Case** or **Match Entire Cell Contents** as needed.                                 |
+| **Fields missing for replacement**    | Ensure _"Find and Replace"_ is selected in **Search Mode** to display additional text replacement options.                                                         |
+| **No matches in specific column**     | Check if **Search By** is set to "On Column" and verify **Column Index or Name** is correct and relevant.                                                          |
+| **Unexpected matches using patterns** | When using **Find Using a Regular Expression**, recheck the pattern format or toggle other relevant switches such as **Match Case** to refine the search criteria. |
+
+## Real-World Use Cases
+
+- **Data Cleansing**: Quickly find and replace outdated terms in massive tables.
+- **Quality Assurance**: Identify and correct mismatches or inconsistencies in data entries.
+- **User Data Management**: Search for specific user info to update or validate records.
+- **Content Management**: Efficiently locate and replace text across a dataset for consistency.

@@ -11,7 +11,7 @@ const meta: MetaRecord = {
     title: "Encrypt From File With AES",
   },
   "decrypt-to-file-with-aes": {
-    title: " Decrypt To File With AES",
+    title: "Decrypt To File With AES",
   },
   "hash-text": {
     title: "Hash Text",
@@ -24,9 +24,7 @@ const meta: MetaRecord = {
   },
   "hash-from-file-with-key": {
     title: "Hash From File With Key",
-  }
-
+  },
 };
 
 export default meta;
-

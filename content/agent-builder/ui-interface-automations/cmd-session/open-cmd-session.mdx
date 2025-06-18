@@ -1,38 +1,72 @@
-# **Open CMD Session**
+import { Callout, Steps } from "nextra/components";
 
-## Description
+# Open CMD Session
 
-The **Open CMD Session** action starts a new command-line (CMD) session, allowing execution of commands in a Windows environment.
+The **Open CMD Session** node allows you to programmatically open a Command Prompt (CMD) session from within your automation flow. This is useful when you need to execute command-line tasks, scripts, or applications as part of your workflow.
 
-![alt text](../../../assets/cmd-session/open-cmd-session-1.png)
+For example, you might initiate a CMD session to run batch scripts, manage system configurations, or interface with software that requires command-line interaction.
 
----
+{/* ![Open CMD Session](./open-cmd-session.png) */}
 
-## **Features & Parameters**
+## Configuration Options
 
-| Parameter | Description | Example Value |
-|-----------|------------|---------------|
-| **Working Folder** | The directory where the CMD session starts. | `C:\Users\Admin\Projects` |
-| **Change Code Page** | If enabled, allows setting a different code page for character encoding. | ❌ Disabled |
-| **Encoding** | Defines the encoding type used in the session. | `UTF-8` |
-| **Advanced** | Contains additional session settings (collapsed by default). | - |
-| **CmdSession (Output)** | If enabled, allows reuse of this CMD session for later actions. | ❌ Disabled |
+| Field Name           | Description                                                                                 | Input Type | Required? | Default Value |
+| -------------------- | ------------------------------------------------------------------------------------------- | ---------- | --------- | ------------- |
+| **Working Folder**   | The directory where the CMD session should start. Input the folder path (e.g., `C:\Users`). | Text       | Yes       | _(empty)_     |
+| **Change Code Page** | Toggle to specify whether to change the code page.                                          | Switch     | No        | False         |
+| **Encoding**         | The encoding format for the CMD session if 'Change Code Page' is enabled.                   | Select     | No        | UTF8          |
 
----
+## Expected Output Format
 
-## **How It Works**
+The output after opening the CMD session will be **CMD Session** details. This typically includes session identifiers or status details but is primarily used to pass context to subsequent nodes in your flow.
 
-1. **Set the Working Folder** – Define the directory where CMD should operate.
-2. **Optional: Change Code Page** – Enable this if a different encoding is required.
-3. **Select Encoding** – Choose the text encoding format (e.g., `UTF-8`, `ASCII`).
-4. **Enable CmdSession (if needed)** – Use this session for later commands.
-5. **Click "Submit"** to start the CMD session.
+## Step-by-Step Guide
 
----
+<Steps>
+### Step 1
 
-## **Use Cases**
+Add an **Open CMD Session** node into your flow.
 
-✔ Running scripts from a specific directory  
-✔ Setting up an environment for batch processing  
-✔ Ensuring consistent encoding for text processing  
-✔ Using a persistent CMD session for multiple commands  
+### Step 2
+
+In the **Working Folder** field, input the directory path where you want the CMD session to start. This field is required to ensure the CMD starts in the correct folder (e.g., `C:\Users`).
+
+### Step 3
+
+Use the **Change Code Page** switch if you need to modify the encoding used within the CMD session. Turn it on if required.
+
+### Step 4
+
+If you enabled **Change Code Page**, select the desired **Encoding** from the dropdown. Options include `UTF8`, `UTF7`, `ASCII`, `Windows1252`, and more.
+
+### Step 5
+
+The CMD session will be opened, and its details are stored in **CmdSession** for further use in your automation workflow.
+
+</Steps>
+
+<Callout type="info" title="Tip">
+  You only need to set the **Encoding** if you plan to change the code page. If
+  you're not sure, leave the **Change Code Page** setting off.
+</Callout>
+
+## Input/Output Examples
+
+| Working Folder | Change Code Page | Encoding | CMD Session Details |
+| -------------- | ---------------- | -------- | ------------------- |
+| `C:\Projects`  | False            | _(n/a)_  | CMD session context |
+| `D:\Data`      | True             | UTF8     | CMD session context |
+
+## Common Mistakes & Troubleshooting
+
+| Problem                               | Solution                                                                                          |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **CMD session not starting**          | Ensure the **Working Folder** path is correct and accessible. Check for typos or incorrect paths. |
+| **Encoding not applied**              | Make sure **Change Code Page** is enabled; then select the desired **Encoding**.                  |
+| **Unable to execute commands in CMD** | Verify that the CMD session is open and the working folder has correct permissions.               |
+
+## Real-World Use Cases
+
+- **Run Scheduled Scripts**: Start a CMD session to execute daily batch scripts for backups or data processing.
+- **System Configuration**: Launch CMD to alter system settings or install software requiring command-line inputs.
+- **Developer Workflows**: Automate the start of development environments or build processes requiring command execution.
