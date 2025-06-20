@@ -1,8 +1,8 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
-  "create-new-data-table": {
-    title: "Create New Data Table",
+  "create-data-table": {
+    title: "Create Data Table",
   },
   "insert-row-into-data-table": {
     title: "Insert Row In Data Table",
