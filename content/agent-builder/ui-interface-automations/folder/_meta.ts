@@ -1,7 +1,7 @@
 import type { MetaRecord } from "nextra";
 
 const meta: MetaRecord = {
-  "copy-folder": {
+  "folder-to-copy": {
     title: "Folder to Copy",
   },
   "create-folder": {
