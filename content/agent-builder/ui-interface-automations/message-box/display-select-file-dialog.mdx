@@ -4,18 +4,18 @@ import { Callout, Steps } from "nextra/components";
 
 The **Display Select File Dialog** node is used to prompt users to select files from their file system. It presents a dialog window where users can choose one or several files, filters files by type, and provides paths of selected files for further operations in your automation tasks. This node is essential when you need user input to process or manipulate files.
 
-{/* ![Display Select File Dialog](./display-select-file-dialog.png) */}
+![Display Select File Dialog](./display-select-file-dialog.png) 
 
 ## Configuration Options
 
-| Field Name                   | Description                                                                 | Input Type                               | Required? | Default Value |
+| Field Name                   | Description                                                                 | Input Type                               | Required? | Default Value |           |
 | ---------------------------- | --------------------------------------------------------------------------- | ---------------------------------------- | --------- | ------------- | --------- |
-| **Dialog Title**             | The title of the file selection dialog window.                              | Text                                     | Yes       | _(empty)_     |
-| **Initial Folder**           | The folder path where the dialog starts. Defaults to Desktop if left empty. | Text                                     | No        | _(empty)_     |
+| **Dialog Title**             | The title of the file selection dialog window.                              | Text                                     | Yes       | _(empty)_     |           |
+| **Initial Folder**           | The folder path where the dialog starts. Defaults to Desktop if left empty. | Text                                     | No        | _(empty)_     |           |
 | **File Filter**              | Filter for file types (e.g., "Text Files (\*.txt)                           | \*.txt"). Defaults to include All Files. | Text      | No            | _(empty)_ |
-| **Keep Dialog On Top**       | Ensures the dialog stays above other windows if set to true.                | Switch                                   | No        | _(empty)_     |
-| **Allow Multiple Selection** | Allows user to select multiple files when enabled.                          | Switch                                   | No        | _(empty)_     |
-| **Check If File Exists**     | Confirms that the selected files exist before proceeding.                   | Switch                                   | No        | _(empty)_     |
+| **Keep Dialog On Top**       | Ensures the dialog stays above other windows if set to true.                | Switch                                   | No        | _(empty)_     |           |
+| **Allow Multiple Selection** | Allows user to select multiple files when enabled.                          | Switch                                   | No        | _(empty)_     |           |
+| **Check If File Exists**     | Confirms that the selected files exist before proceeding.                   | Switch                                   | No        | _(empty)_     |           | 
 
 ## Expected Output Format
 
@@ -68,14 +68,14 @@ Proceed with your workflow using the outputs: **SelectedFiles** (file paths) and
 
 ## Input/Output Examples
 
-| Input Field              | Example Value               |
+| Input Field              | Example Value               |             |                 |      | 
 | ------------------------ | --------------------------- | ----------- | --------------- | ---- |
-| Dialog Title             | "Choose Your Documents"     |
-| Initial Folder           | "C:/Users/Public/Documents" |
+| Dialog Title             | "Choose Your Documents"     |             |                 |      | 
+| Initial Folder           | "C:/Users/Public/Documents" |             |                 |      |   
 | File Filter              | "Images (_.png;_.jpg)       | _.png;_.jpg | All Files (_._) | _._" |
-| Keep Dialog On Top       | `true`                      |
-| Allow Multiple Selection | `true`                      |
-| Check If File Exists     | `true`                      |
+| Keep Dialog On Top       | `true`                      |             |                 |      |  
+| Allow Multiple Selection | `true`                      |             |                 |      |   
+| Check If File Exists     | `true`                      |             |                 |      |  
 
 | Output Field   | Example Output                                                                 | Output Type    |
 | -------------- | ------------------------------------------------------------------------------ | -------------- |
