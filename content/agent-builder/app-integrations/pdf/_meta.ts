@@ -8,10 +8,10 @@ const meta: MetaRecord = {
     title: "Extract PDF Pages to New File",
   },
   "extract-tables-from-pdf-(pdfpig)": {
-    title: "Extract Tables from PDF (PdfPig)",
+    title: "Extract Tables from PDF",
   },
   "extract-text-from-pdf-(pdfpig)": {
-    title: "Extract Text from PDF (PdfPig)",
+    title: "Extract Text from PDF",
   },
   "merge-pdf-files": {
     title: "Merge PDF Files",
