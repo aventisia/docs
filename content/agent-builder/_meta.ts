@@ -8,13 +8,13 @@ const meta: MetaRecord = {
     title: "Workflow Logics",
   },
   "data-transformation": {
-    title: "Data-Transformations",
+    title: "Data Transformations",
   },
   "ui-interface-automations": {
-    title: "UI-Interface-Automations",
+    title: "UI Interface Automations",
   },
   "app-integrations": {
-    title: "App-Integrations",
+    title: "App Integrations",
   },
 };
 
