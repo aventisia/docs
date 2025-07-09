@@ -1,85 +1,95 @@
-# **Loop**
+# Loop Node
 
-The **Loop** node is a fundamental component in workflow automation that enables repeated execution of actions based on a predefined condition. It helps streamline processes by iterating over a set of values, making workflows dynamic and efficient.
+The **Loop node** is used when you want to repeatedly execute a set of actions based on a condition or for each item in a list. It is especially useful for automating tasks that require iteration, such as processing records, retrying operations, or polling for status updates.
+
+Think of the Loop node as your automation’s repeat engine — running the same steps again and again until your specified condition is no longer met or until all items are processed.
+---
+
+## Repeat Method
+
+You can choose how the loop should repeat using the **Repeat Method** dropdown:
+
+- **Repeat based on condition**: The loop continues executing as long as the specified condition(s) are true.
+- **Repeat for every item in a list**: Executes the loop once for each item in the provided list.
 
 ---
 
-![alt text](../../../assets/loops/loop.png)
+## Configuring Loop Conditions
 
-## **Functionality**
+Conditions determine whether the loop will continue to run.
 
-The **Loop** node is used to:
+You can create one or more **condition groups**, combining conditions with **AND** and **OR** logic:
 
-- Repeat a block of actions multiple times.
-- Iterate over a list of values, such as an array of user IDs or email addresses.
-- Process items sequentially without requiring manual intervention.
-- Execute logic for each iteration within the loop.
+- Use **+ AND** to add multiple conditions within a group that must *all* be true.
+- Use **+ OR** to create a new group of conditions. The loop will continue if *any one group* is true.
 
 ---
 
-## **Key Configuration**
+## Supported Operators
 
-When setting up a **Loop** node, you need to define the iteration criteria:
+### Basic Comparisons
+- **Is Equal To / Exactly Matches**: Match static or dynamic values (e.g., `status Is Equal To "Active"`).
+- **Is Greater Than / Is Less Than**: Check numerical or date values (e.g., `Balance Is Greater Than 5000`).
 
-1. **Value to Iterate:**
-   - This field specifies the dataset or number of times the loop should run.
-   - It can be a list (e.g., a collection of items) or a numerical value for fixed iterations.
+### Boolean Checks
+- **Is True / Is False**: Use when evaluating flags or toggles (e.g., `isVerified Is True`).
 
----
+### Text Logic
+- **Contains (Text)**: `Comment Contains "error"`
+- **Does Not Contain (Text)**: `Name Does Not Contain "test"`
+- **Starts With / Ends With**: `Filename Starts With "invoice_"`, `Email Ends With "@domain.com"`
+- **Does Not Start With / Does Not End With**: Negation of prefix/suffix checks.
+- **Does Not Exactly Match**: `Status Does Not Exactly Match "Complete"`
 
-## **Use Cases of the Loop Node**
+### Existence Checks
+- **Exists / Does Not Exist**: Useful when values are optional (e.g., `ErrorCode Exists`)
+- **Is Empty / Is Not Empty**: For strings, arrays, or lists (e.g., `PhoneNumber Is Not Empty`)
 
-The **Loop** node is highly useful in automation scenarios, including:
+### List Logic
+- **Contains (List)**: `AssignedRoles Contains (List) "Manager"`
+- **Does Not Contain (List)**: `Tags Does Not Contain (List) "Urgent"`
 
-### **Processing Lists**
-
-- Iterating through multiple records, such as customer orders, invoices, or user registrations.
-- Example: If a workflow needs to process 100 orders, the loop will iterate 100 times.
-
-### **Automating Repetitive Tasks**
-
-- Sending multiple notifications, reminders, or alerts based on a predefined list.
-- Example: Sending a birthday email to all users in a database.
-
-### **Handling API Pagination**
-
-- When retrieving data from an API, pagination is often required to fetch results in batches.
-- The Loop node ensures that all pages of data are retrieved efficiently.
-
-### **Bulk Data Processing**
-
-- Performing operations on a collection of items, such as applying discounts to all products in a category.
-- Example: Updating user subscriptions in a batch process.
+### Date & Time
+- **After / Before**: `DueDate Before "2025-12-01"`
+- **Equals (DateTime)**: `ScheduledTime Equals "2025-07-09T10:00:00Z"`
 
 ---
 
-## **Example Scenario**
+## Example Configuration
 
-**Scenario:** Suppose a company wants to send an email reminder to a list of employees for an upcoming meeting.
+### Repeat based on condition
 
-**Workflow:**
+**Group 1 (AND):**
+- `Status Is Equal To "Active"`
+- `Retries Is Less Than 3`
 
-1. The **Loop** node iterates over the list of employee email addresses.
-2. For each email, a "Send Email" action is triggered.
-3. The process continues until all emails in the list are processed.
+**Group 2 (OR):**
+- `LastError Contains (Text) "Timeout"`
+- `RetryFlag Is True`
 
-This allows the company to automate the task efficiently without manual effort.
-
----
-
-## **Advantages of Using a Loop Node**
-
-**Saves Time** – Automates repetitive tasks without manual intervention.
-**Reduces Errors** – Ensures each item in a list is processed consistently.  
-**Increases Efficiency** – Enhances workflow automation by handling bulk operations.  
-**Scalability** – Easily adapts to growing datasets and automation needs.
+In this setup, the loop continues if:
+- The status is active **and** the retry count is less than 3  
+**OR**
+- The last error message contains “Timeout” **or** the retry flag is true.
 
 ---
 
-## **Summary**
+## Real-World Use Cases
 
-The **Loop** node is a powerful tool in workflow automation that allows tasks to be repeated based on specific conditions. Whether processing data, handling API requests, or sending bulk notifications, the Loop node optimizes efficiency and ensures seamless execution.
+- **Polling external API** until a certain response is received.
+- **Retrying failed workflows** based on error flags and attempt counts.
+- **Processing records in a batch** where some items meet a retry condition.
+- **Validating form data** until required inputs are filled.
+- **Waiting on human approval** until status changes to “Approved”.
 
 ---
 
-By leveraging the Loop node, businesses can automate complex workflows with minimal effort!
+## Best Practices
+
+<Callout emoji="✅">
+Always keep loops deterministic. Add escape conditions to avoid infinite loops.
+</Callout>
+
+- Use logical grouping wisely. Favor **AND** inside a group and **OR** between groups.
+- Use `Is Not Empty` and `Exists` checks when waiting on dynamically populated values.
+- For list processing, consider using "Repeat for every item in list".
