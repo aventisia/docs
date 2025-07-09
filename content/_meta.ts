@@ -9,6 +9,7 @@ const meta: MetaRecord = {
   },
   "Worc-space": {
     title: "Worc-Space",
+    display: "hidden",
   },
   "agent-builder": {
     title: "Agent Builder",

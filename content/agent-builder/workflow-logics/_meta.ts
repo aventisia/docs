@@ -6,6 +6,7 @@ const meta: MetaRecord = {
   },
   "flow-control": {
     title: "Flow Control",
+    display: "hidden",
   },
 };
 
