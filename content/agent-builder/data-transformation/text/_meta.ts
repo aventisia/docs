@@ -7,9 +7,6 @@ const meta: MetaRecord = {
   "change-text-case": {
     title: "Change Text Case",
   },
-  "convert-datetime-to-text": {
-    title: "Convert DateTime to Text",
-  },
   "convert-number-to-text": {
     title: "Convert Number to Text",
   },

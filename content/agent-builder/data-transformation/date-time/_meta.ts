@@ -4,6 +4,9 @@ const meta: MetaRecord = {
   "add-time-to-datetime": {
     title: "Add Time to DateTime",
   },
+  "format-datetime": {
+    title: "Format DateTime",
+  },
   "get-current-date-and-time": {
     title: "Get Current Date and Time",
   },
