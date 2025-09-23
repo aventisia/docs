@@ -14,6 +14,9 @@ const meta: MetaRecord = {
   "agent-builder": {
     title: "Agent Builder",
   },
+  library: {
+    display: "hidden",
+  },
 };
 
 export default meta;
