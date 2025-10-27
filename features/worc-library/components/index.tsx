@@ -5,8 +5,15 @@ import WorcLibraryTemplates from "./WorcLibraryTemplates";
 import { Input } from "@/app/_components/ui";
 import { Button } from "@/app/_components/ui/buttons";
 import { cn } from "@/lib";
+import { useSearchParams } from "next/navigation";
+import { TemplateDetail } from "./template-details/TemplateDetails";
+
+
 
 const WorcLibrary = () => {
+  const searchParams = useSearchParams();
+  const id = searchParams.get("t");
+
   // State to track the currently selected template category filter
   const [selectedCategory, setSelectedCategory] = useState("All templates");
 
@@ -20,7 +27,7 @@ const WorcLibrary = () => {
     "Generative",
     "Block",
   ];
-
+  if (id) return <TemplateDetail id={id} />
   // else
   return (
     <div>
@@ -44,9 +51,9 @@ const WorcLibrary = () => {
               className="rounded-lg pe-9 ps-3.5 text-[0.86rem]"
               placeholder="Search..."
               type="text"
-              // Uncomment and implement search functionality as needed
-              // value={searchQuery}
-              // onChange={(e) => setSearchQuery(e.target.value)}
+            // Uncomment and implement search functionality as needed
+            // value={searchQuery}
+            // onChange={(e) => setSearchQuery(e.target.value)}
             />
             <Button
               variant="ghost"
@@ -79,7 +86,7 @@ const WorcLibrary = () => {
       </div>
 
       {/* Displays templates filtered by the selected category */}
-      <WorcLibraryTemplates  selectedCategory={selectedCategory} />
+      <WorcLibraryTemplates selectedCategory={selectedCategory} />
     </div>
   );
 };
