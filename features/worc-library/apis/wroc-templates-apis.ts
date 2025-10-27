@@ -1,4 +1,6 @@
 "use client"
+import { toast } from "sonner";
+import { UseTemplateDTO } from "../dtos/use-template-dto";
 import { WorcTemplatesDto } from "../dtos/worc-templates-dtos";
 
 /**
@@ -9,11 +11,24 @@ const getAgentTemplates = async (): Promise<WorcTemplatesDto[]> => {
     process.env.NEXT_PUBLIC_WORKSPACE_API_URL + "/template/trending"
   );
   if (!response.ok) {
-    throw new Error("Failed to fetch posts");
+    toast.error("Failed to fetch posts");
   }
   const result = await response.json();
   return result?.data;
 };
 
+const getAgentTemplateById = async (
+  id: string
+): Promise<{ data: UseTemplateDTO }> => {
+  const response = await fetch(
+    process.env.NEXT_PUBLIC_WORKSPACE_API_URL + "/template?ptid=" + id
+  );
 
-export { getAgentTemplates };
+  if (!response.ok) {
+    toast.error("Failed to fetch template");
+  }
+  return response.json();
+};
+
+
+export { getAgentTemplates, getAgentTemplateById };

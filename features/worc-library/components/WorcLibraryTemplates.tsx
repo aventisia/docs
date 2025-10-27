@@ -74,7 +74,7 @@ const WorcLibraryTemplates = ({
             <div className="mb-4 text-gray-400">
               <Search className="mx-auto h-12 w-12" />
             </div>
-            <h3 className="mb-2 text-lg font-medium text-gray-900">
+            <h3 className="mb-2 text-lg font-medium text-gray-900 dark:text-gray-400">
               No templates found
             </h3>
             <p className="text-gray-600">
