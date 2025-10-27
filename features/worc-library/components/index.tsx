@@ -8,8 +8,6 @@ import { cn } from "@/lib";
 import { useSearchParams } from "next/navigation";
 import { TemplateDetail } from "./template-details/TemplateDetails";
 
-
-
 const WorcLibrary = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("t");
@@ -27,7 +25,9 @@ const WorcLibrary = () => {
     "Generative",
     "Block",
   ];
+
   if (id) return <TemplateDetail id={id} />
+
   // else
   return (
     <div>
