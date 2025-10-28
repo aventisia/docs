@@ -10,8 +10,10 @@ import { getAgentTemplates } from "../apis/wroc-templates-apis";
 
 const WorcLibraryTemplates = ({
   selectedCategory,
+  searchQuery,
 }: {
   selectedCategory: string;
+  searchQuery: string;
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(12);
@@ -20,18 +22,27 @@ const WorcLibraryTemplates = ({
 
   // Combine and filter templates based on selected category
   const items = useMemo(() => {
-    if (agentData?.length)
-      return agentData?.filter((template) =>
-        selectedCategory === "All templates"
-          ? true
-          : selectedCategory === "AI Model"
-            ? ["Inferencing", "Conversation", "Generative"].includes(
-              template.type
-            )
-            : template.type.includes(selectedCategory)
-      );
+    if (agentData?.length) {
+      return agentData
+        ?.filter((template) =>
+          selectedCategory === "All templates"
+            ? true
+            : selectedCategory === "AI Model"
+              ? ["Inferencing", "Conversation", "Generative"].includes(
+                template.type
+              )
+              : template.type.includes(selectedCategory)
+        )
+        ?.filter((template) =>
+          searchQuery?.trim()
+            ? template.name
+              ?.toLowerCase()
+              .includes(searchQuery.toLowerCase().trim())
+            : true
+        );
+    }
     else return [];
-  }, [agentData, selectedCategory]);
+  }, [agentData, selectedCategory, searchQuery]);
 
   // Calculate total pages for pagination
   const totalPages = Math.ceil(items?.length / itemsPerPage);
@@ -45,7 +56,7 @@ const WorcLibraryTemplates = ({
   // Reset to first page on category change
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedCategory]);
+  }, [searchQuery, selectedCategory]);
 
   // Show skeletons while loading
   if (loading) {
