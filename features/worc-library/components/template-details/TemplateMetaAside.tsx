@@ -51,8 +51,8 @@ export function TemplateMetaAside({ template }: { template: UseTemplateDTO }) {
             {template.icons?.length ? (
               template.icons.map((icon, idx) => (
                 <div key={icon || idx} className="rounded-lg bg-accent p-2">
-                  <img src={icon} alt="icon" className="h-6 w-6" />
-                </div>
+                  {icon == "/function.png" ? <BotIcon className="h-6 w-6" /> : <img src={icon} alt="icon" className="h-6 w-6 !border-0" />
+                  }  </div>
               ))
             ) : (
               // Fallback icon
