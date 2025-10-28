@@ -30,15 +30,15 @@ const WorcLibrary = () => {
 
   // else
   return (
-    <div className="py-8">
+    <div className="py-4 sm:py-6 md:py-8">
       {/* Header section with title and subtitle */}
       <div className="">
-        <div className="mx-auto max-w-7xl px-4 py-8">
-          <div className="mx-auto mb-6 max-w-3xl text-center">
-            <h1 className="!text-6xl font-semibold tracking-wide mb-2">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 sm:py-8">
+          <div className="mx-auto mb-4 sm:mb-6 max-w-3xl text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:!text-6xl font-semibold tracking-wide mb-2 sm:mb-3">
               Worc <span className="text-primary">Library</span>
             </h1>
-            <p className="text-base text-muted-foreground">
+            <p className="text-sm sm:text-base text-muted-foreground px-2 sm:px-0">
               The Library of Worc brings together a rich catalog of ready-to-use
               automations and AI blueprints, empowering teams to build faster,
               smarter, and at scale — no need to start from scratch.
@@ -46,9 +46,9 @@ const WorcLibrary = () => {
           </div>
 
           {/* Search Bar for filtering templates */}
-          <div className="relative mx-auto mb-8 max-w-2xl">
+          <div className="relative mx-auto mb-6 sm:mb-8 max-w-2xl px-2 sm:px-0">
             <Input
-              className="rounded-lg pe-9 ps-3.5 text-[0.86rem]"
+              className="rounded-lg pe-9 ps-3.5 text-sm sm:text-[0.86rem] h-10 sm:h-auto"
               placeholder="Search..."
               type="text"
             // Uncomment and implement search functionality as needed
@@ -65,14 +65,15 @@ const WorcLibrary = () => {
           </div>
 
           {/* Category Filters to select templates by category */}
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2 sm:px-0">
             {categories.map((category) => (
               <Button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 variant="outline"
+                size={"sm"}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium ring-1 ring-white",
+                  "rounded-full ring-white whitespace-nowrap",
                   {
                     "border-primary text-primary ring-primary":
                       selectedCategory === category,
@@ -90,5 +91,4 @@ const WorcLibrary = () => {
     </div>
   );
 };
-
 export default WorcLibrary;
