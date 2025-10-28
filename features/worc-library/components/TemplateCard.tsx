@@ -35,10 +35,10 @@ export const TemplateCard = ({ template }: TemplateCardProps) => {
         {/* Icon area */}
         <div className="flex items-center gap-4">
           {template.icons?.length ? (
-            template.icons.map((icon, idx) => (
+            template.icons?.filter(icon => icon !== "/function.png")?.map((icon, idx) => (
               <div key={icon || idx} className="rounded-lg bg-accent p-2">
-                {icon == "/function.png" ? <BotIcon className="h-6 w-6" /> : <img src={icon} alt="icon" className="h-6 w-6 !border-0" />
-                }  </div>
+                <img src={icon} alt="icon" className="h-6 w-6 !border-0" />
+              </div>
             ))
           ) : (
             // Fallback icon
