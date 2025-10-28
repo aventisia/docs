@@ -10,10 +10,8 @@ import { getAgentTemplates } from "../apis/wroc-templates-apis";
 
 const WorcLibraryTemplates = ({
   selectedCategory,
-
 }: {
   selectedCategory: string;
-
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(12);
@@ -52,7 +50,7 @@ const WorcLibraryTemplates = ({
   // Show skeletons while loading
   if (loading) {
     return (
-      <div className="mt-2 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+      <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-4 lg:gap-6">
         {[1, 2, 3, 4].map((i) => (
           <TemplateCardSkeleton key={i} />
         ))}
@@ -63,21 +61,21 @@ const WorcLibraryTemplates = ({
   return (
     <div className="mt-2 pb-4">
       {/* Template Cards Grid */}
-      <div className="mt-2 grid  gap-6  grid-cols-4">
+      <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-4 lg:gap-6">
         {currentItems && currentItems?.length > 0 ? (
           currentItems?.map((item) => (
             <TemplateCard key={item.id} template={item} />
           ))
         ) : (
           // Empty state when no templates found
-          <div className="col-span-4 py-6 text-center">
-            <div className="mb-4 text-gray-400">
-              <Search className="mx-auto h-12 w-12" />
+          <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 py-6 sm:py-8 md:py-10 text-center px-4">
+            <div className="mb-3 sm:mb-4 text-gray-400">
+              <Search className="mx-auto h-10 w-10 sm:h-12 sm:w-12" />
             </div>
-            <h3 className="mb-2 text-lg font-medium text-gray-900 dark:text-gray-400">
+            <h3 className="mb-1.5 sm:mb-2 text-base sm:text-lg font-medium text-gray-900 dark:text-gray-400">
               No templates found
             </h3>
-            <p className="text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600">
               Try adjusting your search or filter criteria
             </p>
           </div>
@@ -100,5 +98,4 @@ const WorcLibraryTemplates = ({
     </div>
   );
 };
-
 export default WorcLibraryTemplates;
