@@ -7,10 +7,13 @@ import { Button } from "@/app/_components/ui/buttons";
 import { cn } from "@/lib";
 import { useSearchParams } from "next/navigation";
 import { TemplateDetail } from "./template-details/TemplateDetails";
+import { useDebounce } from "../hooks/useDebounce";
 
 const WorcLibrary = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("t");
+  const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearch = useDebounce(searchQuery);
 
   // State to track the currently selected template category filter
   const [selectedCategory, setSelectedCategory] = useState("All templates");
@@ -48,17 +51,17 @@ const WorcLibrary = () => {
           {/* Search Bar for filtering templates */}
           <div className="relative mx-auto mb-6 sm:mb-8 max-w-2xl px-2 sm:px-0">
             <Input
-              className="rounded-lg pe-9 ps-3.5 text-sm sm:text-[0.86rem] h-10 sm:h-auto"
+              className="rounded-lg pe-9 ps-3.5 text-sm sm:text-[0.86rem] "
               placeholder="Search..."
               type="text"
-            // Uncomment and implement search functionality as needed
-            // value={searchQuery}
-            // onChange={(e) => setSearchQuery(e.target.value)}
+              // Uncomment and implement search functionality as needed
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <Button
               variant="ghost"
               size="icon10"
-              className="absolute inset-y-0 end-0 rounded-none rounded-e-lg focus-visible:ring-[3px]"
+              className="absolute inset-y-0 end-1  sm:end-0 rounded-none rounded-e-lg focus-visible:ring-[3px]"
               aria-label="Search">
               <SearchIcon size={18} aria-hidden="true" />
             </Button>
@@ -87,7 +90,10 @@ const WorcLibrary = () => {
       </div>
 
       {/* Displays templates filtered by the selected category */}
-      <WorcLibraryTemplates selectedCategory={selectedCategory} />
+      <WorcLibraryTemplates
+        selectedCategory={selectedCategory}
+        searchQuery={debouncedSearch}
+      />
     </div>
   );
 };

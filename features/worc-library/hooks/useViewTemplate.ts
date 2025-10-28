@@ -1,16 +1,20 @@
 "use client";
+
+import { useRouter } from "next/navigation";
+
 /**
  * Custom hook to view a template.
  *
- * The template is displayed at the `/library` route.
+ * Navigates to `/library?t={id}` in the same tab.
  *
- * @returns A function that takes a template ID and opens the template in a new tab.
+ * @returns A function that takes a template ID and routes to the template.
  */
 export const useViewTemplate = () => {
-  // Function to open the template
+  const router = useRouter();
+
   const handleViewTemplate = (id: string) => {
     const url = `/library?t=${id}`;
-    window.open(url, "_blank");
+    router.push(url);
   };
 
   return handleViewTemplate;
