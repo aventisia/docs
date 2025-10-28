@@ -14,8 +14,20 @@ const meta: MetaRecord = {
   "agent-builder": {
     title: "Agent Builder",
   },
+  documentation: {
+    title: "Documentation",
+    href: "/",
+    type: "page",
+  },
   library: {
-    display: "hidden",
+    title: "Library",
+    href: "/library",
+    type: "page",
+  },
+  website: {
+    title: "Website",
+    href: "https://aventisia.com/",
+    type: "page",
   },
 };
 

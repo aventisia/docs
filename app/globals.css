@@ -90,32 +90,3 @@ code.text-\[\.9em\] {
     display: none;
   }
 }
-
-.parent-nav {
-  display: flex;
-}
-
-/* Logo */
-.parent-nav> :nth-child(1) {
-  order: 1;
-}
-
-/* empty div */
-.parent-nav> :nth-child(2) {
-  order: 2;
-}
-
-/* Search bar */
-.parent-nav> :nth-child(3) {
-  order: 5;
-}
-
-/* Library Link */
-.parent-nav> :nth-child(4) {
-  order: 3;
-}
-
-/* Website Link */
-.parent-nav> :nth-child(5) {
-  order: 4;
-}
