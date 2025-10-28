@@ -17,33 +17,40 @@ body {
     "rlig" 1,
     "calt" 1;
   font-family: var(--font-family);
-  font-size: 0.9rem; /* 14px */
+  font-size: 0.9rem;
+  /* 14px */
 }
 
 h1 {
-  font-size: 1.875rem; /* 30px */
+  font-size: 1.875rem;
+  /* 30px */
   border: none;
 }
 
 h2 {
-  font-size: 1.5rem; /* 24px */
+  font-size: 1.5rem;
+  /* 24px */
 }
 
 h3,
 .nextra-steps h3 {
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem;
+  /* 20px */
 }
 
 h4 {
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;
+  /* 18px */
 }
 
 h5 {
-  font-size: 1rem; /* 16px */
+  font-size: 1rem;
+  /* 16px */
 }
 
 h6 {
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem;
+  /* 14px */
 }
 
 th {
@@ -82,4 +89,33 @@ code.text-\[\.9em\] {
   .home-content .hide-small {
     display: none;
   }
+}
+
+.parent-nav {
+  display: flex;
+}
+
+/* Logo */
+.parent-nav> :nth-child(1) {
+  order: 1;
+}
+
+/* empty div */
+.parent-nav> :nth-child(2) {
+  order: 2;
+}
+
+/* Search bar */
+.parent-nav> :nth-child(3) {
+  order: 5;
+}
+
+/* Library Link */
+.parent-nav> :nth-child(4) {
+  order: 3;
+}
+
+/* Website Link */
+.parent-nav> :nth-child(5) {
+  order: 4;
 }
