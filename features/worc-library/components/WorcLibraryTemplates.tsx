@@ -33,12 +33,14 @@ const WorcLibraryTemplates = ({
               )
               : template.type.includes(selectedCategory)
         )
-        ?.filter((template) =>
-          searchQuery?.trim()
-            ? template.name
+        ?.filter((template) => {
+          const searchText = template.name + template.tags?.toString()
+          return searchQuery?.trim()
+            ? searchText
               ?.toLowerCase()
               .includes(searchQuery.toLowerCase().trim())
             : true
+        }
         );
     }
     else return [];
