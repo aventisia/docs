@@ -26,6 +26,8 @@ type TemplateCardProps = {
 export const TemplateCard = ({ template }: TemplateCardProps) => {
   const handleViewTemplate = useViewTemplate();
 
+  const filteredIcons = template.icons?.filter(icon => icon !== "/function.png")
+
   return (
     <Card
       key={template.id}
@@ -34,12 +36,29 @@ export const TemplateCard = ({ template }: TemplateCardProps) => {
       <CardHeader className="pb-3 sm:pb-4">
         {/* Icon area */}
         <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
-          {template.icons?.length ? (
-            template.icons?.filter(icon => icon !== "/function.png")?.map((icon, idx) => (
-              <div key={icon || idx} className="rounded-lg bg-accent p-1.5 sm:p-2">
-                <img src={icon} alt="icon" className="h-5 w-5 sm:h-6 sm:w-6 !border-0" />
-              </div>
-            ))
+          {filteredIcons?.length ? (
+            <>
+              {
+                filteredIcons?.slice(0, 4)?.map((icon, idx) => (
+                  <div key={icon || idx} className=" rounded-lg bg-accent p-1.5 sm:p-2">
+                    <img src={icon} alt="icon" className="h-5 w-5 sm:h-6 sm:w-6 !border-0" />
+                  </div>
+                ))
+              }
+
+              {
+                filteredIcons?.length > 5 && <div className="h-10 w-10 flex items-center justify-center  rounded-lg bg-accent p-1.5 sm:p-2">
+                  <span className="text-sm font-medium">+{filteredIcons.length - 4}</span>
+                </div>
+              }
+
+              {
+                filteredIcons?.length == 5 &&
+                <div className=" rounded-lg bg-accent p-1.5 sm:p-2">
+                  <img src={filteredIcons[4]} alt="icon" className="h-5 w-5 sm:h-6 sm:w-6 !border-0" />
+                </div>
+              }
+            </>
           ) : (
             // Fallback icon
             <div className="rounded-lg bg-accent p-1.5 sm:p-2">
