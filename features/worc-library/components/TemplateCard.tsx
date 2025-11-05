@@ -70,9 +70,9 @@ export const TemplateCard = ({ template }: TemplateCardProps) => {
 
       </CardHeader>
       <div>
-        <CardContent className=" pb-1">
+        <CardContent className="mt-2 pb-1">
           {/* Template title */}
-          <CardTitle className=" truncate text-sm sm:text-[0.9rem] font-semibold capitalize">
+          <CardTitle title={template.name} className="truncate text-sm sm:text-[0.9rem] font-semibold capitalize">
             {template.name}
           </CardTitle>
           {/* Type badge */}
