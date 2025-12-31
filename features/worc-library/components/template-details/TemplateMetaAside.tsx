@@ -23,7 +23,9 @@ export function TemplateMetaAside({ template }: { template: UseTemplateDTO }) {
         <CardContent className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
           <div className="grid grid-cols-3 gap-2 sm:gap-3">
             <span className="text-muted-foreground">Type</span>
-            <span className="col-span-2 break-words">{template?.type}</span>
+            <span className="col-span-2 break-words">
+              {template?.type?.replace("AIProject", "AI Model")}
+            </span>
           </div>
           <div className="grid grid-cols-3 gap-2 sm:gap-3">
             <span className="text-muted-foreground">Version</span>
