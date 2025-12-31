@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/_components/ui/cards";
-import { BotIcon, Calendar } from "lucide-react";
+import { BotIcon, Calendar, FileBoxIcon } from "lucide-react";
 
 import { UseTemplateDTO } from "../../dtos/use-template-dto";
 
@@ -23,11 +23,15 @@ export function TemplateMetaAside({ template }: { template: UseTemplateDTO }) {
         <CardContent className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
           <div className="grid grid-cols-3 gap-2 sm:gap-3">
             <span className="text-muted-foreground">Type</span>
-            <span className="col-span-2 break-words">{template?.type}</span>
+            <span className="col-span-2 break-words">
+              {template?.type?.replace("AIProject", "AI Model")}
+            </span>
           </div>
           <div className="grid grid-cols-3 gap-2 sm:gap-3">
             <span className="text-muted-foreground">Version</span>
-            <span className="col-span-2 break-words">{template?.schemaVersion}</span>
+            <span className="col-span-2 break-words">
+              {template?.schemaVersion}
+            </span>
           </div>
           <div className="grid grid-cols-3 gap-2 sm:gap-3">
             <span className="flex items-center gap-1 text-muted-foreground">
@@ -52,15 +56,27 @@ export function TemplateMetaAside({ template }: { template: UseTemplateDTO }) {
           <Separator className="my-2 sm:my-3" />
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {template.icons?.length ? (
-              template.icons?.filter(icon => icon !== "/function.png")?.map((icon, idx) => (
-                <div key={icon || idx} className="rounded-lg bg-accent p-1.5 sm:p-2">
-                  <img src={icon} alt="icon" className="h-5 w-5 sm:h-6 sm:w-6 !border-0" />
-                </div>
-              ))
+              template.icons
+                ?.filter((icon) => icon !== "/function.png")
+                ?.map((icon, idx) => (
+                  <div
+                    key={icon || idx}
+                    className="rounded-lg bg-accent p-1.5 sm:p-2">
+                    <img
+                      src={icon}
+                      alt="icon"
+                      className="h-5 w-5 sm:h-6 sm:w-6 !border-0"
+                    />
+                  </div>
+                ))
             ) : (
               // Fallback icon
               <div className="rounded-lg bg-accent p-1.5 sm:p-2">
-                <BotIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                {template.type == "AIProject" ? (
+                  <FileBoxIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                ) : (
+                  <BotIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                )}{" "}
               </div>
             )}
           </div>
@@ -74,8 +90,13 @@ export function TemplateMetaAside({ template }: { template: UseTemplateDTO }) {
           <CardContent className="text-xs sm:text-sm">
             <ul className="space-y-2 sm:space-y-3">
               {template.resources!.map((item) => (
-                <li key={item.path} className="flex items-start gap-1.5 sm:gap-2">
-                  <FileTypeIcon fileType={item.extension} className="mt-1 flex-shrink-0" />
+                <li
+                  key={item.path}
+                  className="flex items-start gap-1.5 sm:gap-2">
+                  <FileTypeIcon
+                    fileType={item.extension}
+                    className="mt-1 flex-shrink-0"
+                  />
                   <div className="flex flex-col min-w-0 flex-1">
                     <Button
                       // onClick={() => {
