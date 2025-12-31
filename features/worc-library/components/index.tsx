@@ -23,13 +23,13 @@ const WorcLibrary = () => {
     "All templates",
     "AI Model",
     "Agent",
-    "Inferencing",
-    "Conversation",
-    "Generative",
+    // "Inferencing",
+    // "Conversation",
+    // "Generative",
     "Block",
   ];
 
-  if (id) return <TemplateDetail id={id} />
+  if (id) return <TemplateDetail id={id} />;
 
   // else
   return (
@@ -75,13 +75,10 @@ const WorcLibrary = () => {
                 onClick={() => setSelectedCategory(category)}
                 variant="outline"
                 size={"sm"}
-                className={cn(
-                  "rounded-full ring-white whitespace-nowrap",
-                  {
-                    "border-primary text-primary ring-primary":
-                      selectedCategory === category,
-                  }
-                )}>
+                className={cn("rounded-full ring-white whitespace-nowrap", {
+                  "border-primary text-primary ring-primary":
+                    selectedCategory === category,
+                })}>
                 {category}
               </Button>
             ))}
