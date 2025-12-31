@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/_components/ui/cards";
-import { BotIcon, Copy, Tag } from "lucide-react";
+import { BotIcon, Copy, FileBoxIcon, Tag } from "lucide-react";
 
 import { WorcTemplatesDto } from "../dtos/worc-templates-dtos";
 import { useViewTemplate } from "../hooks/useViewTemplate";
@@ -26,7 +26,9 @@ type TemplateCardProps = {
 export const TemplateCard = ({ template }: TemplateCardProps) => {
   const handleViewTemplate = useViewTemplate();
 
-  const filteredIcons = template.icons?.filter(icon => icon !== "/function.png")
+  const filteredIcons = template.icons?.filter(
+    (icon) => icon !== "/function.png"
+  );
 
   return (
     <Card
@@ -38,41 +40,54 @@ export const TemplateCard = ({ template }: TemplateCardProps) => {
         <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
           {filteredIcons?.length ? (
             <>
-              {
-                filteredIcons?.slice(0, 4)?.map((icon, idx) => (
-                  <div key={icon || idx} className=" rounded-lg bg-accent p-1.5 sm:p-2">
-                    <img src={icon} alt="icon" className="h-5 w-5 sm:h-6 sm:w-6 !border-0" />
-                  </div>
-                ))
-              }
-
-              {
-                filteredIcons?.length > 5 && <div className="h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center  rounded-lg bg-accent p-1.5 sm:p-2">
-                  <span className="text-xs sm:text-sm font-medium dark:text-black">+{filteredIcons.length - 4}</span>
+              {filteredIcons?.slice(0, 4)?.map((icon, idx) => (
+                <div
+                  key={icon || idx}
+                  className=" rounded-lg bg-accent p-1.5 sm:p-2">
+                  <img
+                    src={icon}
+                    alt="icon"
+                    className="h-5 w-5 sm:h-6 sm:w-6 !border-0"
+                  />
                 </div>
-              }
+              ))}
 
-              {
-                filteredIcons?.length == 5 &&
+              {filteredIcons?.length > 5 && (
+                <div className="h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center  rounded-lg bg-accent p-1.5 sm:p-2">
+                  <span className="text-xs sm:text-sm font-medium dark:text-black">
+                    +{filteredIcons.length - 4}
+                  </span>
+                </div>
+              )}
+
+              {filteredIcons?.length == 5 && (
                 <div className=" rounded-lg bg-accent p-1.5 sm:p-2">
-                  <img src={filteredIcons[4]} alt="icon" className="h-5 w-5 sm:h-6 sm:w-6 !border-0" />
+                  <img
+                    src={filteredIcons[4]}
+                    alt="icon"
+                    className="h-5 w-5 sm:h-6 sm:w-6 !border-0"
+                  />
                 </div>
-              }
+              )}
             </>
           ) : (
             // Fallback icon
             <div className="rounded-lg bg-accent p-1.5 sm:p-2">
-              <BotIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+              {template.type == "AIProject" ? (
+                <FileBoxIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+              ) : (
+                <BotIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+              )}
             </div>
           )}
         </div>
-
-
       </CardHeader>
       <div>
         <CardContent className="mt-2 pb-1">
           {/* Template title */}
-          <CardTitle title={template.name} className="truncate text-sm sm:text-[0.9rem] font-semibold capitalize">
+          <CardTitle
+            title={template.name}
+            className="truncate text-sm sm:text-[0.9rem] font-semibold capitalize">
             {template.name}
           </CardTitle>
           {/* Type badge */}
