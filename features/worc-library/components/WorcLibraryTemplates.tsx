@@ -34,16 +34,18 @@ const WorcLibraryTemplates = ({
               : template.type.includes(selectedCategory)
         )
         ?.filter((template) => {
-          const searchText = template.name + template.tags?.toString() + template?.type
+          const searchText =
+            template.name + template.tags?.toString() + template?.type ==
+              "AIProject"
+              ? "AIPorjectAIModel"
+              : template?.type;
           return searchQuery?.trim()
             ? searchText
               ?.toLowerCase()
               .includes(searchQuery.toLowerCase().trim())
-            : true
-        }
-        );
-    }
-    else return [];
+            : true;
+        });
+    } else return [];
   }, [agentData, selectedCategory, searchQuery]);
 
   // Calculate total pages for pagination
