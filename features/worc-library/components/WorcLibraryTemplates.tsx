@@ -20,33 +20,45 @@ const WorcLibraryTemplates = ({
 
   const { data: agentData = [], loading } = useFetch(() => getAgentTemplates());
 
+  const AI_MODEL_TYPES = [
+    "AIProject",
+    "Inferencing",
+    "Conversation",
+    "Generative",
+  ];
   // Combine and filter templates based on selected category
   const items = useMemo(() => {
-    if (agentData?.length) {
-      return agentData
-        ?.filter((template) =>
-          selectedCategory === "All templates"
-            ? true
-            : selectedCategory === "AI Model"
-              ? ["Inferencing", "Conversation", "Generative"].includes(
-                template.type
-              )
-              : template.type.includes(selectedCategory)
-        )
-        ?.filter((template) => {
-          const searchText =
-            template.name + template.tags?.toString() + template?.type ==
-              "AIProject"
-              ? "AIPorjectAIModel"
-              : template?.type;
-          return searchQuery?.trim()
-            ? searchText
-              ?.toLowerCase()
-              .includes(searchQuery.toLowerCase().trim())
-            : true;
-        });
-    } else return [];
-  }, [agentData, selectedCategory, searchQuery]);
+    const templates = agentData ?? [];
+    const normalizedQuery = searchQuery?.trim().toLowerCase();
+
+    const matchesCategory = (type: string) => {
+      if (selectedCategory === "All templates") return true;
+
+      if (selectedCategory === "AI Model") {
+        return AI_MODEL_TYPES.includes(type);
+      }
+
+      return type.includes(selectedCategory);
+    };
+
+    const matchesSearch = (template: (typeof templates)[number]) => {
+      if (!normalizedQuery) return true;
+
+      const searchText = [
+        template.name,
+        template.tags?.join(" "),
+        template.type === "AIProject" ? "AIProject AIModel" : template.type,
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return searchText.includes(normalizedQuery);
+    };
+
+    return templates
+      .filter((template) => matchesCategory(template.type))
+      .filter(matchesSearch);
+  }, [agentData, searchQuery, selectedCategory]);
 
   // Calculate total pages for pagination
   const totalPages = Math.ceil(items?.length / itemsPerPage);

@@ -62,15 +62,19 @@ export function TemplateHeader({ template }: { template: UseTemplateDTO }) {
               </Badge>
 
               {/* Tags */}
-              {template?.tags?.map((tag) => (
-                <Badge
-                  key={tag}
-                  variant="outline"
-                  className="flex text-2xs sm:text-xs border-border capitalize items-center gap-1 bg-slate-100 dark:bg-background">
-                  <Tag className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
-                  {tag}
-                </Badge>
-              ))}
+              {template?.tags
+                ?.filter(
+                  (tag) => tag.toLowerCase() !== template?.type?.toLowerCase()
+                ) //Filter tags that are similar to project type?
+                .map((tag) => (
+                  <Badge
+                    key={tag}
+                    variant="outline"
+                    className="flex text-2xs sm:text-xs border-border capitalize items-center gap-1 bg-slate-100 dark:bg-background">
+                    <Tag className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
+                    {tag}
+                  </Badge>
+                ))}
             </div>
           </div>
 
