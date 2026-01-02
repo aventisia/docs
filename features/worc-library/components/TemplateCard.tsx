@@ -95,7 +95,9 @@ export const TemplateCard = ({ template }: TemplateCardProps) => {
             variant="outline"
             className="mt-2 flex w-fit border-border text-xs items-center gap-1 bg-slate-100 dark:bg-background py-0.5 sm:py-1 px-2">
             <Tag className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
-            <span className="leading-3"> {template.type}</span>
+            <span className="leading-3">
+              {template.type?.replace("AIProject", "AI Model")}
+            </span>
           </Badge>
         </CardContent>
 
